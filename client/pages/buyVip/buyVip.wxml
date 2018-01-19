@@ -1,0 +1,33 @@
+<!--pages/buyVip/buyVip.wxml-->
+<view class="">
+  <view class='border'></view>
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">会员套餐</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">月度</view>
+          <view class="weui-cell__ft">￥330</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">年度</view>
+          <view class="weui-cell__ft">￥666</view>
+      </view>
+      <view class="weui-cell">
+          <view class="weui-cell__bd">支付方式</view>
+      </view>
+    
+      <view class="weui-cell">
+          <view class="weui-cell__bd">微信</view>
+          <view class="weui-cell__ft">￥666</view>
+      </view>
+    </view>
+    <view class="page__bd_spacing">
+      <button class="weui-btn " type="primary">立即开通</button>
+    </view>
+  </view>
+</view>
+
+
+

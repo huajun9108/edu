@@ -1,0 +1,31 @@
+<!--pages/home/home.wxml-->
+<import src="../common/common.wxml"/>
+<view class="page">
+  <!-- <text>首页</text> -->
+  <view class='border'></view>
+  <!-- <view animation="{{animationData}}"> -->
+   <swiper indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="bindchange" 
+    previous-margin	="{{previous}}" next-margin = "{{next}}"
+   >
+    <block wx:for="{{imgUrls}}" wx:key="index" >
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" bindtap="swipclick" id = "{{index}}" style=''/>
+      </swiper-item>
+    </block>
+  </swiper> 
+  <!-- </view> -->
+  <view class='recommend page__left_spacing'>
+    <text>为你推荐</text>
+    <template
+      is="scroll-x" 
+      data="{{scrollFlag,scrollimgUrls}}"/>
+  </view>
+  <view class='latest page__left_spacing'>
+    <text>最新最热</text>
+    <template
+      is="scroll-x" 
+      data="{{scrollFlag,scrollimgUrls}}"/>
+  </view>
+</view>
+
