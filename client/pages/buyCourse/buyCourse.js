@@ -5,7 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    showFlag: false,
+    model: [
+      {
+        title: '名称',
+        detail:"课程AAA"
+      },
+      {
+        title: '价格',
+        detail: "￥280"
+      }
+    ],
+    number: "￥20"
   },
 
   /**
@@ -62,5 +73,8 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  buyTap(){
+    console.log(this.data.model[1].detail)
   }
 })

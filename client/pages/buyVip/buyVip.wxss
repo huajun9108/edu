@@ -1,1 +1,31 @@
 /* pages/buyVip/buyVip.wxss */
+.seletedImage{
+  width: 40rpx;
+  height: 40rpx;
+  padding-left: 16rpx;
+  vertical-align: middle;
+}
+.weixinImage{
+  width: 46rpx;
+  height: 38rpx;
+  vertical-align: middle;
+}
+.common_btn{
+  width: 100%;
+  position: absolute; 
+  bottom: 20rpx;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box; 
+
+}
+.weui-btn{
+  font-size: 38rpx;
+  color: 323232;
+}
+.sp_title{
+  font-size:32rpx;
+  font-weight: bold;
+}
+.weui-cell__ft{
+  color: #131313;
+}

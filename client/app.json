@@ -8,33 +8,39 @@
     "pages/allOrders/allOrders",
     "pages/buyVip/buyVip",
     "pages/userSet/userSet",
+    "pages/myFavor/myFavor",
     "pages/index/index",
     "pages/addCgi/addCgi"
     
   ],
   "window":{
-    "backgroundColor":"#eeeeee",
+    "backgroundColor":"#fff",
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "首页",
-    "navigationBarTextStyle":"black",
-    "textAlign":"left"
+    "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "color": "#1d1d1d",
-    "selectedColor":"#3cc51f",
+    "color": "#5F5F5F",
+    "selectedColor":"#F1B90D",
     "list": [
       {
         "pagePath": "pages/home/home",
-        "text": "首页"
+        "text": "首页",
+        "iconPath":"images/homePage_unfocus.png",
+        "selectedIconPath":"images/homePage_focus.png"
       },
       {
         "pagePath": "pages/course/course",
-        "text": "课程"
+        "text": "课程",
+        "iconPath": "images/curriculum_unfocus.png",
+        "selectedIconPath": "images/curriculum_focus.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "images/my_unfocus.png",
+        "selectedIconPath": "images/my_focus.png"
       }
     ]
   },

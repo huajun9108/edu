@@ -1,1 +1,26 @@
 /* pages/allOrders/allOrders.wxss */
+image{
+  height: 108rpx;
+  width: 120rpx;
+  border-radius: 30rpx;
+}
+.order-bottom{
+  font-size: 36rpx;
+  color: #FF8D6B;
+}
+.weui-tab__panel{
+  position: absolute;
+  top: 118rpx;
+  width: 100%;
+  height: auto;
+  padding-top: 0;
+}
+.order_pay{
+  color: #FF8D6B;
+}
+.order_study{
+  color: #8e8e8f;
+}
+.weui-cell__bd{
+  padding-left:40rpx;
+}

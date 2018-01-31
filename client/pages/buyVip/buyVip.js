@@ -5,7 +5,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    showFlag: true,
+    model: [
+      {
+        title: '月度',
+        price: '￥20',
+        unit:"月",
+        selectImage: true,
+        selectedImageUrl:"../../images/xuanzhong_icon.png",
+        unselectedImageUrl:"../../images/weixuanzhong_icon.png"
+      },
+      {
+        title: '年度',
+        price: '￥198',
+        unit: "年",
+        selectImage: false,
+        selectedImageUrl: "../../images/xuanzhong_icon.png",
+        unselectedImageUrl: "../../images/weixuanzhong_icon.png"
+      }
+    ],
+    number:"￥20"
   },
 
   /**
@@ -62,5 +81,24 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  selectClick(e){
+    console.log(e)
+    for (var i = 0; i < this.data.model.length; i++) {
+      if (e.currentTarget.id == i) {
+        this.data.model[i].selectImage = true
+
+      }
+      else {
+        this.data.model[i].selectImage = false
+      }
+    }
+    this.setData({
+      model: this.data.model,
+      number: e.currentTarget.dataset.price
+    })  
+  },
+  buyTap(){
+    console.log(this.data.number)
   }
 })

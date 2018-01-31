@@ -1,84 +1,65 @@
 /* pages/home/home.wxss */
+swiper{
+  height: 418rpx; 
+}
+swiper-item{
+  height: 418rpx; 
+  overflow: hidden;
 
-.home{
-  width: 100%;
-  height: 100%;
 }
 .slide-image{
-    /* width: 100%; */
-    height: 100%; 
+    height: 100%;
     display: block;
     margin: auto; 
-    width: 95%; 
-    border-radius: 10px;
+    width: 99%; 
+    border-radius: 20rpx;
 }
-.middle{  
-    width: 100%;  
-    height: 540rpx;  
-    position: relative;  
-}  
-.middle-down{  
-    width: 100%;  
-    height: 100%;  
-    position: relative;  
-  
-}  
-.middle-bg{  
-    width: 100%;  
-    height: 100%;  
-    position: absolute;  
-    left: 0;  
-    right: 0;  
-    top: 0;  
-    bottom: 0;  
-}  
-.middle-phone{  
-    width: 282rpx;  
-    height: 383rpx;  
-    position: absolute;  
-    left: 50%;  
-    top: -20rpx;  
-    z-index:10;   
-}  
-.swiper{  
-    position: absolute;  
-    width: 100%;  
-    left: 0;  
-    top: 14px;  
-    z-index: 11;  
-    height: 205px;  
-}  
-.swiper-lb{  
-    height: 205px;  
-    width: 100%;  
-     /* background: #fff;  */  
-    overflow: hidden;  
-    position: relative;  
-}  
-.swiper-ul{  
-    position: absolute;  
-    top: 0;  
-    left:0;   
-    height: 152px;  
-    /* background: #ffe400; */  
-}  
-.swiper-li{  
-    height: 100%;  
-    padding-left: 5px;  
-    padding-bottom: 10px;  
-    float: left;  
-    box-sizing: border-box;  
-    display: flex;  
-    justify-content: center;  
-    align-items: center;  
-}  
-.swiper-image{  
-  
-}  
-.swiper-image1{  
-     width: 100%;  
-    height: 100%;   
-}  
-.uploadWrap{height:300rpx; width:100%; display: flex; display: -webkit-box; flex-direction: column;}  
-.upload_Item{ width: 200rpx; height: 200rpx;  flex: 1;}  
-.upload_Item_img{ width: 160rpx; height: 160rpx;}  
+.magnifying{
+    animation: enlarge .5s linear both;
+    -webkit-animation:enlarge .5s linear both;
+}
+.reduce{
+    animation: reduce .5s linear both;
+    -webkit-animation:reduce .5s linear both;
+}
+.placeholder{
+  line-height: 96rpx;
+  border-bottom:2px solid #EFEFF1;
+  font-size: 24rpx;
+}
+.home_text{
+  font-size: 32rpx;
+  font-weight: bold;
+}
+.home_text_right{
+  text-align: right;
+  padding-right: 40rpx;
+}
+scroll-view{
+  margin-top:28rpx;
+  padding-bottom: 15rpx;
+  height:264rpx;
+}
+.uploadWrap{height:100%; width:100%; display: flex; display: -webkit-box; flex-direction: column;}  
+.upload_Item{ width: 322rpx; height: 264rpx;  flex: 1;}  
+.upload_Item_img{ width: 312rpx; height: 206rpx; border-radius: 20rpx;}  
+.scroll_image_title{
+  line-height: 48rpx;
+  font-size: 26rpx;
+}
+@keyframes enlarge{
+  from{
+      transform:  scaleY(0.9)
+  }
+  to{
+      transform:  scaleY(1)
+  }
+}
+@keyframes reduce{
+  from{
+      transform:  scaleY(1)
+  }
+  to{
+      transform:  scaleY(0.9)
+  }
+}

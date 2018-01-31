@@ -1,120 +1,55 @@
 /* pages/mine/mine.wxss */
-.userinfo, .uploader, .tunnel {
-    /* margin-top: 40rpx; */
-    height: 140rpx;
+.userinfo{
+    height: 338rpx;
     width: 100%;
     background: #FFF;
-    /* border: 1px solid rgba(0, 0, 0, .1); */
     border-left: none;
     border-right: none;
     display: flex; 
     flex-direction: row; 
     align-items: center;
     transition: all 300ms ease;
-}
-.userinfo{
-    justify-content: center;    
+    justify-content: flex-start; 
+    position: relative   
 }
 
 .userinfo-avatar {
-    width: 100rpx;
-    height: 100rpx;
-    margin: 20rpx;
+    width: 190rpx;
+    height: 190rpx;
+    margin: 74rpx 24rpx 74rpx 0;
     border-radius: 50%;
+ 
+    
+}
+.userinfo-wx{
+  width: 42rpx;
+  height: 42rpx;
+  position: absolute;
+  bottom: 74rpx;
+  left: 170rpx;
 }
 
 .userinfo-nickname {
-    font-size: 32rpx;
-    color: #007AFF;
+  font-size: 30rpx;
+  font-weight: bold;
 }
-.uploader, .tunnel {
-    height: auto;
-    padding: 0 0 0 40rpx;
-    flex-direction: column;
-    align-items: flex-start;
-    box-sizing: border-box;
+.weui-cells_after-title,.weui-cells {
+  margin-top: 0;
 }
-
-.uploader-text, .tunnel-text {
-    width: 100%;
-    line-height: 52px;
-    font-size: 34rpx;
-    color: #007AFF;
+.unvipname,.vipname{
+  font-size: 24rpx;
+  line-height: 30rpx;
+  width: 102rpx;
+  border-radius: 10rpx;
+  background: #dbdbdb;
+  text-align: center;
 }
-
-.uploader-container {
-    width: 100%;
-    height: 400rpx;
-    padding: 20rpx 20rpx 20rpx 0;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(0, 0, 0, .1);
+.vipname{
+  background: #ffdd55;
 }
-
-.uploader-image {
-    width: 100%;
-    height: 360rpx;
+.weui-cell__bd{
+  font-weight: bolder;
 }
-
-.tunnel {
-    padding: 0 0 0 40rpx;
+.weui-cell__ft{
+  font-size: 26rpx;
 }
-
-.tunnel-text {
-    position: relative;
-    color: #222;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    border-top: 1px solid rgba(0, 0, 0, .1);
-}
-
-.tunnel-text:first-child {
-    border-top: none;
-}
-
-.tunnel-switch {
-    position: absolute;
-    right: 20rpx;
-    top: -2rpx;
-}
-
-.disable {
-    color: #888;
-}
-
-.service {
-    position: fixed;
-    right: 40rpx;
-    bottom: 40rpx;
-    width: 140rpx;
-    height: 140rpx;
-    border-radius: 50%;
-    background: linear-gradient(#007AFF, #0063ce);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    transition: all 300ms ease;
-}
-
-.service-button {
-    position: absolute;
-    top: 40rpx;
-}
-
-.service:active {
-    box-shadow: none;
-}
-
-.request-text {
-    padding: 20rpx 0;
-    font-size: 24rpx;
-    line-height: 36rpx;
-    word-break: break-all;
-}
-

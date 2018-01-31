@@ -1,2 +1,2 @@
 /* pages/buyCourse/buyCourse.wxss */
-
+@import "../buyVip/buyVip.wxss"; 

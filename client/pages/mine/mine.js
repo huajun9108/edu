@@ -9,29 +9,22 @@ Page({
     takeSession: false,
     requestResult: '',
     vipFlag:false,
-    vipList:[
-      {
-        url: "../allOrders/allOrders", title: "学习中心", explain: "全部订单"
-      },
-      {
-        url: "../buyVip/buyVip", title: "我的会员", explain: "开通"
-      },
-      {
-        url: "../userSet/userSet", title: "账号设置", explain: ""
-      }
-    ],
     normalList: [
       {
-        url: "../allOrders/allOrders", title: "学习中心", explain: "全部订单"
+        url: "../allOrders/allOrders", title: "学习中心", explain:"全部订单"
       },
       {
-        url: "../buyVip/buyVip", title: "VIP购买", explain: "开通"
+        url: "../myFavor/myFavor", title: "我的收藏"
       },
       {
-        url: "../userSet/userSet", title: "账号设置", explain: ""
+        url: "../buyVip/buyVip?id="+1, title: "VIP购买"
+      },
+      {
+        url: "../userSet/userSet", title: "账号设置"
       }
     ],
-    time:null
+    time:null,
+    nameFlag:"unvipname",
   },
   onLoad: function (options) {
     var that = this;
@@ -41,15 +34,19 @@ Page({
       that.setData({
         vipList: [
           {
-            url: "../allOrders/allOrders", title: "学习中心", explain: "全部订单"
+            url: "../allOrders/allOrders", title: "学习中心",explain: "全部订单"
           },
           {
-            url: "../buyVip/buyVip", title: "我的会员", explain: options.data
+            url: "../myFavor/myFavor", title: "我的收藏"
           },
           {
-            url: "../userSet/userSet", title: "账号设置", explain: ""
+            url: "../buyVip/buyVip?id="+1, title: "我的会员", explain: options.data
+          },
+          {
+            url: "../userSet/userSet", title: "账号设置"
           }
         ],
+        nameFlag: "vipname",
       })
     }
     

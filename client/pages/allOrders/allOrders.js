@@ -1,5 +1,5 @@
 // pages/allOrders/allOrders.js
-var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
+var sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
 Page({
 
   /**
@@ -10,37 +10,56 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
+    scrollFlag: true,
     order: [
       {
-        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: "支付",icon:"../../images/xuex.png"
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: 0,icon:"../../images/xuex.png"
       },
       {
-        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: "学习"
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
       },
       {
-        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: "学习"
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain:1
+      },
+      {
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: 0, icon: "../../images/xuex.png"
+      },
+      {
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
+      },
+      {
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
+      },
+      {
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain:0, icon: "../../images/xuex.png"
+      },
+      {
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
+      },
+      {
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
       }
     ],
     paidList:[
       {
-        url: "../detail/detail?id=" + 3, title: "工艺DDD", explain: "学习"
+        url: "../detail/detail?id=" + 3, title: "工艺DDD", explain: 1
       },
       {
-        url: "../detail/detail?id=" + 0, title: "工艺EEE", explain: "学习"
+        url: "../detail/detail?id=" + 0, title: "工艺EEE", explain: 1
       },
       {
-        url: "../detail/detail?id=" + 1, title: "工艺FFF", explain: "学习"
+        url: "../detail/detail?id=" + 1, title: "工艺FFF", explain: 1
       }
     ],
     unpaidList: [
       {
-        url: "../buyCourse/buyCourse", title: "工艺GGG", explain: "支付"
+        url: "../buyCourse/buyCourse", title: "工艺GGG", explain: 0
       },
       {
-        url: "../buyCourse/buyCourse", title: "工艺hhh", explain: "支付"
+        url: "../buyCourse/buyCourse", title: "工艺hhh", explain: 0
       },
       {
-        url: "../buyCourse/buyCourse", title: "工艺III", explain: "支付"
+        url: "../buyCourse/buyCourse", title: "工艺III", explain: 0
       }
     ]
   },
