@@ -53,3 +53,10 @@
 .weui-cell__ft{
   font-size: 26rpx;
 }
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
