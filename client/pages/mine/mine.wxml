@@ -1,7 +1,6 @@
 <!--pages/mine/mine.wxml-->
 <view class="page">
   <!-- 用户登录测试 -->
-  <view class='border'></view>
   <view class="userinfo" bindtap="login">
       <image
           class="userinfo-avatar page__left_spacing"

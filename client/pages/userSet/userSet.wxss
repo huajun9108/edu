@@ -1,2 +1,22 @@
 /* pages/userSet/userSet.wxss */
- 
+.contactBtn{
+  position: relative;
+}
+.contact{
+  background: #fff;
+  text-align: left;
+  font-size: 30rpx;
+  line-height: 118rpx;
+  border-bottom: 2rpx solid #efeff1;
+  padding: 0;
+  border-radius: 0;
+}
+.weui-cell__ft{
+  position: absolute;
+  right: 0;
+  top: 59rpx;
+}
+.weui-cell__ft_in-access:after{
+  height: 12rpx;
+  width: 12rpx
+}

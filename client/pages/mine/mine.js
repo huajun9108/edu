@@ -17,7 +17,7 @@ Page({
         url: "../myFavor/myFavor", title: "我的收藏"
       },
       {
-        url: "../buyVip/buyVip?id="+1, title: "VIP购买"
+        url: "../buyVip/buyVip?id="+1, title: "VIP 购买"
       },
       {
         url: "../userSet/userSet", title: "账号设置"

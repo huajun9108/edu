@@ -11,7 +11,7 @@ swiper-item{
     height: 100%;
     display: block;
     margin: auto; 
-    width: 99%; 
+    width: 670rpx; 
     border-radius: 20rpx;
 }
 .magnifying{
@@ -24,7 +24,7 @@ swiper-item{
 }
 .placeholder{
   line-height: 96rpx;
-  border-bottom:2px solid #EFEFF1;
+  border-bottom:2rpx solid #EFEFF1;
   font-size: 24rpx;
 }
 .home_text{
@@ -41,8 +41,8 @@ scroll-view{
   height:264rpx;
 }
 .uploadWrap{height:100%; width:100%; display: flex; display: -webkit-box; flex-direction: column;}  
-.upload_Item{ width: 322rpx; height: 264rpx;  flex: 1;}  
-.upload_Item_img{ width: 312rpx; height: 206rpx; border-radius: 20rpx;}  
+.upload_Item{ width: 340rpx; height: 264rpx;  flex: 1;}  
+.upload_Item_img{ width: 330rpx; height: 206rpx; border-radius: 20rpx;}  
 .scroll_image_title{
   line-height: 48rpx;
   font-size: 26rpx;

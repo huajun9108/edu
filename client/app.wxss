@@ -46,7 +46,8 @@ page{
   width: 100%;
   position: fixed;
   top: 0;
-  border-top:1px solid #bdbdbd
+  border-top:1px solid #bdbdbd;
+  z-index: 600;
 }
 weui-cells:after{
   border-bottom: 0;

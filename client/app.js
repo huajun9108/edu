@@ -7,5 +7,12 @@ App({
     onLaunch: function () {
         qcloud.setLoginUrl(config.service.loginUrl)
     },
-    Touches: new Touches()
+    Touches: new Touches(),
+    data: {
+      deviceInfo: {}
+    },
+    // onLaunch: function () {
+    //   this.data.deviceInfo = wx.getSystemInfoSync();
+    //   console.log(this.data.deviceInfo);
+    // }
 })

@@ -1,0 +1,58 @@
+/* pages/modal/modal.wxss */
+.mask_layer {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed; 
+  top: 0; 
+  z-index: 1000;  
+  background: #000;  
+  opacity: 0.3;  
+  overflow: hidden;  
+}  
+.modal_box {  
+  width: 71%;  
+  overflow: hidden;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1001;  
+  background: #fff;
+  border-radius: 3px;  
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: 294rpx
+}  
+.content {  
+  overflow-y: scroll; /*超出父盒子高度可滚动*/  
+}  
+  
+.btn {  
+  width: 100%;   
+  display: flex;  
+  flex-direction: row;  
+  align-items: center;  
+  justify-content: space-between;  
+  box-sizing: border-box;  
+  background-color: white;  
+  line-height: 100rpx;
+}  
+  
+.cancel {  
+  width: 100%;  
+  text-align: center;    
+}  
+  
+.Sure {  
+  width: 100%;  
+  color: #f1b90d;
+  text-align: center;  
+}  
+  
+.modalMsg {  
+  text-align: center;  
+  display: block; 
+  line-height: 192rpx; 
+  border-bottom: 2rpx solid #efeff1;
+  font-size: 34rpx;
+}  

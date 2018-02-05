@@ -1,2 +1,7 @@
 <!--pages/userSet/userSet.wxml-->
-<text>userset</text>
+<view class="page  page__bd_spacing">
+  <view class="contactBtn">
+    <button class="contact" open-type="contact">用户反馈</button>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+  </view>
+</view>

@@ -18,8 +18,8 @@ Page({
     circular:true,
     current: 0,
     controls:true,
-    previous:"20rpx",
-    next:"20rpx",
+    previous:"35rpx",
+    next:"35rpx",
     scrollimgUrls: [
       { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', name: "课程AAA" },
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', name: "课程BBB"},

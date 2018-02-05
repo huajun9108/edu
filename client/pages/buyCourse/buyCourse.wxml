@@ -1,7 +1,6 @@
 <!--pages/buyCourse/buyCourse.wxml-->
 <import src="../common/common.wxml"/>
 <view class="page">
-  <view class='border'></view>
   <template
       is="buy" 
       data="{{model,showFlag}}"/>

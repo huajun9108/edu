@@ -34,7 +34,12 @@ class Touches {
 
   touchM(e, dataList, startX) {  // touchmove 过程中更新列表数据
     let list = this._resetData(dataList)
-    list[this._getIndex(e)].left = this._getMoveX(e, startX)
+    let disX = this._getEndX(e, startX)
+    if (disX < 0) {
+      list[this._getIndex(e)].left = this._getMoveX(e, startX)
+    }else{
+      return;
+    }
     return list
   }
 
@@ -55,10 +60,13 @@ class Touches {
   }
 
   deleteItem(e, dataList) {  // 删除功能
-    dataList.splice(this._getIndex(e), 1)
-    console.log(dataList[this._getIndex(e)])
+    dataList[this._getIndex(e)].deleteFlag = true    
+    setTimeout(()=>{
+      dataList.splice(this._getIndex(e), 1)
+      },10
+    )
     this._resetData(dataList) 
-    dataList[this._getIndex(e)].deleteFlag = true
+    console.log(dataList)
     return dataList
   }
 }

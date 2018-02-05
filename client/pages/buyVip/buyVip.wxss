@@ -29,3 +29,6 @@
 .weui-cell__ft{
   color: #131313;
 }
+.weui-cell{
+  padding:35rpx 0px
+}

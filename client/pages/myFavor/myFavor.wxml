@@ -1,22 +1,27 @@
 <!--pages/myFavor/myFavor.wxml-->
 <view class="page">
-  <!-- 用户登录测试 -->
-  <view class='border'></view>
-  <view class="item-wrapper">
-    <view class="{{item.deleteFlag?'item-list-reduce':'item-list'}}" wx:for="{{itemData}}" wx:for-item="item" wx:for-index="index" wx:key="that">
-      <view class="item-info" data-index="{{index}}" bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" style="left:{{item.left + 'rpx'}}">
-          <!-- <image class="info-img" src="{{item.img}}"></image> -->
-          <view class="info-wrapper">
-              <view class="info-desc">
-                  <view class="name">{{item.name}}</view>
-                  <view class="time">{{item.time}}</view>
-              </view>
-              <view class="info-content">{{item.info}}</view>
-          </view>
-      </view>
-      <view class="item-oper">
-          <view class="oper-delete" bindtap="itemDelete" data-index="{{index}}">删除</view>
+  <view class="myFavor page__bd_spacing">
+    <view class="weui-cells weui-cells_after-title" wx:for="{{favorList}}" wx:key = "index" bindtap="bindCheckbox" data-index = "{{index}}">
+        <view  class="checkBox" >
+          <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
+          <image wx:else src="{{uncheckSrc}}"  class="checkImage"></image>
+        </view>
+      <view catchtap="{{courseTap}}" class="weui-cell weui-cell_access {{showCheckCss}}" hover-class="{{hoverActive}}" data-index = "{{index}}">
+        <view class="weui-cell__hd">
+            <image src="{{item.icon}}" class="favorImage" style="vertical-align: middle;"></image>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="order-top">{{item.title}}</view>
+          <view class="order-bottom">{{item.teacher}}</view></view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>
     </view>
   </view>
+  <view class="edit" bindtap="showDel">编辑</view>
+  <view class="weui-flex {{delCss}}">
+    <view class="weui-flex__item"><view class="placeholder" bindtap="hideDel">取消</view></view>
+    <view class="weui-flex__item"><view class="placeholder" bindtap="bindSelectAll">{{selectAll}}</view></view>
+    <view class="weui-flex__item"><view class="placeholder del" bindtap="delItem">删除({{num}})</view></view>
+  </view>
+  <modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" bindconfirm="confirm"/>  
 </view>
