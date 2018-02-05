@@ -1,0 +1,24 @@
+<import src="../common/common.wxml" />
+<view class="courseList-modal" hidden="{{flag}}" bindtap='tapModal'>
+  <view class="courseList-switchCourse">
+    <template is="course-list" data="{{courseDir}}" />
+  </view>
+</view>
+<view>
+  <view class="courseList-hd">
+    <text bindtap='tapCourseCategory'>{{courseCategory}}</text>
+    <input placeholder='请输入课程或老师'></input>
+    <text>取消</text>
+  </view>
+  <view class="weui-cells">
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{courseArr}}" wx:key="{{index}}">
+      <view class="weui-cell__hd">
+        <!-- <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image> -->
+      </view>
+      <view class="weui-cell__bd">{{item}}</view>
+      <view class="weui-cell__ft">
+        <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
+      </view>
+    </navigator>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+/* pages/courseList/courseList.wxss */
+.courseList-hd {
+  padding: 20rpx 40rpx;
+}
+.courseList-hd text,
+.courseList-hd input
+{
+  display: inline-block;
+  vertical-align: middle;
+   padding-left: 20rpx; 
+}
+
+.courseList-modal{
+  height: 100%;
+  width: 750rpx;
+  position: fixed; 
+  z-index: 1000; 
+  top: 0; 
+  background-color: rgba(0, 0, 0, .3);
+  /* overflow: hidden; */
+}
+
+.courseList-switchCourse{
+  position: relative;
+  top: 0;
+  width: 70%;
+  height: 100%;
+  background-color: #fff;
+}
+.weui-cells{
+  margin-top: 0;
+}
