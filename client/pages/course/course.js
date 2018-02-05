@@ -7,35 +7,39 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    normalList: [
+    open: true,
+    courseDir: [
       {
-        url: "../allCourse/allCourse", title: "全部课程"
+        title: "全部课程",
+        flag: true,
       },
       {
-        url: "../process/process", title: "工艺",
+        flag: false,
+        title: "工艺",
         children: [
           {
-            url: "", title: "工艺AAA"
+            title: "工艺AAA"
           },
           {
-            url: "", title: "工艺BBB"
+            title: "工艺BBB"
           },
           {
-            url: "", title: "工艺CCC"
+            title: "工艺CCC"
           }
         ]
       },
       {
-        url: "../management/management", title: "管理",
+        flag: false,
+        title: "管理",
         children: [
           {
-            url: "", title: "管理AAA"
+            title: "管理AAA"
           },
           {
-            url: "", title: "管理BBB"
+            title: "管理BBB"
           },
           {
-            url: "", title: "管理CCC"
+            title: "管理CCC"
           }
         ]
       }
@@ -117,5 +121,5 @@ Page({
     this.setData({
       inputVal: e.detail.value
     });
-  }
+  },
 })

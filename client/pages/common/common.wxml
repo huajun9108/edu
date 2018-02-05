@@ -1,33 +1,36 @@
-<template name = "order-list">
-  <scroll-view scroll-y ="{{scrollFlag}}">
-  <view class='order-list'>
-    <view class="weui-cells weui-cells_after-title" >
-    <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{orderList}}" wx:key = "index">
-      <view class="weui-cell__hd">
-          <image src="{{item.icon}}" style="vertical-align: middle;"></image>
+<template name="order-list">
+  <scroll-view scroll-y="{{scrollFlag}}">
+    <view class='order-list'>
+      <view class="weui-cells weui-cells_after-title">
+        <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{orderList}}" wx:key="index">
+          <view class="weui-cell__hd">
+            <image src="{{item.icon}}" style="vertical-align: middle;"></image>
+          </view>
+          <view class="weui-cell__bd">
+            <view class="order-top">{{item.title}}</view>
+            <view class="order-bottom">{{item.title}}</view>
+          </view>
+          <view class="weui-cell__ft weui-cell__ft_in-access order_study" wx:if="{{item.explain}}">学习</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access order_pay" wx:else>支付</view>
+        </navigator>
       </view>
-      <view class="weui-cell__bd"><view class="order-top">{{item.title}}</view><view class="order-bottom">{{item.title}}</view></view>
-      <view class="weui-cell__ft weui-cell__ft_in-access order_study" wx:if="{{item.explain}}">学习</view>
-      <view class="weui-cell__ft weui-cell__ft_in-access order_pay" wx:else>支付</view> 
-    </navigator>
-  </view>
-  </view>
+    </view>
   </scroll-view>
 </template>
 
-<template name = "scroll-x">
-  <scroll-view scroll-x="{{scrollFlag}}">  
-    <view class="uploadWrap" scroll-x="true" >  
-      <view class="upload_Item" wx:for="{{scrollimgUrls}}" wx:key="index">  
-        <image class="upload_Item_img" src="{{item.url}}" bindtap="changeImage" id = "{{index}}" data-name="{{item.name}}"></image>  
+<template name="scroll-x">
+  <scroll-view scroll-x="{{scrollFlag}}">
+    <view class="uploadWrap" scroll-x="true">
+      <view class="upload_Item" wx:for="{{scrollimgUrls}}" wx:key="index">
+        <image class="upload_Item_img" src="{{item.url}}" bindtap="changeImage" id="{{index}}" data-name="{{item.name}}"></image>
         <view class="scroll_image_title">主图</view>
-      </view>  
-    </view>  
-  </scroll-view>  
+      </view>
+    </view>
+  </scroll-view>
 </template>
 
 
-<template name = "buy">
+<template name="buy">
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell">
       <view class="weui-cell__bd sp_title">{{showFlag?"会员套餐":"课程信息"}}</view>
@@ -35,8 +38,8 @@
     <view wx:if="{{showFlag}}" class="weui-cell" wx:for="{{model}}" bindtap="selectClick" wx:key="index" id="{{index}}" data-price="{{item.price}}">
       <view class="weui-cell__bd">{{item.title}}</view>
       <view class="weui-cell__ft">{{item.price}}/{{item.unit}}
-        <image wx:if="{{item.selectImage}}" src="{{item.selectedImageUrl}}" class="seletedImage"></image>  
-        <image wx:else src="{{item.unselectedImageUrl}}" class="seletedImage"></image> 
+        <image wx:if="{{item.selectImage}}" src="{{item.selectedImageUrl}}" class="seletedImage"></image>
+        <image wx:else src="{{item.unselectedImageUrl}}" class="seletedImage"></image>
       </view>
     </view>
     <view wx:if="{{!showFlag}}" class="weui-cell" wx:for="{{model}}" wx:key="index" id="{{index}}">
@@ -48,13 +51,37 @@
       <view class="weui-cell__bd sp_title">支付方式</view>
     </view>
     <view class="weui-cell">
-        <view class="weui-cell__bd">微信</view>
-        <view class="weui-cell__ft">
-          <image src="../../images/weixin.png" class="weixinImage"></image>  
-        </view>
+      <view class="weui-cell__bd">微信</view>
+      <view class="weui-cell__ft">
+        <image src="../../images/weixin.png" class="weixinImage"></image>
+      </view>
     </view>
   </view>
   <view class="common_btn page__bd_spacing">
     <button class="weui-btn" bindtap="buyTap">{{showFlag?"立即开通":"立即支付"}}</button>
+  </view>
+</template>
+
+<template name="course-list">
+  <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
+    <!-- <navigator url="../courseList/courseList?title=全部课程" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">全部课程</view>
+      <view class="weui-cell__ft">
+        <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;"></image>
+      </view>
+    </navigator> -->
+    <navigator url="../courseList/courseList?title={{item.title}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
+      <view class="weui-cell__bd">{{item.title}}</view>
+      <view class="weui-cell__ft">
+        <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;" wx:if="{{item.flag}}"></image>
+        <image src="../../images/more_icon.png" style="margin-right: 5px;vertical-align: middle;width:41rpx; height: 10rpx;" wx:else></image>
+      </view>
+    </navigator>
+    <navigator url="../courseList/courseList?title={{courseDir[index].children[idx].title}}" wx:for="{{courseDir[index].children}}" wx:for-item="child" wx:for-index="idx" wx:key="idx" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">{{child.title}}</view>
+      <view class="weui-cell__ft">
+        <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
+      </view>
+    </navigator>
   </view>
 </template>
