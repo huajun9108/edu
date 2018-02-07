@@ -43,42 +43,51 @@ Page({
           }
         ]
       }
-    ]
+    ],
+    is_modal_Hidden: true,
+    searchList:["价值工程","质量工程","项目管理","管理工程","供应链管理","人因工程","运筹学","工作设计","金融工程","设施管理"],
+    inputShowed:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("onLoad")
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log("onReady")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log("show")
+    this.setData({
+      is_modal_Hidden: true
+    });
+    console.log(this.data.is_modal_Hidden)
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      is_modal_Hidden: true
+    });
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log("onUnload")
   },
 
   /**
@@ -122,4 +131,11 @@ Page({
       inputVal: e.detail.value
     });
   },
+  wxSearchTab(){
+    this.setData({
+      is_modal_Hidden: false,
+      inputShowed:true
+
+    })
+  }
 })

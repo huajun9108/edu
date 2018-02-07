@@ -38,10 +38,6 @@ page{
     text-align: left;
     font-size: 14px;
 }
-.weui-cells {
-  padding-right: 40rpx;
-  padding-left: 40rpx
-}
 .border{
   width: 100%;
   position: fixed;

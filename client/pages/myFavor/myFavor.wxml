@@ -1,6 +1,6 @@
 <!--pages/myFavor/myFavor.wxml-->
 <view class="page">
-  <view class="myFavor page__bd_spacing">
+  <view class="myFavor">
     <view class="weui-cells weui-cells_after-title" wx:for="{{favorList}}" wx:key = "index" bindtap="bindCheckbox" data-index = "{{index}}">
         <view  class="checkBox" >
           <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>

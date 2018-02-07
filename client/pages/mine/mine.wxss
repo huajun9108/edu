@@ -1,6 +1,6 @@
 /* pages/mine/mine.wxss */
 .userinfo{
-    height: 338rpx;
+    height: 280rpx;
     width: 100%;
     background: #FFF;
     border-left: none;
@@ -52,7 +52,7 @@
 }
 
 .weui-cell{
-  padding:35rpx 0px;
+  padding:35rpx 40rpx;
 }
 .weui-cells{
   font-size: 32rpx;

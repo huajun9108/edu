@@ -1,101 +1,4 @@
 /* pages/myFavor/myFavor.wxss */
-.item-list{
-    position: relative;
-    height: 138rpx;
-    display: block;
-}
-.item-list-reduce{
-  position: relative;
-  height: 138rpx;
-  animation: reduceY .5s linear both
-}
-@keyframes reduceY{
-  from{
-    opacity: 1;
-    height:   138rpx
-  }
-  to{
-    opacity: 0;
-    height:  0rpx
-  }
-}
-
-.item-info, .item-oper{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-}
-
-.item-info{
-    display: flex;
-    /* padding: 20rpx 20rpx 20rpx 0; */
-    z-index: 2;
-    background: white;
-    transition: left 0.2s ease-in-out;
-}
-.item-list:last-child{
-    border-bottom: 0;
-}
-.item-list{
-    border-bottom: 1px solid #ccc;   
-}
-
-
-.item-oper{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.oper-delete{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 150rpx;
-    z-index: 1;
-    color: white;
-    background: red;
-}
-
-.info-img{
-    width: 100rpx;
-    height: 100rpx;
-}
-
-.info-wrapper{
-    margin-left: 20rpx;
-    width: 588rpx;
-}
-
-.info-desc{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: 6rpx;
-}
-
-.info-desc .name{
-    font-size: 32rpx;
-    color: black;
-    font-weight: 600;
-}
-
-.info-desc .time{
-    font-size: 24rpx;
-    color: #999;
-}
-
-.info-content{
-    font-size: 28rpx;
-    color: #999;
-    margin-top: 4rpx;
-}
-
-
-
 .myFavor{
   padding-bottom: 100rpx;
   overflow: hidden
@@ -108,8 +11,16 @@
 .weui-cells{
   padding: 0;
   margin-top: 0;
-  border-bottom: 2rpx solid #efeff1;
 } 
+.weui-cells::after{
+  content:" ";
+  position:absolute;
+  left:40rpx;
+  top:0;
+  right:40rpx;
+  height:1px;
+  border-top:2rpx solid #EFEFF1;
+}
 .weui-cell__bd{
   padding-left:22rpx;
 }
@@ -168,10 +79,10 @@
       bottom:  -118rpx;
   }
 }
- .checkBox{
+.checkBox{
   position: absolute;
-  left: 0;
-  top: 86rpx;
+  left: 40rpx;
+  top: 69rpx;
 } 
 .checkImage{
   width: 40rpx;

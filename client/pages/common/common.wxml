@@ -64,13 +64,8 @@
 
 <template name="course-list">
   <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
-    <!-- <navigator url="../courseList/courseList?title=全部课程" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">全部课程</view>
-      <view class="weui-cell__ft">
-        <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;"></image>
-      </view>
-    </navigator> -->
-    <navigator url="../courseList/courseList?title={{item.title}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
+    <navigator url="../courseList/courseList?title={{item.title}}" 
+    class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
       <view class="weui-cell__bd">{{item.title}}</view>
       <view class="weui-cell__ft">
         <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;" wx:if="{{item.flag}}"></image>

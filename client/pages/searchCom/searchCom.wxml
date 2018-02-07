@@ -1,0 +1,17 @@
+<view hidden='{{modalHidden}}' class="searchbox"> 
+  <view class="weui-search-bar">
+    <view class="weui-search-bar__form">
+      <view class="weui-search-bar__box">
+          <image class="weui-icon-search_in-box" type="search" src="../../images/search_icon.png"></image> 
+          <input type="text" class="weui-search-bar__input" placeholder-style="font-size:32rpx;color:#5c5c5b;"
+           placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" />
+          <image class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput" type="clear" src="../../images/clear.png"></image> 
+      </view>
+    </view>
+    <view class="weui-search-bar__cancel-btn" bindtap="hideSearch">取消</view>
+  
+  </view>
+  <view class="searchbar">
+    <button class="result-box" wx:for="{{searchList}}" wx:key="{{index}}" bindtap="searchClick">{{item}}</button>
+  </view>
+</view> 

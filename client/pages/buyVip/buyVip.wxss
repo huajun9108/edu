@@ -30,5 +30,5 @@
   color: #131313;
 }
 .weui-cell{
-  padding:35rpx 0px
+  padding:35rpx 40rpx
 }
