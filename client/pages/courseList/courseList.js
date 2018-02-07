@@ -1,18 +1,124 @@
 Page({
   data: {
     flag: true,
-    allCourse: ['工艺AAAA', '工艺BBBB', '工艺CCCC', '管理AAAA', '管理BBBB', '管理CCCC'],
-    processCourse: ['工艺AAAA', '工艺BBBB', '工艺CCCC'],
-    managementCourse: ['管理AAAA', '管理BBBB', '管理CCCC'],
-    processACourse: ['工艺AAAA'],
-    processBCourse: ['工艺BBBB'],
-    processCCourse: ['工艺CCCC'],
-    managementACourse: ['管理AAAA'],
-    managementBCourse: ['管理BBBB'],
-    managementCCourse: ['管理CCCC'],
+    inputShowed: false,
+    inputVal: "",
+    allCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '价值工程1-1'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '价值工程2-1'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程CCCC'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程AAAA'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程BBBB'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程CCCC'
+      },
+    ],
+    processCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程AAAA'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程BBBB'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程CCCC'
+      }
+    ],
+    managementCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程AAAA'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程BBBB'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程CCCC'
+      }
+    ],
+    processACourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程AAAA'
+      }
+    ],
+    processBCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程BBBB'
+      }
+    ],
+    processCCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '工艺课程CCCC'
+      }
+    ],
+    managementACourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程AAAA'
+      }
+    ],
+    managementBCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程BBBB'
+      }
+    ],
+    managementCCourse: [
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程CCCC'
+      }
+    ],
     courseArr: [],
     courseDir: [
       {
+        title: "全部课程",
+        flag: true,
+      },
+      {
+        flag: false,
         title: "工艺",
         children: [
           {
@@ -27,6 +133,7 @@ Page({
         ]
       },
       {
+        flag: false,
         title: "管理",
         children: [
           {
@@ -46,10 +153,30 @@ Page({
     wx.setNavigationBarTitle({
       title: option.title,
     });
-    this.setData({
-      title: option.title,
-      courseCategory: option.title
+    var _this = this;
+    wx.request({
+      url: 'https://jfn15ogq.qcloud.la/weapp/course/selectAll',
+      success: function (res) {
+        console.log(res.data);
+        _this.setData(
+          {
+            courseDir: res.data.data
+          }
+        )
+      }
     });
+
+    if(option.title === "全部课程") {
+      this.setData({
+        title: option.title,
+        courseCategory: "全部"
+      });
+    } else {
+      this.setData({
+        title: option.title,
+        courseCategory: option.title
+      });
+    }
     switch (option.title) {
       case "全部课程":
         this.setData({
@@ -107,5 +234,26 @@ Page({
     this.setData({
       flag: true
     })
+  },
+  showInput: function () {
+    this.setData({
+      inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+      inputVal: "",
+      inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+      inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+      inputVal: e.detail.value
+    });
   }
 })

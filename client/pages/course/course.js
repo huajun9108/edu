@@ -7,50 +7,25 @@ Page({
   data: {
     inputShowed: false,
     inputVal: "",
-    open: true,
-    courseDir: [
-      {
-        title: "全部课程",
-        flag: true,
-      },
-      {
-        flag: false,
-        title: "工艺",
-        children: [
-          {
-            title: "工艺AAA"
-          },
-          {
-            title: "工艺BBB"
-          },
-          {
-            title: "工艺CCC"
-          }
-        ]
-      },
-      {
-        flag: false,
-        title: "管理",
-        children: [
-          {
-            title: "管理AAA"
-          },
-          {
-            title: "管理BBB"
-          },
-          {
-            title: "管理CCC"
-          }
-        ]
-      }
-    ]
+    courseDir: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var _this = this;
+    wx.request({
+      url: 'https://jfn15ogq.qcloud.la/weapp/course/selectAll',
+      success: function (res) {
+        console.log(res.data);
+        _this.setData(
+          {
+            courseDir: res.data.data
+          }
+        )
+      }
+    });
   },
 
   /**
