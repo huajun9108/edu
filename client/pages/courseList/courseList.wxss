@@ -1,13 +1,11 @@
 /* pages/courseList/courseList.wxss */
 .courseList-hd {
-  padding: 20rpx 40rpx;
-}
-.courseList-hd text,
-.courseList-hd input
-{
-  display: inline-block;
-  vertical-align: middle;
-   padding-left: 20rpx; 
+  padding: 18rpx 40rpx;
+  border-bottom: 2rpx solid #EFEFF1; 
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .courseList-modal{
@@ -17,6 +15,7 @@
   z-index: 1000; 
   top: 0; 
   background-color: rgba(0, 0, 0, .3);
+  overflow-y: auto;
   /* overflow: hidden; */
 }
 
@@ -27,6 +26,53 @@
   height: 100%;
   background-color: #fff;
 }
+
 .weui-cells{
   margin-top: 0;
 }
+
+.courseImage{
+  width: 158rpx;
+  height: 142rpx;
+  border-radius: 30rpx;
+}
+
+.courseList-bd .weui-cell__bd {
+  padding-left: 22rpx;
+}
+
+.courseContent-top {
+  font-size: 34rpx;
+  color: #131313;
+}
+.courseContent-bottom {
+  font-size: 28rpx;
+  color: #575757;
+}
+.course-search-bar {
+  display: inline-block;
+  margin-left: 48rpx;
+  width: 60%;
+}
+
+/*左侧滑出页面courseList-switchCourse 页面样式*/
+/*-----------------------------------------*/
+.courseList-switchCourse .weui-cells:nth-child(2) {
+  border-top: 2rpx solid #EFEFF1;
+}
+.courseList-switchCourse .weui-cells:nth-child(n+3) navigator:nth-child(1) {
+  border-top: 2rpx solid #EFEFF1;
+}
+.courseList-switchCourse .weui-cell {
+  padding: 35rpx 40rpx;
+}
+.courseList-switchCourse .weui-cells navigator:nth-child(1) {
+  font-size: 32rpx;
+  font-weight: bolder;
+  line-height: 34rpx;
+}
+.courseList-switchCourse .weui-cells navigator:not(:nth-child(1)) {
+  font-size: 30rpx;
+  line-height: 34rpx;
+}
+/*-----------------------------------------*/

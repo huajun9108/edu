@@ -69,3 +69,12 @@ button{
   border-radius: 30rpx;
   color: #353535;
 }
+.course-search-bar {
+  background-color: #F5F7F9;
+  line-height: 86rpx;
+  border-radius: 20rpx;
+  color: #5c5b5b;
+}
+ .course-search-bar image{
+  padding:0 6rpx 0 20rpx;
+} 

@@ -1,15 +1,7 @@
 <!--pages/course/course.wxml-->
 <import src="../common/common.wxml" />
 <view class="page">
-  <view class="weui-search-bar">
-  <view class="weui-search-bar__form">
-    <view class="weui-search-bar__box">
-      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-      <input type="text" class="weui-search-bar__input"  disabled='true' placeholder="搜索入口" bindtap="wxSearchTab"/>
-    </view>
-  </view>
-    <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
-  </view>
+  <template is="search" />
   <template is="course-list" data="{{courseDir}}">
   </template>
   <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindconfirm="confirm"/>  

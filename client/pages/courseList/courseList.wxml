@@ -4,21 +4,22 @@
     <template is="course-list" data="{{courseDir}}" />
   </view>
 </view>
-<view>
+<view class="courseList-wrap">
   <view class="courseList-hd">
-    <text bindtap='tapCourseCategory'>{{courseCategory}}</text>
-    <input placeholder='请输入课程或老师'></input>
-    <text>取消</text>
+    <text class="flex-item" bindtap="tapCourseCategory">{{courseCategory}}</text>
+    <template is="search" class="courseList-search flex-item" />
   </view>
-  <view class="weui-cells">
+  <view class="weui-cells .courseList-bd">
     <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{courseArr}}" wx:key="{{index}}">
-      <view class="weui-cell__hd">
-        <!-- <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image> -->
-      </view>
-      <view class="weui-cell__bd">{{item}}</view>
-      <view class="weui-cell__ft">
+       <view class="weui-cell__hd">
+         <image src="{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
+        </view>
+        <view class="weui-cell__bd">
+          <view class="courseContent-top">{{item.title}}</view>
+          <view class="courseContent-bottom">{{item.teacher}}</view>
+        </view>
         <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
-      </view>
     </navigator>
   </view>
 </view>
+<modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindconfirm="confirm"/>

@@ -1,9 +1,7 @@
 // pages/course/course.js
+var util = require('../../utils/util.js')
+var config = require('../../config')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     inputShowed: false,
     inputVal: "",
@@ -46,7 +44,8 @@ Page({
     ],
     is_modal_Hidden: true,
     searchList:["价值工程","质量工程","项目管理","管理工程","供应链管理","人因工程","运筹学","工作设计","金融工程","设施管理"],
-    inputShowed:false
+    inputShowed:false,
+    courseDir: []
   },
 
   /**
@@ -54,6 +53,20 @@ Page({
    */
   onLoad: function (options) {
     console.log("onLoad")
+    var _this = this;
+    util.showBusy('请求中...')
+    wx.request({
+      url: config.service.courseUrl,
+      success: function (res) {
+        util.showSuccess('请求成功')
+        console.log(res.data);
+        _this.setData(
+          {
+            courseDir: res.data.data
+          }
+        )
+      }
+    });
   },
 
   /**
@@ -131,7 +144,7 @@ Page({
       inputVal: e.detail.value
     });
   },
-  wxSearchTab(){
+  showSearch(){
     this.setData({
       is_modal_Hidden: false,
       inputShowed:true
