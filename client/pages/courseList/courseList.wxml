@@ -1,6 +1,6 @@
 <import src="../common/common.wxml" />
-<view class="courseList-modal" hidden="{{flag}}" bindtap='tapModal'>
-  <view class="courseList-switchCourse">
+<view class="courseList-modal" hidden="{{modalFlag}}" bindtap='tapModal'>
+  <view class="courseList-switchCourse {{flag? 'switchCourseOut':'switchCourseIn'}}">
     <template is="course-list" data="{{courseDir}}" />
   </view>
 </view>
@@ -11,14 +11,14 @@
   </view>
   <view class="weui-cells .courseList-bd">
     <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{courseArr}}" wx:key="{{index}}">
-       <view class="weui-cell__hd">
-         <image src="{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
-        </view>
-        <view class="weui-cell__bd">
-          <view class="courseContent-top">{{item.title}}</view>
-          <view class="courseContent-bottom">{{item.teacher}}</view>
-        </view>
-        <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
+      <view class="weui-cell__hd">
+        <image src="{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="courseContent-top">{{item.title}}</view>
+        <view class="courseContent-bottom">{{item.teacher}}</view>
+      </view>
+      <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
     </navigator>
   </view>
 </view>
