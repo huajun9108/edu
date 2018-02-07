@@ -4,6 +4,7 @@ Page({
     searchList: ["价值工程", "质量工程", "项目管理", "管理工程", "供应链管理", "人因工程", "运筹学", "工作设计", "金融工程", "设施管理"],
     inputShowed: false,
     flag: true,
+    modalFlag: true,
     inputShowed: false,
     inputVal: "",
     allCourse: [
@@ -153,6 +154,7 @@ Page({
     ]
   },
   onLoad: function (option) {
+    console.log(this.data.flag)
     wx.setNavigationBarTitle({
       title: option.title,
     });
@@ -169,7 +171,7 @@ Page({
       }
     });
 
-    if(option.title === "全部课程") {
+    if (option.title === "全部课程") {
       this.setData({
         title: option.title,
         courseCategory: "全部"
@@ -228,15 +230,23 @@ Page({
         break;
     }
   },
-  tapCourseCategory: function() {
+  tapCourseCategory: function () {
     this.setData({
-      flag: false
+      flag: false,
+      modalFlag: false
     })
   },
-  tapModal: function() {
-    this.setData({
-      flag: true
-    })
+  tapModal: function () {
+    console.log("tapModal");
+    var _this = this;
+    setTimeout(() => {
+      _this.setData({
+        modalFlag: true,
+      })
+    }, 400);
+    _this.setData({
+      flag: true,
+    });
   },
   showInput: function () {
     this.setData({

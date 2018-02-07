@@ -1,4 +1,8 @@
 /* pages/courseList/courseList.wxss */
+page {
+    /* overflow-y: hidden;   */
+}
+
 .courseList-hd {
   padding: 18rpx 40rpx;
   border-bottom: 2rpx solid #EFEFF1; 
@@ -16,7 +20,6 @@
   top: 0; 
   background-color: rgba(0, 0, 0, .3);
   overflow-y: auto;
-  /* overflow: hidden; */
 }
 
 .courseList-switchCourse{
@@ -25,6 +28,22 @@
   width: 70%;
   height: 100%;
   background-color: #fff;
+}
+.switchCourseIn {
+   animation: courseMoveIn .4s linear;
+   -webkit-animation: courseMoveIn .4s linear; 
+}
+.switchCourseOut {
+   animation: courseMoveOut .4s linear;
+   -webkit-animation: courseMoveOut .4s linear; 
+}
+@keyframes courseMoveIn {
+  from {left: -70%;}
+  to {left: 0%;}
+}
+@keyframes courseMoveOut {
+  from {left: 0%;}
+  to {left: -70%;}
 }
 
 .weui-cells{
