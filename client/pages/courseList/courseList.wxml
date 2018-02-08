@@ -1,4 +1,7 @@
 <import src="../common/common.wxml" />
+<template is="page-empty" wx:if="{{pageIsEmpty}}">
+</template>
+<view class="page" wx:else>
 <view class="courseList-modal" hidden="{{modalFlag}}" bindtap='tapModal'>
   <view class="courseList-switchCourse {{flag? 'switchCourseOut':'switchCourseIn'}}">
     <template is="course-list" data="{{courseDir}}" />
@@ -23,3 +26,4 @@
   </view>
 </view>
 <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindconfirm="confirm"/>
+</view>

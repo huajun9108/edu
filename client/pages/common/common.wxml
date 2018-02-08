@@ -64,7 +64,7 @@
 
 <template name="course-list">
   <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
-    <navigator url="../courseList/courseList?title={{item.title}}" 
+    <navigator url="../courseList/courseList?title={{item.title}}&type={{item.type}}&id={{item.id}}" 
     class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
       <view class="weui-cell__bd">{{item.title}}</view>
       <view class="weui-cell__ft">
@@ -86,4 +86,11 @@
     <image src="../../images/search_icon.png" style="width:28rpx; height: 28rpx;"></image>
     <text>搜索</text>
   </view>
+</template>
+
+<template name="page-empty">
+ <view class="page_empty_wrap">
+  <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;"></image>
+  <view class="empty_tip">您访问的页面为空···</view>
+</view>
 </template>

@@ -71,7 +71,7 @@ page {
 .course-search-bar {
   display: inline-block;
   margin-left: 48rpx;
-  width: 60%;
+  width: 50%;
 }
 
 /*左侧滑出页面courseList-switchCourse 页面样式*/
