@@ -22,59 +22,7 @@ swiper-item{
     animation: reduce .5s linear both;
     -webkit-animation:reduce .5s linear both;
 }
-.placeholder{
-  line-height: 96rpx;
-  border-bottom:2rpx solid #EFEFF1;
-  font-size: 24rpx;
-}
-.home_text{
-  font-size: 32rpx;
-  font-weight: bold;
-}
-.home_text_right{
-  text-align: right;
-}
-.home_text_right image{
-  width: 35rpx;
-  height: 28rpx;
-  vertical-align: middle;
-  padding-left: 10rpx;
-}
-.course-image_box{
-  font-size: 0;
-  margin-top: 28rpx;
-}
-.course-image_item{
-  display: inline-block;
-  width: 216rpx;
-  height: 252rpx;
-  padding-right: 11rpx;
-}
-.course-image_item image{
-  width: 216rpx;
-  height: 194rpx;
-  border-radius: 20rpx;
-}
-.course-image_name{
-  font-size: 26rpx;
-  line-height: 26rpx;
-  margin-top: 12rpx;
-}
-.course-image_item:nth-child(3n){
-  padding-right: 0;
-}
-scroll-view{
-  margin-top:28rpx;
-  padding-bottom: 15rpx;
-  height:264rpx;
-}
-.uploadWrap{height:100%; width:100%; display: flex; display: -webkit-box; flex-direction: column;}  
-.upload_Item{ width: 340rpx; height: 264rpx;  flex: 1;}  
-.upload_Item_img{ width: 330rpx; height: 206rpx; border-radius: 20rpx;}  
-.scroll_image_title{
-  line-height: 48rpx;
-  font-size: 26rpx;
-}
+
 @keyframes enlarge{
   from{
       transform:  scaleY(0.9)

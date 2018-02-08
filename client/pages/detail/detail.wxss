@@ -58,7 +58,6 @@ video{
   font-size: 26rpx;
   font-weight: bold;
   margin-top: 13rpx;
-  color: #233558;
   border: 1rpx solid #dddddd;
   border-radius: 15rpx;
   text-align: center;
@@ -95,37 +94,30 @@ video{
   color: #484848;
 }
 .course_part{
-  padding-left: 28rpx;
-  font-size: 24rpx;
-  line-height: 24rpx;
-  color: #f4c821;
-  font-weight: bold;
-}
-.course_part::before{
-  content:" ";
-  position:relative;
-  display: block;
-  height:12rpx;
-  width: 12rpx;
-  background: #dbdbdb;
-  border-radius: 50%;
-  left:-28rpx;
-  top: 18rpx;
+  margin-top: 10rpx;
+  line-height: 26rpx;
 }
 .course_list{
-  margin-top: 14rpx;
-  padding-left: 4rpx;
+  margin-top: 16rpx;
+  padding: 0 0 10rpx 20rpx;
 }
 .course_heading{
-  display: block;
-  font-size: 26rpx;
-  color: #484848;
-  padding-top: 10rpx;
-  padding-left: 20rpx;
-  border-left: 4rpx solid #dbdbdb;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  padding: 0 64rpx 0 18rpx;
+  background: #f5f7f9;
+  margin-top: 12rpx;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+  align-items:center;
+  justify-content: space-between
 }
-.course_heading:first-child{
-  padding-top: 0;
+.course_heading image{
+  width: 46rpx;
+  height: 46rpx;
 }
 .course_teacher{
   font-size: 24rpx;
@@ -139,7 +131,6 @@ video{
   align-items:center;
 }
 .teacher_name{
-  /* display: inline-block; */
   font-size: 26rpx;
   font-weight: bold;
 }
@@ -177,9 +168,6 @@ video{
 }
 .vip_symbol{
   color: #7e7e7e;
-}
-.final_price{
-  color: #304469;
 }
 .pay_btn{
   width: 50%;

@@ -1,11 +1,11 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
-
+var app = getApp()
 Page({
   data: {
     userInfo: {},
-    logged: false,
+    logged: app.data.logged,
     takeSession: false,
     requestResult: '',
     vipFlag:false,
@@ -90,6 +90,7 @@ Page({
         util.showModel('登录失败', error)
       }
     })
+    console.log(app)
   },
 
   // 切换是否带有登录态
