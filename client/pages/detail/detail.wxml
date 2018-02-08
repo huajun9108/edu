@@ -3,7 +3,7 @@
   <view class='page_controls'>
     <image class='poster' src="{{imgSrc}}" wx:if="{{flag}}"></image>
     <image class='play img' src="{{play}}" wx:if="{{flag}}" bindtap="play"></image>
-    <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}"></video>
+    <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}" autoplay="{{autoplay}}"></video>
   </view>  
   <view class='course'>
     <view class="weui-flex page__bd_spacing">
@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class="consult page__bd_spacing">
-      <text class="consult_btn">咨询</text>
+      <text class="consult_btn base_color">咨询</text>
     </view>
   </view>
    <view class="weui-tab">
@@ -28,8 +28,8 @@
       </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px"></view>
     </view>
-    <view class="weui-tab__panel page__bd_spacing">
-      <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+    <view class="weui-tab__panel ">
+      <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 0}}">
         <view class="course_title">工艺AAA课程</view>
         <view class="cuorse_price">
           <text class="common_price">￥399</text><text class="vip_price">VIP: ￥299</text>
@@ -38,16 +38,21 @@
           <text>已有554人购买</text>
         </view>
       </view>
-      <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+      <view class="weui-tab__content page__left_spacing" hidden="{{activeIndex != 1}}">
         <view class="course_title">工艺AAA课程</view>
         <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
-          <view class="course_part">{{item.title}}</view>
+          <view class="course_part base_color">{{item.title}}</view>
           <view class="course_list">
-            <text class="course_heading" wx:for="{{item.list}}" wx:key="index">{{item.detail}}</text>
+            <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}">
+              <text>{{item.detail}}</text>
+              <!-- <image src="../../images/bofang_icon.png"></image> -->
+               <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
+              <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image> 
+            </view>
           </view>
         </view>
       </view>
-      <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+      <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 2}}">
         <view class="course_teacher">
           <view class="teacher">
             <image class="teacher_image" src="../../images/xuex.png"></image>
@@ -66,7 +71,7 @@
   <view class='page_btn'>
      <view class="total_price  page__left_spacing">
       <text class="vip_symbol" wx:if="{{vipFlag}}">VIP: </text>
-      <text class="final_price">￥299</text>
+      <text class="final_price base_color">￥299</text>
     </view> 
     <view class="pay_btn page__right_spacing">
       <button class="weui-btn" bindtap="buyCourse">立即购买</button>

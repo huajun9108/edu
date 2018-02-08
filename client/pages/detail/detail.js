@@ -5,9 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    flag:true,
+    autoplay:true,
+    flag:false,
     detailnum:null,
-    src:"http://1255958190.vod2.myqcloud.com/87e07c54vodtransgzp1255958190/319297944564972819219441937/v.f20.mp4",
+    src:"http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400",
     imgUrls: [
       { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg',},
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
@@ -30,43 +31,44 @@ Page({
       {
         title:"第一部分",
         list:[
-          { detail: "01.AAAAAAAAAAAA"},
-          { detail: "02.AAAAAAAAAAAA"},
-          { detail: "03.AAAAAAAAAAAA" }
+          { detail: "01.AAAAAAAAAAAA",id:0},
+          { detail: "02.AAAAAAAAAAAA", id: 1},
+          { detail: "03.AAAAAAAAAAAA", id: 2 }
         ]
       },
       {
         title: "第二部分",
         list: [
-          { detail: "01.AAAAAAAAAAAA" },
-          { detail: "02.AAAAAAAAAAAA" },
-          { detail: "03.AAAAAAAAAAAA" },
-          { detail: "04.AAAAAAAAAAAA" }
+          { detail: "01.AAAAAAAAAAAA", id: 3 },
+          { detail: "02.AAAAAAAAAAAA", id: 4 },
+          { detail: "03.AAAAAAAAAAAA", id: 5 },
+          { detail: "04.AAAAAAAAAAAA", id: 6}
         ]
       },
       {
         title: "第三部分",
         list: [
-          { detail: "01.AAAAAAAAAAAA" },
-          { detail: "02.AAAAAAAAAAAA" },
-          { detail: "03.AAAAAAAAAAAA" },
-          { detail: "04.AAAAAAAAAAAA" },
-          { detail: "05.AAAAAAAAAAAA" },
+          { detail: "01.AAAAAAAAAAAA", id: 7 },
+          { detail: "02.AAAAAAAAAAAA", id: 8},
+          { detail: "03.AAAAAAAAAAAA", id: 9},
+          { detail: "04.AAAAAAAAAAAA", id: 10 },
+          { detail: "05.AAAAAAAAAAAA", id: 11},
           
         ]
       },
       {
         title: "第四部分",
         list: [
-          { detail: "01.AAAAAAAAAAAA" },
-          { detail: "02.AAAAAAAAAAAA" },
-          { detail: "03.AAAAAAAAAAAA" },
-          { detail: "04.AAAAAAAAAAAA" },
-          { detail: "05.AAAAAAAAAAAA" },
-          { detail: "06.AAAAAAAAAAAA" }
+          { detail: "01.AAAAAAAAAAAA", id: 12 },
+          { detail: "02.AAAAAAAAAAAA", id: 13 },
+          { detail: "03.AAAAAAAAAAAA", id: 14},
+          { detail: "04.AAAAAAAAAAAA", id: 15},
+          { detail: "05.AAAAAAAAAAAA", id: 16},
+          { detail: "06.AAAAAAAAAAAA", id: 17}
         ]
       }
-    ]
+    ],
+    // courseIndex:0
   },
 
   /**
@@ -77,6 +79,7 @@ Page({
     this.setData({
       detailnum: options.name,
       imgSrc: options.imageUrl,
+      courseIndex: this.data.courseList[0].list[0].id
     })
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数
@@ -153,5 +156,12 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
+  },
+  chooseCourse(e){
+    console.log(e)
+    this.setData({
+      courseIndex: e.currentTarget.id
+    })
+    console.log(this.data.courseIndex)
   }
 })

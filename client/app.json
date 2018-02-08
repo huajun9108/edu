@@ -15,14 +15,14 @@
   ],
   "window":{
     "backgroundColor":"#fff",
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "首页",
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
     "color": "#5F5F5F",
-    "selectedColor":"#F1B90D",
+    "selectedColor":"#cfb16b",
     "list": [
       {
         "pagePath": "pages/home/home",

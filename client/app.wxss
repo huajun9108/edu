@@ -65,7 +65,7 @@ button::after{
 }
 button{
   font-size: 34rpx;
-  background: #ffdd55;
+  background: #dcc07f;
   border-radius: 30rpx;
   color: #353535;
 }
@@ -102,3 +102,9 @@ button{
   line-height: 32rpx;
   color: #AFAFAF;
 } 
+.base_color{
+  color: #cfb16b
+}
+.base_background{
+  background: #dcc07f
+}
