@@ -87,4 +87,18 @@ button{
 }
  .course-search-bar image{
   padding:0 6rpx 0 20rpx;
+}
+.page_empty_wrap {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40%;
+}
+
+.page_empty_wrap .empty_tip {
+  padding-top: 51rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #AFAFAF;
 } 

@@ -28,7 +28,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('options')
     var _this = this;
     //===取屏幕宽度=======  
     wx.getSystemInfo({
@@ -61,7 +60,6 @@ Page({
       latestImgUrls: result,
       recommendImgUrls:result
     })
-    console.log(this.data.imgIndex)
   },
 
   /**
@@ -119,7 +117,6 @@ Page({
     wx.navigateTo({
       "url": "../detail/detail?name=" + name + "&id=" + index + "&imageUrl=" + url
     })
-    console.log(e.target.id);
   },
   bindchange: function (e) {//轮播图发生改变
     this.setData({
@@ -130,8 +127,6 @@ Page({
   changeImage(e){
     let index = e.target.id
     let name = e.target.dataset.name
-    console.log(e.target.id)
-    console.log(name)
     wx.navigateTo({
       "url": "../detail/detail?name=" + name + "&id=" + index
     })

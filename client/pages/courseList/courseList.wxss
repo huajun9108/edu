@@ -83,7 +83,6 @@
 .course-search-bar {
   width: 100%;
 }
-
 /*左侧滑出页面courseList-switchCourse 页面样式*/
 /*-----------------------------------------*/
 .courseList-switchCourse .weui-cells:nth-child(2) {

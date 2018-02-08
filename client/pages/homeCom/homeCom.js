@@ -25,10 +25,8 @@ Component({
           imgIndex: 0
         })
       }
-      console.log(this.data.imgIndex)
     },
     courseUrl(e){
-      console.log(e)
       let url = "../detail/detail?name=" + e.currentTarget.dataset.name + "&imageUrl=" + e.currentTarget.dataset.url
       wx.navigateTo({
         url: url,

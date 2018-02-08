@@ -74,7 +74,6 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options)
     this.setData({
       detailnum: options.name,
       imgSrc: options.imageUrl,
@@ -84,7 +83,6 @@ Page({
     })
     wx.getSystemInfo({
       success: function (res) {
-        console.log(that.data.tabs.length)
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex

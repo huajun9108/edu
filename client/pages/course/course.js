@@ -45,26 +45,35 @@ Page({
     is_modal_Hidden: true,
     searchList:["价值工程","质量工程","项目管理","管理工程","供应链管理","人因工程","运筹学","工作设计","金融工程","设施管理"],
     inputShowed:false,
-    courseDir: []
+    courseDir: [],
+    pageIsEmpty: false,
+    tipMsg: "您访问的页面为空···"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("onLoad")
     var _this = this;
-    util.showBusy('请求中...')
+    // util.showBusy('请求中...')
     wx.request({
       url: config.service.courseUrl,
       success: function (res) {
         wx.hideToast()
-        console.log(res.data);
-        _this.setData(
-          {
-            courseDir: res.data.data
-          }
-        )
+        if(res.data.data.length <= 0) {
+          _this.setData(
+            {
+              pageIsEmpty: true,
+            }
+          )
+        } else {
+          _this.setData(
+            {
+              courseDir: res.data.data,
+              pageIsEmpty: false,
+            }
+          )
+        }
       }
     });
   },
@@ -73,18 +82,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log("onReady")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("show")
     this.setData({
       is_modal_Hidden: true
     });
-    console.log(this.data.is_modal_Hidden)
   },
 
   /**
@@ -100,7 +106,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("onUnload")
   },
 
   /**

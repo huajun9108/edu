@@ -28,16 +28,13 @@ Component({
       this.setData({
         inputVal: ""
       });
-      console.log(this.data.inputVal)
     },
     inputTyping: function (e) {
       this.setData({
         inputVal: e.detail.value
       });
-      console.log(this.data.inputVal)
     },
     searchClick(){
-      console.log(1)
     }
   }
 });
