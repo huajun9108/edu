@@ -3,7 +3,7 @@
     margin-top: 0;
 }
 .weui-cells:nth-child(2) {
-  border-top: 2rpx solid #EFEFF1;
+   border-top: 2rpx solid #EFEFF1; 
 }
 .weui-cells:nth-child(n+3) navigator:nth-child(1) {
   border-top: 2rpx solid #EFEFF1;

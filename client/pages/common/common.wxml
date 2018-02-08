@@ -81,7 +81,7 @@
 
 <template name="page-empty">
 <view class="page_empty_wrap">
-  <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;"></image>
+  <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;" alt="图片加载失败"></image>
   <view class="empty_tip">{{tipMsg}}</view>
 </view>
 </template>
