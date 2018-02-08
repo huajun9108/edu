@@ -29,7 +29,7 @@
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px"></view>
     </view>
     <view class="weui-tab__panel">
-      <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+      <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 0}}">
         <view class="course_title">{{detailnum}}</view>
         <view class="cuorse_price">
           <text class="common_price">￥{{originalPrice}}</text><text class="vip_price">VIP: ￥{{vipPrice}}</text>
@@ -43,9 +43,8 @@
         <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
           <view class="course_part base_color">{{item.title}}</view>
           <view class="course_list">
-            <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}">
+            <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" data-src="{{item.video_url}}">
               <text>{{item.detail}}</text>
-              <!-- <image src="../../images/bofang_icon.png"></image> -->
                <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
               <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image> 
             </view>

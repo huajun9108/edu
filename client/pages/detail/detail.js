@@ -15,7 +15,7 @@ Page({
     src: '',
     teacherName: '',
     teacherTitle: '',
-    teacherDetail: '',                //src:"http://1255958190.vod2.myqcloud.com/87e07c54vodtransgzp1255958190/319297944564972819219441937/v.f20.mp4",
+    teacherDetail: '',                
     imgUrls: [
       { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg',},
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
@@ -34,47 +34,47 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     vipFlag:1,
-    courseList:[
-      {
-        title:"第一部分",
-        list:[
-          { detail: "01.AAAAAAAAAAAA",id:0},
-          { detail: "02.AAAAAAAAAAAA", id: 1},
-          { detail: "03.AAAAAAAAAAAA", id: 2 }
-        ]
-      },
-      {
-        title: "第二部分",
-        list: [
-          { detail: "01.AAAAAAAAAAAA", id: 3 },
-          { detail: "02.AAAAAAAAAAAA", id: 4 },
-          { detail: "03.AAAAAAAAAAAA", id: 5 },
-          { detail: "04.AAAAAAAAAAAA", id: 6}
-        ]
-      },
-      {
-        title: "第三部分",
-        list: [
-          { detail: "01.AAAAAAAAAAAA", id: 7 },
-          { detail: "02.AAAAAAAAAAAA", id: 8},
-          { detail: "03.AAAAAAAAAAAA", id: 9},
-          { detail: "04.AAAAAAAAAAAA", id: 10 },
-          { detail: "05.AAAAAAAAAAAA", id: 11},
+    // courseList:[
+    //   {
+    //     title:"第一部分",
+    //     list:[
+    //       { detail: "01.AAAAAAAAAAAA",id:0},
+    //       { detail: "02.AAAAAAAAAAAA", id: 1},
+    //       { detail: "03.AAAAAAAAAAAA", id: 2 }
+    //     ]
+    //   },
+    //   {
+    //     title: "第二部分",
+    //     list: [
+    //       { detail: "01.AAAAAAAAAAAA", id: 3 },
+    //       { detail: "02.AAAAAAAAAAAA", id: 4 },
+    //       { detail: "03.AAAAAAAAAAAA", id: 5 },
+    //       { detail: "04.AAAAAAAAAAAA", id: 6}
+    //     ]
+    //   },
+    //   {
+    //     title: "第三部分",
+    //     list: [
+    //       { detail: "01.AAAAAAAAAAAA", id: 7 },
+    //       { detail: "02.AAAAAAAAAAAA", id: 8},
+    //       { detail: "03.AAAAAAAAAAAA", id: 9},
+    //       { detail: "04.AAAAAAAAAAAA", id: 10 },
+    //       { detail: "05.AAAAAAAAAAAA", id: 11},
           
-        ]
-      },
-      {
-        title: "第四部分",
-        list: [
-          { detail: "01.AAAAAAAAAAAA", id: 12 },
-          { detail: "02.AAAAAAAAAAAA", id: 13 },
-          { detail: "03.AAAAAAAAAAAA", id: 14},
-          { detail: "04.AAAAAAAAAAAA", id: 15},
-          { detail: "05.AAAAAAAAAAAA", id: 16},
-          { detail: "06.AAAAAAAAAAAA", id: 17}
-        ]
-      }
-    ],
+    //     ]
+    //   },
+    //   {
+    //     title: "第四部分",
+    //     list: [
+    //       { detail: "01.AAAAAAAAAAAA", id: 12 },
+    //       { detail: "02.AAAAAAAAAAAA", id: 13 },
+    //       { detail: "03.AAAAAAAAAAAA", id: 14},
+    //       { detail: "04.AAAAAAAAAAAA", id: 15},
+    //       { detail: "05.AAAAAAAAAAAA", id: 16},
+    //       { detail: "06.AAAAAAAAAAAA", id: 17}
+    //     ]
+    //   }
+    // ],
     // courseIndex:0
   },
 
@@ -108,7 +108,8 @@ Page({
           courseList: res.data.data.catalog,
           teacherName: res.data.data.teacher.name,
           teacherTitle: res.data.data.teacher.job,
-          teacherDetail: res.data.data.teacher.synopsis
+          teacherDetail: res.data.data.teacher.synopsis,
+          courseIndex:res.data.data.catalog[0].list[0].id
         })
       }
     });
@@ -188,7 +189,8 @@ Page({
   chooseCourse(e){
     console.log(e)
     this.setData({
-      courseIndex: e.currentTarget.id
+      courseIndex: e.currentTarget.id,
+      src: e.currentTarget.dataset.src
     })
     console.log(this.data.courseIndex)
   }
