@@ -8,7 +8,7 @@
   <view class='course'>
     <view class="weui-flex page__bd_spacing">
       <view class="weui-flex__item ">
-        <text class="course_title">工艺课程AAA</text>
+        <text class="course_title">{{detailnum}}</text>
       </view>
       <view class="weui-flex__item course_share">
         <image class="collect_image" mode="scaleToFill" src="../../images/heart_icon_deafult.png"></image>
@@ -30,16 +30,16 @@
     </view>
     <view class="weui-tab__panel page__bd_spacing">
       <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-        <view class="course_title">工艺AAA课程</view>
+        <view class="course_title">{{detailnum}}</view>
         <view class="cuorse_price">
-          <text class="common_price">￥399</text><text class="vip_price">VIP: ￥299</text>
+          <text class="common_price">￥{{originalPrice}}</text><text class="vip_price">VIP: ￥{{vipPrice}}</text>
         </view>
         <view class="cuorse_number">
-          <text>已有554人购买</text>
+          <text>已有{{peopleBuy}}人购买</text>
         </view>
       </view>
       <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-        <view class="course_title">工艺AAA课程</view>
+        <view class="course_title">{{detailnum}}</view>
         <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
           <view class="course_part">{{item.title}}</view>
           <view class="course_list">
@@ -52,12 +52,12 @@
           <view class="teacher">
             <image class="teacher_image" src="../../images/xuex.png"></image>
             <view class="teacher_box">
-              <text class="teacher_name">某某人</text>
-              <text class="teacher_title">某某某某某师</text>
+              <text class="teacher_name">{{teacherName}}</text>
+              <text class="teacher_title">{{teacherTitle}}</text>
             </view>
           </view>
           <view class="teacher_detail">
-            <view>老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介老师简介</view>
+            <view>{{teacherDetail}}</view>
           </view>
         </view>
       </view>

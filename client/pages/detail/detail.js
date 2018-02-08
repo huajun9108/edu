@@ -1,5 +1,6 @@
 // pages/detail/detail.js
 var sliderWidth =80; // 需要设置slider的宽度，用于计算中间位置
+var config = require('../../config')
 Page({
   /**
    * 页面的初始数据
@@ -7,7 +8,13 @@ Page({
   data: {
     flag:true,
     detailnum:null,
-    src:"http://1255958190.vod2.myqcloud.com/87e07c54vodtransgzp1255958190/319297944564972819219441937/v.f20.mp4",
+    originalPrice: '待定',
+    vipPrice: '待定',
+    peopleBuy: 0,
+    src: '',
+    teacherName: '',
+    teacherTitle: '',
+    teacherDetail: '',                //src:"http://1255958190.vod2.myqcloud.com/87e07c54vodtransgzp1255958190/319297944564972819219441937/v.f20.mp4",
     imgUrls: [
       { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg',},
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
@@ -77,11 +84,31 @@ Page({
     var that = this;
     this.setData({
       detailnum: options.name,
-      imgSrc: options.imageUrl,
-    })
+    });
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数
-    })
+    });
+    wx.request({
+      url: config.service.courseDetailUrl,
+      method: 'POST',
+      data: {
+        id: options.id
+      },
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          imgSrc: res.data.data.img,
+          originalPrice: res.data.data.synopsis.price,
+          vipPrice: res.data.data.synopsis.vip_price,
+          peopleBuy: res.data.data.synopsis.buy_num,
+          src: res.data.data.video_url,
+          courseList: res.data.data.catalog,
+          teacherName: res.data.data.teacher.name,
+          teacherTitle: res.data.data.teacher.job,
+          teacherDetail: res.data.data.teacher.synopsis
+        })
+      }
+    });
     wx.getSystemInfo({
       success: function (res) {
         that.setData({

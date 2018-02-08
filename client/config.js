@@ -27,6 +27,9 @@ var config = {
 
         //查询类别下所有课程
         courseListUrl: `${host}/weapp/course/selectCourseListById`,
+
+        //查询单门课程信息
+        courseDetailUrl: `${host}/weapp/course/selectCourseById`
     }
 };
 
