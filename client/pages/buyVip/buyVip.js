@@ -83,7 +83,6 @@ Page({
   
   },
   selectClick(e){
-    console.log(e)
     for (var i = 0; i < this.data.model.length; i++) {
       if (e.currentTarget.id == i) {
         this.data.model[i].selectImage = true
@@ -99,6 +98,5 @@ Page({
     })  
   },
   buyTap(){
-    console.log(this.data.number)
   }
 })

@@ -54,14 +54,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("onLoad")
     var _this = this;
     // util.showBusy('请求中...')
     wx.request({
       url: config.service.courseUrl,
       success: function (res) {
-        // util.showSuccess('请求成功')
-        console.log(res.data);
+        wx.hideToast()
         if(res.data.data.length <= 0) {
           _this.setData(
             {
@@ -84,18 +82,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    console.log("onReady")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("show")
     this.setData({
       is_modal_Hidden: true
     });
-    console.log(this.data.is_modal_Hidden)
   },
 
   /**
@@ -111,7 +106,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    console.log("onUnload")
   },
 
   /**

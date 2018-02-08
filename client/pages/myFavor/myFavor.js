@@ -58,7 +58,6 @@ Page({
     // 页面关闭
   },
   toCourseDetail(){
-    console.log(1)
   },
   showDel(){
     this.setData({
@@ -97,7 +96,6 @@ Page({
     let selectedAllStatus = this.data.selectedAllStatus;
     let favorList = this.data.favorList;
     selectedAllStatus = !selectedAllStatus;
-    console.log(selectedAllStatus)
     for (let i = 0; i < favorList.length; i++) {
       favorList[i].selected = selectedAllStatus;
     }
@@ -110,7 +108,6 @@ Page({
   },
   bindTotalNum(){
     let favorList = this.data.favorList;
-    console.log(favorList)
     let num = 0
     for (let i = 0; i < favorList.length; i++) {
       if (favorList[i].selected){
@@ -132,7 +129,6 @@ Page({
     });
   },
   courseUrl(){
-    console.log("url")
   },
   delItem(){
     let arr = this.data.favorList;
@@ -162,11 +158,9 @@ Page({
     })
   },
   confirm(){
-    console.log(this.data.unselect)
     this.setData({
       favorList: this.data.unselect,
       num: 0
     })
-    console.log("删除了"+this.data.select)
   }
 })  

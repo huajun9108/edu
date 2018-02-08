@@ -16,15 +16,14 @@
 .userinfo-avatar {
     width: 190rpx;
     height: 190rpx;
-    margin: 74rpx 24rpx 74rpx 0;
-    border-radius: 50%;
-    
+    margin: 74rpx 24rpx 74rpx 40rpx;
+    border-radius: 50%;  
 }
 .userinfo-wx{
   width: 42rpx;
   height: 42rpx;
   position: absolute;
-  bottom: 74rpx;
+  bottom: 45rpx;
   left: 170rpx;
 }
 

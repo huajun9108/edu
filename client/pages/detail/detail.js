@@ -75,17 +75,15 @@ Page({
   onLoad: function (options) {
     console.log(options);
     var that = this;
-    console.log(options.name)
     this.setData({
       detailnum: options.name,
-      imgSrc: this.data.imgUrls[options.id].url
+      imgSrc: options.imageUrl,
     })
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数
     })
     wx.getSystemInfo({
       success: function (res) {
-        console.log(that.data.tabs.length)
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex

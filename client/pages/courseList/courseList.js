@@ -14,7 +14,6 @@ Page({
     tipMsg: "您访问的页面为空···"
   },
   onLoad: function (option) {
-    console.log(option);
     wx.setNavigationBarTitle({
       title: option.title,
     });
@@ -27,7 +26,6 @@ Page({
         id: option.id
       },
       success: function(res) {
-        console.log(res.data);
         if(res.data.data <=0) {
           _this.setData(
             {
@@ -49,7 +47,6 @@ Page({
     wx.request({
       url: config.service.courseUrl,
       success: function (res) {
-        console.log(res.data);
         _this.setData(
           {
             courseDir: res.data.data
@@ -77,7 +74,6 @@ Page({
     })
   },
   tapModal: function () {
-    console.log("tapModal");
     var _this = this;
     setTimeout(() => {
       _this.setData({

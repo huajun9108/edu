@@ -1,0 +1,3 @@
+/* component/homeCom/homeCom.wxss */
+@import "../home/home.wxss"; 
+@import "../../app.wxss"; 

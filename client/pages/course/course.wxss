@@ -20,8 +20,7 @@
   font-size: 30rpx;
   line-height: 34rpx;
 }
- 
-.course-search-bar {
-  margin: 18rpx 40rpx;
+.course-list-box{
+  position: relative;
+  top: 122rpx;
 }
-

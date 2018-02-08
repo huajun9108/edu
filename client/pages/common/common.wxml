@@ -1,5 +1,4 @@
 <template name="order-list">
-  <scroll-view scroll-y="{{scrollFlag}}">
     <view class='order-list'>
       <view class="weui-cells weui-cells_after-title">
         <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{orderList}}" wx:key="index">
@@ -15,18 +14,6 @@
         </navigator>
       </view>
     </view>
-  </scroll-view>
-</template>
-
-<template name="scroll-x">
-  <scroll-view scroll-x="{{scrollFlag}}">
-    <view class="uploadWrap" scroll-x="true">
-      <view class="upload_Item" wx:for="{{scrollimgUrls}}" wx:key="index">
-        <image class="upload_Item_img" src="{{item.url}}" bindtap="changeImage" id="{{index}}" data-name="{{item.name}}"></image>
-        <view class="scroll_image_title">主图</view>
-      </view>
-    </view>
-  </scroll-view>
 </template>
 
 
@@ -63,6 +50,7 @@
 </template>
 
 <template name="course-list">
+<view class="course-list-box">
   <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
     <navigator url="../courseList/courseList?title={{item.title}}&type={{item.type}}&id={{item.id}}" 
     class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
@@ -79,17 +67,20 @@
       </view>
     </navigator>
   </view>
+</view>
 </template>
 
 <template name="search">
- <view class="course-search-bar" bindtap="showSearch">
+<view class="course-search-box">
+  <view class="course-search-bar" bindtap="showSearch">
     <image src="../../images/search_icon.png" style="width:28rpx; height: 28rpx;"></image>
     <text>搜索</text>
   </view>
+</view>
 </template>
 
 <template name="page-empty">
- <view class="page_empty_wrap">
+<view class="page_empty_wrap">
   <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;"></image>
   <view class="empty_tip">{{tipMsg}}</view>
 </view>

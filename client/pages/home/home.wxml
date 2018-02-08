@@ -11,23 +11,7 @@
       </swiper-item>
     </block>
   </swiper> 
-  <view class='recommend page__left_spacing'>
-    <view class="weui-flex home_title">
-      <view class="weui-flex__item"><view class="placeholder  home_text">为你推荐</view></view>
-      <view class="weui-flex__item"><view class="placeholder  home_text_right">换一批看</view></view>
-    </view>
-    <template
-      is="scroll-x" 
-      data="{{scrollFlag,scrollimgUrls}}"/>
-  </view>
-  <view class='latest page__left_spacing'>
-    <view class="weui-flex home_title">
-      <view class="weui-flex__item"><view class="placeholder  home_text">最新最热</view></view>
-      <view class="weui-flex__item"><view class="placeholder  home_text_right">换一批看</view></view>
-    </view>
-    <template
-      is="scroll-x" 
-      data="{{scrollFlag,scrollimgUrls}}"/>
-  </view>
+  <modal courseImgUrls="{{recommendImgUrls}}" homeComMsg="{{recommendComMsg}}"/> 
+  <modal courseImgUrls="{{latestImgUrls}}" homeComMsg="{{latestComMsg}}"/>  
 </view>
 

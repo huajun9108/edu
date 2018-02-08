@@ -75,6 +75,5 @@ Page({
   
   },
   buyTap(){
-    console.log(this.data.model[1].detail)
   }
 })

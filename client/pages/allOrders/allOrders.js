@@ -38,6 +38,24 @@ Page({
       },
       {
         url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
+      },
+      {
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: 0, icon: "../../images/xuex.png"
+      },
+      {
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
+      },
+      {
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
+      },
+      {
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: 0, icon: "../../images/xuex.png"
+      },
+      {
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
+      },
+      {
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
       }
     ],
     paidList:[
@@ -71,7 +89,6 @@ Page({
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(that.data.tabs.length)
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
@@ -136,20 +153,15 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id,
     });
-    console.log(this.data.activeIndex)
     if (this.data.activeIndex==="0"){
-      console.log("全部")
       this.setData({
         orderList: this.data.order
       });
-      console.log(this.data.orderList)
     } else if (this.data.activeIndex === "1"){
-      console.log("已付款")
       this.setData({
         orderList: this.data.paidList
       })
     }else{
-      console.log("代付款")
       this.setData({
         orderList: this.data.unpaidList
       })

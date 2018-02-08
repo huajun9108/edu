@@ -1,4 +1,4 @@
-// pages/modal/modal.js
+// component/modal/modal.js
 Component({
   properties: {
     modalHidden: {

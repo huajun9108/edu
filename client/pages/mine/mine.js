@@ -28,7 +28,6 @@ Page({
   },
   onLoad: function (options) {
     var that = this;
-    console.log(options)
     options.data = "2017-11-14 到期"
     if (this.data.vipFlag){
       that.setData({
@@ -82,7 +81,6 @@ Page({
 
             fail(error) {
               util.showModel('请求失败', error)
-              console.log('request fail', error)
             }
           })
         }
@@ -90,7 +88,6 @@ Page({
 
       fail(error) {
         util.showModel('登录失败', error)
-        console.log('登录失败', error)
       }
     })
   },
@@ -111,14 +108,12 @@ Page({
       login: true,
       success(result) {
         util.showSuccess('请求成功完成')
-        console.log('request success', result)
         that.setData({
           requestResult: JSON.stringify(result.data)
         })
       },
       fail(error) {
         util.showModel('请求失败', error);
-        console.log('request fail', error);
       }
     }
     if (this.data.takeSession) {  // 使用 qcloud.request 带登录态登录
