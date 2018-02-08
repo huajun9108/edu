@@ -1,5 +1,5 @@
 <template name="order-list">
-  <scroll-view scroll-y="{{scrollFlag}}">
+  <!-- <scroll-view scroll-y="{{scrollFlag}}"> -->
     <view class='order-list'>
       <view class="weui-cells weui-cells_after-title">
         <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{orderList}}" wx:key="index">
@@ -15,18 +15,16 @@
         </navigator>
       </view>
     </view>
-  </scroll-view>
+  <!-- </scroll-view> -->
 </template>
 
 <template name="scroll-x">
-  <scroll-view scroll-x="{{scrollFlag}}">
-    <view class="uploadWrap" scroll-x="true">
-      <view class="upload_Item" wx:for="{{scrollimgUrls}}" wx:key="index">
-        <image class="upload_Item_img" src="{{item.url}}" bindtap="changeImage" id="{{index}}" data-name="{{item.name}}"></image>
-        <view class="scroll_image_title">主图</view>
-      </view>
+  <view class="course-image_box" wx:for="{{scrollimgUrls}}" wx:key="{{index}}"  hidden='{{imgIndex===index}}'>
+    <view class="course-image_item" wx:for="{{item}}" wx:key="{{index}}">
+      <image src="{{item.url}}"></image>
+      <view class="course-image_name">{{item.name}}</view>
     </view>
-  </scroll-view>
+  </view>
 </template>
 
 
@@ -63,6 +61,7 @@
 </template>
 
 <template name="course-list">
+<view class="course-list-box">
   <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
     <navigator url="../courseList/courseList?title={{item.title}}" 
     class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
@@ -79,11 +78,14 @@
       </view>
     </navigator>
   </view>
+</view>
 </template>
 
 <template name="search">
+<view class="course-search-box">
  <view class="course-search-bar" bindtap="showSearch">
     <image src="../../images/search_icon.png" style="width:28rpx; height: 28rpx;"></image>
     <text>搜索</text>
   </view>
+</view>
 </template>

@@ -22,4 +22,4 @@
     </navigator>
   </view>
 </view>
-<modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindconfirm="confirm"/>
+<modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}"/>

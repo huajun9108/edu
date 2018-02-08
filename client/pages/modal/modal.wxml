@@ -1,4 +1,4 @@
-<!--pages/modal/modal.wxml-->
+<!--component/modal/modal.wxml-->
 <view hidden='{{modalHidden}}'>  
   <view class='mask_layer' bindtap='modal_click_Hidden' />  
   <view class='modal_box'>  

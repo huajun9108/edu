@@ -58,7 +58,7 @@ Page({
     wx.request({
       url: config.service.courseUrl,
       success: function (res) {
-        util.showSuccess('请求成功')
+        wx.hideToast()
         console.log(res.data);
         _this.setData(
           {

@@ -38,6 +38,24 @@ Page({
       },
       {
         url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
+      },
+      {
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: 0, icon: "../../images/xuex.png"
+      },
+      {
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
+      },
+      {
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
+      },
+      {
+        url: "../buyCourse/buyCourse", title: "工艺AAA", explain: 0, icon: "../../images/xuex.png"
+      },
+      {
+        url: "../detail/detail?id=" + 1, title: "工艺BBB", explain: 1
+      },
+      {
+        url: "../detail/detail?id=" + 2, title: "工艺CCC", explain: 1
       }
     ],
     paidList:[

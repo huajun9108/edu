@@ -1,4 +1,4 @@
-/* pages/modal/modal.wxss */
+/* component/modal/modal.wxss */
 .mask_layer {  
   width: 100%;  
   height: 100%;  

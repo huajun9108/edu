@@ -38,6 +38,26 @@ Page({
         teacher: '苹果老师',
         title: '管理课程CCCC'
       },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程BBBB'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程CCCC'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程BBBB'
+      },
+      {
+        icon: "../../images/xuex.png",
+        teacher: '苹果老师',
+        title: '管理课程CCCC'
+      },
     ],
     processCourse: [
       {

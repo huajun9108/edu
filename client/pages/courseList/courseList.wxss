@@ -1,8 +1,4 @@
 /* pages/courseList/courseList.wxss */
-page {
-    /* overflow-y: hidden;   */
-}
-
 .courseList-hd {
   padding: 18rpx 40rpx;
   border-bottom: 2rpx solid #EFEFF1; 
@@ -10,6 +6,13 @@ page {
   display: -webkit-flex;
   justify-content: space-between;
   align-items: center;
+  -webkit-align-items:center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  background: #fff;
+  box-sizing: border-box
 }
 
 .courseList-modal{
@@ -26,7 +29,7 @@ page {
   position: relative;
   top: 0;
   width: 70%;
-  height: 100%;
+  height: auto;
   background-color: #fff;
 }
 .switchCourseIn {
@@ -55,7 +58,10 @@ page {
   height: 142rpx;
   border-radius: 30rpx;
 }
-
+.courseList-bd{
+  position: relative;
+  top: 122rpx
+}
 .courseList-bd .weui-cell__bd {
   padding-left: 22rpx;
 }
@@ -68,10 +74,14 @@ page {
   font-size: 28rpx;
   color: #575757;
 }
-.course-search-bar {
-  display: inline-block;
-  margin-left: 48rpx;
+.course-search-box{
+  position: relative;
   width: 60%;
+  border-bottom: 0;
+  padding: 0;
+}
+.course-search-bar {
+  width: 100%;
 }
 
 /*左侧滑出页面courseList-switchCourse 页面样式*/

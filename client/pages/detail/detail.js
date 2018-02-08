@@ -74,10 +74,10 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    console.log(options.name)
+    console.log(options)
     this.setData({
       detailnum: options.name,
-      imgSrc: this.data.imgUrls[options.id].url
+      imgSrc: options.imageUrl,
     })
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数

@@ -8,13 +8,19 @@ image{
   font-size: 36rpx;
   color: #FF8D6B;
 }
+ .weui-tab{
+  width:100%; 
+  height: 100%;
+  position:absolute; 
+  top:0;
+  overflow: auto;
+} 
 .weui-tab__panel{
-  position: absolute;
-  top: 118rpx;
+  position: relative;
   width: 100%;
-  height: auto;
-  padding-top: 0;
-}
+  height: 100%; 
+
+} 
 .order_pay{
   color: #FF8D6B;
 }
@@ -22,5 +28,5 @@ image{
   color: #8e8e8f;
 }
 .weui-cell__bd{
-  padding-left:40rpx;
+  padding-left:22rpx;
 }

@@ -1,0 +1,22 @@
+<!--component/homeCom/homeCom.wxml-->
+<view class='recommend page__bd_spacing'>
+  <view class="weui-flex home_title">
+    <view class="weui-flex__item"><view class="placeholder  home_text">{{homeComMsg}}</view></view>
+    <view class="weui-flex__item">
+      <view class="placeholder  home_text_right">
+        <view>
+        <text bindtap="refresh">换一批看</text>
+        <image src="{{refreshImage}}" bindtap="refresh"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="course-image_box" wx:for="{{courseImgUrls}}" wx:key="{{index}}"  hidden='{{imgIndex===index}}'>
+    <view class="course-image_item" wx:for="{{item}}" wx:key="{{index}}" bindtap="courseUrl" data-name = "{{item.name}}"
+      data-url = "{{item.url}}"
+      >
+      <image src="{{item.url}}"></image>
+      <view class="course-image_name">{{item.name}}</view>
+    </view>
+  </view>
+</view>
