@@ -1,5 +1,5 @@
 <import src="../common/common.wxml" />
-<template is="page-empty" wx:if="{{pageIsEmpty}}">
+<template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
 </template>
 <view class="page" wx:else>
 <view class="courseList-modal" hidden="{{modalFlag}}" bindtap='tapModal'>

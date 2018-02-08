@@ -47,6 +47,7 @@ Page({
     inputShowed:false,
     courseDir: [],
     pageIsEmpty: false,
+    tipMsg: "您访问的页面为空···"
   },
 
   /**

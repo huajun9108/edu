@@ -4,7 +4,7 @@
   <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;"></image>
   <view class="empty_tip">您访问的页面为空···</view>
 </view> -->
-<template is="page-empty" wx:if="{{pageIsEmpty}}">
+<template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
 </template>
 <view class="page" wx:else>
   <template is="search" />

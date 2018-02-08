@@ -90,6 +90,5 @@ button{
   padding-top: 51rpx;
   font-size: 32rpx;
   line-height: 32rpx;
-  font-weight: bold;
   color: #AFAFAF;
 } 

@@ -10,7 +10,8 @@ Page({
     inputVal: "",
     courseArr: [],
     courseDir: [],
-    pageIsEmpty: false
+    pageIsEmpty: false,
+    tipMsg: "您访问的页面为空···"
   },
   onLoad: function (option) {
     console.log(option);
