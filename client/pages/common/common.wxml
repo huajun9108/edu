@@ -52,14 +52,14 @@
 <template name="course-list">
 <view class="course-list-box">
   <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
-    <navigator url="../courseList/courseList?title={{item.title}}&type={{item.type}}&id={{item.id}}" 
+    <view bindtap="courseListClick" data-title = "{{item.title}}" data-type = "{{item.type}}" data-id="{{item.id}}"
     class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
       <view class="weui-cell__bd">{{item.title}}</view>
       <view class="weui-cell__ft">
         <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;" wx:if="{{item.flag}}"></image>
         <image src="../../images/more_icon.png" style="margin-right: 5px;vertical-align: middle;width:41rpx; height: 10rpx;" wx:else></image>
       </view>
-    </navigator>
+    </view>
     <navigator url="../detail/detail?id={{child.id}}&name={{child.title}}" wx:for="{{courseDir[index].children}}" wx:for-item="child" wx:for-index="idx" wx:key="idx" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
       <view class="weui-cell__bd">{{child.title}}</view>
       <view class="weui-cell__ft">

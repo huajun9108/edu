@@ -8,6 +8,7 @@ Page({
   data: {
     autoplay:true,
     flag:false,
+    
     detailnum:null,
     originalPrice: '待定',
     vipPrice: '待定',

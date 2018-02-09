@@ -2,25 +2,30 @@
 .weui-cells {
     margin-top: 0;
 }
-.weui-cells:nth-child(2) {
-   border-top: 2rpx solid #EFEFF1; 
-}
-.weui-cells:nth-child(n+3) navigator:nth-child(1) {
-  border-top: 2rpx solid #EFEFF1;
-}
 .weui-cell {
   padding: 35rpx 40rpx;
 }
-.weui-cells navigator:nth-child(1) {
+.weui-cells .weui-cell:nth-child(1) {
   font-size: 32rpx;
   font-weight: bolder;
   line-height: 34rpx;
 }
-.weui-cells navigator:not(:nth-child(1)) {
+.weui-cells .weui-cell:not(:nth-child(1)) {
   font-size: 30rpx;
   line-height: 34rpx;
 }
 .course-list-box{
   position: relative;
   top: 122rpx;
+}
+.weui-cells::before{
+  content: '';
+  position:absolute;
+  left: 40rpx;
+  right: 40rpx;
+  top: 0;
+  border-top: 2rpx solid #EFEFF1; 
+}
+.weui-cells:first-child::before{
+  border-top: 0;
 }

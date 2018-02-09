@@ -11,7 +11,7 @@ Page({
     courseArr: [],
     courseDir: [],
     pageIsEmpty: false,
-    tipMsg: "您访问的页面为空···"
+    tipMsg: "该课程暂无分类, 请后续关注"
   },
   onLoad: function (option) {
     wx.setNavigationBarTitle({
@@ -111,5 +111,15 @@ Page({
       inputShowed: true
 
     })
+  },
+  courseListClick(e) {
+    let title = e.currentTarget.dataset.title
+    let type = e.currentTarget.dataset.type
+    let id = e.currentTarget.dataset.id
+    let url = `../courseList/courseList?title=${title}&type=${type}&id=${id}`
+    wx.redirectTo({
+      url: url
+    })
+    // url = "../courseList/courseList?title={{item.title}}&type={{item.type}}&id={{item.id}}" 
   }
 })

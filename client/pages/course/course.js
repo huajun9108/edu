@@ -1,6 +1,6 @@
 // pages/course/course.js
-var util = require('../../utils/util.js')
 var config = require('../../config')
+var app = getApp()
 Page({
   data: {
     inputShowed: false,
@@ -47,7 +47,7 @@ Page({
     inputShowed:false,
     courseDir: [],
     pageIsEmpty: false,
-    tipMsg: "您访问的页面为空···"
+    tipMsg: "该课程暂无分类,请后续关注"
   },
 
   /**
@@ -55,27 +55,15 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
-    // util.showBusy('请求中...')
-    wx.request({
-      url: config.service.courseUrl,
-      success: function (res) {
-        wx.hideToast()
-        if(res.data.data.length <= 0) {
-          _this.setData(
-            {
-              pageIsEmpty: true,
-            }
-          )
-        } else {
-          _this.setData(
-            {
-              courseDir: res.data.data,
-              pageIsEmpty: false,
-            }
-          )
-        }
-      }
-    });
+    const url = config.service.courseUrl
+    app.request.requestGetApi(url, {}, this, this.successFun, this.failFun)
+    // wx.request({
+    //   url: config.service.courseUrl,
+    //   success: function (res) {
+    //     wx.hideToast()
+    //     
+    //   }
+    // });
   },
 
   /**
@@ -155,5 +143,30 @@ Page({
       inputShowed:true
 
     })
+  },
+  courseListClick(e){
+    let title = e.currentTarget.dataset.title
+    let type = e.currentTarget.dataset.type
+    let id = e.currentTarget.dataset.id
+    let url = `../courseList/courseList?title=${title}&type=${type}&id=${id}`
+    wx.navigateTo({
+      url: url
+    })
+  },
+  successFun(res, selfObj){
+    if (res.data.length <= 0) {
+      this.setData({
+        pageIsEmpty: true,
+      })
+    } else {
+      this.setData({
+        courseDir: res.data,
+        pageIsEmpty: false,
+      })
+    }
+  },
+  failFun(){
+
   }
+  
 })

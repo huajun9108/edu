@@ -1,5 +1,5 @@
-/* component/homeCom/homeCom.wxss */
-@import "../../app.wxss"; 
+/* components/homeCom/homeCom.wxss */
+ @import "../../app.wxss";  
 .placeholder{
   line-height: 96rpx;
   border-bottom:2rpx solid #EFEFF1;

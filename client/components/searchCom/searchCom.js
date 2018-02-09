@@ -1,4 +1,4 @@
-
+// components/searchCom/searchCom.js
 Component({
   properties: {
     modalHidden: {
@@ -8,8 +8,8 @@ Component({
     searchList: {
       type: Array,
       value: [],
-    }, 
-    inputShowed:{
+    },
+    inputShowed: {
       type: Boolean,
       value: false
     }
@@ -17,11 +17,11 @@ Component({
   data: {
     inputVal: "",
   },
-  methods:{
+  methods: {
     hideSearch: function () {
       this.setData({
         inputVal: "",
-        modalHidden:true
+        modalHidden: true
       });
     },
     clearInput: function () {
@@ -34,7 +34,7 @@ Component({
         inputVal: e.detail.value
       });
     },
-    searchClick(){
+    searchClick() {
     }
   }
 });

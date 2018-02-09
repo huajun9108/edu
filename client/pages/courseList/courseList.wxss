@@ -94,12 +94,12 @@
 .courseList-switchCourse .weui-cell {
   padding: 35rpx 40rpx;
 }
-.courseList-switchCourse .weui-cells navigator:nth-child(1) {
+.courseList-switchCourse .weui-cells .weui-cell:nth-child(1) {
   font-size: 32rpx;
   font-weight: bolder;
   line-height: 34rpx;
 }
-.courseList-switchCourse .weui-cells navigator:not(:nth-child(1)) {
+.courseList-switchCourse .weui-cells .weui-cell:not(:nth-child(1)) {
   font-size: 30rpx;
   line-height: 34rpx;
 }

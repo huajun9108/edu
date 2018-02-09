@@ -1,4 +1,4 @@
-<!--component/homeCom/homeCom.wxml-->
+<!--components/homeCom/homeCom.wxml-->
 <view class='recommend page__bd_spacing'>
   <view class="weui-flex home_title">
     <view class="weui-flex__item"><view class="placeholder  home_text">{{homeComMsg}}</view></view>

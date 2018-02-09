@@ -1,10 +1,6 @@
 
-var app = getApp()
 Page({
   data: {
-    
+    // url:""
   },
-  onLoad: function () {
-    
-  }, 
 })
