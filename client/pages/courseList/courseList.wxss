@@ -86,10 +86,17 @@
 /*左侧滑出页面courseList-switchCourse 页面样式*/
 /*-----------------------------------------*/
 .courseList-switchCourse .weui-cells:nth-child(2) {
-  border-top: 2rpx solid #EFEFF1;
+   border-top: 2rpx solid #EFEFF1; 
 }
-.courseList-switchCourse .weui-cells:nth-child(n+3) navigator:nth-child(1) {
-  border-top: 2rpx solid #EFEFF1;
+.courseList-switchCourse .weui-cells:nth-child(n+3)::before{
+  content:" ";
+  position:absolute;
+  left:40rpx;
+  top:0;
+  right:40rpx;
+  height:1px;
+  border-top:2rpx solid #EFEFF1;
+  color:#EFEFF1;
 }
 .courseList-switchCourse .weui-cell {
   padding: 35rpx 40rpx;
