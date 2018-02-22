@@ -7,6 +7,7 @@ const request = require('./utils/request.js')
 App({
   data:{
     logged:false,
+    userId:'',
   },
   onLaunch: function () {
       qcloud.setLoginUrl(config.service.loginUrl)

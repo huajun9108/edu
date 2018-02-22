@@ -60,6 +60,7 @@ Page({
     // 调用登录接口
     qcloud.login({
       success(result) {
+        console.log(result);
         if (result) {
           util.showSuccess('登录成功')
           that.setData({
@@ -73,6 +74,9 @@ Page({
             login: true,
             success(result) {
               util.showSuccess('登录成功')
+              app.data.userId = result.data.data.openId;
+              console.log(app.data.userId);
+              console.log(result);
               that.setData({
                 userInfo: result.data.data,
                 logged: true

@@ -1,4 +1,5 @@
 var config = require('../../config')
+var app = getApp()
 Page({
   data: {
     is_modal_Hidden: true,
@@ -14,46 +15,17 @@ Page({
     tipMsg: "该课程暂无分类, 请后续关注"
   },
   onLoad: function (option) {
+    console.log(option);
     wx.setNavigationBarTitle({
       title: option.title,
     });
     var _this = this;
-    wx.request({
-      url: config.service.courseListUrl,
-      method: 'POST',
-      data: {
-        type: option.type,
-        id: option.id
-      },
-      success: function(res) {
-        if(res.data.data <=0) {
-          _this.setData(
-            {
-              pageIsEmpty: true
-            }
-          )
-        } else {
-          _this.setData(
-            {
-              courseArr: res.data.data,
-              pageIsEmpty: false
-            }
-          )
+    const courseListUrl = config.service.courseListUrl;
+    app.request.requestPostApi(courseListUrl, { type: option.type, id: option.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun);
 
-        }
-      }
-    })
-
-    wx.request({
-      url: config.service.courseUrl,
-      success: function (res) {
-        _this.setData(
-          {
-            courseDir: res.data.data
-          }
-        )
-      }
-    });
+    const courseUrl = config.service.courseUrl;
+    app.request.requestGetApi(courseUrl, {}, this, this.courseUrlSuccessFun, 
+    this.courseUrlFailFun);
 
     if (option.title === "全部课程") {
       this.setData({
@@ -121,5 +93,33 @@ Page({
       url: url
     })
     // url = "../courseList/courseList?title={{item.title}}&type={{item.type}}&id={{item.id}}" 
+  },
+  courseListUrlSuccessFun(res, selfObj) {
+    if (res.data <= 0) {
+      this.setData(
+        {
+          pageIsEmpty: true
+        }
+      )
+    } else {
+      this.setData(
+        {
+          courseArr: res.data,
+          pageIsEmpty: false
+        }
+      )
+    }
+  },
+  courseListUrlFailFun() {
+
+  },
+  courseUrlSuccessFun: function (res, selfObj) {
+    this.setData(
+      {
+        courseDir: res.data
+      }
+    )
+  },
+  courseUrlFailFun() {
   }
 })

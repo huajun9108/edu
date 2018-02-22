@@ -1,36 +1,9 @@
 // pages/myFavor/myFavor.js
+const config = require('../../config')
 const App = getApp()
 Page({
   data: {
-    favorList: [
-      {
-        id: "A1", title: "工艺AAA课程1", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false,
-      },
-      {
-        id: "A2", title: "工艺BBB课程2", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A3", title: "工艺CCC课程3", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A4", title: "工艺AAA课程4", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A5", title: "工艺BBB课程5", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A6", title: "工艺CCC课程6", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A7", title: "工艺AAA课程7", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A8", title: "工艺BBB课程8", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      },
-      {
-        id: "A9", title: "工艺CCC课程9", teacher: "苹果老师", icon: "../../images/xuex.png", selected: false
-      }
-    ],
+    favorList: [],
     num:0,
     delCss:"weui-flex-common",
     checkSrc:"../../images/select.png",
@@ -44,6 +17,10 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    var _this = this;
+    console.log(options);
+    const url = config.service.myFavorList;
+    App.request.requestPostApi(url, {userId: App.data.userId}, this, this.successFun, this.failFun)
   },
   onReady: function () {
     // 页面渲染完成
@@ -162,5 +139,22 @@ Page({
       favorList: this.data.unselect,
       num: 0
     })
+  },
+  successFun(res, selfObj) {
+      if(!res.data) return;
+      var list = res.data;
+      for(let i = 0; i<list.length; i++) {
+        //图片为本地图片，到时候需要修改
+        list[i].icon = "../../images/xuex.png";
+      }
+      this.setData(
+        {
+          favorList: list
+          //favorList: res.data
+        }
+      )
+  },
+  failFun() {
+
   }
 })  

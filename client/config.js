@@ -29,7 +29,10 @@ var config = {
         courseListUrl: `${host}/weapp/course/selectCourseListById`,
 
         //查询单门课程信息
-        courseDetailUrl: `${host}/weapp/course/selectCourseById`
+        courseDetailUrl: `${host}/weapp/course/selectCourseById`,
+
+        //查询所有收藏信息
+        myFavorList: `${host}/weapp/collection/selectAllByUserId`,
     }
 };
 
