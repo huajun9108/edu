@@ -34,7 +34,8 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  toCourseDetail(){
+  courseUrl(){
+    console.log("kecheng")
   },
   showDel(){
     this.setData({
@@ -105,8 +106,6 @@ Page({
     this.setData({
       num:num
     });
-  },
-  courseUrl(){
   },
   delItem(){
     let arr = this.data.favorList;
