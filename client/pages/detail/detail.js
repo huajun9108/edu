@@ -20,6 +20,7 @@ Page({
     teacherDetail: '',
     courseId: null,
     userId: '',
+    courseIsCollected: false,
     imgUrls: [
       { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
@@ -88,36 +89,17 @@ Page({
   onLoad: function (options) {
     console.log(options);
     var that = this;
-    app.data.courseId = options.id;
     this.setData({
       detailnum: options.name,
+      userId: app.data.userId,
+      courseId: options.id,
     });
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数
     });
-    wx.request({
-      url: config.service.courseDetailUrl,
-      method: 'POST',
-      data: {
-        userId: app.data.userId,
-        courseId: options.id,
-      },
-      success: function (res) {
-        console.log(res.data);
-        that.setData({
-          imgSrc: res.data.data.img,
-          originalPrice: res.data.data.synopsis.price,
-          vipPrice: res.data.data.synopsis.vip_price,
-          peopleBuy: res.data.data.synopsis.buy_num,
-          src: res.data.data.video_url,
-          courseList: res.data.data.catalog,
-          teacherName: res.data.data.teacher.name,
-          teacherTitle: res.data.data.teacher.job,
-          teacherDetail: res.data.data.teacher.synopsis,
-          courseIndex: res.data.data.catalog[0].list[0].id
-        })
-      }
-    });
+    const courseDetailUrl = config.service.courseDetailUrl;
+    app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: options.id },
+      this, this.courseDetailSuccessFun, this.courseDetailFailFun);
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -137,10 +119,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      userId: app.data.userId,
-      courseId: app.data.courseId
-    });
   },
 
   /**
@@ -203,9 +181,7 @@ Page({
     console.log(this.data.courseIndex)
   },
   addMyFavor(e) {
-    console.log(this.courseId);
-    console.log(this.userId);
-    if (!app.data.courseId || !app.data.userId) {
+    if (!this.data.courseId || !this.data.userId) {
       wx.showModal({
         content: '尚未登录账号',
         showCancel: false,
@@ -217,16 +193,41 @@ Page({
       });
       return;
     }
-    const addMyFavorUrl = config.service.addMyFavorUrl;
-    app.request.requestPostApi(addMyFavorUrl, { userId: app.data.userId, courseId: app.data.courseId }, this, this.addMyFavorSuccessFun, this.addMyFavorFailFun);
+    if(this.data.courseIsCollected) {
+      console.log("取消收藏");
+    } else {
+      const addMyFavorUrl = config.service.addMyFavorUrl;
+      app.request.requestPostApi(addMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId }, this, this.addMyFavorSuccessFun, this.addMyFavorFailFun);
+    }
   },
   addMyFavorSuccessFun(res) {
     console.log(res);
-    if(res.status === "0") {
+    if (res.status === "0") {
       console.log("收藏成功");
+      this.setData({
+        courseIsCollected: true,
+      })
     }
   },
   addMyFavorFailFun(res) {
     console.log(res);
+  },
+  courseDetailSuccessFun(res) {
+    console.log(res);
+    this.setData({
+      imgSrc: res.data.img,
+      originalPrice: res.data.synopsis.price,
+      vipPrice: res.data.synopsis.vip_price,
+      peopleBuy: res.data.synopsis.buy_num,
+      src: res.data.video_url,
+      courseList: res.data.catalog,
+      teacherName: res.data.teacher.name,
+      teacherTitle: res.data.teacher.job,
+      teacherDetail: res.data.teacher.synopsis,
+      courseIndex: res.data.catalog[0].list[0].id,
+      courseIsCollected: res.data.collect_status,
+    })
+  },
+  courseDetailFailFun() {
   }
 })

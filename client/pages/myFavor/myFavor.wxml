@@ -6,7 +6,7 @@
           <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
           <image wx:else src="{{uncheckSrc}}"  class="checkImage"></image>
         </view>
-      <view catchtap="{{courseTap}}" class="weui-cell weui-cell_access {{showCheckCss}}" hover-class="{{hoverActive}}" data-index = "{{index}}">
+      <view catchtap="{{courseTap}}" class="weui-cell weui-cell_access {{showCheckCss}}" hover-class="{{hoverActive}}" data-index = "{{index}}" data-title="{{item.title}}" data-courseid="{{item.id}}">
         <view class="weui-cell__hd">
             <image src="{{item.icon}}" class="favorImage" style="vertical-align: middle;"></image>
         </view>

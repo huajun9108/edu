@@ -106,7 +106,12 @@ Page({
       num:num
     });
   },
-  courseUrl(){
+  courseUrl(e){
+    const courseId = e.currentTarget.dataset.courseid;
+    const title = e.currentTarget.dataset.title;
+    wx.navigateTo({
+      url: `../detail/detail?id=${courseId}&name=${title}`,
+    })
   },
   delItem(){
     let arr = this.data.favorList;

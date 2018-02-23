@@ -11,7 +11,7 @@
         <text class="course_title">{{detailnum}}</text>
       </view>
       <view class="weui-flex__item course_share">
-        <image class="collect_image" mode="scaleToFill" src="../../images/heart_icon_deafult.png" bindtap="addMyFavor"></image>
+        <image class="collect_image {{courseIsCollected?'collected_image':''}}" mode="scaleToFill" src="../../images/heart_icon_deafult.png" bindtap="addMyFavor"></image>
         <image class="share_image" src="../../images/share_icon_deafult.png"></image>
       </view>
     </view>
