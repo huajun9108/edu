@@ -8,6 +8,7 @@ App({
   data:{
     logged:false,
     userId:'',
+    courseId: null,
   },
   onLaunch: function () {
       qcloud.setLoginUrl(config.service.loginUrl)

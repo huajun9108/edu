@@ -1,40 +1,43 @@
 // pages/detail/detail.js
-var sliderWidth =80; // 需要设置slider的宽度，用于计算中间位置
+var sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
 var config = require('../../config')
+var app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    autoplay:true,
-    flag:false,
-    
-    detailnum:null,
+    autoplay: true,
+    flag: false,
+
+    detailnum: null,
     originalPrice: '待定',
     vipPrice: '待定',
     peopleBuy: 0,
     src: '',
     teacherName: '',
     teacherTitle: '',
-    teacherDetail: '',                
+    teacherDetail: '',
+    courseId: null,
+    userId: '',
     imgUrls: [
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg',},
+      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
       { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
       { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
       { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', },
       { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg',  },
+      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
       { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
-      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', }         
+      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', }
     ],
     imgSrc: null,
-    controls:true,
+    controls: true,
     play: "../../images/play.png",
     tabs: ["简介", "目录", "老师"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    vipFlag:1,
+    vipFlag: 1,
     // courseList:[
     //   {
     //     title:"第一部分",
@@ -61,7 +64,7 @@ Page({
     //       { detail: "03.AAAAAAAAAAAA", id: 9},
     //       { detail: "04.AAAAAAAAAAAA", id: 10 },
     //       { detail: "05.AAAAAAAAAAAA", id: 11},
-          
+
     //     ]
     //   },
     //   {
@@ -85,9 +88,9 @@ Page({
   onLoad: function (options) {
     console.log(options);
     var that = this;
+    app.data.courseId = options.id;
     this.setData({
       detailnum: options.name,
-
     });
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数
@@ -96,7 +99,8 @@ Page({
       url: config.service.courseDetailUrl,
       method: 'POST',
       data: {
-        id: options.id
+        userId: app.data.userId,
+        courseId: options.id,
       },
       success: function (res) {
         console.log(res.data);
@@ -110,7 +114,7 @@ Page({
           teacherName: res.data.data.teacher.name,
           teacherTitle: res.data.data.teacher.job,
           teacherDetail: res.data.data.teacher.synopsis,
-          courseIndex:res.data.data.catalog[0].list[0].id
+          courseIndex: res.data.data.catalog[0].list[0].id
         })
       }
     });
@@ -133,66 +137,96 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      userId: app.data.userId,
+      courseId: app.data.courseId
+    });
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
   play() {
     this.videoCtx.play()
     this.setData({
-      flag:false
+      flag: false
     })
   },
-  buyCourse(){
+  buyCourse() {
     wx.navigateTo({
       "url": "../buyCourse/buyCourse"
     })
-  }  ,
+  },
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
   },
-  chooseCourse(e){
+  chooseCourse(e) {
     console.log(e)
     this.setData({
       courseIndex: e.currentTarget.id,
       src: e.currentTarget.dataset.src
     })
     console.log(this.data.courseIndex)
+  },
+  addMyFavor(e) {
+    console.log(this.courseId);
+    console.log(this.userId);
+    if (!app.data.courseId || !app.data.userId) {
+      wx.showModal({
+        content: '尚未登录账号',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+          }
+        }
+      });
+      return;
+    }
+    const addMyFavorUrl = config.service.addMyFavorUrl;
+    app.request.requestPostApi(addMyFavorUrl, { userId: app.data.userId, courseId: app.data.courseId }, this, this.addMyFavorSuccessFun, this.addMyFavorFailFun);
+  },
+  addMyFavorSuccessFun(res) {
+    console.log(res);
+    if(res.status === "0") {
+      console.log("收藏成功");
+    }
+  },
+  addMyFavorFailFun(res) {
+    console.log(res);
   }
 })

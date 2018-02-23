@@ -19,8 +19,8 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     var _this = this;
     console.log(options);
-    const url = config.service.myFavorList;
-    App.request.requestPostApi(url, {userId: App.data.userId}, this, this.successFun, this.failFun)
+    const url = config.service.myFavorListUrl;
+    App.request.requestPostApi(url, { userId: App.data.userId }, this, this.myFavorListSuccessFun, this.myFavorListFailFun)
   },
   onReady: function () {
     // 页面渲染完成
@@ -60,6 +60,7 @@ Page({
     this.bindTotalNum();
   },
   bindCheckbox(e){
+    console.log("bindCheckbox");
     let index = e.currentTarget.dataset.index
     let selected = this.data.favorList[index].selected;
     let favorList = this.data.favorList;
@@ -140,7 +141,7 @@ Page({
       num: 0
     })
   },
-  successFun(res, selfObj) {
+  myFavorListSuccessFun(res, selfObj) {
       if(!res.data) return;
       var list = res.data;
       for(let i = 0; i<list.length; i++) {
@@ -154,7 +155,7 @@ Page({
         }
       )
   },
-  failFun() {
+  myFavorListFailFun() {
 
   }
 })  

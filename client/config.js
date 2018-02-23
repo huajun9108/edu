@@ -32,7 +32,10 @@ var config = {
         courseDetailUrl: `${host}/weapp/course/selectCourseById`,
 
         //查询所有收藏信息
-        myFavorList: `${host}/weapp/collection/selectAllByUserId`,
+        myFavorListUrl: `${host}/weapp/collection/selectAllByUserId`,
+
+        //添加收藏信息
+        addMyFavorUrl: `${host}/weapp/collection/addOneByUserIdAndCourseId`,
     }
 };
 

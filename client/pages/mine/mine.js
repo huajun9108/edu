@@ -127,4 +127,17 @@ Page({
       wx.request(options)
     }
   },
+  checkLogin(e) {
+    console.log(e);
+    // if(this.logged) return;
+    // wx.showModal({
+    //   content: '请先登录账号',
+    //   showCancel: false,
+    //   success: function(res) {
+    //     if(res.confirm) {
+    //       console.log('用户点击确定')
+    //     }
+    //   }
+    // })
+  }
 })
