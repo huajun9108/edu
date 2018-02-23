@@ -45,7 +45,10 @@ video{
   width: 38rpx;
   height: 31rpx;
   vertical-align: middle;
-} 
+}
+ .course_share .collected_image {
+  background-color: lightpink;
+}  
 .share_image{
   padding-left: 22rpx;
   width: 32rpx;

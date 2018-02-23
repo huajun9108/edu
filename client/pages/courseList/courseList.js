@@ -21,11 +21,20 @@ Page({
     });
     var _this = this;
     const courseListUrl = config.service.courseListUrl;
+    //获取类别下的所有课程
     app.request.requestPostApi(courseListUrl, { type: option.type, id: option.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun);
 
-    const courseUrl = config.service.courseUrl;
-    app.request.requestGetApi(courseUrl, {}, this, this.courseUrlSuccessFun, 
-    this.courseUrlFailFun);
+    wx.getStorage({
+      key: 'courseDir',
+      success: function (res) {
+        console.log(res.data);
+        _this.setData(
+          {
+            courseDir: res.data
+          }
+        )
+      }
+    })
 
     if (option.title === "全部课程") {
       this.setData({
@@ -113,13 +122,4 @@ Page({
   courseListUrlFailFun() {
 
   },
-  courseUrlSuccessFun: function (res, selfObj) {
-    this.setData(
-      {
-        courseDir: res.data
-      }
-    )
-  },
-  courseUrlFailFun() {
-  }
 })

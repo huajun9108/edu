@@ -34,9 +34,6 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  courseUrl(){
-    console.log("kecheng")
-  },
   showDel(){
     this.setData({
       delCss: "weui-flex-up",
@@ -106,6 +103,13 @@ Page({
     this.setData({
       num:num
     });
+  },
+  courseUrl(e){
+    const courseId = e.currentTarget.dataset.courseid;
+    const title = e.currentTarget.dataset.title;
+    wx.navigateTo({
+      url: `../detail/detail?id=${courseId}&name=${title}`,
+    })
   },
   delItem(){
     let arr = this.data.favorList;

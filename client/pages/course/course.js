@@ -159,6 +159,11 @@ Page({
         pageIsEmpty: true,
       })
     } else {
+      console.log(res.data);
+      wx.setStorage({
+        key: 'courseDir',
+        data: res.data,
+      });
       this.setData({
         courseDir: res.data,
         pageIsEmpty: false,
