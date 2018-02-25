@@ -194,10 +194,11 @@ Page({
       return;
     }
     if(this.data.courseIsCollected) {
-      console.log("取消收藏");
+      const delMyFavorUrl = config.service.delMyFavorUrl;
+      app.request.requestPostApi(delMyFavorUrl, {userId:this.data.userId, courseId: this.data.courseId}, this, this.delMyFavorSuccessFun, this.delMyFavorFailFun);
     } else {
       const addMyFavorUrl = config.service.addMyFavorUrl;
-      app.request.requestPostApi(addMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId }, this, this.addMyFavorSuccessFun, this.addMyFavorFailFun);
+      app.request.requestPostApi(addMyFavorUrl, {userId:this.data.userId, courseId:this.data.courseId}, this, this.addMyFavorSuccessFun, this.addMyFavorFailFun);
     }
   },
   addMyFavorSuccessFun(res) {
@@ -229,5 +230,17 @@ Page({
     })
   },
   courseDetailFailFun() {
+  },
+  delMyFavorSuccessFun(res) {
+    console.log(res);
+    if(res.status === "0") {
+      console.log("取消收藏");
+      this.setData({
+        courseIsCollected: false
+      });
+    }
+  },
+  delMyFavorFailFun() {
+    
   }
 })

@@ -36,6 +36,9 @@ var config = {
 
         //添加收藏信息
         addMyFavorUrl: `${host}/weapp/collection/addOneByUserIdAndCourseId`,
+
+        //删除收藏信息
+        delMyFavorUrl: `${host}/weapp/collection/deleteByUserIdAndCourseId`,
     }
 };
 
