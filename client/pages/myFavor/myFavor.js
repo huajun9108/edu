@@ -32,8 +32,6 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  toCourseDetail(){
-  },
   showDel(){
     this.setData({
       delCss: "weui-flex-up",
