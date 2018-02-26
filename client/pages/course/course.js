@@ -57,13 +57,6 @@ Page({
     var _this = this;
     const url = config.service.courseUrl
     app.request.requestGetApi(url, {}, this, this.successFun, this.failFun)
-    // wx.request({
-    //   url: config.service.courseUrl,
-    //   success: function (res) {
-    //     wx.hideToast()
-    //     
-    //   }
-    // });
   },
 
   /**
