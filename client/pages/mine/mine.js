@@ -63,6 +63,7 @@ Page({
         console.log(result);
         if (result) {
           util.showSuccess('登录成功')
+          app.data.userId = result.openId;
           that.setData({
             userInfo: result,
             logged: true
