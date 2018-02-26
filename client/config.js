@@ -39,6 +39,9 @@ var config = {
 
         //删除收藏信息
         delMyFavorUrl: `${host}/weapp/collection/deleteByUserIdAndCourseId`,
+
+        //批量删除收藏信息
+        batchDelMyFavorUrl: `${host}/weapp/collection/deleteByUserIdAndCourseIds`,
     }
 };
 

@@ -139,10 +139,10 @@ Page({
     })
   },
   confirm(){
-    this.setData({
-      favorList: this.data.unselect,
-      num: 0
-    })
+    if(this.data.select) {
+      const batchDelMyFavorUrl = config.service.batchDelMyFavorUrl;
+      app.request.requestPostApi(batchDelMyFavorUrl, { userId: app.data.userId, courseIds: this.data.select }, this, this.batchDelMyFavorSuccessFun, this.batchDelMyFavorFailFun);
+    }
   },
   myFavorListSuccessFun(res, selfObj) {
       if(!res.data) return;
@@ -161,4 +161,16 @@ Page({
   myFavorListFailFun() {
 
   },
+  batchDelMyFavorSuccessFun(res) {
+    console.log(res);
+    if(res.status === "0") {
+      this.setData({
+        favorList: this.data.unselect,
+        num: 0
+      })
+    }
+  },
+  batchDelMyFavorFailFun() {
+    
+  }
 })  

@@ -83,6 +83,7 @@ var login = function login(options) {
             return;
         }
         
+        console.log(wxLoginResult);
         var userInfo = wxLoginResult.userInfo;
 
         // 构造请求头，包含 code、encryptedData 和 iv
@@ -108,8 +109,10 @@ var login = function login(options) {
                 if (data && data.code === 0 && data.data.skey) {
                     var res = data.data
                     if (res.userinfo) {
+                        console.log(res.userinfo);
                         Session.set(res.skey);
-                        options.success(userInfo);
+                        options.success(res.userinfo);
+                        // options.success(userInfo);
                     } else {
                         var errorMessage = '登录失败(' + data.error + ')：' + (data.message || '未知错误');
                         var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, errorMessage);
