@@ -1,6 +1,9 @@
 // pages/detail/detail.js
 var sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
+var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
+var util = require('../../utils/util.js')
+var Session = require('../../vendor/wafer2-client-sdk/lib/session');
 var app = getApp();
 Page({
   /**
@@ -9,7 +12,6 @@ Page({
   data: {
     autoplay: true,
     flag: false,
-
     detailnum: null,
     originalPrice: '待定',
     vipPrice: '待定',
@@ -21,16 +23,16 @@ Page({
     courseId: null,
     userId: '',
     courseIsCollected: false,
-    imgUrls: [
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
-      { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
-      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', },
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
-      { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
-      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', }
-    ],
+    // imgUrls: [
+    //   { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
+    //   { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
+    //   { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
+    //   { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', },
+    //   { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
+    //   { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
+    //   { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
+    //   { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', }
+    // ],
     imgSrc: null,
     controls: true,
     play: "../../images/play.png",
@@ -39,48 +41,6 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     vipFlag: 1,
-    // courseList:[
-    //   {
-    //     title:"第一部分",
-    //     list:[
-    //       { detail: "01.AAAAAAAAAAAA",id:0},
-    //       { detail: "02.AAAAAAAAAAAA", id: 1},
-    //       { detail: "03.AAAAAAAAAAAA", id: 2 }
-    //     ]
-    //   },
-    //   {
-    //     title: "第二部分",
-    //     list: [
-    //       { detail: "01.AAAAAAAAAAAA", id: 3 },
-    //       { detail: "02.AAAAAAAAAAAA", id: 4 },
-    //       { detail: "03.AAAAAAAAAAAA", id: 5 },
-    //       { detail: "04.AAAAAAAAAAAA", id: 6}
-    //     ]
-    //   },
-    //   {
-    //     title: "第三部分",
-    //     list: [
-    //       { detail: "01.AAAAAAAAAAAA", id: 7 },
-    //       { detail: "02.AAAAAAAAAAAA", id: 8},
-    //       { detail: "03.AAAAAAAAAAAA", id: 9},
-    //       { detail: "04.AAAAAAAAAAAA", id: 10 },
-    //       { detail: "05.AAAAAAAAAAAA", id: 11},
-
-    //     ]
-    //   },
-    //   {
-    //     title: "第四部分",
-    //     list: [
-    //       { detail: "01.AAAAAAAAAAAA", id: 12 },
-    //       { detail: "02.AAAAAAAAAAAA", id: 13 },
-    //       { detail: "03.AAAAAAAAAAAA", id: 14},
-    //       { detail: "04.AAAAAAAAAAAA", id: 15},
-    //       { detail: "05.AAAAAAAAAAAA", id: 16},
-    //       { detail: "06.AAAAAAAAAAAA", id: 17}
-    //     ]
-    //   }
-    // ],
-    // courseIndex:0
   },
 
   /**
@@ -89,6 +49,7 @@ Page({
   onLoad: function (options) {
     console.log(options);
     var that = this;
+    var session = Session.get();    
     this.setData({
       detailnum: options.name,
       userId: app.data.userId,
@@ -97,9 +58,27 @@ Page({
     wx.setNavigationBarTitle({
       title: that.data.detailnum//页面标题为路由参数
     });
-    const courseDetailUrl = config.service.courseDetailUrl;
-    app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: options.id },
-      this, this.courseDetailSuccessFun, this.courseDetailFailFun);
+    if (session) {
+      wx.checkSession({
+        success: function (result) {
+          app.data.userId = session.userinfo.openId;
+          const courseDetailUrl = config.service.courseDetailUrl;
+          app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: that.data.courseId},
+            that, that.courseDetailSuccessFun, that.courseDetailFailFun);
+        },
+        fail: function () {
+          Session.clear();
+          that.login()
+        },
+      });
+    } else {
+      console.log(1)
+      that.login()
+    }
+
+    
+   
+   
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -108,6 +87,7 @@ Page({
         });
       }
     });
+
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -119,6 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+   
   },
 
   /**
@@ -242,5 +223,47 @@ Page({
   },
   delMyFavorFailFun() {
     
-  }
+  },
+  login: function () {
+    if (this.data.logged) return;
+    util.showBusy('正在登录')
+    var that = this
+    // 调用登录接口
+    qcloud.login({
+      success(result) {
+        console.log(result);
+        if (result) {
+          util.showSuccess('登录成功')
+          var session = Session.get();  
+          app.data.userId = session.userinfo.openId;
+          const courseDetailUrl = config.service.courseDetailUrl;
+          app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: that.data.courseId },
+            that, that.courseDetailSuccessFun, that.courseDetailFailFun);
+        } else {
+          // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
+          qcloud.request({
+            url: config.service.requestUrl,
+            login: true,
+            success(result) {
+              util.showSuccess('登录成功')
+              console.log(session)
+              app.data.userId = session.userinfo.openId;
+              const courseDetailUrl = config.service.courseDetailUrl;
+              app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: that.data.courseId },
+                that, that.courseDetailSuccessFun, that.courseDetailFailFun);
+            },
+
+            fail(error) {
+              util.showModel('请求失败', error)
+            }
+          })
+        }
+      },
+
+      fail(error) {
+        util.showModel('登录失败', error)
+      }
+    })
+    console.log(app)
+  },
 })

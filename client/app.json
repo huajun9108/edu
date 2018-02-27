@@ -22,23 +22,24 @@
   "tabBar": {
     "color": "#5F5F5F",
     "selectedColor":"#cfb16b",
+    "borderStyle":"white",
     "list": [
       {
         "pagePath": "pages/home/home",
         "text": "首页",
-        "iconPath":"images/homePage_unfocus.png",
+        "iconPath":"images/homePage_default.png",
         "selectedIconPath":"images/homePage_focus.png"
       },
       {
         "pagePath": "pages/course/course",
         "text": "课程",
-        "iconPath": "images/curriculum_unfocus.png",
+        "iconPath": "images/curriculum_default.png",
         "selectedIconPath": "images/curriculum_focus.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "images/my_unfocus.png",
+        "iconPath": "images/my_default.png",
         "selectedIconPath": "images/my_focus.png"
       }
     ]

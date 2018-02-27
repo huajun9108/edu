@@ -1,6 +1,7 @@
 // pages/myFavor/myFavor.js
-const config = require('../../config')
-const app = getApp()
+var qcloud = require('../../vendor/wafer2-client-sdk/index')
+var config = require('../../config')
+var app = getApp()
 Page({
   data: {
     favorList: [],
@@ -13,7 +14,9 @@ Page({
     courseTap:"courseUrl",
     is_modal_Hidden: true,
     is_modal_Msg: "你确定要狠心删除我吗？" ,
-    selectAll:"全选"
+    selectAll:"全选",
+    pageIsEmpty: false,
+    tipMsg: "你还没有收藏记录哦"
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -24,6 +27,7 @@ Page({
   onShow: function () {
     // 页面显示
     const url = config.service.myFavorListUrl;
+    console.log(app.data)
     app.request.requestPostApi(url, { userId: app.data.userId }, this, this.myFavorListSuccessFun, this.myFavorListFailFun)
   },
   onHide: function () {
@@ -143,18 +147,16 @@ Page({
     }
   },
   myFavorListSuccessFun(res, selfObj) {
-      if(!res.data) return;
-      var list = res.data;
-      for(let i = 0; i<list.length; i++) {
-        //图片为本地图片，到时候需要修改
-        list[i].icon = "../../images/xuex.png";
-      }
-      this.setData(
-        {
-          favorList: list
-          //favorList: res.data
-        }
-      )
+    if(!res.data) return;
+    var list = res.data;
+    this.pageIsEmpty(list)
+    for(let i = 0; i<list.length; i++) {
+      //图片为本地图片，到时候需要修改
+      list[i].icon = "../../images/xuex.png";
+    }
+    this.setData({
+      favorList: list
+    })
   },
   myFavorListFailFun() {
 
@@ -167,8 +169,16 @@ Page({
         num: 0
       })
     }
+    this.pageIsEmpty(this.data.unselect)
   },
   batchDelMyFavorFailFun() {
     
+  },
+  pageIsEmpty(arr){
+    if (arr.length===0){
+      this.setData({
+        pageIsEmpty: true
+      })
+    }
   }
 })  

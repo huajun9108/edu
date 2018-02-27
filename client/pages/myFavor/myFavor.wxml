@@ -1,4 +1,5 @@
 <!--pages/myFavor/myFavor.wxml-->
+<import src="../common/common.wxml" />
 <view class="page">
   <view class="myFavor">
     <view class="weui-cells weui-cells_after-title" wx:for="{{favorList}}" wx:key = "index" bindtap="bindCheckbox" data-index = "{{index}}">
@@ -17,11 +18,13 @@
       </view>
     </view>
   </view>
-  <view class="edit" bindtap="showDel">编辑</view>
-  <view class="weui-flex {{delCss}}">
+  <view class="edit" bindtap="showDel" wx:if="{{!pageIsEmpty}}">编辑</view>
+  <view class="weui-flex {{delCss}}" wx:if="{{!pageIsEmpty}}">
     <view class="weui-flex__item"><view class="placeholder" bindtap="hideDel">取消</view></view>
     <view class="weui-flex__item"><view class="placeholder" bindtap="bindSelectAll">{{selectAll}}</view></view>
     <view class="weui-flex__item"><view class="placeholder del" bindtap="delItem">删除({{num}})</view></view>
   </view>
-  <modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" bindconfirm="confirm"/>  
+  <modal  modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" bindconfirm="confirm"/> 
+  <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
+  </template> 
 </view>
