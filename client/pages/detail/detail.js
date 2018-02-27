@@ -98,7 +98,11 @@ Page({
       title: that.data.detailnum//页面标题为路由参数
     });
     const courseDetailUrl = config.service.courseDetailUrl;
-    app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: options.id },
+    let userId = -1;
+    if(app.data.userId) {
+      userId = app.data.userId;
+    }
+    app.request.requestPostApi(courseDetailUrl, { userId: userId, courseId: options.id },
       this, this.courseDetailSuccessFun, this.courseDetailFailFun);
     wx.getSystemInfo({
       success: function (res) {
@@ -162,8 +166,10 @@ Page({
     })
   },
   buyCourse() {
+    const title = this.data.detailnum;
+    const price = this.data.vipPrice;
     wx.navigateTo({
-      "url": "../buyCourse/buyCourse"
+      "url": `../buyCourse/buyCourse?name=${title}&price=${price}`
     })
   },
   tabClick: function (e) {

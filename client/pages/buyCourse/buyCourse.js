@@ -9,11 +9,11 @@ Page({
     model: [
       {
         title: '名称',
-        detail:"课程AAA"
+        detail: ""
       },
       {
         title: '价格',
-        detail: "￥280"
+        detail: ""
       }
     ],
     number: "￥20"
@@ -23,7 +23,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    let model = this.data.model;
+    model[0].detail = options.name;
+    model[1].detail = `¥${options.price}`;
+    this.setData({
+      model: model
+    })
   },
 
   /**
