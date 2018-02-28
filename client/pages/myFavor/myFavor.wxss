@@ -59,10 +59,6 @@
   
   text-align: center;
 }
-.del{
-  color: #f1b90d;
-}
-
 @keyframes up{
   from{
       bottom:  -118rpx;

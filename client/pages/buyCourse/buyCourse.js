@@ -80,5 +80,33 @@ Page({
   
   },
   buyTap(){
+    const wechatData = {
+      appId:"wx8c8e043278e36df9",//小程序id
+      nonceStr: "qdpys6rdizbnpj12ahwvkf568a6c1sr9", //随机字符串
+      package: "prepay_id=wx2017033010242291fcfe0db70013231072", //wx的预支付交易单
+      paySign: "8A7DC1A560B3B6DB0C656AC382D3E6F1",
+      signType: "MD5",
+      timeStamp: "1481167418"
+    }
+    wx.requestPayment({
+      'appId': wechatData.appId,
+      'timeStamp': wechatData.timeStamp,
+      'nonceStr': wechatData.nonceStr,
+      'package': wechatData.package,
+      'signType': 'MD5',
+      'paySign': wechatData.paySign,
+      'total_fee':"280",
+      'success': function (res) {
+        console.log(res);
+        console.log('success');
+      },
+      'fail': function (res) {
+        console.log(res);
+        console.log('fail');
+      },
+      'complete': function (res) {
+        console.log(res); console.log('complete');
+      }
+    });
   }
 })

@@ -6,7 +6,6 @@ image{
 }
 .order-bottom{
   font-size: 36rpx;
-  color: #FF8D6B;
 }
 .weui-navbar{
   position: absolute;
@@ -24,9 +23,6 @@ image{
   height: 100%; 
 
 } 
-.order_pay{
-  color: #FF8D6B;
-}
 .order_study{
   color: #8e8e8f;
 }
