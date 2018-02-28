@@ -43,11 +43,10 @@
   text-align: center;
 }
 .vipname{
-  background: #ffdd55;
+  background: #dcc07f;
 }
 .weui-cell__ft{
   font-size: 30rpx;
-  color: #f1b90d
 }
 
 .weui-cell{
@@ -55,4 +54,9 @@
 }
 .weui-cells{
   font-size: 32rpx;
+}
+.weui-cell__hd image{
+  width:30rpx;
+  height: 28rpx; 
+  margin-right: 12rpx;
 }

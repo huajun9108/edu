@@ -13,7 +13,5 @@ App({
       qcloud.setLoginUrl(config.service.loginUrl)
   },
   request: request,
-  login:function(successFn){
-    login.login(successFn)
-  }
+  login: login.login
 })

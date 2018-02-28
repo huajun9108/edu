@@ -2,7 +2,6 @@ var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
 var Session = require('../../vendor/wafer2-client-sdk/lib/session');
-const login = require('../../utils/login.js')
 var app = getApp()
 Page({
   data: {
@@ -12,16 +11,16 @@ Page({
     vipFlag:false,
     normalList: [
       {
-        url: "../allOrders/allOrders", title: "学习中心", explain:"全部订单"
+        url: "../allOrders/allOrders", image:"../../images/my_study_icon.png", title: "学习中心", explain:"全部订单"
       },
       {
-        url: "../myFavor/myFavor", title: "我的收藏"
+        url: "../myFavor/myFavor", image: "../../images/my_collection_icon.png",title: "我的收藏"
       },
       {
-        url: "../buyVip/buyVip?id="+1, title: "VIP 购买"
+        url: "../buyVip/buyVip?id=" + 1, image: "../../images/my_buy_icon.png", title: "VIP 购买"
       },
       {
-        url: "../userSet/userSet", title: "账号设置"
+        url: "../userSet/userSet", image: "../../images/my_account_icon.png", title: "账号设置"
       }
     ],
     time:null,
@@ -42,14 +41,11 @@ Page({
         },
         fail: function () {
           Session.clear();
-          app.login()
         },
       });
     } else {
-      // that.login()
       return
     }
-    // that.login()
     options.data = "2017-11-14 到期"
     if (this.data.vipFlag){
       that.setData({
@@ -77,49 +73,7 @@ Page({
   login: function () {
     if (this.data.logged) return;
     util.showBusy('正在登录')
-    var that = this
-    console.log(login.login())
-    // 调用登录接口
-    // qcloud.login({
-    //   success(result) {
-    //     if (result) {
-    //       util.showSuccess('登录成功')
-    //       const session = Session.get()
-    //       console.log(session)
-    //       app.data.userId = session.userinfo.openId;
-    //       that.setData({
-    //         userInfo: result,
-    //         logged: true
-    //       })
-    //     } else {
-    //       // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-    //       qcloud.request({
-    //         url: config.service.requestUrl,
-    //         login: true,
-    //         success(result) {
-    //           util.showSuccess('登录成功')
-    //           console.log(session)
-    //           app.data.userId = session.userinfo.openId;
-    //           console.log(app.data.userId);
-    //           console.log(result);
-    //           that.setData({
-    //             userInfo: result.data.data,
-    //             logged: true
-    //           })
-    //         },
-
-    //         fail(error) {
-    //           util.showModel('请求失败', error)
-    //         }
-    //       })
-    //     }
-    //   },
-
-    //   fail(error) {
-    //     util.showModel('登录失败', error)
-    //   }
-    // })
-    // console.log(app)
+    app.login(this.successFirst, this.success)
   },
 
   // 切换是否带有登录态
@@ -152,13 +106,17 @@ Page({
       wx.request(options)
     }
   },
-  success(result){
-    console.log(1)
+  successFirst(result){
     this.setData({
       userInfo: result,
       logged: true,
     })
-    console.log(this.data.userInfo)
+  },
+  success(result){
+    this.setData({
+      userInfo: result.data.data,
+      logged: true,
+    })
   },
   checkLogin(e) {
     console.log(e);
