@@ -23,7 +23,8 @@ Page({
         teacherDetail: '',
         courseId: null,
         userId: -1,
-        courseIsCollected: false,
+        courseIsCollected: 0,
+        courseIsBuy: 0,
         imgSrc: null,
         controls: true,
         play: "../../images/play.png",
@@ -32,39 +33,39 @@ Page({
         sliderOffset: 0,
         sliderLeft: 0,
         vipFlag: 1,
-        collected_image:"../../images/heart_icon_focus.png",
-        uncollected_image:"../../images/heart_icon_deafult.png"
+        collected_image: "../../images/heart_icon_focus.png",
+        uncollected_image: "../../images/heart_icon_deafult.png"
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-      console.log(options);
-      var that = this;
-      var session = Session.get();
-      this.setData({
-          detailnum: options.name,
-          courseId: options.id,
-      });
-      wx.setNavigationBarTitle({
-          title: that.data.detailnum //页面标题为路由参数
-      });
-      if (app.data.userId) { 
+        console.log(options);
+        var that = this;
+        var session = Session.get();
         this.setData({
-          userId: app.data.userId
+            detailnum: options.name,
+            courseId: options.id,
         });
-      }
-      app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: options.id },
-        that, that.courseDetailSuccessFun, that.courseDetailFailFun);
-      wx.getSystemInfo({
-        success: function(res) {
-          that.setData({
-            sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-            sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-          });
+        wx.setNavigationBarTitle({
+            title: that.data.detailnum //页面标题为路由参数
+        });
+        if (app.data.userId) {
+            this.setData({
+                userId: app.data.userId
+            });
         }
-      });
+        app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: options.id },
+            that, that.courseDetailSuccessFun, that.courseDetailFailFun);
+        wx.getSystemInfo({
+            success: function(res) {
+                that.setData({
+                    sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+                    sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+                });
+            }
+        });
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -114,62 +115,64 @@ Page({
 
     },
     play() {
-      this.videoCtx.play()
-      this.setData({
-        flag: false
-      })
+        this.videoCtx.play()
+        this.setData({
+            flag: false
+        })
     },
     buyCourse() {
-      const title = this.data.detailnum;
-      const price = this.data.vipPrice;
-      wx.navigateTo({
-          "url": `../buyCourse/buyCourse?name=${title}&price=${price}`
-      })
+        const title = this.data.detailnum;
+        const price = this.data.vipPrice;
+        const courseId = this.data.courseId;
+        wx.navigateTo({
+            "url": `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`
+        })
     },
     tabClick: function(e) {
-      this.setData({
-        sliderOffset: e.currentTarget.offsetLeft,
-        activeIndex: e.currentTarget.id
-      });
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.id
+        });
     },
     chooseCourse(e) {
-      app.testSession(this.chooseCourseFn, this.sessionFail,e)
+        app.testSession(this.chooseCourseFn, this.sessionFail, e)
     },
-    chooseCourseFn(e){
-      this.setData({
-        courseIndex: e.currentTarget.id,
-        src: e.currentTarget.dataset.src
-      })
+    chooseCourseFn(e) {
+        this.setData({
+            courseIndex: e.currentTarget.id,
+            src: e.currentTarget.dataset.src
+        })
     },
-    chooseCourseFail(){
+    chooseCourseFail() {
 
     },
     addMyFavor() {
-      app.testSession(this.sessionFn, this.sessionFail)
+        app.testSession(this.sessionFn, this.sessionFail)
     },
     addMyFavorSuccessFun(res) {
-      if (res.status === "0") {
-        this.setData({
-            courseIsCollected: true,
-        })
-      }
+        if (res.status === "0") {
+            this.setData({
+                courseIsCollected: true,
+            })
+        }
     },
     addMyFavorFailFun(res) {
         console.log(res);
     },
     courseDetailSuccessFun(res) {
         this.setData({
-          imgSrc: res.data.img,
-          originalPrice: res.data.synopsis.price,
-          vipPrice: res.data.synopsis.vip_price,
-          peopleBuy: res.data.synopsis.buy_num,
-          src: res.data.video_url,
-          courseList: res.data.catalog,
-          teacherName: res.data.teacher.name,
-          teacherTitle: res.data.teacher.job,
-          teacherDetail: res.data.teacher.synopsis,
-          courseIndex: res.data.catalog[0].list[0].id,
-          courseIsCollected: res.data.collect_status,
+            imgSrc: res.data.img,
+            originalPrice: res.data.synopsis.price,
+            vipPrice: res.data.synopsis.vip_price,
+            peopleBuy: res.data.synopsis.buy_num,
+            src: res.data.video_url,
+            courseList: res.data.catalog,
+            teacherName: res.data.teacher.name,
+            teacherTitle: res.data.teacher.job,
+            teacherDetail: res.data.teacher.synopsis,
+            courseIndex: res.data.catalog[0].list[0].id,
+            courseIsCollected: res.data.collect_status,
+            courseIsBuy: res.data.buy_status,
         })
     },
     courseDetailFailFun() {},
@@ -183,38 +186,35 @@ Page({
     delMyFavorFailFun() {
 
     },
-    sessionFn(){
-      this.setData({
-        userId: app.data.userId,
-      });
-      if (this.data.courseIsCollected) {
-        const delMyFavorUrl = config.service.delMyFavorUrl;
-        app.request.requestPostApi(
-          delMyFavorUrl, 
-          { userId: this.data.userId, courseId: this.data.courseId },
-          this, 
-          this.delMyFavorSuccessFun, 
-          this.delMyFavorFailFun);
-      } else {
-        const addMyFavorUrl = config.service.addMyFavorUrl;
-        app.request.requestPostApi(
-          addMyFavorUrl, 
-          { userId: this.data.userId, courseId: this.data.courseId }, 
-          this, 
-          this.addMyFavorSuccessFun, 
-          this.addMyFavorFailFun);
-      }
+    sessionFn() {
+        this.setData({
+            userId: app.data.userId,
+        });
+        if (this.data.courseIsCollected) {
+            const delMyFavorUrl = config.service.delMyFavorUrl;
+            app.request.requestPostApi(
+                delMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId },
+                this,
+                this.delMyFavorSuccessFun,
+                this.delMyFavorFailFun);
+        } else {
+            const addMyFavorUrl = config.service.addMyFavorUrl;
+            app.request.requestPostApi(
+                addMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId },
+                this,
+                this.addMyFavorSuccessFun,
+                this.addMyFavorFailFun);
+        }
     },
-    sessionFail(){
-      app.login(this.successFirst, this.success)
+    sessionFail() {
+        app.login(this.successFirst, this.success)
     },
-    successFirst(){
-      app.request.requestPostApi(
-        courseDetailUrl, 
-        { userId: app.data.userId, courseId: this.data.courseId },
-        this, 
-        this.courseDetailSuccessFun, 
-        this.courseDetailFailFun
-      );
+    successFirst() {
+        app.request.requestPostApi(
+            courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
+            this,
+            this.courseDetailSuccessFun,
+            this.courseDetailFailFun
+        );
     }
 })

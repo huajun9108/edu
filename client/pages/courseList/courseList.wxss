@@ -33,12 +33,12 @@
   background-color: #fff;
 }
 .switchCourseIn {
-   animation: courseMoveIn .4s linear;
-   -webkit-animation: courseMoveIn .4s linear; 
+   animation: courseMoveIn .4s cubic-bezier(0.23, 1, 0.32, 1);
+   -webkit-animation: courseMoveIn .4s cubic-bezier(0.23, 1, 0.32, 1); 
 }
 .switchCourseOut {
-   animation: courseMoveOut .4s linear;
-   -webkit-animation: courseMoveOut .4s linear; 
+   animation: courseMoveOut .4s cubic-bezier(0.23, 1, 0.32, 1);
+   -webkit-animation: courseMoveOut .4s cubic-bezier(0.23, 1, 0.32, 1); 
 }
 @keyframes courseMoveIn {
   from {left: -70%;}
