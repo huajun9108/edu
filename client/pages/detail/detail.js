@@ -68,7 +68,7 @@ Page({
                         userId = app.data.userId;
                     }
                     app.request.requestPostApi(courseDetailUrl, { userId: userId, courseId: options.id },
-                        this, this.courseDetailSuccessFun, this.courseDetailFailFun);
+                      that, that.courseDetailSuccessFun, that.courseDetailFailFun);
                 },
                 fail: function() {
                     Session.clear();
@@ -79,13 +79,6 @@ Page({
             console.log(1)
             that.login()
         }
-
-
-
-
-        ===
-        === =
-
         wx.getSystemInfo({
             success: function(res) {
                 that.setData({
