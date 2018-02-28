@@ -70,7 +70,7 @@
   <view class='page_btn'>
      <view class="total_price  page__left_spacing">
       <text class="vip_symbol" wx:if="{{vipFlag}}">VIP: </text>
-      <text class="final_price base_color">￥299</text>
+      <text class="final_price base_color">￥{{vipPrice}}</text>
     </view> 
     <view class="pay_btn page__right_spacing">
       <button class="weui-btn" bindtap="buyCourse">立即购买</button>

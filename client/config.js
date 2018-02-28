@@ -42,6 +42,9 @@ var config = {
 
         //批量删除收藏信息
         batchDelMyFavorUrl: `${host}/weapp/collection/deleteByUserIdAndCourseIds`,
+
+        //查询全部订单
+        queryAllOrdersUrl: `${host}/weapp/order/selectAllByUserId`,
     }
 };
 
