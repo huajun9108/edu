@@ -45,6 +45,9 @@ var config = {
 
         //查询全部订单
         queryAllOrdersUrl: `${host}/weapp/order/selectAllByUserId`,
+
+        //添加订单信息
+        addOrderUrl: `${host}/weapp/order/addOneByUserIdAndCourseId`,
     }
 };
 

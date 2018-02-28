@@ -22,7 +22,8 @@ Page({
         teacherDetail: '',
         courseId: null,
         userId: '',
-        courseIsCollected: false,
+        courseIsCollected: 0,
+        courseIsBuy: 0,
         // imgUrls: [
         //   { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
         //   { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
@@ -145,8 +146,9 @@ Page({
     buyCourse() {
         const title = this.data.detailnum;
         const price = this.data.vipPrice;
+        const courseId = this.data.courseId;
         wx.navigateTo({
-            "url": `../buyCourse/buyCourse?name=${title}&price=${price}`
+            "url": `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`
         })
     },
     tabClick: function(e) {
@@ -210,6 +212,7 @@ Page({
             teacherDetail: res.data.teacher.synopsis,
             courseIndex: res.data.catalog[0].list[0].id,
             courseIsCollected: res.data.collect_status,
+            courseIsBuy: res.data.buy_status,
         })
     },
     courseDetailFailFun() {},

@@ -1,4 +1,6 @@
 // pages/buyCourse/buyCourse.js
+var config = require("../../config");
+var app = getApp();
 Page({
 
   /**
@@ -16,18 +18,22 @@ Page({
         detail: ""
       }
     ],
-    number: "￥20"
+    number: "￥20",
+    courseIsBuy: 0,
+    courseId: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     let model = this.data.model;
     model[0].detail = options.name;
     model[1].detail = `¥${options.price}`;
     this.setData({
-      model: model
+      model: model,
+      courseId: options.courseId
     })
   },
 
@@ -80,6 +86,7 @@ Page({
   
   },
   buyTap(){
+    var that = this;
     const wechatData = {
       appId:"wx8c8e043278e36df9",//小程序id
       nonceStr: "qdpys6rdizbnpj12ahwvkf568a6c1sr9", //随机字符串
@@ -99,14 +106,31 @@ Page({
       'success': function (res) {
         console.log(res);
         console.log('success');
+        this.setData({
+          courseIsBuy: 1
+        });
       },
       'fail': function (res) {
         console.log(res);
         console.log('fail');
       },
       'complete': function (res) {
-        console.log(res); console.log('complete');
+        console.log(res); 
+        console.log('complete');
+        const addOrderUrl = config.service.addOrderUrl;
+        app.request.requestPostApi(addOrderUrl, {userId: app.data.userId, courseId: that.data.courseId, type: 1}, that, that.addOrderSuccessFun, that.addOrderFailFun);
       }
     });
+  },
+  addOrderSuccessFun(res) {
+    console.log(res);
+    if(res.status === "0") {
+      console.log("添加订单成功");
+    } else {
+      console.log("添加订单失败");
+    }
+  },
+  addOrderFailFun() {
+
   }
 })
