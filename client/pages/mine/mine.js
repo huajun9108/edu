@@ -27,25 +27,7 @@ Page({
     nameFlag:"unvipname",
   },
   onLoad: function (options) {
-    var that = this;
-    var session = Session.get();
-    if (session) {
-      console
-      wx.checkSession({
-        success: function (result) {
-          app.data.userId = session.userinfo.openId;
-          that.setData({
-            userInfo: session.userinfo,
-            logged: true
-          })
-        },
-        fail: function () {
-          Session.clear();
-        },
-      });
-    } else {
-      return
-    }
+    console.log("onLoad")
     options.data = "2017-11-14 到期"
     if (this.data.vipFlag){
       that.setData({
@@ -68,11 +50,34 @@ Page({
     }
     
   },
-
+  onShow(){
+    // var that = this;
+    
+    // if (session) {
+    //   wx.checkSession({
+    //     success: function (result) {
+    //       app.data.userId = session.userinfo.openId;
+          
+    //     },
+    //     fail: function () {
+    //       Session.clear();
+    //     },
+    //   });
+    // } else {
+    //   return
+    // }
+    app.testSession(this.showUser)
+  },
+  showUser(){
+    var session = Session.get();
+    this.setData({
+      userInfo: session.userinfo,
+      logged: true
+    })
+  },
   // 用户登录示例
   login: function () {
     if (this.data.logged) return;
-    util.showBusy('正在登录')
     app.login(this.successFirst, this.success)
   },
 

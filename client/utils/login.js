@@ -4,6 +4,7 @@ const util = require('../utils/util.js')
 const Session = require('../vendor/wafer2-client-sdk/lib/session');
 function login(successFirst,successFn){
   // 调用登录接口
+  util.showBusy('正在登录')
   qcloud.login({
     success(result) {
       if (result) {
