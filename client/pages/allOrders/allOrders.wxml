@@ -1,8 +1,6 @@
 <!--pages/allOrders/allOrders.wxml-->
 <import src="../common/common.wxml"/>
-<template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
-</template>
-<view class='page' wx:else>
+<view class='page'>
   <view class="weui-tab">
     <view class="weui-navbar">
       <block wx:for="{{tabs}}" wx:key="*this">
@@ -15,19 +13,25 @@
     <view class="weui-tab__panel">
      
       <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+        <template is="page-empty" wx:if="{{orderIsEmpty}}" data="{{tipMsg}}">
+        </template>
         <template
           is="order-list" 
-          data="{{orderList}}"/>
+          data="{{orderList}}" wx:else/>
       </view> 
       <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+        <template is="page-empty" wx:if="{{paidIsEmpty}}" data="{{tipMsg}}">
+        </template>
         <template 
         is="order-list" 
-        data="{{orderList}}"/>
+        data="{{orderList}}" wx:else/>
       </view> 
       <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+        <template is="page-empty" wx:if="{{unpaidIsEmpty}}" data="{{tipMsg}}">
+        </template>
         <template
           is="order-list" 
-          data="{{orderList}}"/>
+          data="{{orderList}}" wx:else/>
       </view> 
     </view>
   </view>

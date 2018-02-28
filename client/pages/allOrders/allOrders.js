@@ -16,7 +16,10 @@ Page({
     order: [],
     paidList:[],
     unpaidList: [],
-    pageIsEmpty: false,
+    orderIsEmpty: false,
+    paidIsEmpty: false,
+    unpaidIsEmpty: false,
+    tipMsg: '您还没有相关的订单',
   },
 
   /**
@@ -93,7 +96,7 @@ Page({
     });
     if (this.data.activeIndex==="0"){
       this.setData({
-        orderList: this.data.order
+        orderList: this.data.order,
       });
     } else if (this.data.activeIndex === "1"){
       this.setData({
@@ -118,6 +121,21 @@ Page({
         } else {
           paidList.push(orderList[i]);
         }
+      }
+      if(orderList.length === 0) {
+        this.setData({
+          orderIsEmpty: true
+        });
+      }
+      if (paidList.length === 0) {
+        this.setData({
+          paidIsEmpty: true
+        });
+      }
+      if (unpaidList.length === 0) {
+        this.setData({
+          unpaidIsEmpty: true
+        });
       }
       this.setData({
         orderList: orderList,
