@@ -109,9 +109,11 @@ Component({
     courseUrl(e) {
       const courseId = e.currentTarget.dataset.courseid;
       const title = e.currentTarget.dataset.title;
-      wx.navigateTo({
-        url: `../detail/detail?id=${courseId}&name=${title}`,
-      })
+      const price = e.currentTarget.dataset.price;
+      const courseUrlDetail = { courseId: courseId, title: title }
+      const courseBuyDetail = { price: price, title: title }
+      this.triggerEvent("courseUrl", courseUrlDetail);
+      this.triggerEvent("courseBuyUrl", courseBuyDetail);
     },
     delItem() {
       let arr = this.data.editDelList;
@@ -135,47 +137,16 @@ Component({
           }
         }
       }
+      console.log(this.data.select)
       if (select.length == 0) return;
       this.setData({
         is_modal_Hidden: false,
       })
     },
     confirm() {
-      // if (this.data.select) {
-      //   const batchDelMyFavorUrl = config.service.batchDelMyFavorUrl;
-      //   app.request.requestPostApi(batchDelMyFavorUrl, { userId: app.data.userId, courseIds: this.data.select }, this, this.batchDelMyFavorSuccessFun, this.batchDelMyFavorFailFun);
-      // }
-      this.triggerEvent("delConfirm");
-      console.log(1)
+      const delConfirmDetail = { select: this.data.select, unselect: this.data.unselect}
+      this.triggerEvent("delConfirm", delConfirmDetail);
     },
-    // myFavorListSuccessFun(res, selfObj) {
-    //   if (!res.data) return;
-    //   var list = res.data;
-    //   this.pageIsEmpty(list)
-    //   for (let i = 0; i < list.length; i++) {
-    //     //图片为本地图片，到时候需要修改
-    //     list[i].icon = "../../images/xuex.png";
-    //   }
-    //   this.setData({
-    //     editDelList: list
-    //   })
-    // },
-    // myFavorListFailFun() {
-
-    // },
-    // batchDelMyFavorSuccessFun(res) {
-    //   console.log(res);
-    //   if (res.status === "0") {
-    //     this.setData({
-    //       editDelList: this.data.unselect,
-    //       num: 0
-    //     })
-    //   }
-    //   this.pageIsEmpty(this.data.unselect)
-    // },
-    // batchDelMyFavorFailFun() {
-
-    // },
     pageIsEmpty(arr) {
       if (arr.length === 0) {
         this.setData({

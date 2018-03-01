@@ -38,7 +38,7 @@
           <view class="weui-flex__item"><view class="placeholder" bindtap="bindSelectAll">{{selectAll}}</view></view>
           <view class="weui-flex__item"><view class="placeholder base_color" bindtap="delItem">删除({{num}})</view></view>
         </view> -->
-        <modal editDelList="{{orderList}}" homeComMsg="{{recommendComMsg}}"/> 
+        <modal editDelList="{{orderList}}" bindcourseBuyUrl="courseBuyUrl"/> 
       </view> 
     </view>
   </view>

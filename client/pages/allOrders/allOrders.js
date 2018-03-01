@@ -156,11 +156,15 @@ Page({
         url: toStudyUrl,
       })
     } else if(explain === 0) {
-      const price = e.currentTarget.dataset.price;
-      const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}`;
-      wx.navigateTo({
-        url: toBuyUrl,
-      })
+      this.courseBuyUrl()
     }
+  },
+  courseBuyUrl(e){
+    const price = e.detail.price;
+    const title = e.detail.title;
+    const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}`;
+    wx.navigateTo({
+      url: toBuyUrl,
+    })
   }
 })

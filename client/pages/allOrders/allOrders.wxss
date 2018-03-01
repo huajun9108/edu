@@ -4,7 +4,7 @@ image{
   width: 120rpx;
   border-radius: 30rpx;
 }
-.order-bottom{
+.order-bottom-price{
   font-size: 36rpx;
 }
 .weui-navbar{
@@ -28,4 +28,7 @@ image{
 }
 .weui-cell__bd{
   padding-left:22rpx;
+}
+.weui-cells{
+  margin-top: 0;
 }
