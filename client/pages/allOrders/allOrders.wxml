@@ -29,9 +29,16 @@
       <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
         <template is="page-empty" wx:if="{{unpaidIsEmpty}}" data="{{tipMsg}}">
         </template>
-        <template
+        <!-- <template
           is="order-list" 
           data="{{orderList}}" wx:else/>
+        <view class="edit" bindtap="showDel" wx:if="{{!pageIsEmpty}}">编辑</view>
+        <view class="weui-flex {{delCss}}" wx:if="{{!pageIsEmpty}}">
+          <view class="weui-flex__item"><view class="placeholder" bindtap="hideDel">取消</view></view>
+          <view class="weui-flex__item"><view class="placeholder" bindtap="bindSelectAll">{{selectAll}}</view></view>
+          <view class="weui-flex__item"><view class="placeholder base_color" bindtap="delItem">删除({{num}})</view></view>
+        </view> -->
+        <modal editDelList="{{unpaidList}}" bindcourseBuyUrl="courseBuyUrl" binddelConfirm="delConfirm"/> 
       </view> 
     </view>
   </view>

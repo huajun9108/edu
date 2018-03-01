@@ -20,6 +20,7 @@ Page({
     paidIsEmpty: false,
     unpaidIsEmpty: false,
     tipMsg: '您还没有相关的订单',
+    unselect: [],
   },
 
   /**
@@ -44,6 +45,7 @@ Page({
     // this.setData({
     //   orderList: this.data.order
     // });
+    
   },
 
   /**
@@ -88,26 +90,11 @@ Page({
   
   },
   tabClick: function (e) {
-    // this.queryAllOrders();
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id,
     });
-    if (this.data.activeIndex==="0"){
-      this.setData({
-        orderList: this.data.order,
-      });
-    } else if (this.data.activeIndex === "1"){
-      this.setData({
-        orderList: this.data.paidList
-      })
-    }else{
-      this.setData({
-        orderList: this.data.unpaidList
-      })
-      const url = config.service.delUnpaidUrl;
-      app.request.requestPostApi(url, {userId: app.data.userId, courseId: 2}, this, this.delUnpaidSuccessFun);
-    }
+    this.setCourse();
   },
   queryAllOrders() {
     const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
@@ -121,6 +108,7 @@ Page({
       for(let i = 0; i < orderList.length; i++) {
         //网络图片暂无，暂以本地图片显示
         orderList[i].icon = "../../images/xuex.png";
+        orderList[i].selected = false;
         if(orderList[i].explain === 0) {
           unpaidList.push(orderList[i]);
         } else {
@@ -148,6 +136,22 @@ Page({
         unpaidList: unpaidList,
         order: orderList,
       })
+      this.setCourse();
+    }
+  },
+  setCourse() {
+    if (this.data.activeIndex === "0") {
+      this.setData({
+        orderList: this.data.order,
+      });
+    } else if (this.data.activeIndex === "1") {
+      this.setData({
+        orderList: this.data.paidList
+      })
+    } else {
+      this.setData({
+        unpaidList: this.data.unpaidList
+      })
     }
   },
   tapToBuyOrToStudy(e) {
@@ -161,15 +165,51 @@ Page({
         url: toStudyUrl,
       })
     } else if(explain === 0) {
-      const price = e.currentTarget.dataset.price;
-      const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}`;
-      wx.navigateTo({
-        url: toBuyUrl,
-      })
+      if(this.data.activeIndex == 0) {
+        const price = e.currentTarget.dataset.price;
+        const title = e.currentTarget.dataset.title;
+        const courseId = e.currentTarget.dataset.courseId;
+        const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`;
+        wx.navigateTo({
+          url: toBuyUrl,
+        });
+      } else if(this.data.activeIndex === 2) {
+        this.courseBuyUrl();
+      }
     }
   },
-  delUnpaidSuccessFun(res) {
+  delUnpaidOrdersSuccessFun(res) {
     console.log(res);
-    this.queryAllOrders();
+    if (res.status === "0") {
+      this.setData({
+        orderList: this.data.unselect,
+        num: 0
+      })
+    }
+    if (this.data.unselect.length === 0) {
+      this.setData({
+        unpaidIsEmpty: true
+      });
+    }
+    // this.pageIsEmpty(this.data.unselect)
+    // this.queryAllOrders();
+  },
+  courseBuyUrl(e){
+    const price = e.detail.price;
+    const title = e.detail.title;
+    const courseId = e.detail.courseId;
+    const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`;
+    wx.navigateTo({
+      url: toBuyUrl,
+    })
+  },
+  delConfirm(e) {
+    console.log(e.detail);
+    const courseId = e.detail.select[0];
+    this.setData({
+      unselect: e.detail.unselect
+    });
+    const delUnpaidOrdersUrl = config.service.delUnpaidOrdersUrl;
+    app.request.requestPostApi(delUnpaidOrdersUrl, {userId: app.data.userId, courseId: courseId}, this, this.delUnpaidOrdersSuccessFun, this.delUnpaidOrdersFailFun);
   }
 })
