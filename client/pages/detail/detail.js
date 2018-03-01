@@ -5,6 +5,7 @@ var config = require('../../config')
 var util = require('../../utils/util.js')
 var Session = require('../../vendor/wafer2-client-sdk/lib/session');
 var app = getApp();
+const courseDetailUrl = config.service.courseDetailUrl;
 Page({
     /**
      * 页面的初始数据
@@ -21,19 +22,9 @@ Page({
         teacherTitle: '',
         teacherDetail: '',
         courseId: null,
-        userId: '',
+        userId: -1,
         courseIsCollected: 0,
         courseIsBuy: 0,
-        // imgUrls: [
-        //   { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
-        //   { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
-        //   { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
-        //   { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', },
-        //   { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', },
-        //   { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', },
-        //   { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', },
-        //   { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', }
-        // ],
         imgSrc: null,
         controls: true,
         play: "../../images/play.png",
@@ -42,6 +33,8 @@ Page({
         sliderOffset: 0,
         sliderLeft: 0,
         vipFlag: 1,
+        collected_image: "../../images/heart_icon_focus.png",
+        uncollected_image: "../../images/heart_icon_deafult.png"
     },
 
     /**
@@ -53,33 +46,18 @@ Page({
         var session = Session.get();
         this.setData({
             detailnum: options.name,
-            userId: app.data.userId,
             courseId: options.id,
         });
         wx.setNavigationBarTitle({
             title: that.data.detailnum //页面标题为路由参数
         });
-        if (session) {
-            wx.checkSession({
-                success: function(result) {
-                    app.data.userId = session.userinfo.openId;
-                    const courseDetailUrl = config.service.courseDetailUrl;
-                    let userId = -1;
-                    if (app.data.userId) {
-                        userId = app.data.userId;
-                    }
-                    app.request.requestPostApi(courseDetailUrl, { userId: userId, courseId: options.id },
-                      that, that.courseDetailSuccessFun, that.courseDetailFailFun);
-                },
-                fail: function() {
-                    Session.clear();
-                    that.login()
-                },
+        if (app.data.userId) {
+            this.setData({
+                userId: app.data.userId
             });
-        } else {
-            console.log(1)
-            that.login()
         }
+        app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: options.id },
+            that, that.courseDetailSuccessFun, that.courseDetailFailFun);
         wx.getSystemInfo({
             success: function(res) {
                 that.setData({
@@ -88,7 +66,6 @@ Page({
                 });
             }
         });
-
     },
     /**
      * 生命周期函数--监听页面初次渲染完成
@@ -158,38 +135,22 @@ Page({
         });
     },
     chooseCourse(e) {
-        console.log(e)
+        app.testSession(this.chooseCourseFn, this.sessionFail, e)
+    },
+    chooseCourseFn(e) {
         this.setData({
             courseIndex: e.currentTarget.id,
             src: e.currentTarget.dataset.src
         })
-        console.log(this.data.courseIndex)
     },
-    addMyFavor(e) {
-        if (!this.data.courseId || !this.data.userId) {
-            wx.showModal({
-                content: '尚未登录账号',
-                showCancel: false,
-                success: function(res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定');
-                    }
-                }
-            });
-            return;
-        }
-        if (this.data.courseIsCollected) {
-            const delMyFavorUrl = config.service.delMyFavorUrl;
-            app.request.requestPostApi(delMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId }, this, this.delMyFavorSuccessFun, this.delMyFavorFailFun);
-        } else {
-            const addMyFavorUrl = config.service.addMyFavorUrl;
-            app.request.requestPostApi(addMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId }, this, this.addMyFavorSuccessFun, this.addMyFavorFailFun);
-        }
+    chooseCourseFail() {
+
+    },
+    addMyFavor() {
+        app.testSession(this.sessionFn, this.sessionFail)
     },
     addMyFavorSuccessFun(res) {
-        console.log(res);
         if (res.status === "0") {
-            console.log("收藏成功");
             this.setData({
                 courseIsCollected: true,
             })
@@ -199,7 +160,6 @@ Page({
         console.log(res);
     },
     courseDetailSuccessFun(res) {
-        console.log(res);
         this.setData({
             imgSrc: res.data.img,
             originalPrice: res.data.synopsis.price,
@@ -217,9 +177,7 @@ Page({
     },
     courseDetailFailFun() {},
     delMyFavorSuccessFun(res) {
-        console.log(res);
         if (res.status === "0") {
-            console.log("取消收藏");
             this.setData({
                 courseIsCollected: false
             });
@@ -228,46 +186,35 @@ Page({
     delMyFavorFailFun() {
 
     },
-    login: function() {
-        if (this.data.logged) return;
-        util.showBusy('正在登录')
-        var that = this
-            // 调用登录接口
-        qcloud.login({
-            success(result) {
-                console.log(result);
-                if (result) {
-                    util.showSuccess('登录成功')
-                    var session = Session.get();
-                    app.data.userId = session.userinfo.openId;
-                    const courseDetailUrl = config.service.courseDetailUrl;
-                    app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: that.data.courseId },
-                        that, that.courseDetailSuccessFun, that.courseDetailFailFun);
-                } else {
-                    // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-                    qcloud.request({
-                        url: config.service.requestUrl,
-                        login: true,
-                        success(result) {
-                            util.showSuccess('登录成功')
-                            console.log(session)
-                            app.data.userId = session.userinfo.openId;
-                            const courseDetailUrl = config.service.courseDetailUrl;
-                            app.request.requestPostApi(courseDetailUrl, { userId: app.data.userId, courseId: that.data.courseId },
-                                that, that.courseDetailSuccessFun, that.courseDetailFailFun);
-                        },
-
-                        fail(error) {
-                            util.showModel('请求失败', error)
-                        }
-                    })
-                }
-            },
-
-            fail(error) {
-                util.showModel('登录失败', error)
-            }
-        })
-        console.log(app)
+    sessionFn() {
+        this.setData({
+            userId: app.data.userId,
+        });
+        if (this.data.courseIsCollected) {
+            const delMyFavorUrl = config.service.delMyFavorUrl;
+            app.request.requestPostApi(
+                delMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId },
+                this,
+                this.delMyFavorSuccessFun,
+                this.delMyFavorFailFun);
+        } else {
+            const addMyFavorUrl = config.service.addMyFavorUrl;
+            app.request.requestPostApi(
+                addMyFavorUrl, { userId: this.data.userId, courseId: this.data.courseId },
+                this,
+                this.addMyFavorSuccessFun,
+                this.addMyFavorFailFun);
+        }
     },
+    sessionFail() {
+        app.login(this.successFirst, this.success)
+    },
+    successFirst() {
+        app.request.requestPostApi(
+            courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
+            this,
+            this.courseDetailSuccessFun,
+            this.courseDetailFailFun
+        );
+    }
 })

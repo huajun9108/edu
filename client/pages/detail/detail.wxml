@@ -11,12 +11,14 @@
         <text class="course_title">{{detailnum}}</text>
       </view>
       <view class="weui-flex__item course_share">
-        <image class="collect_image {{courseIsCollected?'collected_image':''}}" mode="scaleToFill" src="../../images/heart_icon_deafult.png" bindtap="addMyFavor"></image>
+        <image class="collect_image" 
+        mode="scaleToFill" 
+        src="{{courseIsCollected?collected_image:uncollected_image}}" bindtap="addMyFavor"></image>
         <image class="share_image" src="../../images/share_icon_deafult.png"></image>
       </view>
     </view>
     <view class="consult page__bd_spacing">
-      <text class="consult_btn base_color">咨询</text>
+      <button class="consult_btn base_color" open-type="contact">咨询</button>
     </view>
   </view>
    <view class="weui-tab">
