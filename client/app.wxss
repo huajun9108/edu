@@ -56,6 +56,13 @@ button::after{
   width: 0;
   height: 0;
 }
+.common_btn{
+  width: 100%;
+  position: absolute; 
+  bottom: 20rpx;
+  box-sizing:border-box;
+  -webkit-box-sizing:border-box; 
+}
 button{
   font-size: 34rpx;
   background: #dcc07f;

@@ -24,7 +24,6 @@ Page({
         unselectedImageUrl: "../../images/weixuanzhong_icon.png"
       }
     ],
-    number:"￥20"
   },
 
   /**

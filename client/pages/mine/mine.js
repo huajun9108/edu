@@ -1,6 +1,3 @@
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
 var Session = require('../../vendor/wafer2-client-sdk/lib/session');
 var app = getApp()
 Page({
@@ -51,21 +48,6 @@ Page({
     
   },
   onShow(){
-    // var that = this;
-    
-    // if (session) {
-    //   wx.checkSession({
-    //     success: function (result) {
-    //       app.data.userId = session.userinfo.openId;
-          
-    //     },
-    //     fail: function () {
-    //       Session.clear();
-    //     },
-    //   });
-    // } else {
-    //   return
-    // }
     app.testSession(this.showUser)
   },
   showUser(){
@@ -80,37 +62,6 @@ Page({
     if (this.data.logged) return;
     app.login(this.successFirst, this.success)
   },
-
-  // 切换是否带有登录态
-  switchRequestMode: function (e) {
-    this.setData({
-      takeSession: e.detail.value
-    })
-    this.doRequest()
-  },
-
-  doRequest: function () {
-    util.showBusy('请求中...')
-    var that = this
-    var options = {
-      url: config.service.requestUrl,
-      login: true,
-      success(result) {
-        util.showSuccess('请求成功完成')
-        that.setData({
-          requestResult: JSON.stringify(result.data)
-        })
-      },
-      fail(error) {
-        util.showModel('请求失败', error);
-      }
-    }
-    if (this.data.takeSession) {  // 使用 qcloud.request 带登录态登录
-      qcloud.request(options)
-    } else {    // 使用 wx.request 则不带登录态
-      wx.request(options)
-    }
-  },
   successFirst(result){
     this.setData({
       userInfo: result,
@@ -123,17 +74,4 @@ Page({
       logged: true,
     })
   },
-  checkLogin(e) {
-    console.log(e);
-    // if(this.logged) return;
-    // wx.showModal({
-    //   content: '请先登录账号',
-    //   showCancel: false,
-    //   success: function(res) {
-    //     if(res.confirm) {
-    //       console.log('用户点击确定')
-    //     }
-    //   }
-    // })
-  }
 })

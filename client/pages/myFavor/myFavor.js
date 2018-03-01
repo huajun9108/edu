@@ -1,5 +1,4 @@
 // pages/myFavor/myFavor.js
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var app = getApp()
 Page({

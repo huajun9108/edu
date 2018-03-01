@@ -4,48 +4,8 @@ var app = getApp()
 Page({
   data: {
     inputShowed: false,
-    inputVal: "",
-    open: true,
-    courseDir: [
-      {
-        title: "全部课程",
-        flag: true,
-      },
-      {
-        flag: false,
-        title: "工艺",
-        children: [
-          {
-            title: "工艺AAA"
-          },
-          {
-            title: "工艺BBB"
-          },
-          {
-            title: "工艺CCC"
-          }
-        ]
-      },
-      {
-        flag: false,
-        title: "管理",
-        children: [
-          {
-            title: "管理AAA"
-          },
-          {
-            title: "管理BBB"
-          },
-          {
-            title: "管理CCC"
-          }
-        ]
-      }
-    ],
     is_modal_Hidden: true,
     searchList:["价值工程","质量工程","项目管理","管理工程","供应链管理","人因工程","运筹学","工作设计","金融工程","设施管理"],
-    inputShowed:false,
-    courseDir: [],
     pageIsEmpty: false,
     tipMsg: "该课程暂无分类,请后续关注"
   },
@@ -109,32 +69,10 @@ Page({
   onShareAppMessage: function () {
 
   },
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
   showSearch(){
     this.setData({
       is_modal_Hidden: false,
       inputShowed:true
-
     })
   },
   courseListClick(e){
