@@ -1,0 +1,95 @@
+/* components/editDelCom.wxss */
+ @import "../../app.wxss";  
+ .myFavor{
+  padding-bottom: 100rpx;
+  overflow: hidden
+}
+.favorImage{
+  width: 158rpx;
+  height: 142rpx;
+  border-radius: 30rpx;
+}
+.weui-cells{
+  padding: 0;
+  margin-top: 0;
+} 
+.weui-cells::after{
+  content:" ";
+  position:absolute;
+  left:40rpx;
+  top:0;
+  right:40rpx;
+  height:1px;
+  border-top:2rpx solid #EFEFF1;
+}
+.weui-cell__bd{
+  padding-left:22rpx;
+}
+.order-top{
+  font-size: 30rpx;
+}
+.order-bottom{
+  font-size: 26rpx;
+  color: #575757;
+}
+.edit,.weui-flex{
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #dfdfdf;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  background: #fff;
+}
+.weui-cell:before{
+  border-top: 0;
+}
+.weui-flex-common{
+  bottom: -118rpx
+}
+.weui-flex-up{
+  animation: up .5s ease-in-out
+}
+.weui-flex-down{
+  bottom: -118rpx;
+  animation: down .5s ease-in-out
+}
+
+.placeholder{
+  
+  text-align: center;
+}
+@keyframes up{
+  from{
+      bottom:  -118rpx;
+  }
+  to{
+      bottom:  0;
+  }
+}
+@keyframes down{
+  from{
+      bottom:  0;
+  }
+  to{
+      bottom:  -118rpx;
+  }
+}
+.checkBox{
+  position: absolute;
+  left: 40rpx;
+  top: 69rpx;
+} 
+.checkImage{
+  width: 40rpx;
+  height: 40rpx;
+}
+.weui-cells-right{
+  transform: translateX(66rpx);
+  transition: all .2s ease-in;
+} 
+.weui-cells-left{
+  transform: translateX(0);
+  transition: all .2s ease-in;
+} 

@@ -139,7 +139,8 @@ Page({
       is_modal_Hidden: false,
     })
   },
-  confirm(){
+  delConfirm(){
+    console.log(2)
     if(this.data.select) {
       const batchDelMyFavorUrl = config.service.batchDelMyFavorUrl;
       app.request.requestPostApi(batchDelMyFavorUrl, { userId: app.data.userId, courseIds: this.data.select }, this, this.batchDelMyFavorSuccessFun, this.batchDelMyFavorFailFun);

@@ -1,7 +1,7 @@
 <!--pages/myFavor/myFavor.wxml-->
 <import src="../common/common.wxml" />
 <view class="page">
-  <view class="myFavor">
+  <!-- <view class="myFavor">
     <view class="weui-cells weui-cells_after-title" wx:for="{{favorList}}" wx:key = "index" bindtap="bindCheckbox" data-index = "{{index}}">
         <view  class="checkBox" >
           <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
@@ -26,5 +26,6 @@
   </view>
   <modal  modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" bindconfirm="confirm"/> 
   <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
-  </template> 
+  </template>  -->
+  <modal editDelList="{{favorList}}"/> 
 </view>
