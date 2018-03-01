@@ -44,6 +44,7 @@
 }
 .vipname{
   background: #dcc07f;
+  color: #fff;
 }
 .weui-cell__ft{
   font-size: 30rpx;

@@ -175,3 +175,7 @@ video{
 .pay_btn{
   width: 50%;
 }
+.common_btn .weui-btn{
+  background: #e5e5e5;
+  color: #7c7c7c;
+}

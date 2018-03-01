@@ -10,14 +10,7 @@
   height: 38rpx;
   vertical-align: middle;
 }
-.common_btn{
-  width: 100%;
-  position: absolute; 
-  bottom: 20rpx;
-  box-sizing:border-box;
-  -webkit-box-sizing:border-box; 
 
-}
 .weui-btn{
   font-size: 38rpx;
   color: 323232;

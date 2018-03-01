@@ -4,11 +4,9 @@ Page({
   data: {
     is_modal_Hidden: true,
     searchList: ["价值工程", "质量工程", "项目管理", "管理工程", "供应链管理", "人因工程", "运筹学", "工作设计", "金融工程", "设施管理"],
-    inputShowed: false,
     flag: true,
     modalFlag: true,
     inputShowed: false,
-    inputVal: "",
     courseArr: [],
     courseDir: [],
     pageIsEmpty: false,
@@ -23,7 +21,6 @@ Page({
     const courseListUrl = config.service.courseListUrl;
     //获取类别下的所有课程
     app.request.requestPostApi(courseListUrl, { type: option.type, id: option.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun);
-
     wx.getStorage({
       key: 'courseDir',
       success: function (res) {
@@ -65,27 +62,6 @@ Page({
       flag: true,
     });
   },
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
-  },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
-  },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
   showSearch() {
     this.setData({
       is_modal_Hidden: false,
@@ -101,7 +77,6 @@ Page({
     wx.redirectTo({
       url: url
     })
-    // url = "../courseList/courseList?title={{item.title}}&type={{item.type}}&id={{item.id}}" 
   },
   courseListUrlSuccessFun(res, selfObj) {
     if (res.data <= 0) {
