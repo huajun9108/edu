@@ -4,21 +4,48 @@ var app = getApp()
 Page({
   data: {
     favorList: [],
-    select:[],
     pageIsEmpty: false,
-    tipMsg: "你还没有收藏记录哦"
+    tipMsg: "你还没有收藏记录哦",
+    isLogin:false
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
   onReady: function () {
-    // 页面渲染完成
+    console.log("onReady")
+    // app.testSession(this.success, this.fail)
   },
-  onShow: function () {
-    // 页面显示
+  success(){
+    console.log("success")
+    this.setData({
+      isLogin: false
+    })
+    this.getMyFavor()
+  },
+  fail(){
+    console.log("fail")
+    this.setData({
+      isLogin: true
+    })
+  },
+  login(){
+    app.login(this.successFirst)
+  },
+  successFirst(){
+    console.log("successFirst")
+    this.setData({
+      isLogin: false
+    })
+    this.getMyFavor()
+  },
+  getMyFavor(){
     const url = config.service.myFavorListUrl;
     console.log(app.data)
     app.request.requestPostApi(url, { userId: app.data.userId }, this, this.myFavorListSuccessFun, this.myFavorListFailFun)
+  },
+  onShow: function () {
+    // 页面显示
+    app.testSession(this.success, this.fail)
   },
   onHide: function () {
     // 页面隐藏

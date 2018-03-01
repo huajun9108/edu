@@ -108,3 +108,41 @@ button{
 .base_background{
   background: #dcc07f
 }
+.page-login{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+}
+.page-login-wrap{
+  width: auto;
+  height: 425rpx;
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  margin:auto;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  -webkit-box-align:center;
+  -webkit-align-items:center;
+  align-items:center;
+  flex-direction: column;
+  color: #afafaf;
+  font-size: 28rpx;
+}
+.login-text{
+  margin-top: 22rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  font-weight: bold;
+}
+.login-btn{
+  margin-top: 14rpx;
+  width: 140rpx; 
+  line-height: 60rpx;
+  border: 1rpx solid #afafaf; 
+  border-radius: 26rpx; 
+  text-align: center;
+}

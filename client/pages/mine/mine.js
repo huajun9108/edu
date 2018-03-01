@@ -60,7 +60,7 @@ Page({
   // 用户登录示例
   login: function () {
     if (this.data.logged) return;
-    app.login(this.successFirst, this.success)
+    app.login(this.successFirst)
   },
   successFirst(result){
     this.setData({

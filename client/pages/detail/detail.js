@@ -141,7 +141,7 @@ Page({
      * 用户购买课程未登录
      */
     sessionFailbuyCourse() {
-      app.login(this.successbuyCourse, this.success)
+      app.login(this.successbuyCourse)
     },
     successbuyCourse() {
       this.successFirst()
@@ -217,7 +217,7 @@ Page({
      * 用户添加收藏未登录
      */
     sessionFailaddMyFavor(){
-      app.login(this.successaddMyFavor, this.success)
+      app.login(this.successaddMyFavor)
     },
     successaddMyFavor(){
       this.successFirst()
@@ -279,7 +279,7 @@ Page({
     
    
     sessionFail() {
-      app.login(this.successFirst, this.success)
+      app.login(this.successFirst)
     },
     successFirst() {
       app.request.requestPostApi(

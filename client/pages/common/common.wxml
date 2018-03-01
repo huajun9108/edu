@@ -85,3 +85,13 @@
   <view class="empty_tip">{{tipMsg}}</view>
 </view>
 </template>
+
+<template name="page-login">
+<view class="page-login">
+  <view class="page-login-wrap">
+  <image src="../../images/page_login.png" style="height: 264rpx; width: 274rpx;" alt="图片加载失败"></image>
+  <view class="login-text">您还没有登录···</view>
+  <view class="login-btn" bindtap="login">点我登录</view>
+  </view>
+</view>
+</template>

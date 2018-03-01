@@ -2,7 +2,7 @@ const qcloud = require('../vendor/wafer2-client-sdk/index')
 const config = require('../config')
 const util = require('../utils/util.js')
 const Session = require('../vendor/wafer2-client-sdk/lib/session');
-function login(successFirst,successFn){
+function login(successFn){
   // 调用登录接口
   util.showBusy('正在登录')
   qcloud.login({
@@ -12,7 +12,7 @@ function login(successFirst,successFn){
         const session = Session.get()
         const app = getApp()
         app.data.userId = session.userinfo.openId;
-        successFirst(result)
+        successFn(result)
       } else {
         // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
         qcloud.request({

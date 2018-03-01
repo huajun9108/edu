@@ -20,6 +20,7 @@ Page({
     paidIsEmpty: false,
     unpaidIsEmpty: false,
     tipMsg: '您还没有相关的订单',
+    isLogin: false
   },
 
   /**
@@ -41,19 +42,42 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // this.setData({
-    //   orderList: this.data.order
-    // });
-    const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
-    app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    app.testSession(this.success, this.fail)
   },
-
+  success() {
+    console.log("success")
+    this.setData({
+      isLogin: false
+    })
+    this.getMyOrder()
+  },
+  fail() {
+    console.log("fail")
+    this.setData({
+      isLogin: true
+    })
+  },
+  login() {
+    app.login(this.successFirst)
+  },
+  successFirst() {
+    console.log("successFirst")
+    this.setData({
+      isLogin: false
+    })
+    this.getMyOrder()
+  },
+  getMyOrder(){
+    const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
+    app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

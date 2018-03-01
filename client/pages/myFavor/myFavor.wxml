@@ -1,7 +1,9 @@
 <!--pages/myFavor/myFavor.wxml-->
 <import src="../common/common.wxml" />
 <view class="page">
-  <editDelCom edit-del-list="{{favorList}}" binddelConfirm="delConfirm" bindcourseUrl="courseUrl"/> 
+  <editDelCom edit-del-list="{{favorList}}" binddelConfirm="delConfirm" bindcourseUrl="courseUrl" wx:if="{{!isLogin}}"/>  
   <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
+  </template> 
+  <template is="page-login" wx:if="{{isLogin}}">
   </template> 
 </view>

@@ -70,7 +70,7 @@
   display: inline-block;
   background-color: #fff;
   padding: 16rpx 14rpx;
-  border: 1rpx solid #f1b90d;
+  border: 1rpx solid #dcc07f;
   border-radius: 26rpx;
   margin:0 12rpx 12rpx 0;
   font-size: 28rpx;
