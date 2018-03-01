@@ -44,14 +44,13 @@ Page({
     // this.setData({
     //   orderList: this.data.order
     // });
-    const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
-    app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.queryAllOrders();
   },
 
   /**
@@ -89,6 +88,7 @@ Page({
   
   },
   tabClick: function (e) {
+    // this.queryAllOrders();
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id,
@@ -105,7 +105,13 @@ Page({
       this.setData({
         orderList: this.data.unpaidList
       })
+      const url = config.service.delUnpaidUrl;
+      app.request.requestPostApi(url, {userId: app.data.userId, courseId: 2}, this, this.delUnpaidSuccessFun);
     }
+  },
+  queryAllOrders() {
+    const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
+    app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
   },
   queryAllOrdersSuccessFun(res) {
     if(res.status === "0") {
@@ -161,5 +167,9 @@ Page({
         url: toBuyUrl,
       })
     }
+  },
+  delUnpaidSuccessFun(res) {
+    console.log(res);
+    this.queryAllOrders();
   }
 })

@@ -149,7 +149,7 @@ Page({
         if (!this.data.courseIsBuy) {
           this.buyCourseFn()
         }
-      },100)
+      },1000)
     },
     tabClick: function(e) {
       this.setData({
