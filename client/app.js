@@ -11,7 +11,7 @@ App({
     userId:'',
   },
   onLaunch: function () {
-      qcloud.setLoginUrl(config.service.loginUrl)
+      qcloud.setLoginUrl(config.service.loginUrl);
   },
   request: request,
   login: login.login,

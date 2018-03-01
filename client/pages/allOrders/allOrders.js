@@ -4,191 +4,232 @@ var config = require('../../config');
 var app = getApp();
 Page({
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    tabs: ["全部", "已付款", "待付款"],
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
-    scrollFlag: true,
-    order: [],
-    paidList:[],
-    unpaidList: [],
-    orderIsEmpty: false,
-    paidIsEmpty: false,
-    unpaidIsEmpty: false,
-    tipMsg: '您还没有相关的订单',
-    isLogin: false
-  },
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        tabs: ["全部", "已付款", "待付款"],
+        activeIndex: "0",
+        sliderOffset: 0,
+        sliderLeft: 0,
+        scrollFlag: true,
+        order: [],
+        paidList: [],
+        unpaidList: [],
+        orderIsEmpty: false,
+        paidIsEmpty: false,
+        unpaidIsEmpty: false,
+        tipMsg: '您还没有相关的订单',
+        isLogin: false,
+        unselect: [],
+    },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad: function(options) {
+        var that = this;
+        wx.getSystemInfo({
+            success: function(res) {
+                that.setData({
+                    sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+                    sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+                });
+            }
         });
-      }
-    });
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady: function() {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    app.testSession(this.success, this.fail)
-  },
-  success() {
-    console.log("success")
-    this.setData({
-      isLogin: false
-    })
-    this.getMyOrder()
-  },
-  fail() {
-    console.log("fail")
-    this.setData({
-      isLogin: true
-    })
-  },
-  login() {
-    app.login(this.successFirst)
-  },
-  successFirst() {
-    console.log("successFirst")
-    this.setData({
-      isLogin: false
-    })
-    this.getMyOrder()
-  },
-  getMyOrder(){
-    const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
-    app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
-  },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+    },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function() {
+        app.testSession(this.success, this.fail)
+    },
+    success() {
+        console.log("success")
+        this.setData({
+            isLogin: false
+        })
+        this.queryAllOrders()
+    },
+    fail() {
+        console.log("fail")
+        this.setData({
+            isLogin: true
+        })
+    },
+    login() {
+        app.login(this.successFirst)
+    },
+    successFirst() {
+        console.log("successFirst")
+        this.setData({
+            isLogin: false
+        })
+        this.queryAllOrders()
+    },
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide: function() {
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+    },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload: function() {
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
-  tabClick: function (e) {
-   
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id,
-    });
-    if (this.data.activeIndex==="0"){
-      this.setData({
-        orderList: this.data.order,
-      });
-    } else if (this.data.activeIndex === "1"){
-      this.setData({
-        orderList: this.data.paidList
-      })
-    }else{
-      this.setData({
-        orderList: this.data.unpaidList
-      })
-    }
-  },
-  queryAllOrdersSuccessFun(res) {
-    if(res.status === "0") {
-      const orderList = res.data;
-      let paidList = [];
-      let unpaidList = [];
-      for(let i = 0; i < orderList.length; i++) {
-        //网络图片暂无，暂以本地图片显示
-        orderList[i].icon = "../../images/xuex.png";
-        if(orderList[i].explain === 0) {
-          unpaidList.push(orderList[i]);
-        } else {
-          paidList.push(orderList[i]);
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function() {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom: function() {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage: function() {
+
+    },
+    tabClick: function(e) {
+        this.setData({
+            sliderOffset: e.currentTarget.offsetLeft,
+            activeIndex: e.currentTarget.id,
+        });
+        this.setCourse();
+    },
+    queryAllOrders() {
+        const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
+        app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
+    },
+    queryAllOrdersSuccessFun(res) {
+        if (res.status === "0") {
+            const orderList = res.data;
+            let paidList = [];
+            let unpaidList = [];
+            for (let i = 0; i < orderList.length; i++) {
+                //网络图片暂无，暂以本地图片显示
+                orderList[i].icon = "../../images/xuex.png";
+                orderList[i].selected = false;
+                if (orderList[i].explain === 0) {
+                    unpaidList.push(orderList[i]);
+                } else {
+                    paidList.push(orderList[i]);
+                }
+            }
+            if (orderList.length === 0) {
+                this.setData({
+                    orderIsEmpty: true
+                });
+            }
+            if (paidList.length === 0) {
+                this.setData({
+                    paidIsEmpty: true
+                });
+            }
+            if (unpaidList.length === 0) {
+                this.setData({
+                    unpaidIsEmpty: true
+                });
+            }
+            this.setData({
+                // orderList: orderList,
+                paidList: paidList,
+                unpaidList: unpaidList,
+                order: orderList,
+            })
+            this.setCourse();
         }
-      }
-      if(orderList.length === 0) {
+    },
+    setCourse() {
+        if (this.data.activeIndex === "0") {
+            this.setData({
+                orderList: this.data.order,
+            });
+        } else if (this.data.activeIndex === "1") {
+            this.setData({
+                orderList: this.data.paidList
+            })
+        } else if (this.data.activeIndex === "2") {
+            this.setData({
+                orderList: this.data.unpaidList
+            })
+        }
+    },
+    tapToBuyOrToStudy(e) {
+        console.log(e);
+        const explain = e.currentTarget.dataset.explain;
+        const title = e.currentTarget.dataset.title;
+        const courseId = e.currentTarget.dataset.courseId;
+        if (explain === 1) {
+            const toStudyUrl = `../detail/detail?id=${courseId}&name=${title}`;
+            wx.navigateTo({
+                url: toStudyUrl,
+            })
+        } else if (explain === 0) {
+            if (this.data.activeIndex === "0") {
+                const price = e.currentTarget.dataset.price;
+                const title = e.currentTarget.dataset.title;
+                const courseId = e.currentTarget.dataset.courseId;
+                const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`;
+                wx.navigateTo({
+                    url: toBuyUrl,
+                });
+            } else if (this.data.activeIndex === "2") {
+                this.courseBuyUrl();
+            }
+        }
+    },
+    delUnpaidOrdersSuccessFun(res) {
+        console.log(res);
+        if (res.status === "0") {
+            this.setData({
+                orderList: this.data.unselect,
+                num: 0
+            })
+        }
+        if (this.data.unselect.length === 0) {
+            this.setData({
+                unpaidIsEmpty: true
+            });
+        }
+        // this.pageIsEmpty(this.data.unselect)
+        // this.queryAllOrders();
+    },
+    courseBuyUrl(e) {
+        const price = e.detail.price;
+        const title = e.detail.title;
+        const courseId = e.detail.courseId;
+        const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`;
+        wx.navigateTo({
+            url: toBuyUrl,
+        })
+    },
+    delConfirm(e) {
+        console.log(e.detail);
+        const courseId = e.detail.select[0];
         this.setData({
-          orderIsEmpty: true
+            unselect: e.detail.unselect
         });
-      }
-      if (paidList.length === 0) {
-        this.setData({
-          paidIsEmpty: true
-        });
-      }
-      if (unpaidList.length === 0) {
-        this.setData({
-          unpaidIsEmpty: true
-        });
-      }
-      this.setData({
-        orderList: orderList,
-        paidList: paidList,
-        unpaidList: unpaidList,
-        order: orderList,
-      })
+        const delUnpaidOrdersUrl = config.service.delUnpaidOrdersUrl;
+        app.request.requestPostApi(delUnpaidOrdersUrl, { userId: app.data.userId, courseId: courseId }, this, this.delUnpaidOrdersSuccessFun, this.delUnpaidOrdersFailFun);
     }
-  },
-  tapToBuyOrToStudy(e) {
-    console.log(e);
-    const explain = e.currentTarget.dataset.explain;
-    const title = e.currentTarget.dataset.title;
-    const courseId = e.currentTarget.dataset.courseId;
-    if(explain === 1) {
-      const toStudyUrl = `../detail/detail?id=${courseId}&name=${title}`;
-      wx.navigateTo({
-        url: toStudyUrl,
-      })
-    } else if(explain === 0) {
-      this.courseBuyUrl()
-    }
-  },
-  courseBuyUrl(e){
-    const price = e.detail.price;
-    const title = e.detail.title;
-    const toBuyUrl = `../buyCourse/buyCourse?name=${title}&price=${price}`;
-    wx.navigateTo({
-      url: toBuyUrl,
-    })
-  }
 })

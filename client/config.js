@@ -4,6 +4,7 @@
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
 var host = 'https://jfn15ogq.qcloud.la';
+// var host = 'https://smartmaker.xyz';
 var config = {
 
     // 下面的地址配合云端 Demo 工作
@@ -48,6 +49,9 @@ var config = {
 
         //添加订单信息
         addOrderUrl: `${host}/weapp/order/addOneByUserIdAndCourseId`,
+
+        //删除待付款订单信息
+        delUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseId`,
     }
 };
 

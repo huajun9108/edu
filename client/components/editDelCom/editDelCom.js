@@ -107,11 +107,12 @@ Component({
       });
     },
     courseUrl(e) {
+      console.log(e);
       const courseId = e.currentTarget.dataset.courseid;
       const title = e.currentTarget.dataset.title;
       const price = e.currentTarget.dataset.price;
       const courseUrlDetail = { courseId: courseId, title: title }
-      const courseBuyDetail = { price: price, title: title }
+      const courseBuyDetail = { price: price, title: title, courseId: courseId }
       this.triggerEvent("courseUrl", courseUrlDetail);
       this.triggerEvent("courseBuyUrl", courseBuyDetail);
     },
@@ -126,7 +127,7 @@ Component({
             unselect: unselect,
           })
         } else {
-          select.push(arr[i].id).toString()
+          select.push(arr[i].id?arr[i].id:arr[i].courseId).toString()
           this.setData({
             select: select
           })
