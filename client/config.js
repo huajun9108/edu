@@ -49,6 +49,9 @@ var config = {
 
         //添加订单信息
         addOrderUrl: `${host}/weapp/order/addOneByUserIdAndCourseId`,
+
+        //删除待付款订单信息
+        delUnpaidUrl: `${host}/weapp/order/deleteByUserIdAndCourseId`,
     }
 };
 
