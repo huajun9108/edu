@@ -33,35 +33,6 @@ Page({
       url: `../detail/detail?id=${courseId}&name=${title}`,
     })
   },
-  // showModal(){
-  //   console.log(2)
-  //   // let arr = this.data.favorList;
-  //   // let unselect = [];
-  //   // let select = [];
-  //   // for (let i = 0; i < arr.length; i++) {
-  //   //   if (arr[i].selected == false) {
-  //   //     unselect.push(arr[i]);
-  //   //     this.setData({
-  //   //       unselect: unselect,
-  //   //     })
-  //   //   }else{
-  //   //     select.push(arr[i].id).toString()
-  //   //     this.setData({
-  //   //       select: select
-  //   //     })
-  //   //     if (select.length == arr.length){
-  //   //       this.setData({
-  //   //         unselect: []
-  //   //       })
-  //   //     }
-  //   //   }
-  //   // }
-  //   // console.log(select.length)
-  //   // if (select.length == 0) return;
-  //   this.setData({
-  //     is_modal_Hidden: false,
-  //   })
-  // },
   delConfirm(e){
     const select = e.detail.select
     const unselect = e.detail.unselect
