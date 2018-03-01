@@ -3,11 +3,7 @@
 <view class="page">
   <editDelCom edit-del-list="{{favorList}}" binddelConfirm="delConfirm" bindcourseUrl="courseUrl" wx:if="{{!isLogin}}"/>  
   <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}">
-<<<<<<< HEAD
   </template> 
   <template is="page-login" wx:if="{{isLogin}}">
   </template> 
-=======
-  </template>
->>>>>>> sponge
 </view>
