@@ -9,7 +9,7 @@ Page({
    */
   data: {
     tabs: ["全部", "已付款", "待付款"],
-    activeIndex: 0,
+    activeIndex: "0",
     sliderOffset: 0,
     sliderLeft: 0,
     scrollFlag: true,
@@ -131,7 +131,7 @@ Page({
         });
       }
       this.setData({
-        orderList: orderList,
+        // orderList: orderList,
         paidList: paidList,
         unpaidList: unpaidList,
         order: orderList,
@@ -148,9 +148,9 @@ Page({
       this.setData({
         orderList: this.data.paidList
       })
-    } else {
+    } else if (this.data.activeIndex === "2") {
       this.setData({
-        unpaidList: this.data.unpaidList
+        orderList: this.data.unpaidList
       })
     }
   },
@@ -165,7 +165,7 @@ Page({
         url: toStudyUrl,
       })
     } else if(explain === 0) {
-      if(this.data.activeIndex == 0) {
+      if(this.data.activeIndex === "0") {
         const price = e.currentTarget.dataset.price;
         const title = e.currentTarget.dataset.title;
         const courseId = e.currentTarget.dataset.courseId;
@@ -173,7 +173,7 @@ Page({
         wx.navigateTo({
           url: toBuyUrl,
         });
-      } else if(this.data.activeIndex === 2) {
+      } else if(this.data.activeIndex === "2") {
         this.courseBuyUrl();
       }
     }
