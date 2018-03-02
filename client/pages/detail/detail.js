@@ -31,7 +31,8 @@ Page({
         sliderLeft: 0,
         vipFlag: 1,
         collected_image: "../../images/heart_icon_focus.png",
-        uncollected_image: "../../images/heart_icon_deafult.png"
+        uncollected_image: "../../images/heart_icon_deafult.png",
+        isLoad:false
     },
 
     /**
@@ -47,13 +48,7 @@ Page({
       wx.setNavigationBarTitle({
           title: that.data.detailnum //页面标题为路由参数
       });
-      if (app.data.userId) {
-        this.setData({
-            userId: app.data.userId
-        });
-      }
-      app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: options.id },
-          that, that.courseDetailSuccessFun, that.courseDetailFailFun);
+      this.getCourseDetail()
       wx.getSystemInfo({
           success: function(res) {
               that.setData({
@@ -63,7 +58,15 @@ Page({
           }
       });
     },
-  
+    getCourseDetail(){
+      if (app.data.userId) {
+        this.setData({
+          userId: app.data.userId
+        });
+      }
+      app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: this.data.courseId },
+        this, this.courseDetailSuccessFun, this.courseDetailFailFun);
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
@@ -88,7 +91,7 @@ Page({
      * 生命周期函数--监听页面卸载
      */
     onUnload: function() {
-
+      
     },
 
     /**
@@ -270,13 +273,20 @@ Page({
         courseIndex: res.data.catalog[0].list[0].id,
         courseIsCollected: res.data.collect_status,
         courseIsBuy: res.data.buy_status,
+        isLoad:false
       })
     },
     /**
     * 查询课程详情失败
     */
-    courseDetailFailFun() {},
-    
+    courseDetailFailFun() {
+      this.setData({
+        isLoad: true
+      })
+    },
+    load(){
+      this.getCourseDetail()
+    },
    
     sessionFail() {
       app.login(this.successFirst)

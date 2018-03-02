@@ -6,5 +6,7 @@
   <template is="search" />
   <template is="course-list" data="{{courseDir}}">
   </template>
+  <template is="page-error" wx:if="{{isLoad}}">
+  </template>
   <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}"/>  
 </view>

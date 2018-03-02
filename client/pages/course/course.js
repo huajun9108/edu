@@ -7,7 +7,8 @@ Page({
     is_modal_Hidden: true,
     searchList:["价值工程","质量工程","项目管理","管理工程","供应链管理","人因工程","运筹学","工作设计","金融工程","设施管理"],
     pageIsEmpty: false,
-    tipMsg: "该课程暂无分类,请后续关注"
+    tipMsg: "该课程暂无分类,请后续关注",
+    isLoad:false
   },
 
   /**
@@ -30,7 +31,9 @@ Page({
     this.setData({
       is_modal_Hidden: true
     });
-    var _this = this;
+    this.getCourse()
+  },
+  getCourse(){
     const url = config.service.courseUrl
     app.request.requestGetApi(url, {}, this, this.successFun, this.failFun)
   },
@@ -99,11 +102,17 @@ Page({
       this.setData({
         courseDir: res.data,
         pageIsEmpty: false,
+        isLoad: false
       })
     }
   },
   failFun(){
-    
+    this.setData({
+      isLoad:true
+    })
+  },
+  load(){
+    this.getCourse()
   }
   
 })

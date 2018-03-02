@@ -10,17 +10,19 @@ Page({
     courseArr: [],
     courseDir: [],
     pageIsEmpty: false,
-    tipMsg: "该课程暂无分类, 请后续关注"
+    tipMsg: "该课程暂无分类, 请后续关注",
+    isLoad:false
   },
   onLoad: function (option) {
     console.log(option);
     wx.setNavigationBarTitle({
       title: option.title,
     });
+    this.setData({
+      type: option.type,
+      id: option.id
+    })
     var _this = this;
-    const courseListUrl = config.service.courseListUrl;
-    //获取类别下的所有课程
-    app.request.requestPostApi(courseListUrl, { type: option.type, id: option.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun);
     wx.getStorage({
       key: 'courseDir',
       success: function (res) {
@@ -32,7 +34,7 @@ Page({
         )
       }
     })
-
+    this.getCourseListDetail()
     if (option.title === "全部课程") {
       this.setData({
         title: option.title,
@@ -44,6 +46,11 @@ Page({
         courseCategory: option.title
       });
     }
+  },
+  getCourseListDetail(){
+    const courseListUrl = config.service.courseListUrl;
+    //获取类别下的所有课程
+    app.request.requestPostApi(courseListUrl, { type: this.data.type, id: this.data.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun);
   },
   tapCourseCategory: function () {
     this.setData({
@@ -82,19 +89,26 @@ Page({
     if (res.data <= 0) {
       this.setData(
         {
-          pageIsEmpty: true
+          pageIsEmpty: true,
+          isLoad: false
         }
       )
     } else {
       this.setData(
         {
           courseArr: res.data,
-          pageIsEmpty: false
+          pageIsEmpty: false,
+          isLoad: false
         }
       )
     }
   },
   courseListUrlFailFun() {
-
+    this.setData({
+      isLoad:true
+    })
   },
+  load(){
+    this.getCourseListDetail()
+  }
 })

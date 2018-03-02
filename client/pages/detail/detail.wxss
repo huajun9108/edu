@@ -1,13 +1,17 @@
 /* pages/detail/detail.wxss */
+.page{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
 .page_controls {
-  position: fixed;
   width: 100%;
   height: 415rpx;
   top: 0;
   overflow: hidden;
   z-index: 999
 }
-
 .poster{
   width: 100%;
   height: 100%;
@@ -178,4 +182,8 @@ video{
 .common_btn .weui-btn{
   background: #e5e5e5;
   color: #7c7c7c;
+}
+.page-error{
+  flex: 1;
+  position: relative;
 }
