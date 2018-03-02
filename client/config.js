@@ -52,6 +52,9 @@ var config = {
 
         //删除待付款订单信息
         delUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseId`,
+
+        //批量删除待付款订单信息
+        batchDelUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseIds`
     }
 };
 

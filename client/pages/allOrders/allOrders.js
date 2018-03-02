@@ -23,7 +23,7 @@ Page({
         unselect: [],
         delCss:"weui-flex-common",
         showCheckCss:"",
-        isLoad: false
+        isLoad: false,
     },
 
     /**
@@ -128,8 +128,7 @@ Page({
             let paidList = [];
             let unpaidList = [];
             for (let i = 0; i < orderList.length; i++) {
-                //网络图片暂无，暂以本地图片显示
-                orderList[i].icon = "../../images/xuex.png";
+                orderList[i].icon = app.data.iconUrl + orderList[i].icon;
                 orderList[i].selected = false;
                 if (orderList[i].explain === 0) {
                     unpaidList.push(orderList[i]);
@@ -211,22 +210,6 @@ Page({
             }
         }
     },
-    delUnpaidOrdersSuccessFun(res) {
-        console.log(res);
-        if (res.status === "0") {
-            this.setData({
-                orderList: this.data.unselect,
-                num: 0
-            })
-        }
-        if (this.data.unselect.length === 0) {
-            this.setData({
-                unpaidIsEmpty: true
-            });
-        }
-        // this.pageIsEmpty(this.data.unselect)
-        // this.queryAllOrders();
-    },
     courseBuyUrl(e) {
         const price = e.detail.price;
         const title = e.detail.title;
@@ -238,11 +221,26 @@ Page({
     },
     delConfirm(e) {
         console.log(e.detail);
-        const courseId = e.detail.select[0];
+        const courseId = e.detail.select.toString();
         this.setData({
             unselect: e.detail.unselect
         });
-        const delUnpaidOrdersUrl = config.service.delUnpaidOrdersUrl;
-        app.request.requestPostApi(delUnpaidOrdersUrl, { userId: app.data.userId, courseId: courseId }, this, this.delUnpaidOrdersSuccessFun, this.delUnpaidOrdersFailFun);
+        console.log(this.data.select);
+        const batchDelUnpaidOrdersUrl = config.service.batchDelUnpaidOrdersUrl;
+        app.request.requestPostApi(batchDelUnpaidOrdersUrl, {userId: app.data.userId, courseIds: courseId}, this, this.batchDelUnpaidOrdersSuccessFun, this.batchDelUnpaidOrdersFailFun);
+    },
+    batchDelUnpaidOrdersSuccessFun(res) {
+      console.log(res);
+      if (res.status === "0") {
+        this.setData({
+          orderList: this.data.unselect,
+          num: 0
+        })
+      }
+      if (this.data.unselect.length === 0) {
+        this.setData({
+          unpaidIsEmpty: true
+        });
+      }
     }
 })
