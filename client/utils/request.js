@@ -52,13 +52,13 @@ function requestApi(url, params, method, sourceObj, successFun, failFun, complet
     data: params,
     header: { 'Content-Type': contentType },
     success: function (res) {
-      wx.hideToast()
       typeof successFun == 'function' && successFun(res.data, sourceObj)
     },
     fail: function (res) {
       typeof failFun == 'function' && failFun(res.data, sourceObj)
     },
     complete: function (res) {
+      wx.hideToast()
       typeof completeFun == 'function' && completeFun(res.data, sourceObj)
     }
   })

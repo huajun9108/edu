@@ -6,14 +6,14 @@ Page({
     favorList: [],
     pageIsEmpty: false,
     tipMsg: "你还没有收藏记录哦",
-    isLogin:false
+    isLogin:false,
+    isLoad:false
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
   onReady: function () {
     console.log("onReady")
-    // app.testSession(this.success, this.fail)
   },
   success(){
     console.log("success")
@@ -82,11 +82,17 @@ Page({
       list[i].icon = "../../images/xuex.png";
     }
     this.setData({
-      favorList: list
+      favorList: list,
+      isLoad: false
     })
   },
   myFavorListFailFun() {
-
+    this.setData({
+      isLoad: true
+    })
+  },
+  load(){
+    this.getMyFavor()
   },
   batchDelMyFavorSuccessFun(res) {
     console.log(res);

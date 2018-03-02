@@ -4,6 +4,7 @@ page{
   font-size: 16px;
   font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
   color: #131313;
+  height: 100%;
 }
 .page__hd {
     padding: 40px;
@@ -88,32 +89,18 @@ button{
  .course-search-bar image{
   padding:0 6rpx 0 20rpx;
 }
-.page_empty_wrap {
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40%;
-}
-
-.page_empty_wrap .empty_tip {
-  padding-top: 51rpx;
-  font-size: 32rpx;
-  line-height: 32rpx;
-  color: #AFAFAF
-} 
 .base_color{
   color: #cfb16b
 }
 .base_background{
   background: #dcc07f
 }
-.page-login{
+.page-login,.page-empty,.page-error{
   width: 100%;
   height: 100%;
   position: fixed;
 }
-.page-login-wrap{
+.page-login-wrap,.page-empty-wrap,.page-error-wrap{
   width: auto;
   height: 425rpx;
   position: absolute;
@@ -132,13 +119,13 @@ button{
   color: #afafaf;
   font-size: 28rpx;
 }
-.login-text{
+.login-text,.empty-text,.error-text{
   margin-top: 22rpx;
   font-size: 32rpx;
   line-height: 32rpx;
   font-weight: bold;
 }
-.login-btn{
+.login-btn,.error-btn{
   margin-top: 14rpx;
   width: 140rpx; 
   line-height: 60rpx;

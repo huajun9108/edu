@@ -12,7 +12,6 @@ Page({
         activeIndex: "0",
         sliderOffset: 0,
         sliderLeft: 0,
-        scrollFlag: true,
         order: [],
         paidList: [],
         unpaidList: [],
@@ -22,6 +21,9 @@ Page({
         tipMsg: '您还没有相关的订单',
         isLogin: false,
         unselect: [],
+        delCss:"weui-flex-common",
+        showCheckCss:"",
+        isLoad: false
     },
 
     /**
@@ -155,9 +157,18 @@ Page({
                 paidList: paidList,
                 unpaidList: unpaidList,
                 order: orderList,
+                isLoad: false
             })
             this.setCourse();
         }
+    },
+    queryAllOrdersFailFun(){
+      this.setData({
+        isLoad:true
+      })
+    },
+    load(){
+      this.queryAllOrders()
     },
     setCourse() {
         if (this.data.activeIndex === "0") {
@@ -170,7 +181,9 @@ Page({
             })
         } else if (this.data.activeIndex === "2") {
             this.setData({
-                orderList: this.data.unpaidList
+                orderList: this.data.unpaidList,
+                delCss:"weui-flex-common",
+                showCheckCss:""
             })
         }
     },

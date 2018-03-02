@@ -11,6 +11,14 @@ Component({
     select:{
       type: Array,
       value: []
+    },
+    delCss:{
+      type: String,
+      value: "weui-flex-common"
+    },
+    showCheckCss:{
+      type: String,
+      value: ""
     }
   },
 

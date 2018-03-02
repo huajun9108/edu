@@ -29,11 +29,16 @@
       <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
         <template is="page-empty" wx:if="{{unpaidIsEmpty}}" data="{{tipMsg}}">
         </template>
-        <modal editDelList="{{orderList}}" bindcourseBuyUrl="courseBuyUrl" binddelConfirm="delConfirm"/> 
+        <modal editDelList="{{orderList}}"
+         bindcourseBuyUrl="courseBuyUrl" delCss="{{delCss}}" 
+         showCheckCss="{{showCheckCss}}"               
+         binddelConfirm="delConfirm"  wx:else/> 
       </view> 
     </view>
   </view>
   <template is="page-login" wx:if="{{isLogin}}">
+  </template>
+  <template is="page-error" wx:if="{{isLoad}}">
   </template>
 </view>
 

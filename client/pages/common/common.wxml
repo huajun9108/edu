@@ -80,9 +80,11 @@
 </template>
 
 <template name="page-empty">
-<view class="page_empty_wrap">
+<view class="page-empty">
+<view class="page-empty-wrap">
   <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;" alt="图片加载失败"></image>
-  <view class="empty_tip">{{tipMsg}}</view>
+  <view class="empty-text">{{tipMsg}}</view>
+</view>
 </view>
 </template>
 
@@ -92,6 +94,16 @@
   <image src="../../images/page_login.png" style="height: 264rpx; width: 274rpx;" alt="图片加载失败"></image>
   <view class="login-text">您还没有登录···</view>
   <view class="login-btn" bindtap="login">点我登录</view>
+  </view>
+</view>
+</template>
+
+<template name="page-error">
+<view class="page-error">
+  <view class="page-error-wrap">
+  <image src="../../images/page_error.png" style="height: 305rpx; width: 394rpx;" alt="图片加载失败"></image>
+  <view class="error-text">您要的页面走丢了···</view>
+  <view class="error-btn" bindtap="load">重新加载</view>
   </view>
 </view>
 </template>
