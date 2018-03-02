@@ -56,7 +56,8 @@
       <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 2}}">
         <view class="course_teacher">
           <view class="teacher">
-            <image class="teacher_image" src="../../images/xuex.png"></image>
+            <!-- <image class="teacher_image" src="../../images/xuex.png"></image> -->
+            <image class="teacher_image" src="{{teacherImage}}"></image>
             <view class="teacher_box">
               <text class="teacher_name">{{teacherName}}</text>
               <text class="teacher_title">{{teacherTitle}}</text>

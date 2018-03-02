@@ -10,7 +10,8 @@ Page({
     courseArr: [],
     courseDir: [],
     pageIsEmpty: false,
-    tipMsg: "该课程暂无分类, 请后续关注"
+    tipMsg: "该课程暂无分类, 请后续关注",
+    iconUrl: app.data.iconUrl,
   },
   onLoad: function (option) {
     console.log(option);

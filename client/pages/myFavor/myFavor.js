@@ -78,8 +78,7 @@ Page({
     console.log(list)
     this.pageIsEmpty(list)
     for(let i = 0; i<list.length; i++) {
-      //图片为本地图片，到时候需要修改
-      list[i].icon = "../../images/xuex.png";
+      list[i].icon = app.data.iconUrl + list[i].icon;
     }
     this.setData({
       favorList: list,

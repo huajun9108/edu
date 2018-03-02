@@ -31,7 +31,8 @@ Page({
         sliderLeft: 0,
         vipFlag: 1,
         collected_image: "../../images/heart_icon_focus.png",
-        uncollected_image: "../../images/heart_icon_deafult.png"
+        uncollected_image: "../../images/heart_icon_deafult.png",
+        teacherImage: "",
     },
 
     /**
@@ -270,6 +271,7 @@ Page({
         courseIndex: res.data.catalog[0].list[0].id,
         courseIsCollected: res.data.collect_status,
         courseIsBuy: res.data.buy_status,
+        teacherImage: app.data.iconUrl + res.data.img,
       })
     },
     /**
@@ -289,5 +291,4 @@ Page({
         this.courseDetailFailFun
       );
     }
-    
 })

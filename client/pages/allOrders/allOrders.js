@@ -23,7 +23,7 @@ Page({
         unselect: [],
         delCss:"weui-flex-common",
         showCheckCss:"",
-        isLoad: false
+        isLoad: false,
     },
 
     /**
@@ -128,8 +128,7 @@ Page({
             let paidList = [];
             let unpaidList = [];
             for (let i = 0; i < orderList.length; i++) {
-                //网络图片暂无，暂以本地图片显示
-                orderList[i].icon = "../../images/xuex.png";
+                orderList[i].icon = app.data.iconUrl + orderList[i].icon;
                 orderList[i].selected = false;
                 if (orderList[i].explain === 0) {
                     unpaidList.push(orderList[i]);

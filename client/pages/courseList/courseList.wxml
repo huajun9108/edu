@@ -16,7 +16,7 @@
       <view class="weui-cells .courseList-bd">
         <navigator url="../detail/detail?id={{item.id}}&name={{item.title}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{courseArr}}" wx:key="{{index}}">
           <view class="weui-cell__hd">
-            <image src="{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
+            <image src="{{iconUrl}}{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
           </view>
           <view class="weui-cell__bd">
             <view class="courseContent-top">{{item.title}}</view>
