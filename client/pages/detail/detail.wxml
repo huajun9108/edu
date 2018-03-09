@@ -6,7 +6,7 @@
         <image class='play img' src="{{play}}" wx:if="{{flag}}" bindtap="play"></image>
         <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}" autoplay="{{autoplay}}"></video>
     </view>
-    <view wx:if="{{!isLoad}}">
+    <view class="bottomBlock" wx:if="{{!isLoad}}">
         <view class='course'>
             <view class="weui-flex page__bd_spacing">
                 <view class="weui-flex__item ">
@@ -21,54 +21,62 @@
                 <button class="consult_btn base_color" open-type="contact">咨询</button>
             </view>
         </view>
-        <view class="weui-tab">
-            <view class="weui-navbar">
-                <block wx:for="{{tabs}}" wx:key="index">
-                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
-                        <view class="weui-navbar__title">{{item}}</view>
-                    </view>
-                </block>
-                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px"></view>
-            </view>
-            <view class="weui-tab__panel">
-                <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 0}}">
-                    <view class="course_title">{{detailnum}}</view>
-                    <view class="cuorse_price">
-                        <text class="common_price">￥{{originalPrice}}</text><text class="vip_price">VIP: ￥{{vipPrice}}</text>
-                    </view>
-                    <view class="cuorse_number">
-                        <text>已有{{peopleBuy}}人购买</text>
-                    </view>
+          <view class="weui-tab">
+              <view class="weui-navbar">
+                  <block wx:for="{{tabs}}" wx:key="index">
+                      <view id="{{index}}" 
+                      class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}"    
+                      bindtap="tabClick">
+                          <view class="weui-navbar__title">{{item}}</view>
+                      </view>
+                  </block>
+                  <view class="weui-navbar__slider" 
+                  style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:{{sliderWidth}}px">
+                  </view>
+              </view>
+              <scroll-view class="ScrollView" scroll-y="true">
+                <view class="weui-tab__panel">
+                
+                  <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 0}}">
+                      <view class="course_title">{{detailnum}}</view>
+                      <view class="cuorse_price">
+                          <text class="common_price">￥{{originalPrice}}</text><text class="vip_price">VIP: ￥{{vipPrice}}</text>
+                      </view>
+                      <view class="cuorse_number">
+                          <text>已有{{peopleBuy}}人购买</text>
+                      </view>
+                  </view>
+                  <view class="weui-tab__content page__left_spacing" hidden="{{activeIndex != 1}}">
+                      <view class="course_title">{{detailnum}}</view>
+                      <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
+                          <view class="course_part base_color">{{item.title}}</view>
+                          <view class="course_list">
+                              <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" data-src="{{item.video_url}}">
+                                  <text>{{item.detail}}</text>
+                                  <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
+                                  <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
+                              </view>
+                          </view>
+                      </view>
+                  </view>
+                  <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 2}}">
+                      <view class="course_teacher">
+                          <view class="teacher">
+                              <image class="teacher_image" src="{{teacherImage}}"></image>
+                              <view class="teacher_box">
+                                  <text class="teacher_name">{{teacherName}}</text>
+                                  <text class="teacher_title">{{teacherTitle}}</text>
+                              </view>
+                          </view>
+                          <view class="teacher_detail">
+                              <view>{{teacherDetail}}</view>
+                          </view>
+                      </view>
+                  </view>
+                
                 </view>
-                <view class="weui-tab__content page__left_spacing" hidden="{{activeIndex != 1}}">
-                    <view class="course_title">{{detailnum}}</view>
-                    <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
-                        <view class="course_part base_color">{{item.title}}</view>
-                        <view class="course_list">
-                            <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" data-src="{{item.video_url}}">
-                                <text>{{item.detail}}</text>
-                                <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
-                                <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
-                            </view>
-                        </view>
-                    </view>
-                </view>
-                <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 2}}">
-                    <view class="course_teacher">
-                        <view class="teacher">
-                            <image class="teacher_image" src="{{teacherImage}}"></image>
-                            <view class="teacher_box">
-                                <text class="teacher_name">{{teacherName}}</text>
-                                <text class="teacher_title">{{teacherTitle}}</text>
-                            </view>
-                        </view>
-                        <view class="teacher_detail">
-                            <view>{{teacherDetail}}</view>
-                        </view>
-                    </view>
-                </view>
-            </view>
-        </view>
+              </scroll-view> 
+          </view>
         <view class='page_btn' wx:if="{{!courseIsBuy}}">
             <view class="total_price  page__left_spacing">
                 <text class="vip_symbol" wx:if="{{vipFlag}}">VIP: </text>

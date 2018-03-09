@@ -8,11 +8,14 @@
 .page_controls {
   width: 100%;
   height: 415rpx;
-  /* top: 0; */
-  overflow: hidden;
-  z-index: 999
 }
-.poster{
+.bottomBlock{
+  display: flex;
+  flex: 1;
+  overflow: auto;
+  flex-direction: column
+}
+/* .poster{
   width: 100%;
   height: 100%;
 }
@@ -25,20 +28,21 @@
   right: 0;
   bottom: 0;
   margin: auto;
-}
+} */
 video{
   width: 100%;
-  position: absolute;
-  top: 0;
+  height: 100%
 }
 .course{
-  position: fixed;
-  top: 415rpx;
   width: 100%; 
   padding: 36rpx 0 10rpx 0;
   z-index: 500;
   background: #fff;
 } 
+.ScrollView{
+  flex: 1;
+  overflow: auto;
+}
 .weui-flex__item .course_title{
   font-size: 30rpx;
   font-weight: bold;
@@ -70,19 +74,18 @@ video{
   background: #fff;
   margin-left: 0;
 }
- .weui-tab{
-  width: 100%;
-  position: absolute;
-  top: 554rpx;
-  height: auto;
-  bottom: 130rpx;
+.weui-tab{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; 
 } 
 .weui-navbar{
-  top: 554rpx;
+  position: relative; 
 }
-.weui-navbar__item{
-  margin-top: 0;
-} 
+.weui-tab__panel {
+  padding-top: 20rpx;
+}
 .weui-tab__content {
   font-size: 26rpx;
 }                                                  
@@ -160,8 +163,6 @@ video{
 }
 .page_btn{
   width: 100%;
-  position: fixed; 
-  bottom: 0;
   padding:20rpx 0;
   display:-webkit-box;display:-webkit-flex;display:flex;
   -webkit-box-align:center;-webkit-align-items:center;align-items:center;

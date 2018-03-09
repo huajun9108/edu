@@ -55,14 +55,14 @@ Page({
         app.testSession(this.success, this.fail)
     },
     success() {
-        console.log("success")
+      console.log("Sessionsuccess")
         this.setData({
             isLogin: false
         })
         this.queryAllOrders()
     },
     fail() {
-        console.log("fail")
+      console.log("Sessionfail")
         this.setData({
             isLogin: true
         })
@@ -162,6 +162,7 @@ Page({
         }
     },
     queryAllOrdersFailFun(){
+      console.log("请求失败")
       this.setData({
         isLoad:true
       })

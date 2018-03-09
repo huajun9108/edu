@@ -45,13 +45,10 @@ weui-cells:after{
 weui-cells::before{
   border-top: 0;
 }
-.weui-navbar__item{
-  margin-top: 22rpx;
-
-}
 .weui-navbar__title{
   font-size:30rpx;
   font-weight: bold;
+  line-height: 48rpx;  
 }
 button::after{
   width: 0;
@@ -129,7 +126,7 @@ button{
   margin-top: 14rpx;
   width: 140rpx; 
   line-height: 60rpx;
-  border: 1rpx solid #afafaf; 
+  border: 2rpx solid #afafaf; 
   border-radius: 26rpx; 
   text-align: center;
 }
