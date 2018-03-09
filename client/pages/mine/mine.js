@@ -1,4 +1,5 @@
 var Session = require('../../vendor/wafer2-client-sdk/lib/session');
+var config = require('../../config')
 var app = getApp()
 Page({
   data: {
@@ -25,26 +26,26 @@ Page({
   },
   onLoad: function (options) {
     console.log("onLoad")
-    options.data = "2017-11-14 到期"
-    if (this.data.vipFlag){
-      that.setData({
-        vipList: [
-          {
-            url: "../allOrders/allOrders", title: "学习中心",explain: "全部订单"
-          },
-          {
-            url: "../myFavor/myFavor", title: "我的收藏"
-          },
-          {
-            url: "../buyVip/buyVip?id="+1, title: "我的会员", explain: options.data
-          },
-          {
-            url: "../userSet/userSet", title: "账号设置"
-          }
-        ],
-        nameFlag: "vipname",
-      })
-    }
+    // options.data = "2017-11-14 到期"
+    // if (this.data.vipFlag){
+    //   that.setData({
+    //     vipList: [
+    //       {
+    //         url: "../allOrders/allOrders", title: "学习中心",explain: "全部订单"
+    //       },
+    //       {
+    //         url: "../myFavor/myFavor", title: "我的收藏"
+    //       },
+    //       {
+    //         url: "../buyVip/buyVip?id="+1, title: "我的会员", explain: options.data
+    //       },
+    //       {
+    //         url: "../userSet/userSet", title: "账号设置"
+    //       }
+    //     ],
+    //     nameFlag: "vipname",
+    //   })
+    // }
     
   },
   onShow(){
@@ -67,7 +68,9 @@ Page({
     this.setData({
       userInfo: result,
       logged: true,
-    })
+    });
+    const getVipStatusUrl = config.service.getVipStatusUrl;
+    app.request.requestPostApi(getVipStatusUrl, {userId: app.data.userId}, this, this.getVipStatusSuccess, this.getVipStatusFail);
   },
   success(result){
     this.setData({
@@ -75,4 +78,35 @@ Page({
       logged: true,
     })
   },
+  getVipStatusSuccess(res) {
+    console.log(res);
+    if(res.status === "0") {
+      if(res.data.isVip) {
+        console.log(res.data.endTime);
+        const endDate = new Date(res.data.endTime);
+        console.log(endDate.format('yyyy-MM-dd'));
+        this.setData({
+          vipFlag: res.data.isVip,
+          nameFlag: "vipname",
+          vipList: [
+            {
+              url: "../allOrders/allOrders", title: "学习中心", explain: "全部订单"
+            },
+            {
+              url: "../myFavor/myFavor", title: "我的收藏"
+            },
+            {
+              url: "../buyVip/buyVip?id=" + 1, title: "我的会员", explain: endDate.format('yyyy-MM-dd')
+            },
+            {
+              url: "../userSet/userSet", title: "账号设置"
+            }
+          ],
+        })
+      }
+    }
+  },
+  getVipStatusFail() {
+
+  }
 })

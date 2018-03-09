@@ -57,7 +57,13 @@ var config = {
         batchDelUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseIds`,
 
         //VIP购买
-        vipPay: `${host}/weapp/vip/vipPay `,
+        vipPay: `${host}/weapp/vip/vipPay`,
+
+        //添加VIP
+        addVipUrl: `${host}/weapp/vip/addOneByUserId`,
+
+        //根据用户ID返回当前时间是不是VIP
+        getVipStatusUrl: `${host}/weapp/vip/selectVipByUserID`,
     }
 };
 

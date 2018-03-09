@@ -13,6 +13,7 @@ Page({
         title: '月度',
         price: '0.01',
         unit:"月",
+        type: 1,
         selectImage: true,
         selectedImageUrl:"../../images/xuanzhong_icon.png",
         unselectedImageUrl:"../../images/weixuanzhong_icon.png"
@@ -21,6 +22,7 @@ Page({
         title: '年度',
         price: '0.02',
         unit: "年",
+        type: 2,
         selectImage: false,
         selectedImageUrl: "../../images/xuanzhong_icon.png",
         unselectedImageUrl: "../../images/weixuanzhong_icon.png"
@@ -39,7 +41,8 @@ Page({
       }
     ],
     number:"0.01",
-    title: "月度"
+    title: "月度",
+    vipType: 1,
   },
 
   /**
@@ -101,11 +104,14 @@ Page({
     console.log(e)
     for (var i = 0; i < this.data.model.length; i++) {
       if (e.currentTarget.id == i) {
-        this.data.model[i].selectImage = true
-
+        this.data.model[i].selectImage = true;
+        this.setData({
+          vipType: this.data.model[i].type
+        });
+        console.log(this.data.vipType);
       }
       else {
-        this.data.model[i].selectImage = false
+        this.data.model[i].selectImage = false;
       }
     }
     this.setData({
@@ -127,7 +133,8 @@ Page({
       this.vipPayFailFun);
   },
   vipPaySuccessFun(res) {
-    console.log(res)
+    console.log(res);
+    var that = this;
     if (res.status === "0"){
       var vipDetail = res.data
       wx.requestPayment({
@@ -138,11 +145,8 @@ Page({
         'signType': vipDetail.signType,
         'paySign': vipDetail.paySign,
         'success': function (res) {
-          wx.showToast({
-            title: '支付成功',
-            icon: 'success',
-            duration: 2000
-          })
+          const addVipUrl = config.service.addVipUrl;
+          app.request.requestPostApi(addVipUrl, { type: that.data.vipType, userId: app.data.userId }, that, that.addVipSuccess, that.addVipFail);
         },
         'fail': function (res) {
         }
@@ -150,6 +154,15 @@ Page({
     }
   },
   vipPayFailFun(){
+
+  },
+  addVipSuccess(res) {
+    console.log(res);
+    wx.switchTab({
+      url: '../mine/mine',
+    });
+  },
+  addVipFail() {
 
   }
 })
