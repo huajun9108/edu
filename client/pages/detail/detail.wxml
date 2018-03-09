@@ -36,7 +36,6 @@
               </view>
               <scroll-view class="ScrollView" scroll-y="true">
                 <view class="weui-tab__panel">
-                
                   <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 0}}">
                       <view class="course_title">{{detailnum}}</view>
                       <view class="cuorse_price">
