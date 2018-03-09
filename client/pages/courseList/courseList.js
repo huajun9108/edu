@@ -54,7 +54,8 @@ Page({
     tapCourseCategory: function() {
         this.setData({
             flag: false,
-            modalFlag: false
+            modalFlag: false,
+            isScroll:"noscroll"
         })
     },
     tapModal: function() {
@@ -66,6 +67,7 @@ Page({
         }, 400);
         _this.setData({
             flag: true,
+            isScroll:""
         });
     },
     showSearch() {

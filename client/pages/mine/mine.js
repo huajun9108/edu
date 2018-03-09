@@ -48,6 +48,7 @@ Page({
     
   },
   onShow(){
+    console.log("onshow")
     app.testSession(this.showUser)
   },
   showUser(){

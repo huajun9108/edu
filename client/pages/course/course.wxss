@@ -1,7 +1,4 @@
 /* pages/course/course.wxss */
-.weui-cells {
-    margin-top: 0;
-}
 .weui-cell {
   padding: 35rpx 40rpx;
 }

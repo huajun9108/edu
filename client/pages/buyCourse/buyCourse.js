@@ -8,14 +8,22 @@ Page({
      */
     data: {
       showFlag: false,
-      model: [{
-              title: '名称',
-              detail: ""
-          },
-          {
-              title: '价格',
-              detail: ""
-          }
+      model: [
+        {
+          title: '名称',
+          detail: ""
+        },
+        {
+          title: '价格',
+          detail: "￥"
+        }
+      ],
+      payModel: [
+        {
+          title: '支付方式',
+          unit: "微信",
+          payImageUrl: "../../images/weixin.png",
+        }
       ],
       courseIsBuy: 0,
       courseId: null,
@@ -28,7 +36,7 @@ Page({
         console.log(options);
         let model = this.data.model;
         model[0].detail = options.name;
-        model[1].detail = `¥${options.price}`;
+        model[1].detail += `${options.price}`;
         this.setData({
             model: model,
             courseId: options.courseId

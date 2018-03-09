@@ -22,9 +22,9 @@
     <view class="weui-cell">
       <view class="weui-cell__bd sp_title">{{showFlag?"会员套餐":"课程信息"}}</view>
     </view>
-    <view wx:if="{{showFlag}}" class="weui-cell" wx:for="{{model}}" bindtap="selectClick" wx:key="index" id="{{index}}" data-price="{{item.price}}">
+    <view wx:if="{{showFlag}}" class="weui-cell" wx:for="{{model}}" bindtap="selectClick" wx:key="index" id="{{index}}" data-price="{{item.price}}" data-title = "{{item.title}}">
       <view class="weui-cell__bd">{{item.title}}</view>
-      <view class="weui-cell__ft">{{item.price}}/{{item.unit}}
+      <view class="weui-cell__ft">￥{{item.price}}/{{item.unit}}
         <image wx:if="{{item.selectImage}}" src="{{item.selectedImageUrl}}" class="seletedImage"></image>
         <image wx:else src="{{item.unselectedImageUrl}}" class="seletedImage"></image>
       </view>
@@ -34,14 +34,16 @@
       <view class="weui-cell__ft">{{item.detail}}
       </view>
     </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd sp_title">支付方式</view>
+    <view class="payContent" wx:for="{{payModel}}" wx:key="index">
+    <view class="weui-cell" >
+      <view class="weui-cell__bd sp_title">{{item.title}}</view>
     </view>
     <view class="weui-cell">
-      <view class="weui-cell__bd">微信</view>
+      <view class="weui-cell__bd">{{item.unit}}</view>
       <view class="weui-cell__ft">
-        <image src="../../images/weixin.png" class="weixinImage"></image>
+        <image src="{{item.payImageUrl}}" class="weixinImage"></image>
       </view>
+    </view>
     </view>
   </view>
   <view class="common_btn page__bd_spacing">

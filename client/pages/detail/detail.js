@@ -294,11 +294,11 @@ Page({
         app.login(this.successFirst)
     },
     successFirst() {
-        app.request.requestPostApi(
-            courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
-            this,
-            this.courseDetailSuccessFun,
-            this.courseDetailFailFun
-        );
+      app.request.requestPostApi(
+        courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
+        this,
+        this.courseDetailSuccessFun,
+        this.courseDetailFailFun
+      );
     }
 })

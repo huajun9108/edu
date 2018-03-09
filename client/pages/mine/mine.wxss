@@ -31,9 +31,6 @@
   font-size: 30rpx;
   font-weight: bold;
 }
-.weui-cells_after-title,.weui-cells {
-  margin-top: 0;
-}
 .unvipname,.vipname{
   font-size: 24rpx;
   line-height: 30rpx;

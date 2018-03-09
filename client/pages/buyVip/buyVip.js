@@ -1,4 +1,6 @@
 // pages/buyVip/buyVip.js
+var config = require('../../config')
+var app = getApp()
 Page({
 
   /**
@@ -9,7 +11,7 @@ Page({
     model: [
       {
         title: '月度',
-        price: '￥20',
+        price: '0.01',
         unit:"月",
         selectImage: true,
         selectedImageUrl:"../../images/xuanzhong_icon.png",
@@ -17,13 +19,27 @@ Page({
       },
       {
         title: '年度',
-        price: '￥198',
+        price: '0.02',
         unit: "年",
         selectImage: false,
         selectedImageUrl: "../../images/xuanzhong_icon.png",
         unselectedImageUrl: "../../images/weixuanzhong_icon.png"
       }
     ],
+    payModel:[
+      {
+        title: '支付方式',
+        unit: "微信",
+        payImageUrl: "../../images/weixin.png",
+      },
+      {
+        title: '会员特权',
+        unit: "视频折扣",
+        payImageUrl: "../../images/discount_icon.png",
+      }
+    ],
+    number:"0.01",
+    title: "月度"
   },
 
   /**
@@ -82,6 +98,7 @@ Page({
   
   },
   selectClick(e){
+    console.log(e)
     for (var i = 0; i < this.data.model.length; i++) {
       if (e.currentTarget.id == i) {
         this.data.model[i].selectImage = true
@@ -93,9 +110,46 @@ Page({
     }
     this.setData({
       model: this.data.model,
-      number: e.currentTarget.dataset.price
-    })  
+      number: e.currentTarget.dataset.price,
+      title: e.currentTarget.dataset.title,
+    })
+    
   },
   buyTap(){
+    const price = this.data.number*100
+    const body = this.data.title
+    const url = config.service.vipPay
+    console.log(url)
+    app.request.requestPostApi(
+      url, { userId: app.data.userId, body: "VIP购买", attach: "IE共学社", totalFee: price },
+      this,
+      this.vipPaySuccessFun,
+      this.vipPayFailFun);
+  },
+  vipPaySuccessFun(res) {
+    console.log(res)
+    if (res.status === "0"){
+      var vipDetail = res.data
+      wx.requestPayment({
+        'appId': vipDetail.appId,
+        'timeStamp': vipDetail.timeStamp,
+        'nonceStr': vipDetail.nonceStr,
+        'package': vipDetail.package,
+        'signType': vipDetail.signType,
+        'paySign': vipDetail.paySign,
+        'success': function (res) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'success',
+            duration: 2000
+          })
+        },
+        'fail': function (res) {
+        }
+      })
+    }
+  },
+  vipPayFailFun(){
+
   }
 })

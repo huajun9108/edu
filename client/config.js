@@ -54,7 +54,10 @@ var config = {
         delUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseId`,
 
         //批量删除待付款订单信息
-        batchDelUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseIds`
+        batchDelUnpaidOrdersUrl: `${host}/weapp/order/deleteByUserIdAndCourseIds`,
+
+        //VIP购买
+        vipPay: `${host}/weapp/vip/vipPay `,
     }
 };
 

@@ -25,3 +25,4 @@
 .weui-cell{
   padding:35rpx 40rpx
 }
+.payContent .weui-cell:first-child:before{display:block}

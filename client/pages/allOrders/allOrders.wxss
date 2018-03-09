@@ -27,6 +27,3 @@ image{
 .weui-cell__bd{
   padding-left:22rpx;
 }
-.weui-cells{
-  margin-top: 0
-}

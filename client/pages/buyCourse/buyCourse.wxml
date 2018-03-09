@@ -3,5 +3,5 @@
 <view class="page">
   <template
       is="buy" 
-      data="{{model,showFlag}}"/>
+      data="{{model,showFlag,payModel}}"/>
 </view>
