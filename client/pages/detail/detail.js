@@ -139,12 +139,14 @@ Page({
      */
     buyCourseFn() {
         const title = this.data.detailnum;
+        let price
         if(this.data.vipFlag){
-          const price = this.data.vipPrice;
+          // price = this.data.vipPrice;
+          price=1
         }else{
-          const price = this.data.originalPrice;
+          // price = this.data.originalPrice;
+          price=2
         }
-        
         const courseId = this.data.courseId;
         wx.navigateTo({
             "url": `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`

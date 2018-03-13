@@ -1,6 +1,7 @@
 // pages/buyVip/buyVip.js
 const config = require('../../config')
 const util = require('../../utils/util.js')
+const Session = require('../../vendor/wafer2-client-sdk/lib/session');
 const app = getApp()
 Page({
 
@@ -174,34 +175,21 @@ Page({
   },
   addVipSuccess(res) {
     console.log(res);
-    util.showSuccess('充值成功')
     const getVipStatusUrl = config.service.getVipStatusUrl;
     let that = this
-    setTimeout(()=>{
-      app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, that, that.getVipStatusSuccess, that.getVipStatusFail);
-      
-    },500)
-    setTimeout(()=>{
-      wx.switchTab({
-        url: '../mine/mine',
-      })
-    },1000)
+    app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, that, that.getVipStatusSuccess, that.getVipStatusFail);
+    wx.switchTab({
+      url: '../mine/mine'
+    })
   },
   addVipFail() {
-    util.showModel('充值失败,请稍后再试')
+    // util.showModel('充值失败,请稍后再试')
   },
   getVipStatusSuccess(res){
     const endDate = util.formatTime(new Date(res.data.endTime));
-    // wx.setStorage({
-    //   key: "vipFlag",
-    //   data: res.data.isVip,
-    // })
     app.data.isVip = res.data.isVip
-    // console.log(app.data.isVip)
-    // wx.setStorage({
-    //   key: "vipDate",
-    //   data: endDate
-    // })
     app.data.vipDate = endDate
+    Session.setIsVip(res.data.isVip)
+    Session.setVipDate(endDate)
   }
 })

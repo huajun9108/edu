@@ -1,6 +1,5 @@
 const Session = require('../../vendor/wafer2-client-sdk/lib/session');
 const config = require('../../config')
-const util = require('../../utils/util.js')
 const app = getApp()
 Page({
   data: {
