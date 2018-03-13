@@ -314,9 +314,11 @@ Page({
       const title = this.data.detailnum;
       let price;
       if (this.data.vipFlag) {
-        price = this.data.vipPrice;
+        // price = this.data.vipPrice;
+        price = 0.01;
       } else {
-        price = this.data.originalPrice;
+        // price = this.data.originalPrice;
+        price = 0.02;
       }
 
       const courseId = this.data.courseId;
