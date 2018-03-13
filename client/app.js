@@ -9,8 +9,8 @@ App({
   data:{
     logged:false,
     userId:'',
-    iconUrl: "http://139.199.10.41/icons/",
-    imgUrl: "http://139.199.10.41/images/",
+    iconUrl: "http://smartmaker.xyz/icons/",
+    imgUrl: "http://smartmaker.xyz/images/",
     isVip:false,
     vipDate:""
   },
