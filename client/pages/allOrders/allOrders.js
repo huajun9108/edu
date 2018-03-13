@@ -1,7 +1,7 @@
 // pages/allOrders/allOrders.js
-var sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
-var config = require('../../config');
-var app = getApp();
+const sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
+const config = require('../../config');
+const app = getApp();
 Page({
 
     /**

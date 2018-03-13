@@ -62,8 +62,11 @@ var config = {
         //添加VIP
         addVipUrl: `${host}/weapp/vip/addOneByUserId`,
 
-        //根据用户ID返回当前时间是不是VIP
+        //根据用户ID返回当前是不是VIP
         getVipStatusUrl: `${host}/weapp/vip/selectVipByUserID`,
+
+        //课程购买
+        coursePay: `${host}/weapp/course/coursePay `
     }
 };
 

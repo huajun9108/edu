@@ -1,6 +1,6 @@
 // pages/course/course.js
-var config = require('../../config')
-var app = getApp()
+const config = require('../../config')
+const app = getApp()
 Page({
   data: {
     inputShowed: false,

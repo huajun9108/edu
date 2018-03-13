@@ -1,6 +1,6 @@
 // pages/buyCourse/buyCourse.js
-var config = require("../../config");
-var app = getApp();
+const config = require("../../config");
+const app = getApp();
 Page({
 
     /**
@@ -39,7 +39,9 @@ Page({
         model[1].detail += `${options.price}`;
         this.setData({
             model: model,
-            courseId: options.courseId
+            courseId: options.courseId,
+            courseName: model[0].detail,
+            coursePrice: options.price*100
         })
     },
 
@@ -93,40 +95,15 @@ Page({
     },
     buyTap() {
       var that = this;
-      const wechatData = {
-          appId: "wx8c8e043278e36df9", //小程序id
-          nonceStr: "qdpys6rdizbnpj12ahwvkf568a6c1sr9", //随机字符串
-          package: "prepay_id=wx2017033010242291fcfe0db70013231072", //wx的预支付交易单
-          paySign: "8A7DC1A560B3B6DB0C656AC382D3E6F1",
-          signType: "MD5",
-          timeStamp: "1481167418"
-      }
-      wx.requestPayment({
-        'appId': wechatData.appId,
-        'timeStamp': wechatData.timeStamp,
-        'nonceStr': wechatData.nonceStr,
-        'package': wechatData.package,
-        'signType': 'MD5',
-        'paySign': wechatData.paySign,
-        'total_fee': "280",
-        'success': function(res) {
-          console.log(res);
-          console.log('success');
-          this.setData({
-              courseIsBuy: 1
-          });
-        },
-        'fail': function(res) {
-            console.log(res);
-            console.log('fail');
-        },
-        'complete': function(res) {
-            console.log(res);
-            console.log('complete');
-            const addOrderUrl = config.service.addOrderUrl;
-            app.request.requestPostApi(addOrderUrl, { userId: app.data.userId, courseId: that.data.courseId, type: that.data.courseIsBuy }, that, that.addOrderSuccessFun, that.addOrderFailFun);
-        }
-      });
+      const coursePayUrl = config.service.coursePay
+      const body = this.data.courseName
+      const totalFee = this.data.coursePrice
+      app.request.requestPostApi(
+        coursePayUrl, 
+        { userId: app.data.userId, body: body, attatch: "IE共学社", totalFee: totalFee}, 
+        this, 
+        this.coursePaylSuccessFun, 
+        this.coursePayFailFun);
     },
     addOrderSuccessFun(res) {
         console.log(res);
@@ -138,5 +115,41 @@ Page({
     },
     addOrderFailFun() {
 
+    },
+    coursePaylSuccessFun(res){
+      let that = this
+      console.log(res)
+      if(res.status === "0"){
+        var coursePayDetail = res.data
+        wx.requestPayment({
+          'appId': coursePayDetail.appId,
+          'timeStamp': coursePayDetail.timeStamp,
+          'nonceStr': coursePayDetail.nonceStr,
+          'package': coursePayDetail.package,
+          'signType': coursePayDetail.signType,
+          'paySign': coursePayDetail.paySign,
+          'success': function (res) {
+            console.log(res);
+            console.log('success');
+            that.setData({
+              courseIsBuy: 1
+            });
+          },
+          'fail': function (res) {
+            console.log(res);
+            console.log('fail');
+            that.setData({
+              courseIsBuy: 0
+            });
+          },
+          'complete': function (res) {
+            console.log(res);
+            console.log('complete');
+            const addOrderUrl = config.service.addOrderUrl;
+            app.request.requestPostApi(addOrderUrl, { userId: app.data.userId, courseId: that.data.courseId, type: that.data.courseIsBuy }, that, that.addOrderSuccessFun, that.addOrderFailFun);
+          }
+        });
+      }
+      
     }
 })

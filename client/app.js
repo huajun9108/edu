@@ -11,6 +11,8 @@ App({
     userId:'',
     iconUrl: "http://139.199.10.41/icons/",
     imgUrl: "http://139.199.10.41/images/",
+    isVip:false,
+    vipDate:""
   },
   onLaunch: function () {
     qcloud.setLoginUrl(config.service.loginUrl);

@@ -14,15 +14,25 @@
       ></image>
       <view>
           <text class="userinfo-nickname">{{logged ? userInfo.nickName : '微信名称'}}</text>
-          <view class="{{nameFlag}}" >VIP会员</view>
+          <view class="{{vipFlag?'vipname':'unvipname'}}" >VIP会员</view>
       </view>
   </view>
   <view class="weui-cells weui-cells_after-title" >
-    <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{vipFlag?vipList:normalList}}" wx:key = "index">
+    <navigator url="{{item.url}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{normalList}}" wx:key = "index">
       <view class="weui-cell__hd"><image src="{{item.image}}"/></view>
       <view class="weui-cell__bd">{{item.title}}</view>
       <view class="weui-cell__ft weui-cell__ft_in-access base_color">{{item.explain}}</view>
     </navigator>
+     <navigator url="{{buyVipUrl}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd"><image src="{{vipImage}}"/></view>
+      <view class="weui-cell__bd">{{vipFlag?member:nonmember}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access base_color">{{vipFlag?vipDate+" 到期":""}}</view>
+    </navigator>
+    <navigator url="{{userSetUrl}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__hd"><image src="{{userSetImage}}"/></view>
+      <view class="weui-cell__bd">{{userSetTitle}}</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator> 
   </view>
 </view>
 

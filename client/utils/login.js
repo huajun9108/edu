@@ -8,10 +8,15 @@ function login(successFn){
   qcloud.login({
     success(result) {
       if (result) {
+        console.log(result)
         util.showSuccess('登录成功')
         const session = Session.get()
-        const app = getApp()
+        const endDate = util.formatTime(new Date(session.vip.endTime));
+        const app = getApp()        
         app.data.userId = session.userinfo.openId;
+        app.data.isVip = session.vip.isVip;
+        app.data.vipDate = endDate
+        console.log(session.vip.isVip)
         successFn(result)
       } else {
         // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
@@ -19,6 +24,7 @@ function login(successFn){
           url: config.service.requestUrl,
           login: true,
           success(result) {
+            console.log(result)
             util.showSuccess('登录成功')
             console.log(session)
             app.data.userId = session.userinfo.openId;

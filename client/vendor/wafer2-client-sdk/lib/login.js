@@ -1,7 +1,7 @@
 var utils = require('./utils');
 var constants = require('./constants');
 var Session = require('./session');
-
+var util = require("../../../utils/util.js")
 /***
  * @class
  * 表示登录过程中发生的异常
@@ -140,14 +140,17 @@ var login = function login(options) {
             method: options.method,
             data: options.data,
             success: function (result) {
+              console.log(result)
                 var data = result.data;
-
                 // 成功地响应会话信息
                 if (data && data.code === 0 && data.data.skey) {
                     var res = data.data
                     if (res.userinfo) {
-                        Session.set(res);
-                        options.success(userInfo);
+                      const endDate = util.formatTime(new Date(res.vip.endTime));
+                      Session.set(res);
+                      options.success(userInfo);
+                      Session.setIsVip(res.vip.isVip)
+                      Session.setVipDate(endDate)
                     } else {
                         var errorMessage = '登录失败(' + data.error + ')：' + (data.message || '未知错误');
                         var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, errorMessage);

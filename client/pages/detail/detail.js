@@ -1,7 +1,7 @@
 // pages/detail/detail.js
-var sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
-var config = require('../../config')
-var app = getApp();
+const sliderWidth = 80; // 需要设置slider的宽度，用于计算中间位置
+const config = require('../../config')
+const app = getApp();
 const courseDetailUrl = config.service.courseDetailUrl;
 Page({
     /**
@@ -29,7 +29,7 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,
-        vipFlag: 1,
+        vipFlag: app.data.isVip,
         collected_image: "../../images/heart_icon_focus.png",
         uncollected_image: "../../images/heart_icon_deafult.png",
         isLoad: false,
@@ -40,12 +40,16 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+      console.log(app.data.isVip)
         console.log(options);
         var that = this;
         this.setData({
             detailnum: options.name,
             courseId: options.id,
+            vipFlag: app.data.isVip
         });
+        console.log(this.data.vipFlag)
+        
         wx.setNavigationBarTitle({
             title: that.data.detailnum //页面标题为路由参数
         });
@@ -135,7 +139,12 @@ Page({
      */
     buyCourseFn() {
         const title = this.data.detailnum;
-        const price = this.data.vipPrice;
+        if(this.data.vipFlag){
+          const price = this.data.vipPrice;
+        }else{
+          const price = this.data.originalPrice;
+        }
+        
         const courseId = this.data.courseId;
         wx.navigateTo({
             "url": `../buyCourse/buyCourse?name=${title}&price=${price}&courseId=${courseId}`

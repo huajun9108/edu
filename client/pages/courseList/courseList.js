@@ -1,5 +1,5 @@
-var config = require('../../config')
-var app = getApp()
+const config = require('../../config')
+const app = getApp()
 Page({
     data: {
         is_modal_Hidden: true,

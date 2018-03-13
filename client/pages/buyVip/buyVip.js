@@ -1,6 +1,7 @@
 // pages/buyVip/buyVip.js
-var config = require('../../config')
-var app = getApp()
+const config = require('../../config')
+const util = require('../../utils/util.js')
+const app = getApp()
 Page({
 
   /**
@@ -122,15 +123,30 @@ Page({
     
   },
   buyTap(){
-    const price = this.data.number*100
-    const body = this.data.title
+    app.testSession(this.sessionSuccessbuyVip, this.sessionFailbuyVip)
+    
+  },
+  sessionSuccessbuyVip(){
+    this.buyVip()
+  },
+  buyVip(){
+    const price = this.data.number * 100
+    const body = `VIP${this.data.title}充值`
     const url = config.service.vipPay
     console.log(url)
     app.request.requestPostApi(
-      url, { userId: app.data.userId, body: "VIP购买", attach: "IE共学社", totalFee: price },
+      url, { userId: app.data.userId, body: body, attach: "IE共学社", totalFee: price },
       this,
       this.vipPaySuccessFun,
       this.vipPayFailFun);
+  },
+  sessionFailbuyVip(res){
+    app.login(this.successbuyVip)
+  },
+  successbuyVip(){
+    this.buyVip()
+    const getVipStatusUrl = config.service.getVipStatusUrl;
+    app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, this, this.getVipStatusSuccess, this.getVipStatusFail);
   },
   vipPaySuccessFun(res) {
     console.log(res);
@@ -158,11 +174,34 @@ Page({
   },
   addVipSuccess(res) {
     console.log(res);
-    wx.switchTab({
-      url: '../mine/mine',
-    });
+    util.showSuccess('充值成功')
+    const getVipStatusUrl = config.service.getVipStatusUrl;
+    let that = this
+    setTimeout(()=>{
+      app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, that, that.getVipStatusSuccess, that.getVipStatusFail);
+      
+    },500)
+    setTimeout(()=>{
+      wx.switchTab({
+        url: '../mine/mine',
+      })
+    },1000)
   },
   addVipFail() {
-
+    util.showModel('充值失败,请稍后再试')
+  },
+  getVipStatusSuccess(res){
+    const endDate = util.formatTime(new Date(res.data.endTime));
+    // wx.setStorage({
+    //   key: "vipFlag",
+    //   data: res.data.isVip,
+    // })
+    app.data.isVip = res.data.isVip
+    // console.log(app.data.isVip)
+    // wx.setStorage({
+    //   key: "vipDate",
+    //   data: endDate
+    // })
+    app.data.vipDate = endDate
   }
 })

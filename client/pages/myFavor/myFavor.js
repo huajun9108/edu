@@ -1,6 +1,6 @@
 // pages/myFavor/myFavor.js
-var config = require('../../config')
-var app = getApp()
+const config = require('../../config')
+const app = getApp()
 Page({
   data: {
     favorList: [],
