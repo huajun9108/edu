@@ -54,7 +54,7 @@ Page({
     wx.setNavigationBarTitle({
       title: that.data.detailnum //页面标题为路由参数
     });
-    this.getCourseDetail()
+    
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -83,7 +83,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCourseDetail();
   },
 
   /**
@@ -306,6 +306,9 @@ Page({
     if (res.status === "0") {
       if (res.data.isVip !== this.data.vipFlag && this.data.vipFlag) {
         utils.showModel("提示", "您的vip账户已过期");
+        app.data.isVip = res.data.isVip;
+        app.data.vipDate = utils.formatTime(new Date(res.data.endTime));
+        console.log(app.data.vipDate);
         this.setData({
           vipFlag: res.data.isVip
         });

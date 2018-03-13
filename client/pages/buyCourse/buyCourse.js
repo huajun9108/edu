@@ -134,6 +134,11 @@ Page({
             that.setData({
               courseIsBuy: 1
             });
+            const title = that.data.courseName;
+            const courseId = that.data.courseId;
+            wx.navigateBack({
+              url: `../detail/detail?name=${title}&id=${courseId}`,
+            });
           },
           'fail': function (res) {
             console.log(res);
