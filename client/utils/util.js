@@ -36,8 +36,9 @@ var showModel = (title, content) => {
 
     wx.showModal({
         title,
-        content: JSON.stringify(content),
-        showCancel: false
+        content,
+        showCancel: false,
+        confirmColor:"#cfb16b"
     })
 }
 
