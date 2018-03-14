@@ -134,7 +134,13 @@ Page({
     })
   },
   confirm(e){
-    console.log(e)
+    console.log(e);
+    const searchKeyword = e.detail;
+    const fuzzySelectUrl = config.service.fuzzySelectUrl;
+    app.request.requestPostApi(fuzzySelectUrl, {body: searchKeyword}, this, this.fuzzySelectSuccess, this.fuzzySelectFail);
+  },
+  fuzzySelectSuccess(res) {
+    console.log(res);
   }
   
 })

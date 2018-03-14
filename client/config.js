@@ -69,8 +69,13 @@ var config = {
         coursePay: `${host}/weapp/course/coursePay `,
 
         //查询所有课程类别接口
-        selectAllType: `${host}/weapp/course/selectAllType`
+        selectAllType: `${host}/weapp/course/selectAllType`,
+
+        //模糊搜索
+        fuzzySelectUrl: `${host}/weapp/course/FuzzySelect`
     }
+
+    
 };
 
 module.exports = config;
