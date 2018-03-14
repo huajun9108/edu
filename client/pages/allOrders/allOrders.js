@@ -20,6 +20,7 @@ Page({
         unpaidIsEmpty: false,
         tipMsg: '您还没有相关的订单',
         isLogin: false,
+        select: [],
         unselect: [],
         delCss:"weui-flex-common",
         showCheckCss:"",
@@ -232,18 +233,29 @@ Page({
         console.log(e.detail);
         const courseId = e.detail.select.toString();
         this.setData({
+            select: e.detail.select,
             unselect: e.detail.unselect
         });
         console.log(this.data.select);
+        console.log(this.data.unselect);
         const batchDelUnpaidOrdersUrl = config.service.batchDelUnpaidOrdersUrl;
         app.request.requestPostApi(batchDelUnpaidOrdersUrl, {userId: app.data.userId, courseIds: courseId}, this, this.batchDelUnpaidOrdersSuccessFun, this.batchDelUnpaidOrdersFailFun);
     },
     batchDelUnpaidOrdersSuccessFun(res) {
       console.log(res);
       if (res.status === "0") {
+        let oldOrderList = this.data.order;
+        const delArr = this.data.select;
+        let newOrderList = oldOrderList.filter(function(item, index) {
+          for(let i = 0; i < delArr.length; i++) {
+            if(item.courseId === delArr[i]) return false;
+          }
+          return true;
+        });
         this.setData({
           orderList: this.data.unselect,
-          num: 0
+          num: 0,
+          order: newOrderList
         })
       }
       if (this.data.unselect.length === 0) {
