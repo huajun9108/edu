@@ -6,8 +6,8 @@
       <text class='modalMsg'>{{modalMsg}}</text>  
     </view>  
     <view class='btn'>  
-      <view bindtap='modal_click_Hidden' class='cancel'>我再想想</view>
-      <view bindtap='Sure' class='Sure'>狠心删除</view>  
+      <view bindtap='modal_click_Hidden' class='cancel'>{{cancelText}}</view>
+      <view bindtap='Sure' class='Sure'>{{sureText}}</view>  
     </view>  
   </view>  
 </view>  

@@ -37,7 +37,9 @@ Component({
     is_modal_Msg: "你确定要狠心删除我吗？",
     selectAll: "全选",
     pageIsEmpty: false,
-    tipMsg: "你还没有收藏记录哦"
+    tipMsg: "你还没有收藏记录哦",
+    cancelText:"我再想想",
+    sureText:"狠心删除"
   },
 
   /**

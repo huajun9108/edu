@@ -25,4 +25,4 @@
   <view class="weui-flex__item"><view class="placeholder" bindtap="bindSelectAll">{{selectAll}}</view></view>
   <view class="weui-flex__item"><view class="placeholder base_color" bindtap="delItem">删除({{num}})</view></view>
 </view>
- <modal  modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" bindconfirm="confirm"/>  
+ <modal  modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" bindconfirm="confirm"/>  

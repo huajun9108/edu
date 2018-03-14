@@ -8,5 +8,9 @@
   </template>
   <template is="page-error" wx:if="{{isLoad}}">
   </template>
-  <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}"/>  
+  <modal modal-hidden="{{is_modal_Hidden}}" 
+  search-list="{{searchList}}" 
+  inputShowed="{{inputShowed}}"
+  bindsearchClick="searchClick" 
+  bindconfirm="confirm"/>  
 </view>

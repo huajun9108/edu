@@ -42,4 +42,13 @@ var showModel = (title, content) => {
     })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel }
+// 显示空白提示
+var pageIsEmpty = (arr)=>{
+  if (arr.length === 0) {
+    this.setData({
+      pageIsEmpty: true
+    })
+  }
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel,pageIsEmpty}

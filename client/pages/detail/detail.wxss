@@ -8,6 +8,7 @@
 .page_controls {
   width: 100%;
   height: 418rpx;
+  position: relative;
 }
 .bottomBlock{
   display: flex;
@@ -15,7 +16,7 @@
   overflow: auto;
   flex-direction: column
 }
-/* .poster{
+ .poster{
   width: 100%;
   height: 100%;
 }
@@ -28,7 +29,7 @@
   right: 0;
   bottom: 0;
   margin: auto;
-} */
+} 
 video{
   width: 100%;
   height: 100%
@@ -195,4 +196,22 @@ video{
   display: inline;
   padding: 0;
   line-height: 0;
+}
+.tipBlock{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  background: #000;
+  opacity: 0.3; 
+  color:#fff; 
+  font-size:28rpx;
+}
+.contentBox{
+  width: 222rpx;
+  height:132rpx; 
+  color: #fff;
+  z-index: 3;
 }

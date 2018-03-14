@@ -1,6 +1,8 @@
 // pages/myFavor/myFavor.js
 const config = require('../../config')
 const app = getApp()
+const util = require('../../utils/util.js')
+
 Page({
   data: {
     favorList: [],
@@ -11,6 +13,17 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
+    wx.getNetworkType({
+      success: function (res) {
+        console.log(res)
+        var networkType = res.networkType
+        if (networkType === "none") {
+          that.setData({
+            isLoad: true
+          });
+        }
+      }
+    })
   },
   onReady: function () {
     console.log("onReady")
@@ -76,7 +89,7 @@ Page({
     if(!res.data) return;
     var list = res.data;
     console.log(list)
-    this.pageIsEmpty(list)
+    util.pageIsEmpty(list)
     for(let i = 0; i<list.length; i++) {
       list[i].icon = app.data.iconUrl + list[i].icon;
     }

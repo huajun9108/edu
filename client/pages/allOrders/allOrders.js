@@ -42,9 +42,13 @@ Page({
         console.log(wx.canIUse('getNetworkType'))
         wx.getNetworkType({
           success: function (res) {
-            // 返回网络类型, 有效值：
-            // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
+            console.log(res)
             var networkType = res.networkType
+            if (networkType==="none"){
+              that.setData({
+                isLoad:true
+              });
+            }
           }
         })
         
@@ -61,24 +65,15 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-        app.testSession(this.success, this.fail)
-        wx.getNetworkType({
-          success: function (res) {
-            // 返回网络类型, 有效值：
-            // wifi/2g/3g/4g/unknown(Android下不常见的网络类型)/none(无网络)
-            var networkType = res.networkType
-          }
-        })
+      app.testSession(this.success, this.fail)
     },
     success() {
-      console.log("Sessionsuccess")
         this.setData({
             isLogin: false
         })
         this.queryAllOrders()
     },
     fail() {
-      console.log("Sessionfail")
         this.setData({
             isLogin: true
         })
@@ -87,7 +82,6 @@ Page({
         app.login(this.successFirst)
     },
     successFirst() {
-        console.log("successFirst")
         this.setData({
             isLogin: false
         })
@@ -168,7 +162,6 @@ Page({
                 });
             }
             this.setData({
-                // orderList: orderList,
                 paidList: paidList,
                 unpaidList: unpaidList,
                 order: orderList,
@@ -178,7 +171,6 @@ Page({
         }
     },
     queryAllOrdersFailFun(){
-      console.log("请求失败")
       this.setData({
         isLoad:true
       })

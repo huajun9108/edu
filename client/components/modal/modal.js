@@ -8,6 +8,14 @@ Component({
     modalMsg: {
       type: String,
       value: ' ',
+    },
+    cancelText:{
+      type: String,
+      value: ' ',
+    },
+    sureText: {
+      type: String,
+      value: ' ',
     }
   },
   data: {

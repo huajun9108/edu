@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    autoplay: true,
-    flag: false,
+    autoplay: false,
+    flag: true,
     detailnum: null,
     originalPrice: '待定',
     vipPrice: '待定',
@@ -35,6 +35,12 @@ Page({
     uncollected_image: "../../images/heart_icon_deafult.png",
     isLoad: false,
     teacherImage: "",
+
+    is_modal_Hidden: true,
+    is_modal_Msg: "你还未购买该课程",
+    cancelText: "取消",
+    sureText: "去购买"
+    
   },
 
   /**
@@ -124,10 +130,17 @@ Page({
    * 视频播放控制
    */
   play() {
-    this.videoCtx.play()
-    this.setData({
-      flag: false
-    })
+    if (this.data.courseIsBuy){
+      this.videoCtx.play()
+      this.setData({
+        flag: false
+      })
+    }else{
+      this.setData({
+        is_modal_Hidden: false
+      })
+    }
+    
   },
   /**
    * 用户购买课程判断是否已登录
@@ -174,8 +187,14 @@ Page({
   chooseCourseFn(e) {
     this.setData({
       courseIndex: e.currentTarget.id,
-      src: e.currentTarget.dataset.src
+      src: e.currentTarget.dataset.src,
+      autoplay:true
     })
+    if (!this.data.courseIsBuy){
+      this.setData({
+        is_modal_Hidden: false
+      })
+    }
   },
   chooseCourseFail() {
 
@@ -263,7 +282,7 @@ Page({
    */
   courseDetailSuccessFun(res) {
     this.setData({
-      imgSrc: res.data.img,
+      imgSrc: app.data.imgUrl+res.data.img,
       originalPrice: res.data.synopsis.price,
       vipPrice: res.data.synopsis.vip_price,
       peopleBuy: res.data.synopsis.buy_num,
@@ -278,6 +297,9 @@ Page({
       teacherImage: app.data.iconUrl + res.data.img,
       isLoad: false
     })
+    if (this.data.courseIsBuy){
+      this.play()
+    }
   },
   /**
    * 查询课程详情失败
@@ -331,5 +353,11 @@ Page({
 
 
     }
+  },
+  /**
+   * 未购买提示框点击确认
+   */
+  confirm(){
+    this.buyCourseFn()
   }
 })

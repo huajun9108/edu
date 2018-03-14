@@ -5,7 +5,6 @@ Page({
   data: {
     inputShowed: false,
     is_modal_Hidden: true,
-    searchList:["价值工程","质量工程","项目管理","管理工程","供应链管理","人因工程","运筹学","工作设计","金融工程","设施管理"],
     pageIsEmpty: false,
     tipMsg: "该课程暂无分类,请后续关注",
     isLoad:false
@@ -15,6 +14,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const url = config.service.selectAllType
+    app.request.requestGetApi(url, {}, this, this.successTypeFun, this.failTypeFun)
    
   },
 
@@ -113,6 +114,27 @@ Page({
   },
   load(){
     this.getCourse()
+  },
+  successTypeFun(res){
+    console.log(res)
+    this.setData({
+      searchList:res.data
+    })
+    wx.setStorage({
+      key: 'searchList',
+      data: res.data,
+    });
+  },
+  searchClick(e){
+    let title = e.detail.title
+    let id = e.detail.id
+    let url = `../courseList/courseList?title=${title}&type=A&id=${id}`
+    wx.navigateTo({
+      url: url
+    })
+  },
+  confirm(e){
+    console.log(e)
   }
   
 })

@@ -34,7 +34,14 @@ Component({
         inputVal: e.detail.value
       });
     },
-    searchClick() {
+    searchClick(e) {
+      const id = e.currentTarget.dataset.id
+      const title = e.currentTarget.dataset.title
+      const courseTypeDetail = {title: title,id:id}
+      this.triggerEvent("searchClick", courseTypeDetail);
+    },
+    confirm(){
+      this.triggerEvent("confirm", this.data.inputVal);
     }
   }
 });

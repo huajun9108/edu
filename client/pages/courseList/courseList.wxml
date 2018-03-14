@@ -28,6 +28,6 @@
         </navigator>
       </view>
     </view>
-    <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" />
+    <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindsearchClick="searchClick"/>
   </view>
 </block>
