@@ -40,6 +40,7 @@ Page({
     })
     app.data.isVip = sessionVip
     app.data.vipDate = sessionVipDate
+    app.data.logged = true
   },
   // 用户登录示例
   login: function () {

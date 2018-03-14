@@ -171,6 +171,7 @@ Page({
         }
     },
     queryAllOrdersFailFun(){
+      console.log("请求失败")
       this.setData({
         isLoad:true
       })

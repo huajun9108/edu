@@ -5,10 +5,14 @@
       <image class='poster' src="{{imgSrc}}" wx:if="{{flag}}"></image>
       <image class='play img' src="{{play}}" wx:if="{{flag}}" bindtap="play"></image>
       <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}" autoplay="{{autoplay}}"></video>
-      <view class="tipBlock">
+      <view class="tipBlock" wx:if="{{!isLogin}}">
+        <view class="shadowBox">
+        </view>
         <view class="contentBox">
-          <text>该课程需要登录后进行购买方可观看</text>
-          <view class="login-btn" bindtap="load">立即登录</view>
+          <text class="contentText">该课程需要登录后\n进行购买方可观看</text>
+          <view bindtap="login">
+            <text class="login-btn">立即登录</text>
+          </view>
         </view>
       </view>
   </view>
