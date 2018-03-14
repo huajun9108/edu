@@ -255,7 +255,8 @@ Page({
         this.setData({
           orderList: this.data.unselect,
           num: 0,
-          order: newOrderList
+          order: newOrderList,
+          unpaidList: this.data.unselect
         })
       }
       if (this.data.unselect.length === 0) {
