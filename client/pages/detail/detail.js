@@ -11,7 +11,6 @@ Page({
   data: {
     autoplay: false,
     flag: true,
-    detailnum: null,
     originalPrice: '待定',
     vipPrice: '待定',
     peopleBuy: 0,
@@ -39,7 +38,9 @@ Page({
     is_modal_Hidden: true,
     is_modal_Msg: "你还未购买该课程",
     cancelText: "取消",
-    sureText: "去购买"
+    sureText: "去购买",
+
+    isLogin:false
     
   },
 
@@ -69,6 +70,16 @@ Page({
         });
       }
     });
+    if(app.data.logged){
+      this.setData({
+        isLogin: true
+      })
+    }else{
+      this.setData({
+        isLogin: false
+      })
+    }
+    console.log(this.data.isLogin)
   },
   getCourseDetail() {
     if (app.data.userId) {
@@ -125,6 +136,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  login(){
+    app.login(this.successFirst)
   },
   /**
    * 视频播放控制
@@ -295,7 +309,7 @@ Page({
       courseIsCollected: res.data.collect_status,
       courseIsBuy: res.data.buy_status,
       teacherImage: app.data.iconUrl + res.data.img,
-      isLoad: false
+      isLoad: false,
     })
     if (this.data.courseIsBuy){
       this.play()
@@ -317,6 +331,9 @@ Page({
     app.login(this.successFirst)
   },
   successFirst() {
+    this.setData({
+      isLogin:true
+    })
     app.request.requestPostApi(
       courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
       this,

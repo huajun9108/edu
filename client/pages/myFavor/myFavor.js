@@ -89,7 +89,7 @@ Page({
     if(!res.data) return;
     var list = res.data;
     console.log(list)
-    util.pageIsEmpty(list)
+    this.pageIsEmpty(list)
     for(let i = 0; i<list.length; i++) {
       list[i].icon = app.data.iconUrl + list[i].icon;
     }

@@ -16,6 +16,7 @@ function login(successFn){
         app.data.userId = session.userinfo.openId;
         app.data.isVip = session.vip.isVip;
         app.data.vipDate = endDate
+        app.data.logged = true
         console.log(session.vip.isVip)
         successFn(result)
       } else {
