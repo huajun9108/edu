@@ -72,7 +72,7 @@ button{
   width: 100%;
   z-index: 2;
   background: #fff;
-  padding: 18rpx 40rpx;
+  padding: 14rpx 40rpx;
   box-sizing:border-box;
   border-bottom: 2rpx solid #efeff1
 }

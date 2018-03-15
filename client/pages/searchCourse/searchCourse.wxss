@@ -1,0 +1,15 @@
+/* pages/searchCourse/searchCourse.wxss */
+
+.courseImage{
+  width: 158rpx;
+  height: 142rpx;
+  border-radius: 30rpx;
+}
+
+.courseList-bd{
+  position: relative;
+  top: 122rpx
+}
+.courseList-bd .weui-cell__bd {
+  padding-left: 22rpx;
+}

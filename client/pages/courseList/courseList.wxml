@@ -12,22 +12,16 @@
     </view>
     <view class="courseList-wrap">
       <view class="courseList-hd">
-        <text class="flex-item" bindtap="tapCourseCategory">{{courseCategory}}</text>
+        <view class="flex-item">
+          <image class="menu-image" src="../../images/menu_icon.png" mode="scaleToFill" />
+          <text bindtap="tapCourseCategory">{{courseCategory}}</text>
+        </view>
         <template is="search" class="courseList-search flex-item" />
       </view>
       <view class="weui-cells courseList-bd">
-        <navigator url="../detail/detail?id={{item.id}}&name={{item.title}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{courseArr}}" wx:key="{{index}}">
-          <view class="weui-cell__hd">
-            <image src="{{iconUrl}}{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
-          </view>
-          <view class="weui-cell__bd">
-            <view class="courseContent-top">{{item.title}}</view>
-            <view class="courseContent-bottom">{{item.teacher}}</view>
-          </view>
-          <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
-        </navigator>
+        <template is="page-courseList" data="{{courseArr}}" />
       </view>
     </view>
-    <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindsearchClick="searchClick"/>
+    <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindsearchClick="searchClick" bindconfirm="confirm" />
   </view>
 </block>
