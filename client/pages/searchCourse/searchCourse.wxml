@@ -3,9 +3,9 @@
 <template is="page-error" wx:if="{{isLoad}}" />
 <block wx:else> 
 <view class="page">
-   <template is="search" /> 
+  <template is="search" />
   <view class="weui-cells courseList-bd">
-    <template is="page-courseList" data="{{courseArr}}"/>
+    <template is="page-courseList" data="{{courseArr}}" />
   </view>
    <modal modal-hidden="{{is_modal_Hidden}}" 
   search-list="{{searchList}}" 

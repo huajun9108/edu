@@ -13,3 +13,7 @@
 .courseList-bd .weui-cell__bd {
   padding-left: 22rpx;
 }
+
+.page-empty-wrap {
+  /* align-items: flex-start; */
+}

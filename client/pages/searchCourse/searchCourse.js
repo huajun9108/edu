@@ -52,9 +52,9 @@ Page({
       if(courseList.length <= 0) {
         this.setData({
           pageIsEmpty: true,
-          is_modal_Hidden: true,
-          courseArr: []
-        });
+          isLoad: false,
+          is_modal_Hidden: true
+        })
         return;
       }
       for (let i = 0; i < courseList.length; i++) {
@@ -62,8 +62,10 @@ Page({
       }
       this.setData({
         courseArr: courseList,
+        pageIsEmpty: false,
+        isLoad: false,
         is_modal_Hidden: true
-      })
+      });
     }
   },
   fuzzySelectFail(res) {
@@ -74,9 +76,6 @@ Page({
   },
   load() {
     this.fuzzySelect(this.data.searchKeyword);
-    this.setData({
-      isLoad: false
-    })
   },
   searchClick(e) {
     console.log("searchClick");
