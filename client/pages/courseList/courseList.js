@@ -140,6 +140,7 @@ Page({
     },
     confirm(e) {
       console.log(e);
+      if(e.detail === '') return;
       const searchKeyword = e.detail;
       wx.navigateTo({
         url: `../searchCourse/searchCourse?searchKeyword=${searchKeyword}`

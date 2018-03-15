@@ -11,7 +11,7 @@ Page({
     tipMsg: '',
     searchKeyword: ''
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     console.log(options.searchKeyword);
     wx.setNavigationBarTitle({
       title: options.searchKeyword,
@@ -21,8 +21,16 @@ Page({
       searchKeyword: options.searchKeyword
     });
     this.fuzzySelect(options.searchKeyword);
-    const url = config.service.selectAllType
-    app.request.requestGetApi(url, {}, this, this.successTypeFun, this.failTypeFun)
+    var that = this;
+    wx.getStorage({
+      key: 'searchList',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          searchList: res.data
+        })
+      }
+    })
   },
   onShow() {
     this.setData({
@@ -38,7 +46,6 @@ Page({
     this.setData({
       is_modal_Hidden: false,
       inputShowed: true,
-      pageIsEmpty: false
     })
   },
   fuzzySelect(keyword) {
@@ -47,9 +54,9 @@ Page({
   },
   fuzzySelectSuccess(res) {
     console.log(res);
-    if(res.status === "0") {
+    if (res.status === "0") {
       let courseList = res.data;
-      if(courseList.length <= 0) {
+      if (courseList.length <= 0) {
         this.setData({
           pageIsEmpty: true,
           isLoad: false,
@@ -87,6 +94,7 @@ Page({
     })
   },
   confirm(e) {
+    if (e.detail === '') return;
     const searchKeyword = e.detail;
     this.fuzzySelect(searchKeyword);
     wx.setNavigationBarTitle({
@@ -96,15 +104,5 @@ Page({
       tipMsg: `对不起,暂无${searchKeyword}相关的课程`,
       searchKeyword: searchKeyword
     })
-  },
-  successTypeFun(res) {
-    console.log(res)
-    this.setData({
-      searchList: res.data
-    })
-    wx.setStorage({
-      key: 'searchList',
-      data: res.data,
-    });
   },
 })
