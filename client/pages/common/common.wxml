@@ -22,7 +22,7 @@
     <view class="weui-cell">
       <view class="weui-cell__bd sp_title">{{showFlag?"会员套餐":"课程信息"}}</view>
     </view>
-    <view wx:if="{{showFlag}}" class="weui-cell" wx:for="{{model}}" bindtap="selectClick" wx:key="index" id="{{index}}" data-price="{{item.price}}" data-title = "{{item.title}}">
+    <view wx:if="{{showFlag}}" class="weui-cell" wx:for="{{model}}" bindtap="selectClick" wx:key="index" id="{{index}}" data-price="{{item.price}}" data-title="{{item.title}}">
       <view class="weui-cell__bd">{{item.title}}</view>
       <view class="weui-cell__ft">￥{{item.price}}/{{item.unit}}
         <image wx:if="{{item.selectImage}}" src="{{item.selectedImageUrl}}" class="seletedImage"></image>
@@ -35,15 +35,15 @@
       </view>
     </view>
     <view class="payContent" wx:for="{{payModel}}" wx:key="index">
-    <view class="weui-cell" >
-      <view class="weui-cell__bd sp_title">{{item.title}}</view>
-    </view>
-    <view class="weui-cell">
-      <view class="weui-cell__bd">{{item.unit}}</view>
-      <view class="weui-cell__ft">
-        <image src="{{item.payImageUrl}}" class="weixinImage"></image>
+      <view class="weui-cell">
+        <view class="weui-cell__bd sp_title">{{item.title}}</view>
       </view>
-    </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">{{item.unit}}</view>
+        <view class="weui-cell__ft">
+          <image src="{{item.payImageUrl}}" class="weixinImage"></image>
+        </view>
+      </view>
     </view>
   </view>
   <view class="common_btn page__bd_spacing">
@@ -51,61 +51,75 @@
   </view>
 </template>
 
+<!-- course 课程页面的课程类别及课程类别下所有课程的列表 -->
 <template name="course-list">
-<view class="course-list-box">
-  <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
-    <view bindtap="courseListClick" data-title = "{{item.title}}" data-type = "{{item.type}}" data-id="{{item.id}}"
-    class="weui-cell weui-cell_access" hover-class="weui-cell_active" >
-      <view class="weui-cell__bd">{{item.title}}</view>
-      <view class="weui-cell__ft">
-        <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;" wx:if="{{item.flag}}"></image>
-        <image src="../../images/more_icon.png" style="margin-right: 5px;vertical-align: middle;width:41rpx; height: 10rpx;" wx:else></image>
+  <view class="course-list-box">
+    <view class="weui-cells" wx:for="{{courseDir}}" wx:key="index">
+      <view bindtap="courseListClick" data-title="{{item.title}}" data-type="{{item.type}}" data-id="{{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">{{item.title}}</view>
+        <view class="weui-cell__ft">
+          <image src="../../images/quanbu_icon.png" style="margin-right: 5px;vertical-align: middle;width:34rpx; height: 34rpx;" wx:if="{{item.flag}}"></image>
+          <image src="../../images/more_icon.png" style="margin-right: 5px;vertical-align: middle;width:41rpx; height: 10rpx;" wx:else></image>
+        </view>
       </view>
+      <navigator url="../detail/detail?id={{child.id}}&name={{child.title}}" wx:for="{{courseDir[index].children}}" wx:for-item="child" wx:for-index="idx" wx:key="idx" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">{{child.title}}</view>
+        <view class="weui-cell__ft">
+          <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
+        </view>
+      </navigator>
     </view>
-    <navigator url="../detail/detail?id={{child.id}}&name={{child.title}}" wx:for="{{courseDir[index].children}}" wx:for-item="child" wx:for-index="idx" wx:key="idx" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-      <view class="weui-cell__bd">{{child.title}}</view>
-      <view class="weui-cell__ft">
-        <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
-      </view>
-    </navigator>
   </view>
-</view>
 </template>
 
 <template name="search">
-<view class="course-search-box">
-  <view class="course-search-bar" bindtap="showSearch">
-    <image src="../../images/search_icon.png" style="width:28rpx; height: 28rpx;"></image>
-    <text>搜索</text>
+  <view class="course-search-box">
+    <view class="course-search-bar" bindtap="showSearch">
+      <image src="../../images/search_icon.png" style="width:28rpx; height: 28rpx;"></image>
+      <text>搜索</text>
+    </view>
   </view>
-</view>
 </template>
 
 <template name="page-empty">
-<view class="page-empty">
-<view class="page-empty-wrap">
-  <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;" alt="图片加载失败"></image>
-  <view class="empty-text">{{tipMsg}}</view>
-</view>
-</view>
+  <view class="page-empty">
+    <view class="page-empty-wrap">
+      <image src="../../images/page_empty.png" style="height: 289rpx; width: 336rpx;" alt="图片加载失败"></image>
+      <view class="empty-text">{{tipMsg}}</view>
+    </view>
+  </view>
 </template>
 
 <template name="page-login">
-<view class="page-login">
-  <view class="page-login-wrap">
-  <image src="../../images/page_login.png" style="height: 264rpx; width: 274rpx;" alt="图片加载失败"></image>
-  <view class="login-text">您还没有登录···</view>
-  <view class="login-btn" bindtap="login">点我登录</view>
+  <view class="page-login">
+    <view class="page-login-wrap">
+      <image src="../../images/page_login.png" style="height: 264rpx; width: 274rpx;" alt="图片加载失败"></image>
+      <view class="login-text">您还没有登录···</view>
+      <view class="login-btn" bindtap="login">点我登录</view>
+    </view>
   </view>
-</view>
 </template>
 
 <template name="page-error">
-<view class="page-error">
-  <view class="page-error-wrap">
-  <image src="../../images/page_error.png" style="height: 305rpx; width: 394rpx;" alt="图片加载失败"></image>
-  <view class="error-text">您要的页面走丢了···</view>
-  <view class="error-btn" bindtap="load">重新加载</view>
+  <view class="page-error">
+    <view class="page-error-wrap">
+      <image src="../../images/page_error.png" style="height: 305rpx; width: 394rpx;" alt="图片加载失败"></image>
+      <view class="error-text">您要的页面走丢了···</view>
+      <view class="error-btn" bindtap="load">重新加载</view>
+    </view>
   </view>
-</view>
+</template>
+
+<!-- searchCourse 搜索课程结果页的课程结果列表 -->
+<template name="page-courseList">
+  <navigator url="../detail/detail?id={{item.id}}&name={{item.title}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{courseArr}}" wx:key="{{index}}">
+    <view class="weui-cell__hd">
+      <image src="{{item.icon}}" class="courseImage" style="vertical-align: middle;"></image>
+    </view>
+    <view class="weui-cell__bd">
+      <view class="courseContent-top">{{item.title}}</view>
+      <view class="courseContent-bottom">{{item.teacher}}</view>
+    </view>
+    <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
+  </navigator>
 </template>

@@ -54,6 +54,16 @@ Page({
             });
         }
     },
+    onShow() {
+      this.setData({
+        is_modal_Hidden: true
+      });
+    },
+    onHide() {
+      this.setData({
+        is_modal_Hidden: true
+      });
+    },
     getCourseListDetail() {
         const courseListUrl = config.service.courseListUrl;
         //获取类别下的所有课程
@@ -101,8 +111,12 @@ Page({
                 isLoad: false
             })
         } else {
+            let courseList = res.data;
+            for(let i = 0; i < courseList.length; i++) {
+              courseList[i].icon = this.data.iconUrl + courseList[i].icon;
+            }
             this.setData({
-                courseArr: res.data,
+                courseArr: courseList,
                 pageIsEmpty: false,
                 isLoad: false
             })
@@ -123,5 +137,13 @@ Page({
       wx.redirectTo({
         url: url
       })
-    }
+    },
+    confirm(e) {
+      console.log(e);
+      if(e.detail === '') return;
+      const searchKeyword = e.detail;
+      wx.navigateTo({
+        url: `../searchCourse/searchCourse?searchKeyword=${searchKeyword}`
+      });
+    },
 })

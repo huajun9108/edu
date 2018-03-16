@@ -135,12 +135,10 @@ Page({
   },
   confirm(e){
     console.log(e);
+    if(e.detail === '') return;
     const searchKeyword = e.detail;
-    const fuzzySelectUrl = config.service.fuzzySelectUrl;
-    app.request.requestPostApi(fuzzySelectUrl, {body: searchKeyword}, this, this.fuzzySelectSuccess, this.fuzzySelectFail);
+    wx.navigateTo({
+      url: `../searchCourse/searchCourse?searchKeyword=${searchKeyword}`
+    });
   },
-  fuzzySelectSuccess(res) {
-    console.log(res);
-  }
-  
 })

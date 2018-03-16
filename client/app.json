@@ -10,7 +10,8 @@
     "pages/userSet/userSet",
     "pages/myFavor/myFavor",
     "pages/index/index",
-    "pages/courseList/courseList"
+    "pages/courseList/courseList",
+    "pages/searchCourse/searchCourse"  
   ],
   "window":{
     "backgroundColor":"#fff",
