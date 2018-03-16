@@ -2,19 +2,13 @@
 <import src="../common/common.wxml" />
 <view class="page">
   <view class='page_controls'>
-      <image class='poster' src="{{imgSrc}}" wx:if="{{flag}}"></image>
-      <image class='play img' src="{{play}}" wx:if="{{flag}}" bindtap="play"></image>
-      <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}" autoplay="{{autoplay}}"></video>
-      <view class="tipBlock" wx:if="{{!isLogin}}">
-        <view class="shadowBox">
-        </view>
-        <view class="contentBox">
-          <text class="contentText">该课程需要登录后\n进行购买方可观看</text>
-          <view bindtap="login">
-            <text class="login-btn">立即登录</text>
-          </view>
-        </view>
-      </view>
+    <image class='poster' src="{{imgSrc}}" wx:if="{{flag}}"></image>
+    <image class='play img' src="{{play}}" wx:if="{{flag}}" bindtap="play"></image>
+    <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}"
+    binderror = "videoError"
+      autoplay="{{autoplay}}"></video>
+    <videoModal  is-hidden="{{isLogin}}" tip-text="{{tipText}}" btn-text="{{btnText}}" bindlogin="login"/>  
+    <videoModal  is-hidden="{{!isLoad}}" tip-text="{{loadText}}" btn-text="{{btnload}}" bindlogin="load"/>  
   </view>
   <view class="bottomBlock" wx:if="{{!isLoad}}">
     <view class='course'>

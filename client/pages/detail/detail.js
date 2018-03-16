@@ -4,6 +4,7 @@ const config = require('../../config')
 const app = getApp();
 const courseDetailUrl = config.service.courseDetailUrl;
 const utils = require('../../utils/util.js')
+const Session = require('../../vendor/wafer2-client-sdk/lib/session');
 Page({
   /**
    * 页面的初始数据
@@ -40,7 +41,12 @@ Page({
     cancelText: "取消",
     sureText: "去购买",
 
-    isLogin:false
+    isLogin:false,
+    tipText:"该课程需要登录后\n进行购买方可观看",
+    btnText:"立即登录",
+    
+    loadText:"网络请求出错\n请您稍后再试",
+    btnload:"重新加载"
     
   },
 
@@ -329,6 +335,7 @@ Page({
 
   sessionFail() {
     app.login(this.successFirst)
+
   },
   successFirst() {
     this.setData({
