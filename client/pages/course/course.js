@@ -1,6 +1,7 @@
 // pages/course/course.js
 const config = require('../../config')
 const app = getApp()
+const util = require('../../utils/util.js')
 Page({
   data: {
     inputShowed: false,
@@ -126,19 +127,9 @@ Page({
     });
   },
   searchClick(e){
-    let title = e.detail.title
-    let id = e.detail.id
-    let url = `../courseList/courseList?title=${title}&type=A&id=${id}`
-    wx.navigateTo({
-      url: url
-    })
+    util.searchClick(e)
   },
   confirm(e){
-    console.log(e);
-    if(e.detail === '') return;
-    const searchKeyword = e.detail;
-    wx.navigateTo({
-      url: `../searchCourse/searchCourse?searchKeyword=${searchKeyword}`
-    });
+    util.confirm(e)
   },
 })

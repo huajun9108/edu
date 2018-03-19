@@ -60,7 +60,7 @@ Page({
     this.setData({
       detailnum: options.name,
       courseId: options.id,
-      vipFlag: app.data.isVip
+      
     });
     console.log(this.data.vipFlag)
 
@@ -76,6 +76,10 @@ Page({
         });
       }
     });
+    this.getCourseDetail();
+    if(Session.get()){
+      app.data.logged = true
+    }
     if(app.data.logged){
       this.setData({
         isLogin: true
@@ -93,20 +97,40 @@ Page({
         userId: app.data.userId
       });
     }
+    app.testSession(this.sessionLoginFn, this.failLoginFn);
     app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: this.data.courseId },
       this, this.courseDetailSuccessFun, this.courseDetailFailFun);
+  },
+  sessionLoginFn(){
+    console.log(app.data.userId)
+    app.data.logged = true
+    this.setData({
+      isLogin: true
+    })
+    if (Session.getIsVip()){
+      app.data.isVip = true
+      this.setData({
+        vipFlag: app.data.isVip
+      })
+    }else{
+      app.data.isVip = false
+      this.setData({
+        vipFlag: app.data.isVip
+      })
+    }
+    console.log(app.data.isVip)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.videoCtx = wx.createVideoContext('myVideo')
+    // this.videoCtx = wx.createVideoContext('myVideo')
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getCourseDetail();
+    
   },
 
   /**
@@ -151,9 +175,10 @@ Page({
    */
   play() {
     if (this.data.courseIsBuy){
-      this.videoCtx.play()
+      // this.videoCtx.play()
       this.setData({
-        flag: false
+        flag: false,
+        autoplay:true
       })
     }else{
       this.setData({
@@ -314,7 +339,7 @@ Page({
       courseIndex: res.data.catalog[0].list[0].id,
       courseIsCollected: res.data.collect_status,
       courseIsBuy: res.data.buy_status,
-      teacherImage: app.data.iconUrl + res.data.img,
+      teacherImage: app.data.iconUrl + res.data.teacher.icon_url,
       isLoad: false,
     })
     if (this.data.courseIsBuy){
@@ -354,6 +379,8 @@ Page({
         utils.showModel("提示", "您的vip账户已过期");
         app.data.isVip = res.data.isVip;
         app.data.vipDate = utils.formatTime(new Date(res.data.endTime));
+        Session.setIsVip(res.data.isVip)
+        Session.setVipDate(utils.formatTime(new Date(res.data.endTime)))
         console.log(app.data.vipDate);
         this.setData({
           vipFlag: res.data.isVip

@@ -1,5 +1,7 @@
 const config = require("../../config.js")
 const app = getApp();
+const util = require('../../utils/util.js')
+
 Page({
   data: {
     inputShowed: false,
@@ -60,7 +62,7 @@ Page({
         this.setData({
           pageIsEmpty: true,
           isLoad: false,
-          is_modal_Hidden: true
+          is_modal_Hidden: true,
         })
         return;
       }
@@ -85,13 +87,7 @@ Page({
     this.fuzzySelect(this.data.searchKeyword);
   },
   searchClick(e) {
-    console.log("searchClick");
-    let title = e.detail.title
-    let id = e.detail.id
-    let url = `../courseList/courseList?title=${title}&type=A&id=${id}`
-    wx.navigateTo({
-      url: url
-    })
+    util.searchClick(e)
   },
   confirm(e) {
     if (e.detail === '') return;

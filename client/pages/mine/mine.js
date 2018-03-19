@@ -56,11 +56,4 @@ Page({
       vipDate: app.data.vipDate
     });
   },
-  // success(result){
-  //   console.log(result)
-  //   this.setData({
-  //     userInfo: result.data.data,
-  //     logged: true,
-  //   })
-  // },
 })

@@ -12,9 +12,9 @@
     </view>
     <view class="courseList-wrap">
       <view class="courseList-hd">
-        <view class="flex-item">
+        <view class="flex-item" bindtap="tapCourseCategory">
           <image class="menu-image" src="../../images/menu_icon.png" mode="scaleToFill" />
-          <text bindtap="tapCourseCategory">{{courseCategory}}</text>
+          <text>{{courseCategory}}</text>
         </view>
         <template is="search" class="courseList-search flex-item" />
       </view>

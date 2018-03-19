@@ -13,7 +13,7 @@
 }
 .course-list-box{
   position: relative;
-  top: 122rpx;
+  top: 114rpx;
 }
 .weui-cells::before{
   content: '';

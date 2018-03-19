@@ -42,13 +42,32 @@ var showModel = (title, content) => {
     })
 }
 
-// 显示空白提示
-var pageIsEmpty = (arr)=>{
-  if (arr.length === 0) {
-    this.setData({
-      pageIsEmpty: true
+var searchClick=(e)=> {
+  console.log("searchClick");
+  let title = e.detail.title
+  let id = e.detail.id
+  let url = `../courseList/courseList?title=${title}&type=A&id=${id}`
+  let route = getCurrentPages()[0].route
+  let length = getCurrentPages().length
+  if (route === "pages/course/course" && length===1){
+    wx.navigateTo({
+      url: url
+    })
+  }else{
+    wx.redirectTo({
+      url: url
     })
   }
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel,pageIsEmpty}
+
+var confirm=(e)=>{
+  if (e.detail === '') return;
+  const searchKeyword = e.detail;
+  const url = `../searchCourse/searchCourse?searchKeyword=${searchKeyword}`
+  wx.navigateTo({
+    url: url
+  });
+}
+
+module.exports = { formatTime, showBusy, showSuccess, showModel, searchClick, confirm}
