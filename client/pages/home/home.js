@@ -1,16 +1,13 @@
 // pages/home/home.js
+const config = require('../../config.js');
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg' ,name:"工艺AAA"},
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg' ,name: "工艺BBB"},
-      { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg',name: "工艺CCC" },
-      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg',name: "工艺DDD" }     
-    ],
+    imgUrls: [],
     indicatorDots: false,
     autoplay: true,
     interval: 3000,
@@ -22,6 +19,7 @@ Page({
     next:"35rpx",
     recommendComMsg:"为你推荐",
     latestComMsg:"最新最热",
+    imgUrl: app.data.imgUrl
   },
 
   /**
@@ -29,6 +27,8 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
+    const homePageUrl = config.service.homePageUrl;
+    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
     //===取屏幕宽度=======  
     wx.getSystemInfo({
       success: function (res) {
@@ -38,28 +38,6 @@ Page({
         })
       }
     });
-    var scrollimgUrls=[
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', name: "课程AAA" },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', name: "课程BBB" },
-      { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', name: "课程CCC" },
-      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', name: "课程DDD" },
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', name: "课程EEE" },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', name: "课程FFF" },
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', name: "课程AAA" },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', name: "课程BBB" },
-      { url: 'http://img04.tooopen.com/images/20130701/tooopen_20083555.jpg', name: "课程CCC" },
-      { url: 'http://img02.tooopen.com/images/20141231/sy_78327074576.jpg', name: "课程DDD" },
-      { url: 'http://img04.tooopen.com/images/20130712/tooopen_17270713.jpg', name: "课程EEE" },
-      { url: 'http://img04.tooopen.com/images/20130617/tooopen_21241404.jpg', name: "课程ggg" },
-    ]
-    var result = [];
-    for (var i = 0, len = scrollimgUrls.length; i < len; i += 6) {
-      result.push(scrollimgUrls.slice(i, i + 6));
-    }
-    this.setData({
-      latestImgUrls: result,
-      recommendImgUrls:result
-    })
   },
 
   /**
@@ -132,5 +110,27 @@ Page({
       "url": "../detail/detail?name=" + name + "&id=" + index
     })
   } ,
-  
+  homePageSuccess(res) {
+    console.log(res);
+    if(res.status === "0") {
+      var hottest = [];
+      var latest = [];
+      for (var i = 0, len = res.data.hottest.length; i < len; i += 6) {
+        hottest.push(res.data.hottest.slice(i, i + 6));
+      }
+      for(var i = 0, len = res.data.newest.length; i < len; i += 6) {
+        latest.push(res.data.newest.slice(i, i + 6));
+      }
+      this.setData({
+        imgUrls: res.data.top,
+        latestImgUrls: latest,
+        recommendImgUrls: hottest
+      });
+    }
+  },
+  homePageFail(res) {
+    console.log(res);
+    const homePageUrl = config.service.homePageUrl;
+    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
+  }
 })
