@@ -36,10 +36,10 @@ Page({
       userInfo: session.userinfo,
       logged: true,
       vipFlag: sessionVip,
-      vipDate:sessionVipDate
+      vipDate: sessionVipDate
     })
-    app.data.isVip = sessionVip
-    app.data.vipDate = sessionVipDate
+    // app.data.isVip = sessionVip
+    // app.data.vipDate = sessionVipDate
     app.data.logged = true
   },
   // 用户登录示例
@@ -52,8 +52,8 @@ Page({
     this.setData({
       userInfo: result,
       logged: true,
-      vipFlag: app.data.isVip,
-      vipDate: app.data.vipDate
+      vipFlag: Session.getIsVip(),
+      vipDate: Session.getVipDate()
     });
   },
   // success(result){

@@ -187,8 +187,8 @@ Page({
   },
   getVipStatusSuccess(res){
     const endDate = util.formatTime(new Date(res.data.endTime));
-    app.data.isVip = res.data.isVip
-    app.data.vipDate = endDate
+    // app.data.isVip = res.data.isVip
+    // app.data.vipDate = endDate
     Session.setIsVip(res.data.isVip)
     Session.setVipDate(endDate)
   }
