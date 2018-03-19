@@ -72,7 +72,10 @@ var config = {
         selectAllType: `${host}/weapp/course/selectAllType`,
 
         //模糊搜索
-        fuzzySelectUrl: `${host}/weapp/course/FuzzySelect`
+        fuzzySelectUrl: `${host}/weapp/course/FuzzySelect`,
+
+        //首页展示接口
+        homePageUrl: `${host}/weapp/course/selectHottestNewest`
     }
 
     

@@ -308,7 +308,7 @@ Page({
       courseIndex: res.data.catalog[0].list[0].id,
       courseIsCollected: res.data.collect_status,
       courseIsBuy: res.data.buy_status,
-      teacherImage: app.data.iconUrl + res.data.img,
+      teacherImage: app.data.iconUrl + res.data.teacher.icon_url,
       isLoad: false,
     })
     if (this.data.courseIsBuy){

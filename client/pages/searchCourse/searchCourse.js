@@ -60,7 +60,8 @@ Page({
         this.setData({
           pageIsEmpty: true,
           isLoad: false,
-          is_modal_Hidden: true
+          is_modal_Hidden: true,
+          courseArr: []
         })
         return;
       }

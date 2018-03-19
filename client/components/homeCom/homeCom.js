@@ -1,4 +1,5 @@
 // components/homeCom/homeCom.js
+const app = getApp();
 Component({
   /**
    * 组件的属性列表
@@ -19,7 +20,8 @@ Component({
    */
   data: {
     imgIndex: 0,
-    refreshImage: "../../images/refresh_icon.png"
+    refreshImage: "../../images/refresh_icon.png",
+    imgUrl: app.data.imgUrl
   },
 
   /**
@@ -38,7 +40,8 @@ Component({
       }
     },
     courseUrl(e) {
-      let url = "../detail/detail?name=" + e.currentTarget.dataset.name + "&imageUrl=" + e.currentTarget.dataset.url
+      console.log(e);
+      let url = "../detail/detail?name=" + e.currentTarget.dataset.name + "&id=" + e.currentTarget.dataset.id + "&imageUrl=" + e.currentTarget.dataset.url
       wx.navigateTo({
         url: url,
       })

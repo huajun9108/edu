@@ -13,9 +13,9 @@
   </view>
   <view class="course-image_box" wx:for="{{courseImgUrls}}" wx:key="{{index}}"  hidden='{{imgIndex===index}}'>
     <view class="course-image_item" wx:for="{{item}}" wx:key="{{index}}" bindtap="courseUrl" data-name = "{{item.name}}"
-      data-url = "{{item.url}}"
+      data-url = "{{imgUrl}}{{item.url}}" data-id="{{item.id}}"
       >
-      <image src="{{item.url}}"></image>
+      <image src="{{imgUrl}}{{item.url}}"></image>
       <view class="course-image_name">{{item.name}}</view>
     </view>
   </view>
