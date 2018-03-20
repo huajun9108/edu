@@ -4,6 +4,7 @@ const config = require('../../config')
 const app = getApp();
 const courseDetailUrl = config.service.courseDetailUrl;
 const utils = require('../../utils/util.js')
+const Session = require('../../vendor/wafer2-client-sdk/lib/session');
 Page({
   /**
    * 页面的初始数据
@@ -40,7 +41,12 @@ Page({
     cancelText: "取消",
     sureText: "去购买",
 
-    isLogin:false
+    isLogin:false,
+    tipText:"该课程需要登录后\n进行购买方可观看",
+    btnText:"立即登录",
+    
+    loadText:"网络请求出错\n请您稍后再试",
+    btnload:"重新加载"
     
   },
 
@@ -48,10 +54,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.data.isVip)
     console.log(options);
     var that = this;
-    // let vipFlag = Session.getIsVip();
     this.setData({
       detailnum: options.name,
       courseId: options.id,
@@ -71,6 +75,10 @@ Page({
         });
       }
     });
+    this.getCourseDetail();
+    if(Session.get()){
+      app.data.logged = true
+    }
     if(app.data.logged){
       this.setData({
         isLogin: true
@@ -88,20 +96,38 @@ Page({
         userId: app.data.userId
       });
     }
+    app.testSession(this.sessionLoginFn, this.failLoginFn);
     app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: this.data.courseId },
       this, this.courseDetailSuccessFun, this.courseDetailFailFun);
+  },
+  sessionLoginFn(){
+    console.log(app.data.userId)
+    app.data.logged = true
+    this.setData({
+      isLogin: true
+    })
+    if (Session.getIsVip()){
+      this.setData({
+        vipFlag: true
+      })
+    }else{
+      this.setData({
+        vipFlag: false
+      })
+    }
+    console.log(this.data.vipFlag)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    this.videoCtx = wx.createVideoContext('myVideo')
+    // this.videoCtx = wx.createVideoContext('myVideo')
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getCourseDetail();
+    
   },
 
   /**
@@ -146,9 +172,10 @@ Page({
    */
   play() {
     if (this.data.courseIsBuy){
-      this.videoCtx.play()
+      // this.videoCtx.play()
       this.setData({
-        flag: false
+        flag: false,
+        autoplay:true
       })
     }else{
       this.setData({
@@ -330,6 +357,7 @@ Page({
 
   sessionFail() {
     app.login(this.successFirst)
+
   },
   successFirst() {
     this.setData({
@@ -346,10 +374,9 @@ Page({
     if (res.status === "0") {
       if (res.data.isVip !== this.data.vipFlag && this.data.vipFlag) {
         utils.showModel("提示", "您的vip账户已过期");
-        // app.data.isVip = res.data.isVip;
-        // app.data.vipDate = utils.formatTime(new Date(res.data.endTime));
+        const endDate = res.data.endTime.split('T')[0];
         Session.setIsVip(res.data.isVip);
-        Session.setVipDate(utils.formatTime(new Date(res.data.endTime)));
+        Session.setVipDate(endDate);
         console.log(app.data.vipDate);
         this.setData({
           vipFlag: Session.getIsVip()

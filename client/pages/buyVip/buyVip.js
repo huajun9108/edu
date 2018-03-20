@@ -186,9 +186,7 @@ Page({
     // util.showModel('充值失败,请稍后再试')
   },
   getVipStatusSuccess(res){
-    const endDate = util.formatTime(new Date(res.data.endTime));
-    // app.data.isVip = res.data.isVip
-    // app.data.vipDate = endDate
+    const endDate = res.data.endTime.split('T')[0];
     Session.setIsVip(res.data.isVip)
     Session.setVipDate(endDate)
   }

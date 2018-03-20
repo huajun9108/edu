@@ -7,12 +7,10 @@ const testSession = require('./utils/testSession.js')
 
 App({
   data:{
-    logged:false,
-    userId:'',
-    iconUrl: "http://smartmaker.xyz/icons/",
-    imgUrl: "http://smartmaker.xyz/images/",
-    isVip:false,
-    vipDate:""
+    logged: false,
+    userId: '',
+    iconUrl: "https://smartmaker.xyz/icons/",
+    imgUrl: "https://smartmaker.xyz/images/",
   },
   onLaunch: function () {
     qcloud.setLoginUrl(config.service.loginUrl);

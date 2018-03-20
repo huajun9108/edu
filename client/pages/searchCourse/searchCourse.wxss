@@ -8,12 +8,8 @@
 
 .courseList-bd{
   position: relative;
-  top: 122rpx
+  top: 114rpx
 }
 .courseList-bd .weui-cell__bd {
   padding-left: 22rpx;
-}
-
-.page-empty-wrap {
-  /* align-items: flex-start; */
 }

@@ -4,7 +4,7 @@
   overflow: hidden;
 }
 .courseList-hd {
-  padding: 18rpx 40rpx;
+  padding: 14rpx 40rpx;
   border-bottom: 2rpx solid #EFEFF1; 
   display: flex;
   display: -webkit-flex;
@@ -65,7 +65,7 @@
 }
 .courseList-bd{
   position: relative;
-  top: 122rpx
+  top: 114rpx
 }
 .courseList-bd .weui-cell__bd {
   padding-left: 22rpx;

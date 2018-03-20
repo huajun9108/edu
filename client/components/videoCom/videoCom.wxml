@@ -1,0 +1,11 @@
+<!--components/videoCom.wxml-->
+<view class="tipBlock" hidden="{{isHidden}}">
+  <view class="shadowBox">
+  </view>
+  <view class="contentBox">
+    <text class="contentText">{{tipText}}</text>
+    <view bindtap="login">
+      <text class="login-btn">{{btnText}}</text>
+    </view>
+  </view>
+</view>

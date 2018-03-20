@@ -11,13 +11,9 @@ function login(successFn){
         console.log(result)
         util.showSuccess('登录成功')
         const session = Session.get()
-        const endDate = util.formatTime(new Date(session.vip.endTime));
         const app = getApp()        
         app.data.userId = session.userinfo.openId;
-        // app.data.isVip = session.vip.isVip;
-        // app.data.vipDate = endDate
         app.data.logged = true
-        console.log(session.vip.isVip)
         successFn(result)
       } else {
         // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取

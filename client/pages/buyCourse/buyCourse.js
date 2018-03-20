@@ -98,6 +98,7 @@ Page({
       const coursePayUrl = config.service.coursePay
       const body = this.data.courseName
       const totalFee = this.data.coursePrice
+      console.log(coursePayUrl)
       app.request.requestPostApi(
         coursePayUrl, 
         { userId: app.data.userId, body: body, attatch: "IE共学社", totalFee: totalFee}, 
