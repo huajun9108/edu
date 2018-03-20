@@ -1,6 +1,8 @@
 <!--pages/home/home.wxml-->
 <import src="../common/common.wxml"/>
-<view class="page">
+<template is="page-error" wx:if="{{isLoad}}">
+</template>
+<view class="page" wx:else>
   <swiper indicator-dots="{{indicatorDots}}"
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="bindchange" 
     previous-margin	="{{previous}}" next-margin = "{{next}}"

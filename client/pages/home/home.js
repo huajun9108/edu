@@ -19,7 +19,8 @@ Page({
     next:"35rpx",
     recommendComMsg:"为你推荐",
     latestComMsg:"最新最热",
-    imgUrl: app.data.imgUrl
+    imgUrl: app.data.imgUrl,
+    isLoad: true
   },
 
   /**
@@ -27,8 +28,7 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
-    const homePageUrl = config.service.homePageUrl;
-    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
+    this.showHomePage();
     //===取屏幕宽度=======  
     wx.getSystemInfo({
       success: function (res) {
@@ -110,6 +110,10 @@ Page({
       "url": "../detail/detail?name=" + name + "&id=" + index
     })
   } ,
+  showHomePage() {
+    const homePageUrl = config.service.homePageUrl;
+    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
+  },
   homePageSuccess(res) {
     console.log(res);
     if(res.status === "0") {
@@ -124,13 +128,18 @@ Page({
       this.setData({
         imgUrls: res.data.top,
         latestImgUrls: latest,
-        recommendImgUrls: hottest
+        recommendImgUrls: hottest,
+        isLoad: false
       });
     }
   },
   homePageFail(res) {
     console.log(res);
-    const homePageUrl = config.service.homePageUrl;
-    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
+    this.setData({
+      isLoad: true
+    });
+  },
+  load() {
+    this.showHomePage();
   }
 })
