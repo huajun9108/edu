@@ -54,7 +54,7 @@ Page({
   getMyFavor(){
     const url = config.service.myFavorListUrl;
     console.log(app.data)
-    app.request.requestPostApi(url, { userId: app.data.userId }, this, this.myFavorListSuccessFun, this.myFavorListFailFun)
+    app.request.requestPostApi(url, { userId: app.data.userId }, this, this.myFavorListSuccessFun, this.myFavorListFailFun,1)
   },
   onShow: function () {
     // 页面显示

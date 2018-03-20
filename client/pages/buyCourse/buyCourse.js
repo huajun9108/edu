@@ -98,7 +98,6 @@ Page({
       const coursePayUrl = config.service.coursePay
       const body = this.data.courseName
       const totalFee = this.data.coursePrice
-      console.log(coursePayUrl)
       app.request.requestPostApi(
         coursePayUrl, 
         { userId: app.data.userId, body: body, attatch: "IE共学社", totalFee: totalFee}, 
@@ -107,19 +106,17 @@ Page({
         this.coursePayFailFun);
     },
     addOrderSuccessFun(res) {
-        console.log(res);
-        if (res.status === "0") {
-            console.log("添加订单成功");
-        } else {
-            console.log("添加订单失败");
-        }
+      if (res.status === "0") {
+          console.log("添加订单成功");
+      } else {
+          console.log("添加订单失败");
+      }
     },
     addOrderFailFun() {
 
     },
     coursePaylSuccessFun(res){
       let that = this
-      console.log(res)
       if(res.status === "0"){
         var coursePayDetail = res.data
         wx.requestPayment({
@@ -130,8 +127,6 @@ Page({
           'signType': coursePayDetail.signType,
           'paySign': coursePayDetail.paySign,
           'success': function (res) {
-            console.log(res);
-            console.log('success');
             that.setData({
               courseIsBuy: 1
             });
@@ -142,15 +137,11 @@ Page({
             });
           },
           'fail': function (res) {
-            console.log(res);
-            console.log('fail');
             that.setData({
               courseIsBuy: 0
             });
           },
           'complete': function (res) {
-            console.log(res);
-            console.log('complete');
             const addOrderUrl = config.service.addOrderUrl;
             app.request.requestPostApi(addOrderUrl, { userId: app.data.userId, courseId: that.data.courseId, type: that.data.courseIsBuy }, that, that.addOrderSuccessFun, that.addOrderFailFun);
           }

@@ -12,8 +12,8 @@
  * @param  {Function} completeFun 接口调用结束的回调函数(调用成功、失败都会执行)
  */
 const util = require('./util.js')
-function requestPostApi(url, params, sourceObj, successFun, failFun, completeFun) {
-  requestApi(url, params, 'POST', sourceObj, successFun, failFun, completeFun)
+function requestPostApi(url, params, sourceObj, successFun, failFun, typeFun , completeFun) {
+  requestApi(url, params, 'POST', sourceObj, successFun, failFun, typeFun , completeFun)
 }
 
 /**
@@ -25,8 +25,8 @@ function requestPostApi(url, params, sourceObj, successFun, failFun, completeFun
  * @param  {Function} failFun     接口调用失败的回调函数
  * @param  {Function} completeFun 接口调用结束的回调函数(调用成功、失败都会执行)
  */
-function requestGetApi(url, params, sourceObj, successFun, failFun, completeFun) {
-  requestApi(url, params, 'GET', sourceObj, successFun, failFun, completeFun)
+function requestGetApi(url, params, sourceObj, successFun, failFun, typeFun, completeFun ) {
+  requestApi(url, params, 'GET', sourceObj, successFun, failFun, typeFun, completeFun)
 }
 
 /**
@@ -39,13 +39,16 @@ function requestGetApi(url, params, sourceObj, successFun, failFun, completeFun)
  * @param  {Function} failFun     接口调用失败的回调函数
  * @param  {Function} completeFun 接口调用结束的回调函数(调用成功、失败都会执行)
  */
-function requestApi(url, params, method, sourceObj, successFun, failFun, completeFun) {
+function requestApi(url, params, method, sourceObj, successFun, failFun, typeFun , completeFun) {
   if (method == 'POST') {
     var contentType = 'application/x-www-form-urlencoded'
   } else {
     var contentType = 'application/json'
   }
-  util.showBusy('请求中...')
+  if (typeFun === 1) {
+    console.log(1)    
+    util.showBusy('请求中...')
+  }
   wx.request({
     url: url,
     method: method,

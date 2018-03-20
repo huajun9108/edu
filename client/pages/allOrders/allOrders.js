@@ -131,7 +131,7 @@ Page({
     },
     queryAllOrders() {
         const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
-        app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun);
+        app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun,1);
     },
     queryAllOrdersSuccessFun(res) {
         if (res.status === "0") {

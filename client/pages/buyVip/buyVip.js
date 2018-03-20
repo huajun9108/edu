@@ -103,14 +103,12 @@ Page({
   
   },
   selectClick(e){
-    console.log(e)
     for (var i = 0; i < this.data.model.length; i++) {
       if (e.currentTarget.id == i) {
         this.data.model[i].selectImage = true;
         this.setData({
           vipType: this.data.model[i].type
         });
-        console.log(this.data.vipType);
       }
       else {
         this.data.model[i].selectImage = false;
@@ -134,7 +132,6 @@ Page({
     const price = this.data.number * 100
     const body = `VIP${this.data.title}充值`
     const url = config.service.vipPay
-    console.log(url)
     app.request.requestPostApi(
       url, { userId: app.data.userId, body: body, attach: "IE共学社", totalFee: price },
       this,
@@ -150,7 +147,6 @@ Page({
     app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, this, this.getVipStatusSuccess, this.getVipStatusFail);
   },
   vipPaySuccessFun(res) {
-    console.log(res);
     var that = this;
     if (res.status === "0"){
       var vipDetail = res.data
@@ -174,7 +170,6 @@ Page({
 
   },
   addVipSuccess(res) {
-    console.log(res);
     const getVipStatusUrl = config.service.getVipStatusUrl;
     let that = this
     app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, that, that.getVipStatusSuccess, that.getVipStatusFail);
@@ -183,7 +178,6 @@ Page({
     })
   },
   addVipFail() {
-    // util.showModel('充值失败,请稍后再试')
   },
   getVipStatusSuccess(res){
     const endDate = res.data.endTime.split('T')[0];

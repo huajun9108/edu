@@ -36,7 +36,6 @@ Component({
     is_modal_Hidden: true,
     is_modal_Msg: "你确定要狠心删除我吗？",
     selectAll: "全选",
-    pageIsEmpty: false,
     tipMsg: "你还没有收藏记录哦",
     cancelText:"我再想想",
     sureText:"狠心删除"
@@ -70,7 +69,6 @@ Component({
       this.bindTotalNum();
     },
     bindCheckbox(e) {
-      console.log("bindCheckbox");
       let index = e.currentTarget.dataset.index
       let selected = this.data.editDelList[index].selected;
       let editDelList = this.data.editDelList;
@@ -117,7 +115,6 @@ Component({
       });
     },
     courseUrl(e) {
-      console.log(e);
       const courseId = e.currentTarget.dataset.courseid;
       const title = e.currentTarget.dataset.title;
       const price = e.currentTarget.dataset.price;
@@ -148,7 +145,6 @@ Component({
           }
         }
       }
-      console.log(this.data.select)
       if (select.length == 0) return;
       this.setData({
         is_modal_Hidden: false,
@@ -157,13 +153,6 @@ Component({
     confirm() {
       const delConfirmDetail = { select: this.data.select, unselect: this.data.unselect}
       this.triggerEvent("delConfirm", delConfirmDetail);
-    },
-    pageIsEmpty(arr) {
-      if (arr.length === 0) {
-        this.setData({
-          pageIsEmpty: true
-        })
-      }
     }
   }
 })

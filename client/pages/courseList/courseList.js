@@ -68,7 +68,7 @@ Page({
     getCourseListDetail() {
         const courseListUrl = config.service.courseListUrl;
         //获取类别下的所有课程
-        app.request.requestPostApi(courseListUrl, { type: this.data.type, id: this.data.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun);
+        app.request.requestPostApi(courseListUrl, { type: this.data.type, id: this.data.id }, this, this.courseListUrlSuccessFun, this.courseListUrlFailFun , 1);
     },
     tapCourseCategory: function() {
         this.setData({

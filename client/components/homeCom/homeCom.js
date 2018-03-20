@@ -40,7 +40,6 @@ Component({
       }
     },
     courseUrl(e) {
-      console.log(e);
       let url = "../detail/detail?name=" + e.currentTarget.dataset.name + "&id=" + e.currentTarget.dataset.id + "&imageUrl=" + e.currentTarget.dataset.url
       wx.navigateTo({
         url: url,

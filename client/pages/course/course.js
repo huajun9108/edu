@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function (options) {
     const url = config.service.selectAllType
-    app.request.requestGetApi(url, {}, this, this.successTypeFun, this.failTypeFun)
+    app.request.requestGetApi(url, {}, this, this.successTypeFun, this.failTypeFun , 1)
    
   },
 

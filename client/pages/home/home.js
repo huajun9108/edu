@@ -27,7 +27,7 @@ Page({
   onLoad: function (options) {
     var _this = this;
     const homePageUrl = config.service.homePageUrl;
-    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
+    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail,1);
     //===取屏幕宽度=======  
     wx.getSystemInfo({
       success: function (res) {
