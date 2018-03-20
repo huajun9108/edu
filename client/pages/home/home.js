@@ -8,7 +8,6 @@ Page({
    */
   data: {
     imgUrls: [],
-    indicatorDots: false,
     autoplay: true,
     interval: 3000,
     duration: 500,

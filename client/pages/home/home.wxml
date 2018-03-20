@@ -1,7 +1,7 @@
 <!--pages/home/home.wxml-->
 <import src="../common/common.wxml"/>
 <view class="page">
-  <swiper indicator-dots="{{indicatorDots}}"
+  <swiper
     autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange="bindchange" 
     previous-margin	="{{previous}}" next-margin = "{{next}}"
    >
