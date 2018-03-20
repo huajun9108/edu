@@ -30,7 +30,7 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    vipFlag: app.data.isVip,
+    vipFlag: false,
     collected_image: "../../images/heart_icon_focus.png",
     uncollected_image: "../../images/heart_icon_deafult.png",
     isLoad: false,
@@ -54,15 +54,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(app.data.isVip)
     console.log(options);
     var that = this;
     this.setData({
       detailnum: options.name,
       courseId: options.id,
-      
+      vipFlag: Session.getIsVip()
     });
-    console.log(this.data.vipFlag)
+    console.log('session_isVip', this.data.vipFlag);
 
     wx.setNavigationBarTitle({
       title: that.data.detailnum //页面标题为路由参数
@@ -108,17 +107,15 @@ Page({
       isLogin: true
     })
     if (Session.getIsVip()){
-      app.data.isVip = true
       this.setData({
-        vipFlag: app.data.isVip
+        vipFlag: true
       })
     }else{
-      app.data.isVip = false
       this.setData({
-        vipFlag: app.data.isVip
+        vipFlag: false
       })
     }
-    console.log(app.data.isVip)
+    console.log(this.data.vipFlag)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -377,13 +374,12 @@ Page({
     if (res.status === "0") {
       if (res.data.isVip !== this.data.vipFlag && this.data.vipFlag) {
         utils.showModel("提示", "您的vip账户已过期");
-        app.data.isVip = res.data.isVip;
-        app.data.vipDate = utils.formatTime(new Date(res.data.endTime));
-        Session.setIsVip(res.data.isVip)
-        Session.setVipDate(utils.formatTime(new Date(res.data.endTime)))
+        const endDate = res.data.endTime.split('T')[0];
+        Session.setIsVip(res.data.isVip);
+        Session.setVipDate(endDate);
         console.log(app.data.vipDate);
         this.setData({
-          vipFlag: res.data.isVip
+          vipFlag: Session.getIsVip()
         });
         return;
       }

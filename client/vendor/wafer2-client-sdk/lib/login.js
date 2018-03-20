@@ -146,7 +146,7 @@ var login = function login(options) {
                 if (data && data.code === 0 && data.data.skey) {
                     var res = data.data
                     if (res.userinfo) {
-                      const endDate = util.formatTime(new Date(res.vip.endTime));
+                      const endDate = res.vip.endTime.split('T')[0];
                       Session.set(res);
                       options.success(userInfo);
                       Session.setIsVip(res.vip.isVip)
