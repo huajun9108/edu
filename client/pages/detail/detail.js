@@ -54,15 +54,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
     var that = this;
     this.setData({
       detailnum: options.name,
       courseId: options.id,
-      vipFlag: Session.getIsVip()
     });
-    console.log('session_isVip', this.data.vipFlag);
-
     wx.setNavigationBarTitle({
       title: that.data.detailnum //页面标题为路由参数
     });
@@ -76,19 +72,12 @@ Page({
       }
     });
     this.getCourseDetail();
-    if(Session.get()){
-      app.data.logged = true
-    }
-    if(app.data.logged){
-      this.setData({
-        isLogin: true
-      })
-    }else{
-      this.setData({
-        isLogin: false
-      })
-    }
-    console.log(this.data.isLogin)
+    app.testSession(this.sessionLoginFn, this.failLoginFn);
+  },
+  failLoginFn(){
+    this.setData({
+      isLogin: false
+    })
   },
   getCourseDetail() {
     if (app.data.userId) {
@@ -96,13 +85,10 @@ Page({
         userId: app.data.userId
       });
     }
-    app.testSession(this.sessionLoginFn, this.failLoginFn);
     app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: this.data.courseId },
-      this, this.courseDetailSuccessFun, this.courseDetailFailFun);
+      this, this.courseDetailSuccessFun, this.courseDetailFailFun,1);
   },
   sessionLoginFn(){
-    console.log(app.data.userId)
-    app.data.logged = true
     this.setData({
       isLogin: true
     })
@@ -115,13 +101,11 @@ Page({
         vipFlag: false
       })
     }
-    console.log(this.data.vipFlag)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {
-    // this.videoCtx = wx.createVideoContext('myVideo')
   },
   /**
    * 生命周期函数--监听页面显示
@@ -172,7 +156,6 @@ Page({
    */
   play() {
     if (this.data.courseIsBuy){
-      // this.videoCtx.play()
       this.setData({
         flag: false,
         autoplay:true
@@ -298,6 +281,7 @@ Page({
    */
   addMyFavorSuccessFun(res) {
     if (res.status === "0") {
+      utils.showSuccess('收藏成功');
       this.setData({
         courseIsCollected: true,
       })
@@ -308,16 +292,17 @@ Page({
    */
   delMyFavorSuccessFun(res) {
     if (res.status === "0") {
+      utils.showSuccess('已取消收藏');
       this.setData({
         courseIsCollected: false
       });
     }
   },
   addMyFavorFailFun(res) {
-    console.log(res);
+    utils.showFail('网络错误,请稍后再试');
   },
   delMyFavorFailFun() {
-
+    utils.showFail('网络错误,请稍后再试');
   },
   /**
    * 查询课程详情成功
@@ -360,6 +345,16 @@ Page({
 
   },
   successFirst() {
+    let session = Session.get()
+    if (session.vip.isVip){
+      this.setData({
+        vipFlag: true
+      })
+    }else{
+      this.setData({
+        vipFlag: false
+      })
+    }
     this.setData({
       isLogin:true
     })
@@ -367,7 +362,7 @@ Page({
       courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
       this,
       this.courseDetailSuccessFun,
-      this.courseDetailFailFun
+      this.courseDetailFailFun,1
     );
   },
   getVipStatusAgainBeforeBuyCourseSuccessFn(res) {
@@ -377,7 +372,6 @@ Page({
         const endDate = res.data.endTime.split('T')[0];
         Session.setIsVip(res.data.isVip);
         Session.setVipDate(endDate);
-        console.log(app.data.vipDate);
         this.setData({
           vipFlag: Session.getIsVip()
         });

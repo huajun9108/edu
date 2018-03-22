@@ -15,7 +15,6 @@ Page({
         iconUrl: app.data.iconUrl,
     },
     onLoad: function(option) {
-        console.log(option);
         wx.setNavigationBarTitle({
             title: option.title,
         });
@@ -27,7 +26,6 @@ Page({
         wx.getStorage({
             key: 'courseDir',
             success: function(res) {
-                console.log(res.data);
                 _this.setData({
                     courseDir: res.data
                 })
@@ -36,7 +34,6 @@ Page({
         wx.getStorage({
           key: 'searchList',
           success: function (res) {
-            console.log(res.data);
             _this.setData({
               searchList: res.data
             })

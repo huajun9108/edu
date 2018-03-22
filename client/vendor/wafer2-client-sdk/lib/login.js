@@ -36,7 +36,6 @@ var getWxLoginResult = function getLoginCode(callback) {
             },
 
             fail: function (userError) {  
-              console.log("拒绝授权")
               var error = new LoginError(constants.ERR_WX_GET_USER_INFO, '获取微信用户信息失败，请检查网络状态');
               error.detail = userError;
               callback(error, null);
@@ -120,7 +119,6 @@ var login = function login(options) {
             return;
         }
         
-        console.log(wxLoginResult);
         var userInfo = wxLoginResult.userInfo;
 
         // 构造请求头，包含 code、encryptedData 和 iv
@@ -140,7 +138,6 @@ var login = function login(options) {
             method: options.method,
             data: options.data,
             success: function (result) {
-              console.log(result)
                 var data = result.data;
                 // 成功地响应会话信息
                 if (data && data.code === 0 && data.data.skey) {

@@ -15,7 +15,6 @@ Page({
     // 页面初始化 options为页面跳转所带来的参数
     wx.getNetworkType({
       success: function (res) {
-        console.log(res)
         var networkType = res.networkType
         if (networkType === "none") {
           that.setData({
@@ -26,17 +25,14 @@ Page({
     })
   },
   onReady: function () {
-    console.log("onReady")
   },
   success(){
-    console.log("success")
     this.setData({
       isLogin: false
     })
     this.getMyFavor()
   },
   fail(){
-    console.log("fail")
     this.setData({
       isLogin: true
     })
@@ -45,7 +41,6 @@ Page({
     app.login(this.successFirst)
   },
   successFirst(){
-    console.log("successFirst")
     this.setData({
       isLogin: false
     })
@@ -53,7 +48,6 @@ Page({
   },
   getMyFavor(){
     const url = config.service.myFavorListUrl;
-    console.log(app.data)
     app.request.requestPostApi(url, { userId: app.data.userId }, this, this.myFavorListSuccessFun, this.myFavorListFailFun,1)
   },
   onShow: function () {
@@ -88,7 +82,6 @@ Page({
   myFavorListSuccessFun(res, selfObj) {
     if(!res.data) return;
     var list = res.data;
-    console.log(list)
     this.pageIsEmpty(list)
     for(let i = 0; i<list.length; i++) {
       list[i].icon = app.data.iconUrl + list[i].icon;
@@ -107,7 +100,6 @@ Page({
     this.getMyFavor()
   },
   batchDelMyFavorSuccessFun(res) {
-    console.log(res);
     if(res.status === "0") {
       this.setData({
         favorList: this.data.unselect,

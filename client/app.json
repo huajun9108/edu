@@ -9,7 +9,6 @@
     "pages/buyVip/buyVip",
     "pages/userSet/userSet",
     "pages/myFavor/myFavor",
-    "pages/index/index",
     "pages/courseList/courseList",
     "pages/searchCourse/searchCourse"  
   ],

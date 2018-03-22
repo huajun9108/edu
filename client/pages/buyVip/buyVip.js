@@ -136,7 +136,7 @@ Page({
       url, { userId: app.data.userId, body: body, attach: "IE共学社", totalFee: price },
       this,
       this.vipPaySuccessFun,
-      this.vipPayFailFun);
+      this.vipPayFailFun,1);
   },
   sessionFailbuyVip(res){
     app.login(this.successbuyVip)

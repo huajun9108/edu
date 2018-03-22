@@ -1,6 +1,5 @@
 {
   "usingComponents": {
     "modal": "../../components/homeCom/homeCom"
-  },
-  "enablePullDownRefresh":true
+  }
 }

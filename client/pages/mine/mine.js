@@ -22,26 +22,18 @@ Page({
     userSetTitle: "账号设置",
   },
   onLoad: function (options) {
-    console.log("onLoad")
   },
   onShow() {
-    console.log("onshow")
     app.testSession(this.showUser)
   },
   showUser() {
     const getVipStatusUrl = config.service.getVipStatusUrl;
     app.request.requestPostApi(getVipStatusUrl, { userId: app.data.userId }, this, this.getVipStatusSuccess, this.getVipStatusFail);
     var session = Session.get();
-    // var sessionVip = Session.getIsVip();
-    // var sessionVipDate = Session.getVipDate();
-    // let that = this
     this.setData({
       userInfo: session.userinfo,
       logged: true,
-      // vipFlag: sessionVip,
-      // vipDate: sessionVipDate
     })
-    app.data.logged = true
   },
   // 用户登录示例
   login: function () {
@@ -49,8 +41,6 @@ Page({
     app.login(this.successFirst)
   },
   successFirst(result) {
-    console.log(result)
-    console.log(Session.get());
     let session = Session.get();
     let endDate = session.vip.endTime.split('T')[0];
     this.setData({
@@ -61,7 +51,6 @@ Page({
     });
   },
   getVipStatusSuccess(res) {
-    console.log(res);
     if (res.status === "0") {
       let endDate = res.data.endTime.split('T')[0];
       this.setData({

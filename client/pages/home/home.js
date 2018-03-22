@@ -18,7 +18,8 @@ Page({
     next:"35rpx",
     recommendComMsg:"为你推荐",
     latestComMsg:"最新最热",
-    imgUrl: app.data.imgUrl
+    imgUrl: app.data.imgUrl,
+    isLoad: false
   },
 
   /**
@@ -26,17 +27,7 @@ Page({
    */
   onLoad: function (options) {
     var _this = this;
-    const homePageUrl = config.service.homePageUrl;
-    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail,1);
-    //===取屏幕宽度=======  
-    wx.getSystemInfo({
-      success: function (res) {
-        // _this.data.screenHeight= res.windowHeight;  
-        _this.setData({
-          phoneWidth: res.windowWidth
-        })
-      }
-    });
+    this.showHomePage();
   },
 
   /**
@@ -71,8 +62,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log("下拉刷新")
-    wx.stopPullDownRefresh()
+
+   
   },
 
   /**
@@ -109,8 +100,11 @@ Page({
       "url": "../detail/detail?name=" + name + "&id=" + index
     })
   } ,
+  showHomePage() {
+    const homePageUrl = config.service.homePageUrl;
+    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail,1);
+  },
   homePageSuccess(res) {
-    console.log(res);
     if(res.status === "0") {
       var hottest = [];
       var latest = [];
@@ -123,13 +117,17 @@ Page({
       this.setData({
         imgUrls: res.data.top,
         latestImgUrls: latest,
-        recommendImgUrls: hottest
+        recommendImgUrls: hottest,
+        isLoad: false
       });
     }
   },
   homePageFail(res) {
-    console.log(res);
-    const homePageUrl = config.service.homePageUrl;
-    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail);
+    this.setData({
+      isLoad: true
+    });
+  },
+  load() {
+    this.showHomePage();
   }
 })

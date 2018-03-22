@@ -33,7 +33,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
-        console.log(options);
         let model = this.data.model;
         model[0].detail = options.name;
         model[1].detail += `${options.price}`;
@@ -103,17 +102,7 @@ Page({
         { userId: app.data.userId, body: body, attatch: "IE共学社", totalFee: totalFee}, 
         this, 
         this.coursePaylSuccessFun, 
-        this.coursePayFailFun);
-    },
-    addOrderSuccessFun(res) {
-      if (res.status === "0") {
-          console.log("添加订单成功");
-      } else {
-          console.log("添加订单失败");
-      }
-    },
-    addOrderFailFun() {
-
+        this.coursePayFailFun , 1);
     },
     coursePaylSuccessFun(res){
       let that = this
@@ -147,6 +136,13 @@ Page({
           }
         });
       }
-      
-    }
+    },
+    addOrderSuccessFun(res) {
+      if (res.status === "0") {
+      } else {
+      }
+    },
+    addOrderFailFun() {
+
+    },
 })

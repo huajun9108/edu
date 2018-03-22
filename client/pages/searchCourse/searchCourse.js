@@ -14,7 +14,6 @@ Page({
     searchKeyword: ''
   },
   onLoad: function (options) {
-    console.log(options.searchKeyword);
     wx.setNavigationBarTitle({
       title: options.searchKeyword,
     });
@@ -27,7 +26,6 @@ Page({
     wx.getStorage({
       key: 'searchList',
       success: function (res) {
-        console.log(res)
         that.setData({
           searchList: res.data
         })
@@ -55,7 +53,6 @@ Page({
     app.request.requestPostApi(fuzzySelectUrl, { body: keyword }, this, this.fuzzySelectSuccess, this.fuzzySelectFail);
   },
   fuzzySelectSuccess(res) {
-    console.log(res);
     if (res.status === "0") {
       let courseList = res.data;
       if (courseList.length <= 0) {
@@ -78,7 +75,6 @@ Page({
     }
   },
   fuzzySelectFail(res) {
-    console.log(res);
     this.setData({
       isLoad: true
     })

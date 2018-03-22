@@ -96,7 +96,6 @@ Page({
         pageIsEmpty: true,
       })
     } else {
-      console.log(res.data);
       wx.setStorage({
         key: 'courseDir',
         data: res.data,
@@ -117,7 +116,6 @@ Page({
     this.getCourse()
   },
   successTypeFun(res){
-    console.log(res)
     this.setData({
       searchList:res.data
     })

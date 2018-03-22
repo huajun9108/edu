@@ -40,10 +40,8 @@ Page({
                 });
             }
         });
-        console.log(wx.canIUse('getNetworkType'))
         wx.getNetworkType({
           success: function (res) {
-            console.log(res)
             var networkType = res.networkType
             if (networkType==="none"){
               that.setData({
@@ -172,7 +170,6 @@ Page({
         }
     },
     queryAllOrdersFailFun(){
-      console.log("请求失败")
       this.setData({
         isLoad:true
       })
@@ -198,7 +195,6 @@ Page({
         }
     },
     tapToBuyOrToStudy(e) {
-        console.log(e);
         const explain = e.currentTarget.dataset.explain;
         const title = e.currentTarget.dataset.title;
         const courseId = e.currentTarget.dataset.courseId;
@@ -231,19 +227,15 @@ Page({
         })
     },
     delConfirm(e) {
-        console.log(e.detail);
         const courseId = e.detail.select.toString();
         this.setData({
             select: e.detail.select,
             unselect: e.detail.unselect
         });
-        console.log(this.data.select);
-        console.log(this.data.unselect);
         const batchDelUnpaidOrdersUrl = config.service.batchDelUnpaidOrdersUrl;
         app.request.requestPostApi(batchDelUnpaidOrdersUrl, {userId: app.data.userId, courseIds: courseId}, this, this.batchDelUnpaidOrdersSuccessFun, this.batchDelUnpaidOrdersFailFun);
     },
     batchDelUnpaidOrdersSuccessFun(res) {
-      console.log(res);
       if (res.status === "0") {
         let oldOrderList = this.data.order;
         const delArr = this.data.select;

@@ -46,7 +46,6 @@ function requestApi(url, params, method, sourceObj, successFun, failFun, typeFun
     var contentType = 'application/json'
   }
   if (typeFun === 1) {
-    console.log(1)    
     util.showBusy('请求中...')
   }
   wx.request({
