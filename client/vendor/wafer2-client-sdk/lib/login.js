@@ -138,6 +138,7 @@ var login = function login(options) {
             method: options.method,
             data: options.data,
             success: function (result) {
+              console.log(result)
                 var data = result.data;
                 // 成功地响应会话信息
                 if (data && data.code === 0 && data.data.skey) {
@@ -156,6 +157,7 @@ var login = function login(options) {
 
                 // 没有正确响应会话信息
                 } else {
+                  console.log(1)
                     var noSessionError = new LoginError(constants.ERR_LOGIN_SESSION_NOT_RECEIVED, JSON.stringify(data));
                     options.fail(noSessionError);
                 }
@@ -163,6 +165,7 @@ var login = function login(options) {
 
             // 响应错误
             fail: function (loginResponseError) {
+              console.log(2)
               var error = new LoginError(constants.ERR_LOGIN_FAILED, '登录失败，可能是网络错误或者服务器发生异常');
               options.fail(error);
             },

@@ -40,7 +40,7 @@ var showModel = (title, content) => {
     wx.hideToast();
     wx.showModal({
         title,
-        content,
+        content:content,
         showCancel: false,
         confirmColor:"#cfb16b"
     })

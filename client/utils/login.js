@@ -25,6 +25,7 @@ function login(successFn){
             successFn(result)
           },
           fail(error) {
+            console.log(error)
             util.showModel('请求失败', error)
           }
         })
@@ -32,7 +33,8 @@ function login(successFn){
     },
 
     fail(error) {
-      util.showModel('登录失败', error)
+      console.log(error)
+      util.showModel('登录失败', error.message)
     }
   })
 };
