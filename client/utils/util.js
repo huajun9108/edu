@@ -47,7 +47,6 @@ var showModel = (title, content) => {
 }
 
 var searchClick=(e)=> {
-  console.log("searchClick");
   let title = e.detail.title
   let id = e.detail.id
   let url = `../courseList/courseList?title=${title}&type=A&id=${id}`

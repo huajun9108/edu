@@ -4,7 +4,6 @@ Page({
     // url:""
   },
   onLoad: function () {
-    console.log("iv");
    
   },
   

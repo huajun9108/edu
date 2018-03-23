@@ -16,7 +16,6 @@ App({
     qcloud.setLoginUrl(config.service.loginUrl);
   },
   onError: function (msg){
-    console.log(msg)
   },
   request: request,
   login: login.login,

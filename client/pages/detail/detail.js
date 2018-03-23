@@ -41,7 +41,7 @@ Page({
     cancelText: "取消",
     sureText: "去购买",
 
-    isLogin:false,
+    isLogin:true,
     tipText:"该课程需要登录后\n进行购买方可观看",
     btnText:"立即登录",
     
@@ -71,8 +71,8 @@ Page({
         });
       }
     });
-    this.getCourseDetail();
     app.testSession(this.sessionLoginFn, this.failLoginFn);
+    this.getCourseDetail();
   },
   failLoginFn(){
     this.setData({
@@ -101,6 +101,7 @@ Page({
         vipFlag: false
       })
     }
+    this.getCourseDetail();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

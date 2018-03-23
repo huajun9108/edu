@@ -93,18 +93,20 @@ Page({
 
     },
     buyTap() {
-      var that = this;
-      const coursePayUrl = config.service.coursePay
+      const payUrl = config.service.vipPay
       const body = this.data.courseName
       const totalFee = this.data.coursePrice
       app.request.requestPostApi(
-        coursePayUrl, 
+        payUrl, 
         { userId: app.data.userId, body: body, attatch: "IE共学社", totalFee: totalFee}, 
         this, 
-        this.coursePaylSuccessFun, 
+        this.coursePaySuccessFun, 
         this.coursePayFailFun , 1);
+      console.log(payUrl)
     },
-    coursePaylSuccessFun(res){
+    
+    coursePaySuccessFun(res){
+      console.log(res)
       let that = this
       if(res.status === "0"){
         var coursePayDetail = res.data
@@ -116,6 +118,7 @@ Page({
           'signType': coursePayDetail.signType,
           'paySign': coursePayDetail.paySign,
           'success': function (res) {
+            console.log(res)
             that.setData({
               courseIsBuy: 1
             });
