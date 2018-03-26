@@ -106,12 +106,10 @@ Page({
     if(res.status === "0") {
       var hottest = [];
       var latest = [];
-      for (var i = 0, len = res.data.hottest.length; i < len; i += 6) {
-        hottest.push(res.data.hottest.slice(i, i + 6));
-      }
-      for(var i = 0, len = res.data.newest.length; i < len; i += 6) {
-        latest.push(res.data.newest.slice(i, i + 6));
-      }
+      let hottestData = res.data.hottest;
+      let latestData = res.data.newest;
+      hottest = this.setLatestOrHottest(hottestData);
+      latest = this.setLatestOrHottest(latestData);
       this.setData({
         imgUrls: res.data.top,
         latestImgUrls: latest,
@@ -127,5 +125,19 @@ Page({
   },
   load() {
     this.showHomePage();
+  },
+  setLatestOrHottest(course) {
+    let len = course.length;
+    let courseArr = [];
+    if(len <=0) return;
+    if (len <= 6) {
+      courseArr.push(course);
+      courseArr.push(course);
+    } else {
+      for (let i = 0; i < len; i += 6) {
+        courseArr.push(course.slice(i, i + 6));
+      }
+    }
+    return courseArr;
   }
 })
