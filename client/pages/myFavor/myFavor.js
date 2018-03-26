@@ -13,16 +13,6 @@ Page({
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    wx.getNetworkType({
-      success: function (res) {
-        var networkType = res.networkType
-        if (networkType === "none") {
-          that.setData({
-            isLoad: true
-          });
-        }
-      }
-    })
   },
   onReady: function () {
   },
@@ -52,7 +42,20 @@ Page({
   },
   onShow: function () {
     // 页面显示
-    app.testSession(this.success, this.fail)
+    let that = this;
+    wx.getNetworkType({
+      success: function (res) {
+        var networkType = res.networkType
+        if (networkType === "none") {
+          console.log('isLoad');
+          that.setData({
+            isLoad: true
+          });
+        } else {
+          app.testSession(that.success, that.fail)
+        }
+      }
+    })
   },
   onHide: function () {
     // 页面隐藏
