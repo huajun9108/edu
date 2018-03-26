@@ -71,14 +71,8 @@ Page({
         });
       }
     });
-    app.testSession(this.sessionLoginFn, this.failLoginFn);
-    this.getCourseDetail();
   },
-  failLoginFn(){
-    this.setData({
-      isLogin: false
-    })
-  },
+ 
   getCourseDetail() {
     if (app.data.userId) {
       this.setData({
@@ -112,9 +106,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    app.testSession(this.sessionLoginFn, this.failLoginFn);
   },
-
+  failLoginFn() {
+    this.setData({
+      isLogin: false
+    })
+    this.getCourseDetail();
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -150,7 +149,7 @@ Page({
 
   },
   login(){
-    app.login(this.successFirst)
+    app.login(this.sessionLoginFn)
   },
   /**
    * 视频播放控制
@@ -188,7 +187,7 @@ Page({
     app.login(this.successbuyCourse)
   },
   successbuyCourse() {
-    this.successFirst()
+    this.sessionLoginFn()
     setTimeout(() => {
       if (!this.data.courseIsBuy) {
         this.buyCourseFn()
@@ -270,7 +269,7 @@ Page({
     app.login(this.successaddMyFavor)
   },
   successaddMyFavor() {
-    this.successFirst()
+    this.sessionLoginFn()
     setTimeout(() => {
       if (!this.data.courseIsCollected) {
         this.addMyFavorFunction()
@@ -342,29 +341,8 @@ Page({
   },
 
   sessionFail() {
-    app.login(this.successFirst)
+    app.login(this.sessionLoginFn)
 
-  },
-  successFirst() {
-    let session = Session.get()
-    if (session.vip.isVip){
-      this.setData({
-        vipFlag: true
-      })
-    }else{
-      this.setData({
-        vipFlag: false
-      })
-    }
-    this.setData({
-      isLogin:true
-    })
-    app.request.requestPostApi(
-      courseDetailUrl, { userId: app.data.userId, courseId: this.data.courseId },
-      this,
-      this.courseDetailSuccessFun,
-      this.courseDetailFailFun,1
-    );
   },
   getVipStatusAgainBeforeBuyCourseSuccessFn(res) {
     if (res.status === "0") {
