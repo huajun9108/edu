@@ -40,19 +40,6 @@ Page({
                 });
             }
         });
-        wx.getNetworkType({
-          success: function (res) {
-            var networkType = res.networkType
-            console.log('isLoad');
-            if (networkType==="none"){
-              that.setData({
-                isLoad:true
-              });
-            }
-            return;
-          }
-        })
-        
     },
 
     /**
@@ -66,7 +53,19 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-      app.testSession(this.success, this.fail)
+      var that = this;
+      wx.getNetworkType({
+        success: function (res) {
+          var networkType = res.networkType
+          if (networkType === "none") {
+            that.setData({
+              isLoad: true
+            });
+          } else {
+            app.testSession(that.success, that.fail)
+          }
+        }
+      });
     },
     success() {
         console.log('isLogin');
