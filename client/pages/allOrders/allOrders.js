@@ -43,11 +43,13 @@ Page({
         wx.getNetworkType({
           success: function (res) {
             var networkType = res.networkType
+            console.log('isLoad');
             if (networkType==="none"){
               that.setData({
                 isLoad:true
               });
             }
+            return;
           }
         })
         
@@ -67,6 +69,7 @@ Page({
       app.testSession(this.success, this.fail)
     },
     success() {
+        console.log('isLogin');
         this.setData({
             isLogin: false
         })

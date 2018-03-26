@@ -21,6 +21,7 @@ Page({
             isLoad: true
           });
         }
+        return;
       }
     })
   },
