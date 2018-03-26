@@ -20,10 +20,11 @@ Page({
     this.setData({
       isLogin: false
     })
-    this.getMyFavor()
+    this.getMyFavor();
   },
   fail(){
     this.setData({
+      isLoad: false,
       isLogin: true
     })
   },
@@ -42,12 +43,20 @@ Page({
   },
   onShow: function () {
     // 页面显示
-    let that = this;
+    this.checkNetworkandLoginStatus();
+  },
+  onHide: function () {
+    // 页面隐藏
+  },
+  onUnload: function () {
+    // 页面关闭
+  },
+  checkNetworkandLoginStatus() {
+    var that = this;
     wx.getNetworkType({
       success: function (res) {
         var networkType = res.networkType
         if (networkType === "none") {
-          console.log('isLoad');
           that.setData({
             isLoad: true
           });
@@ -56,12 +65,6 @@ Page({
         }
       }
     })
-  },
-  onHide: function () {
-    // 页面隐藏
-  },
-  onUnload: function () {
-    // 页面关闭
   },
   courseUrl(e){
     const courseId = e.detail.courseId;
@@ -100,7 +103,7 @@ Page({
     })
   },
   load(){
-    this.getMyFavor()
+    this.checkNetworkandLoginStatus();
   },
   batchDelMyFavorSuccessFun(res) {
     if(res.status === "0") {

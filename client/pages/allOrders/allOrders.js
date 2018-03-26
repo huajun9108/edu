@@ -53,6 +53,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
+      this.checkNetworkandLoginStatus();
+    },
+    checkNetworkandLoginStatus() {
       var that = this;
       wx.getNetworkType({
         success: function (res) {
@@ -75,6 +78,7 @@ Page({
     },
     fail() {
         this.setData({
+            isLoad: false,
             isLogin: true
         })
     },
@@ -176,7 +180,7 @@ Page({
       })
     },
     load(){
-      this.queryAllOrders()
+      this.checkNetworkandLoginStatus();
     },
     setCourse() {
         if (this.data.activeIndex === "0") {
