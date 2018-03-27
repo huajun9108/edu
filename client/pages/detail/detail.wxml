@@ -19,7 +19,7 @@
             <view class="weui-flex__item course_share">
               <image class="collect_image" mode="scaleToFill" src="{{courseIsCollected?collected_image:uncollected_image}}" bindtap="addMyFavor"></image>
               <button class="share" open-type="share">
-                <image class="share_image" src="../../images/share_icon_deafult.png"></image>                      
+                <image class="share_image" src="../../images/share_icon.png"></image>                      
               </button>
             </view>
         </view>
@@ -52,7 +52,6 @@
                   </view>
               </view>
               <view class="weui-tab__content page__left_spacing" hidden="{{activeIndex != 1}}">
-                  <view class="course_title">{{detailnum}}</view>
                   <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
                       <view class="course_part base_color">{{item.title}}</view>
                       <view class="course_list">

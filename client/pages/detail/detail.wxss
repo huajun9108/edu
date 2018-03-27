@@ -36,7 +36,7 @@ video{
 }
 .course{
   width: 100%; 
-  padding: 36rpx 0 10rpx 0;
+  padding: 20rpx 0 10rpx 0;
   z-index: 500;
   background: #fff;
 } 
@@ -52,12 +52,12 @@ video{
   text-align: right;
 } 
 .course_share image{
-  width: 38rpx;
-  height: 31rpx;
+  width: 40rpx;
+  height: 40rpx;
   vertical-align: middle;
 } 
 .share_image{
-  padding-left: 22rpx;
+  padding-left: 14rpx;
   width: 32rpx;
 } 
 
@@ -67,8 +67,8 @@ video{
   line-height: 30rpx; 
   font-size: 26rpx;
   font-weight: bold;
-  margin-top: 13rpx;
-  border: 1rpx solid #dddddd;
+  margin-top: 6rpx;
+  border: 2rpx solid #dcc07f;
   border-radius: 15rpx;
   text-align: center;
   padding: 0;
@@ -111,12 +111,12 @@ video{
 }
 .course_list{
   margin-top: 16rpx;
-  padding: 0 0 10rpx 20rpx;
+  padding: 0 40rpx 10rpx 0;
 }
 .course_heading{
   font-size: 28rpx;
   line-height: 80rpx;
-  padding: 0 64rpx 0 18rpx;
+  padding: 0 18rpx 0 18rpx;
   background: #f5f7f9;
   margin-top: 12rpx;
   display:-webkit-box;
