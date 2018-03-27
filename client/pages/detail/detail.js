@@ -310,6 +310,7 @@ Page({
   courseDetailSuccessFun(res) {
     this.setData({
       imgSrc: app.data.imgUrl+res.data.img,
+      summary: res.data.synopsis.summary,
       originalPrice: res.data.synopsis.price,
       vipPrice: res.data.synopsis.vip_price,
       peopleBuy: res.data.synopsis.buy_num,

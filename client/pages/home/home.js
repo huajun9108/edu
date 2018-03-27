@@ -1,6 +1,8 @@
 // pages/home/home.js
 const config = require('../../config.js');
 const app = getApp();
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -106,7 +108,7 @@ Page({
     if(res.status === "0") {
       var hottest = [];
       var latest = [];
-      let hottestData = res.data.hottest;
+      let hottestData = res.data.hottest
       let latestData = res.data.newest;
       hottest = this.setLatestOrHottest(hottestData);
       latest = this.setLatestOrHottest(latestData);
@@ -114,7 +116,9 @@ Page({
         imgUrls: res.data.top,
         latestImgUrls: latest,
         recommendImgUrls: hottest,
-        isLoad: false
+        isLoad: false,
+        hottestData: hottestData,
+        latestData: latestData
       });
     }
   },
@@ -132,16 +136,23 @@ Page({
     if(len <=0) return;
     if (len <= 6) {
       courseArr.push(course);
-      courseArr.push(course);
-    } else if(len > 6 && len < 12) {
-      courseArr.push(course.slice(0, 6));
-      courseArr.push(course.slice(0, 6));
-    } 
-    else {
-      for (let i = 0; i < len; i += 6) {
-        courseArr.push(course.slice(i, i + 6));
-      }
+    } else {
+      courseArr.push(util.getRandomArrayElements(course, 6));
     }
     return courseArr;
+  },
+  recommendRefresh(){
+    if (this.data.hottestData.length<=6) util.showFail("暂无更多课程")
+    this.setData({
+      recommendImgUrls: this.setLatestOrHottest(this.data.hottestData),
+    });
+    console.log(this.setLatestOrHottest(this.data.hottestData))
+  },
+  latestRefresh(){
+    if (this.data.latestData.length <= 6) util.showFail("暂无更多课程")
+    this.setData({
+      latestImgUrls: this.setLatestOrHottest(this.data.latestData),
+    });
   }
+  
 })

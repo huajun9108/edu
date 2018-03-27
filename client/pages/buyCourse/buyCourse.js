@@ -102,11 +102,9 @@ Page({
         this, 
         this.coursePaySuccessFun, 
         this.coursePayFailFun , 1);
-      console.log(payUrl)
     },
     
     coursePaySuccessFun(res){
-      console.log(res)
       let that = this
       if(res.status === "0"){
         var coursePayDetail = res.data

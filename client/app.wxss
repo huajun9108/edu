@@ -129,3 +129,18 @@ button{
   border-radius: 26rpx; 
   text-align: center;
 }
+image{
+  border-radius: 2rpx;
+}
+.courseContent-bottom,.order-bottom {
+  overflow: hidden;
+  text-overflow:ellipsis; 
+  white-space: nowrap; 
+  font-size: 28rpx;
+  color: #575757;
+}
+.weui-cell__bd{
+  overflow: hidden; 
+}
+
+  

@@ -43,25 +43,25 @@
           <scroll-view class="ScrollView" scroll-y="true">
             <view class="weui-tab__panel">
               <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 0}}">
-                  <view class="course_title">{{detailnum}}</view>
-                  <view class="cuorse_price">
-                      <text class="common_price">￥{{originalPrice}}</text><text class="vip_price">VIP: ￥{{vipPrice}}</text>
-                  </view>
-                  <view class="cuorse_number">
-                      <text>已有{{peopleBuy}}人购买</text>
-                  </view>
+                <view class="cuorse_number">
+                  <text>已有{{peopleBuy}}人购买</text>
+                </view>
+                <view class="cuorse_price">
+                  <text class="common_price">￥{{originalPrice}}</text><text class="vip_price">VIP: ￥{{vipPrice}}</text>
+                </view>
+                <text class="cuorse_number">{{summary}}</text>
               </view>
               <view class="weui-tab__content page__left_spacing" hidden="{{activeIndex != 1}}">
-                  <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
-                      <view class="course_part base_color">{{item.title}}</view>
-                      <view class="course_list">
-                          <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" data-src="{{item.video_url}}">
-                              <text>{{item.detail}}</text>
-                              <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
-                              <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
-                          </view>
-                      </view>
-                  </view>
+                <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
+                    <view class="course_part base_color">{{item.title}}</view>
+                    <view class="course_list">
+                        <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" data-src="{{item.video_url}}">
+                            <text>{{item.detail}}</text>
+                            <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
+                            <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
+                        </view>
+                    </view>
+                </view>
               </view>
               <view class="weui-tab__content page__bd_spacing" hidden="{{activeIndex != 2}}">
                   <view class="course_teacher">

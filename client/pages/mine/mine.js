@@ -24,7 +24,7 @@ Page({
   onLoad: function (options) {
   },
   onShow() {
-    app.testSession(this.showUser)
+    app.testSession(this.showUser) 
   },
   showUser() {
     const getVipStatusUrl = config.service.getVipStatusUrl;

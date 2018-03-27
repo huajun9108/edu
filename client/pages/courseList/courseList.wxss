@@ -61,7 +61,6 @@
 .courseImage{
   width: 158rpx;
   height: 142rpx;
-  border-radius: 30rpx;
 }
 .courseList-bd{
   position: relative;

@@ -19,7 +19,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    imgIndex: 0,
     refreshImage: "../../images/refresh_icon.png",
     imgUrl: app.data.imgUrl
   },
@@ -29,15 +28,7 @@ Component({
    */
   methods: {
     refresh() {
-      if (this.data.imgIndex == 0) {
-        this.setData({
-          imgIndex: 1
-        })
-      } else {
-        this.setData({
-          imgIndex: 0
-        })
-      }
+      this.triggerEvent("refresh");
     },
     courseUrl(e) {
       let url = "../detail/detail?name=" + e.currentTarget.dataset.name + "&id=" + e.currentTarget.dataset.id + "&imageUrl=" + e.currentTarget.dataset.url

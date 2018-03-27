@@ -9,7 +9,7 @@
 }
 .weui-search-bar{
   position:relative;
-  padding:18rpx 40rpx;
+  padding:14rpx 40rpx;
   display:-webkit-box;
   display:-webkit-flex;
   display:flex;

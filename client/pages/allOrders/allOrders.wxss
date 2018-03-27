@@ -2,7 +2,6 @@
 image{
   height: 108rpx;
   width: 120rpx;
-  border-radius: 30rpx;
 }
 .order-bottom-price{
   font-size: 36rpx;

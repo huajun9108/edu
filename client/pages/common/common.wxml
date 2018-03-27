@@ -118,8 +118,9 @@
     </view>
     <view class="weui-cell__bd">
       <view class="courseContent-top">{{item.title}}</view>
-      <view class="courseContent-bottom">{{item.teacher}}</view>
+      <view class="courseContent-bottom">{{item.teacher.name}}</view>
+      <view class="courseContent-bottom">{{item.teacher.job}}</view>
     </view>
-    <image src="../../images/arrow.png" style="margin-right: 5px;vertical-align: middle;width:16rpx; height: 25rpx;"></image>
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view> 
   </navigator>
 </template>

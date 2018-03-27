@@ -85,7 +85,7 @@ video{
   position: relative; 
 }
 .weui-tab__panel {
-  padding-top: 20rpx;
+  padding-top: 10rpx;
 }
 .weui-tab__content {
   font-size: 26rpx;
@@ -102,7 +102,6 @@ video{
   padding-left: 16rpx;
 }
 .cuorse_number{
-  margin-top: 10rpx;
   color: #484848;
 }
 .course_part{

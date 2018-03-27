@@ -8,7 +8,6 @@
 .favorImage{
   width: 158rpx;
   height: 142rpx;
-  border-radius: 30rpx;
 }
 .weui-cells:nth-child(1)::after{
   border-top:0;

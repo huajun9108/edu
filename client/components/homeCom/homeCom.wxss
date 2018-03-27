@@ -31,7 +31,6 @@
 .course-image_item image{
   width: 216rpx;
   height: 194rpx;
-  border-radius: 20rpx;
 }
 .course-image_name{
   font-size: 26rpx;
