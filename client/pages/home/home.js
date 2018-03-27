@@ -133,7 +133,11 @@ Page({
     if (len <= 6) {
       courseArr.push(course);
       courseArr.push(course);
-    } else {
+    } else if(len > 6 && len < 12) {
+      courseArr.push(course.slice(0, 6));
+      courseArr.push(course.slice(0, 6));
+    } 
+    else {
       for (let i = 0; i < len; i += 6) {
         courseArr.push(course.slice(i, i + 6));
       }
