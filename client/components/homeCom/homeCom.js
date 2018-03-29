@@ -20,7 +20,7 @@ Component({
    */
   data: {
     refreshImage: "../../images/refresh_icon.png",
-    imgUrl: app.data.imgUrl
+    imgUrl: app.data.iconUrl
   },
 
   /**
