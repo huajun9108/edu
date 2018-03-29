@@ -58,7 +58,6 @@ video{
 } 
 .share_image{
   padding-left: 14rpx;
-  width: 32rpx;
 } 
 
 .consult_btn{
@@ -193,7 +192,6 @@ video{
 .share{
   background: #fff;
   display: inline;
-  padding-left: 0;
-  padding-right: 0;
+  padding:0;
   line-height: 0;
 }
