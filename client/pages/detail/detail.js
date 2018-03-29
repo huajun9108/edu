@@ -246,9 +246,7 @@ Page({
   },
   //用户点击play按钮,修改自动播放状态
   setAutoPlay(that, e) {
-    console.log(e);
     if (e) {
-      console.log(e.currentTarget.id);
       that.setData({
         courseIndex: e.currentTarget.id,
         src: e.currentTarget.dataset.src,
