@@ -48,6 +48,8 @@ Page({
     loadText: "网络请求出错\n请您稍后再试",
     btnload: "重新加载",
 
+    //点击目录列表的播放按钮时传入的事件对象
+    courseEvent: null,
   },
 
   /**
@@ -213,41 +215,61 @@ Page({
             if (e) {
               autoPlay(that, e);
             } else {
-              autoPlay(that, null);
+              autoPlay(that);
             }
           } else {
-            wx.showModal({
-              title: '提示',
-              content: '当前为非wifi环境，是否继续？',
-              success: function (res) {
-                if (res.confirm) {
-                  if (e) {
-                    autoPlay(that, e);
-                  } else {
-                    autoPlay(that, null);
-                  }
-                }
-              },
-              fail: function (res) {
-                utils.showFail('网络错误,请稍后再试');
+            if(e) {
+              if (e.currentTarget.id == that.data.courseIndex) {
+                return;
               }
-            })
+              that.setData({
+                courseEvent: e
+              });
+            }
+            that.setData({
+              is_modal_Hidden: false,
+              is_modal_Msg: "当前为非wifi环境，是否继续播放？",
+              cancelText: "取消",
+              sureText: "继续",
+            });
+            // wx.showModal({
+            //   title: '提示',
+            //   content: '当前为非wifi环境，是否继续？',
+            //   success: function (res) {
+            //     if (res.confirm) {
+            //       if (e) {
+            //         autoPlay(that, e);
+            //       } else {
+            //         autoPlay(that, null);
+            //       }
+            //     }
+            //   },
+            //   fail: function (res) {
+            //     utils.showFail('网络错误,请稍后再试');
+            //   }
+            // })
           }
         },
       })
     } else {
       this.setData({
-        is_modal_Hidden: false
+        is_modal_Hidden: false,
+        is_modal_Msg: "你还未购买该课程",
+        cancelText: "取消",
+        sureText: "去购买",
       })
     }
   },
   //用户点击play按钮,修改自动播放状态
   setAutoPlay(that, e) {
+    console.log(e);
     if (e) {
+      console.log(e.currentTarget.id);
       that.setData({
         courseIndex: e.currentTarget.id,
         src: e.currentTarget.dataset.src,
-        autoplay: true
+        autoplay: true,
+        flag: false
       });
     } else {
       that.setData({
@@ -418,6 +440,14 @@ Page({
    * 未购买提示框点击确认
    */
   confirm() {
-    this.buyCourseFn()
+    if(this.data.courseIsBuy) {
+      if(this.data.courseEvent) {
+        this.setAutoPlay(this, this.data.courseEvent);
+      } else {
+        this.setAutoPlay(this);
+      }
+    } else {
+      this.buyCourseFn();
+    }
   }
 })
