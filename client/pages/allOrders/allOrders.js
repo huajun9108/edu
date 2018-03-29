@@ -71,8 +71,6 @@ Page({
       });
     },
     success() {
-        console.log('isLogin');
-        console.log(app.data.userId)
         this.setData({
             isLogin: false
         })
@@ -137,10 +135,8 @@ Page({
     queryAllOrders() {
         const queryAllOrdersUrl = config.service.queryAllOrdersUrl;
         app.request.requestPostApi(queryAllOrdersUrl, { userId: app.data.userId }, this, this.queryAllOrdersSuccessFun, this.queryAllOrdersFailFun,1);
-        console.log(app.data.userId)
     },
     queryAllOrdersSuccessFun(res) {
-      console.log(res)
         if (res.status === "0") {
             const orderList = res.data;
             let paidList = [];

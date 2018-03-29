@@ -9,7 +9,6 @@ function testSession(){
   if (session) {
     wx.checkSession({
       success: function (result) {
-        console.log(result)
         app.data.userId = session.userinfo.openId;
         sucess(e)
       },

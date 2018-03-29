@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: [],
     autoplay: true,
     interval: 3000,
     duration: 500,
@@ -19,17 +18,25 @@ Page({
     previous:"35rpx",
     next:"35rpx",
     recommendComMsg:"为你推荐",
-    latestComMsg:"最新最热",
+    hottestComMsg:"最新最热",
     imgUrl: app.data.imgUrl,
-    isLoad: false
+    isLoad: false,
+    userId:-1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.testSession(this.sessionLoginFn, this.failLoginFn);
+    
   },
-
+  sessionLoginFn(){
+    this.showHomePage();
+  },
+  failLoginFn(){
+    this.showHomePage();
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -41,7 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.showHomePage();
+    
   },
 
   /**
@@ -102,23 +109,28 @@ Page({
   } ,
   showHomePage() {
     const homePageUrl = config.service.homePageUrl;
-    app.request.requestGetApi(homePageUrl, {}, this, this.homePageSuccess, this.homePageFail,1);
+    if (app.data.userId) {
+      this.setData({
+        userId: app.data.userId
+      });
+    }
+    app.request.requestPostApi(homePageUrl, { userId:this.data.userId}, this, this.homePageSuccess, this.homePageFail,1);
   },
   homePageSuccess(res) {
     if(res.status === "0") {
       var hottest = [];
-      var latest = [];
+      var recommend = [];
+      let recommendData = res.data.recommend;
       let hottestData = res.data.hottest
-      let latestData = res.data.newest;
       hottest = this.setLatestOrHottest(hottestData);
-      latest = this.setLatestOrHottest(latestData);
+      recommend = this.setLatestOrHottest(recommendData);
       this.setData({
         imgUrls: res.data.top,
-        latestImgUrls: latest,
-        recommendImgUrls: hottest,
+        hottestImgUrls: hottest,
+        recommendImgUrls: recommend,
         isLoad: false,
         hottestData: hottestData,
-        latestData: latestData
+        recommendData: recommendData
       });
     }
   },
@@ -142,16 +154,15 @@ Page({
     return courseArr;
   },
   recommendRefresh(){
-    if (this.data.hottestData.length<=6) util.showFail("暂无更多课程")
+    if (this.data.recommendData.length<=6) util.showFail("暂无更多课程")
     this.setData({
-      recommendImgUrls: this.setLatestOrHottest(this.data.hottestData),
+      recommendImgUrls: this.setLatestOrHottest(this.data.recommendData),
     });
-    console.log(this.setLatestOrHottest(this.data.hottestData))
   },
-  latestRefresh(){
-    if (this.data.latestData.length <= 6) util.showFail("暂无更多课程")
+  hottestRefresh(){
+    if (this.data.hottestData.length <= 6) util.showFail("暂无更多课程")
     this.setData({
-      latestImgUrls: this.setLatestOrHottest(this.data.latestData),
+      hottestImgUrls: this.setLatestOrHottest(this.data.hottestData),
     });
   }
   
