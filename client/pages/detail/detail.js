@@ -46,7 +46,11 @@ Page({
     btnText:"立即登录",
     
     loadText:"网络请求出错\n请您稍后再试",
-    btnload:"重新加载"
+    btnload:"重新加载",
+
+    isWifi: false,
+    networkText: '当前为非Wi-Fi环境，是否继续？',
+    btnnetwork:'继续观看'
     
   },
 
@@ -155,17 +159,39 @@ Page({
    * 视频播放控制
    */
   play() {
-    if (this.data.courseIsBuy){
-      this.setData({
-        flag: false,
-        autoplay:true
+    let that = this;
+    if (that.data.courseIsBuy) {
+      wx.getNetworkType({
+        success: function(res) {
+          if(res.networkType === 'wifi') {
+            that.setData({
+              flag: false,
+              autoplay: true
+            });
+          } else {
+             wx.showModal({
+               title: '提示',
+               content: '当前为非wifi环境，是否继续？',
+               success: function(res) {
+                 if(res.confirm) {
+                   that.setData({
+                     flag: false,
+                     autoplay: true
+                   });
+                 }
+               },
+               fail: function(res) {
+                 utils.showFail('网络出错');
+               }
+             })
+          }
+        },
       })
-    }else{
-      this.setData({
+    } else {
+      that.setData({
         is_modal_Hidden: false
-      })
-    }
-    
+      });
+    }    
   },
   /**
    * 用户购买课程判断是否已登录
@@ -308,6 +334,7 @@ Page({
    * 查询课程详情成功
    */
   courseDetailSuccessFun(res) {
+    let that = this;
     this.setData({
       imgSrc: app.data.imgUrl+res.data.img,
       summary: res.data.synopsis.summary,
@@ -325,9 +352,15 @@ Page({
       teacherImage: app.data.iconUrl + res.data.teacher.icon_url,
       isLoad: false,
     })
-    if (this.data.courseIsBuy){
-      this.play()
-    }
+    wx.getNetworkType({
+      success: function(res) {
+        if(res.networkType === 'wifi') {
+          if (that.data.courseIsBuy){
+            that.play()
+          }
+        }
+      },
+    })
   },
   /**
    * 查询课程详情失败
