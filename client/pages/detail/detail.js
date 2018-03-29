@@ -228,26 +228,10 @@ Page({
             }
             that.setData({
               is_modal_Hidden: false,
-              is_modal_Msg: "当前为非wifi环境，是否继续播放？",
+              is_modal_Msg: "当前为非wifi环境，是否继续？",
               cancelText: "取消",
               sureText: "继续",
             });
-            // wx.showModal({
-            //   title: '提示',
-            //   content: '当前为非wifi环境，是否继续？',
-            //   success: function (res) {
-            //     if (res.confirm) {
-            //       if (e) {
-            //         autoPlay(that, e);
-            //       } else {
-            //         autoPlay(that, null);
-            //       }
-            //     }
-            //   },
-            //   fail: function (res) {
-            //     utils.showFail('网络错误,请稍后再试');
-            //   }
-            // })
           }
         },
       })
@@ -262,9 +246,7 @@ Page({
   },
   //用户点击play按钮,修改自动播放状态
   setAutoPlay(that, e) {
-    console.log(e);
     if (e) {
-      console.log(e.currentTarget.id);
       that.setData({
         courseIndex: e.currentTarget.id,
         src: e.currentTarget.dataset.src,
