@@ -48,10 +48,6 @@ Page({
     loadText: "网络请求出错\n请您稍后再试",
     btnload: "重新加载",
 
-    isWifi: false,
-    networkText: '当前为非Wi-Fi环境，是否继续？',
-    btnnetwork: '继续观看'
-
   },
 
   /**
@@ -233,7 +229,7 @@ Page({
                 }
               },
               fail: function (res) {
-                utils.showFail('网络出错');
+                utils.showFail('网络错误,请稍后再试');
               }
             })
           }
@@ -369,7 +365,7 @@ Page({
             that.play()
           }
         }
-      },
+      }
     })
   },
   /**

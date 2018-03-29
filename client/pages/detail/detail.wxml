@@ -9,7 +9,6 @@
       autoplay="{{autoplay}}"></video>
     <videoModal  is-hidden="{{isLogin}}" tip-text="{{tipText}}" btn-text="{{btnText}}" bindlogin="login"/>  
     <videoModal  is-hidden="{{!isLoad}}" tip-text="{{loadText}}" btn-text="{{btnload}}" bindlogin="load"/>
-    <!-- <videoModal is-hidden="{{!isWifi}}" tip-text="{{networkText}}" btn-text="{{btnnetwork}}" bindnetwork="network" />   -->
   </view>
   <view class="bottomBlock" wx:if="{{!isLoad}}">
     <view class='course'>
