@@ -41,17 +41,17 @@ Page({
     cancelText: "取消",
     sureText: "去购买",
 
-    isLogin:true,
-    tipText:"该课程需要登录后\n进行购买方可观看",
-    btnText:"立即登录",
-    
-    loadText:"网络请求出错\n请您稍后再试",
-    btnload:"重新加载",
+    isLogin: true,
+    tipText: "该课程需要登录后\n进行购买方可观看",
+    btnText: "立即登录",
+
+    loadText: "网络请求出错\n请您稍后再试",
+    btnload: "重新加载",
 
     isWifi: false,
     networkText: '当前为非Wi-Fi环境，是否继续？',
-    btnnetwork:'继续观看'
-    
+    btnnetwork: '继续观看'
+
   },
 
   /**
@@ -66,7 +66,7 @@ Page({
     wx.setNavigationBarTitle({
       title: that.data.detailnum //页面标题为路由参数
     });
-    
+
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -76,7 +76,7 @@ Page({
       }
     });
   },
- 
+
   getCourseDetail() {
     if (app.data.userId) {
       this.setData({
@@ -84,17 +84,17 @@ Page({
       });
     }
     app.request.requestPostApi(courseDetailUrl, { userId: this.data.userId, courseId: this.data.courseId },
-      this, this.courseDetailSuccessFun, this.courseDetailFailFun,1);
+      this, this.courseDetailSuccessFun, this.courseDetailFailFun, 1);
   },
-  sessionLoginFn(){
+  sessionLoginFn() {
     this.setData({
       isLogin: true
     })
-    if (Session.getIsVip()){
+    if (Session.getIsVip()) {
       this.setData({
         vipFlag: true
       })
-    }else{
+    } else {
       this.setData({
         vipFlag: false
       })
@@ -152,46 +152,14 @@ Page({
   onShareAppMessage: function () {
 
   },
-  login(){
+  login() {
     app.login(this.sessionLoginFn)
   },
   /**
    * 视频播放控制
    */
   play() {
-    let that = this;
-    if (that.data.courseIsBuy) {
-      wx.getNetworkType({
-        success: function(res) {
-          if(res.networkType === 'wifi') {
-            that.setData({
-              flag: false,
-              autoplay: true
-            });
-          } else {
-             wx.showModal({
-               title: '提示',
-               content: '当前为非wifi环境，是否继续？',
-               success: function(res) {
-                 if(res.confirm) {
-                   that.setData({
-                     flag: false,
-                     autoplay: true
-                   });
-                 }
-               },
-               fail: function(res) {
-                 utils.showFail('网络出错');
-               }
-             })
-          }
-        },
-      })
-    } else {
-      that.setData({
-        is_modal_Hidden: false
-      });
-    }    
+    this.playControl(this.setAutoPlay);    
   },
   /**
    * 用户购买课程判断是否已登录
@@ -236,27 +204,32 @@ Page({
    * 用户观看课程已登录
    */
   chooseCourseFn(e) {
+    this.playControl(this.setAutoPlay, e);
+  },
+  chooseCourseFail() {
+  },
+  playControl(autoPlay, e) {
     let that = this;
-    if (this.data.courseIsBuy){
+    if (this.data.courseIsBuy) {
       wx.getNetworkType({
         success: function (res) {
           if (res.networkType === 'wifi') {
-            that.setData({
-              courseIndex: e.currentTarget.id,
-              src: e.currentTarget.dataset.src,
-              autoplay: true
-            });
+            if (e) {
+              autoPlay(that, e);
+            } else {
+              autoPlay(that, null);
+            }
           } else {
             wx.showModal({
               title: '提示',
               content: '当前为非wifi环境，是否继续？',
               success: function (res) {
                 if (res.confirm) {
-                  that.setData({
-                    courseIndex: e.currentTarget.id,
-                    src: e.currentTarget.dataset.src,
-                    autoplay: true
-                  });
+                  if (e) {
+                    autoPlay(that, e);
+                  } else {
+                    autoPlay(that, null);
+                  }
                 }
               },
               fail: function (res) {
@@ -272,8 +245,20 @@ Page({
       })
     }
   },
-  chooseCourseFail() {
-
+  //用户点击play按钮,修改自动播放状态
+  setAutoPlay(that, e) {
+    if (e) {
+      that.setData({
+        courseIndex: e.currentTarget.id,
+        src: e.currentTarget.dataset.src,
+        autoplay: true
+      });
+    } else {
+      that.setData({
+        flag: false,
+        autoplay: true
+      });
+    }
   },
   /**
    * 用户添加收藏判断是否登录
@@ -361,7 +346,7 @@ Page({
   courseDetailSuccessFun(res) {
     let that = this;
     this.setData({
-      imgSrc: app.data.imgUrl+res.data.img,
+      imgSrc: app.data.imgUrl + res.data.img,
       summary: res.data.synopsis.summary,
       originalPrice: res.data.synopsis.price,
       vipPrice: res.data.synopsis.vip_price,
@@ -378,9 +363,9 @@ Page({
       isLoad: false,
     })
     wx.getNetworkType({
-      success: function(res) {
-        if(res.networkType === 'wifi') {
-          if (that.data.courseIsBuy){
+      success: function (res) {
+        if (res.networkType === 'wifi') {
+          if (that.data.courseIsBuy) {
             that.play()
           }
         }
@@ -436,7 +421,7 @@ Page({
   /**
    * 未购买提示框点击确认
    */
-  confirm(){
+  confirm() {
     this.buyCourseFn()
   }
 })
