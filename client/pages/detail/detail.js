@@ -236,12 +236,37 @@ Page({
    * 用户观看课程已登录
    */
   chooseCourseFn(e) {
-    this.setData({
-      courseIndex: e.currentTarget.id,
-      src: e.currentTarget.dataset.src,
-      autoplay:true
-    })
-    if (!this.data.courseIsBuy){
+    let that = this;
+    if (this.data.courseIsBuy){
+      wx.getNetworkType({
+        success: function (res) {
+          if (res.networkType === 'wifi') {
+            that.setData({
+              courseIndex: e.currentTarget.id,
+              src: e.currentTarget.dataset.src,
+              autoplay: true
+            });
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '当前为非wifi环境，是否继续？',
+              success: function (res) {
+                if (res.confirm) {
+                  that.setData({
+                    courseIndex: e.currentTarget.id,
+                    src: e.currentTarget.dataset.src,
+                    autoplay: true
+                  });
+                }
+              },
+              fail: function (res) {
+                utils.showFail('网络出错');
+              }
+            })
+          }
+        },
+      })
+    } else {
       this.setData({
         is_modal_Hidden: false
       })
