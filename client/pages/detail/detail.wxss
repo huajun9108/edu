@@ -35,8 +35,8 @@ video{
   height: 100%
 }
 .course{
-  width: 100%; 
-  padding: 20rpx 0 10rpx 0;
+  padding-top: 20rpx;
+  padding-bottom: 10rpx;
   z-index: 500;
   background: #fff;
 } 
@@ -44,22 +44,6 @@ video{
   flex: 1;
   overflow: auto;
 }
-.weui-flex__item .course_title{
-  font-size: 30rpx;
-  font-weight: bold;
-}
-.course_share{
-  text-align: right;
-} 
-.course_share image{
-  width: 40rpx;
-  height: 40rpx;
-  vertical-align: middle;
-} 
-.share_image{
-  padding-left: 14rpx;
-} 
-
 .consult_btn{
   display: block;
   width: 72rpx;
@@ -189,9 +173,4 @@ video{
   width: 100%;
   padding-top: 50%;
 }
-.share{
-  background: #fff;
-  display: inline;
-  padding:0;
-  line-height: 0;
-}
+

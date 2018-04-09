@@ -1,0 +1,12 @@
+<!--components/titleCom/titleCom.wxml-->
+<view class="weui-flex">
+  <view class="weui-flex__item ">
+    <text class="main_title">{{title}}</text>
+  </view>
+  <view class="share_box">
+    <image class="collect_image" mode="scaleToFill" src="{{isCollected?collected_image:uncollected_image}}" bindtap="addMyFavor"></image> 
+    <button class="share" open-type="share">
+      <image class="share_image" src="{{share_image}}"></image>                       
+    </button>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+/* pages/examList/examList.wxss */
+.content-box {
+  position:relative;
+  top:114rpx;
+}
+
+.weui-cell:nth-child(n+2){
+  border-bottom: solid 2rpx #eeeeee;
+}

@@ -1,0 +1,25 @@
+/* pages/exam/exam.wxss */
+.weui-media-box__desc{
+   overflow: hidden; 
+  text-overflow:ellipsis; 
+  
+  white-space: nowrap; 
+  display: block;
+
+}
+.weui-flex{
+  font-size:11px;
+  
+}
+.flex-left{
+  font-size:13px;
+  width: auto;
+}
+.flex-right{
+  font-size:13px;
+  text-align: right;
+}
+.flex-center{
+  font-size:11px;  
+  text-align: center;  
+}

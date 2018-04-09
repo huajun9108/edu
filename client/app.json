@@ -10,7 +10,12 @@
     "pages/userSet/userSet",
     "pages/myFavor/myFavor",
     "pages/courseList/courseList",
-    "pages/searchCourse/searchCourse"  
+    "pages/searchCourse/searchCourse",
+    "pages/exam/exam",
+    "pages/examList/examList",
+    "pages/examAll/examAll",
+    "pages/examInterFace/examInterFace",
+    "pages/answer/answer"
   ],
   "window":{
     "backgroundColor":"#fff",
@@ -37,11 +42,18 @@
         "selectedIconPath": "images/curriculum_focus.png"
       },
       {
+        "pagePath": "pages/exam/exam",
+        "text": "测验",
+        "iconPath": "images/test_default.png",
+        "selectedIconPath": "images/test_focus.png"
+      },
+      {
         "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "images/my_default.png",
         "selectedIconPath": "images/my_focus.png"
       }
+     
     ]
   },
   "networkTimeout": {

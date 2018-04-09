@@ -1,0 +1,8 @@
+/* pages/examAll/examAll.wxss */
+.content-box {
+  position:relative;
+  top:114rpx;
+}
+examListCom .weui-cells:first-child::before{
+  border-top: 0;
+} 

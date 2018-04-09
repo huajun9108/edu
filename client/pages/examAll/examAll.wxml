@@ -1,0 +1,14 @@
+<!--pages/examAll/examAll.wxml-->
+<import src="../common/common.wxml" />
+<view class="page">
+  <template is="search" />
+   <view class='content-box'>
+    <examListCom 
+    examList="{{examList}}" /> 
+  </view> 
+  <modal modal-hidden="{{is_modal_Hidden}}" 
+  search-list="{{searchList}}" 
+  inputShowed="{{inputShowed}}"
+  bindsearchClick="searchClick" 
+  bindconfirm="confirm"/>  
+</view>

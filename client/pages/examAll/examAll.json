@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "modal": "../../components/searchCom/searchCom",
+    "examListCom": "../../components/examListCom/examListCom"
+  }
+}

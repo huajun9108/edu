@@ -2,6 +2,7 @@
   "disableScroll": true,
   "usingComponents": {
     "modal": "../../components/modal/modal",
-    "videoModal":"../../components/videoCom/videoCom"
+    "videoModal":"../../components/videoCom/videoCom",
+    "titleCom":"../../components/titleCom/titleCom"
   }
 }

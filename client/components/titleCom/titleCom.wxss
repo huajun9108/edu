@@ -1,0 +1,23 @@
+/* components/titleCom/titleCom.wxss */
+@import "../../app.wxss";  
+.weui-flex__item .main_title{
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.share_box{
+  text-align: right;
+} 
+.share_box image{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+} 
+.share_image{
+  padding-left: 14rpx;
+} 
+.share{
+  background: #fff;
+  display: inline;
+  padding:0;
+  line-height: 0;
+}

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "titleCom": "../../components/titleCom/titleCom"
+  }
+}

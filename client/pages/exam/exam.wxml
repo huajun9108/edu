@@ -1,0 +1,66 @@
+<!--pages/exam/exam.wxml-->
+<view class='page'>
+  <view class="weui-panel weui-panel_access">
+    <view class="weui-panel__hd">测一测</view>
+    <view class="weui-panel__bd">
+      <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{icon60}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">快来，2018年上半年工业工程信心调研！</view>
+          <view class="weui-media-box__desc">为了了解我国工业工程从业情况，我们决定启动2018年上半年年年</view>
+          <view class="weui-flex">
+            <view class="flex-left"><view class="placeholder ">已参加：89人</view></view>
+            <view class="weui-flex__item flex-right"><view class="placeholder ">截止时间：2018/3/30 10:00:00</view></view>
+          </view>
+        </view>
+      </navigator>
+      <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+          <image class="weui-media-box__thumb" src="{{icon60}}" />
+        </view>
+        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+          <view class="weui-media-box__title">快来，2018年上半年工业工程信心调研！</view>
+          <view class="weui-media-box__desc">为了了解我国工业工程从业情况，我们决定启动2018年上半年年年</view>
+          <view class="weui-flex">
+            <view class="flex-left"><view class="placeholder ">已参加：89人</view></view>
+            <view class="weui-flex__item flex-right"><view class="placeholder ">截止时间：2018/3/30 10:00:00</view></view>
+          </view>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <view class="weui-flex page__bd_spacing">
+    <view class="weui-flex__item"><view class="placeholder  home_text">大家都在测</view></view>
+    <view class="weui-flex__item flex-right">
+      <view class="placeholder" bindtap='toMoreUrl'>
+        more
+      </view>
+    </view>
+  </view>
+  <view class="weui-panel">
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd weui-cell_primary">
+        <view>【练习】“5S”核心知识测验</view>
+        <view class="weui-flex">
+          <view><view class="placeholder">已参加：10人</view></view>
+          <view class="weui-flex__item"><view class="placeholder flex-center">预计用时：10分钟</view></view>
+          <view><view class="placeholder">截止时间：2018/3/30 10:00:00</view></view>
+        </view>
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd weui-cell_primary">
+        <view>【练习】“5S”核心知识测验</view>
+        <view class="weui-flex">
+          <view><view class="placeholder">weui</view></view>
+          <view class="weui-flex__item"><view class="placeholder flex-center">weui</view></view>
+          <view><view class="placeholder">weui</view></view>
+        </view>
+      </view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+</view>

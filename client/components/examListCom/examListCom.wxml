@@ -1,0 +1,8 @@
+<!--components/examListCom/examListCom.wxml-->
+<view class="exam-list-box">
+  <view class="weui-cells" wx:for="{{examList}}" wx:key="index">
+    <view bindtap="examInterFaceUrl" data-title="{{item.title}}" data-id="{{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <view class="weui-cell__bd">{{item.title}}</view>
+    </view>
+  </view>
+</view>

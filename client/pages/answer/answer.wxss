@@ -1,0 +1,31 @@
+/* pages/answer/answer.wxss */
+.page,.content,swiper,swiper-item{
+  height: 100%;
+}
+
+.qu_option{
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  border: solid 2rpx #ddd;
+  border-radius: 50%;
+  line-height: 35rpx;
+  text-align: center;
+}
+.bottom{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+.qu_card{
+  width: 100%;
+}
+.card_num{
+  display: inline-block; 
+  width: 50rpx;
+  height: 50rpx;
+  border: solid 2rpx #ddd;
+  border-radius: 50%;
+  line-height: 50rpx;
+  text-align: center;
+}

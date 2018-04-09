@@ -21,7 +21,6 @@ Page({
     teacherDetail: '',
     courseId: null,
     userId: -1,
-    courseIsCollected: 0,
     courseIsBuy: 0,
     imgSrc: null,
     controls: true,
@@ -31,16 +30,12 @@ Page({
     sliderOffset: 0,
     sliderLeft: 0,
     vipFlag: false,
-    collected_image: "../../images/heart_icon_focus.png",
-    uncollected_image: "../../images/heart_icon_deafult.png",
     isLoad: false,
     teacherImage: "",
-
     is_modal_Hidden: true,
     is_modal_Msg: "你还未购买该课程",
     cancelText: "取消",
     sureText: "去购买",
-
     isLogin: true,
     tipText: "该课程需要登录后\n进行购买方可观看",
     btnText: "立即登录",
@@ -58,11 +53,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     this.setData({
-      detailnum: options.name,
+      title: options.name,
       courseId: options.id,
     });
     wx.setNavigationBarTitle({
-      title: that.data.detailnum //页面标题为路由参数
+      title: that.data.title //页面标题为路由参数
     });
 
     wx.getSystemInfo({
@@ -270,7 +265,7 @@ Page({
    * 用户添加收藏已登录
    */
   addMyFavorFn() {
-    if (this.data.courseIsCollected) {
+    if (this.data.isCollected) {
       this.delMyFavorFunction()
     } else {
       this.addMyFavorFunction()
@@ -307,7 +302,7 @@ Page({
   successaddMyFavor() {
     this.sessionLoginFn()
     setTimeout(() => {
-      if (!this.data.courseIsCollected) {
+      if (!this.data.isCollected) {
         this.addMyFavorFunction()
       }
     }, 100)
@@ -319,7 +314,7 @@ Page({
     if (res.status === "0") {
       utils.showSuccess('收藏成功');
       this.setData({
-        courseIsCollected: true,
+        isCollected: true,
       })
     }
   },
@@ -330,7 +325,7 @@ Page({
     if (res.status === "0") {
       utils.showSuccess('已取消收藏');
       this.setData({
-        courseIsCollected: false
+        isCollected: false
       });
     }
   },
@@ -357,7 +352,7 @@ Page({
       teacherTitle: res.data.teacher.job,
       teacherDetail: res.data.teacher.synopsis,
       courseIndex: res.data.catalog[0].list[0].id,
-      courseIsCollected: res.data.collect_status,
+      isCollected: res.data.collect_status,
       courseIsBuy: res.data.buy_status,
       teacherImage: app.data.iconUrl + res.data.teacher.icon_url,
       isLoad: false,
@@ -400,7 +395,7 @@ Page({
         });
         return;
       }
-      const title = this.data.detailnum;
+      const title = this.data.title;
       let price;
       if (this.data.vipFlag) {
         // price = this.data.vipPrice;
