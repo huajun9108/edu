@@ -5,10 +5,13 @@
     <block wx:for="{{quList}}" wx:key="index" >
       <swiper-item>
         <view class="">{{index+1}}.<text class="base_color">(单选题)</text>{{item.title}}</view>
-        <view data-option="{{item.a}}" bindtap="optionClick" class=""><text class="qu_option">A</text>{{item.a}}</view>
+        <!-- <view data-option="{{item.a}}" bindtap="optionClick" class=""><text class="qu_option">A</text>{{item.a}}</view>
         <view data-option="{{item.b}}" bindtap="optionClick" class=""><text class="qu_option">B</text>{{item.b}}</view>
         <view data-option="{{item.c}}" bindtap="optionClick" class=""><text class="qu_option">C</text>{{item.c}}</view>
-        <view data-option="{{item.d}}" bindtap="optionClick" class=""><text class="qu_option">D</text>{{item.d}}</view>
+        <view data-option="{{item.d}}" bindtap="optionClick" class=""><text class="qu_option">D</text>{{item.d}}</view> -->
+        <view data-option="{{answerList[index].option}}" wx:for="{{item.options}}" bindtap="optionClick" class="" wx:key="index">
+          <text class="{{answerList[index].select?'active qu_option':'qu_option'}}" data-select="{{answerList[index].option}}">{{answerList[index].option}}</text>{{item}}
+        </view>
       </swiper-item>
     </block>
   </swiper> 

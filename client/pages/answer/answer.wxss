@@ -12,6 +12,9 @@
   line-height: 35rpx;
   text-align: center;
 }
+.active{
+  border-color: #dcc07f
+}
 .bottom{
   position: fixed;
   width: 100%;

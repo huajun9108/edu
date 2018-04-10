@@ -5,34 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
+    answerList:[
+      { option: "A", select: false },
+      { option: "B", select: false },
+      { option: "C", select: false },
+      { option: "D", select: false }
+    ],
     quList:[
       {
         title:"5S运动是一项什么样的工作",
-        a: "暂时性",
-        b: "流行性",
-        c: "持久性",
-        d: "时尚的"
+        options:[ "暂时性","流行性","持久性","时尚的"]
       },
       {
         title: "5S运动是一项什么样的工作",
-        a: "暂时性",
-        b: "流行性",
-        c: "持久性",
-        d: "时尚的"
+        options: ["暂时性", "流行性", "持久性", "时尚的"]
       },
       {
         title: "5S运动是一项什么样的工作",
-        a: "暂时性",
-        b: "流行性",
-        c: "持久性",
-        d: "时尚的"
+        options: ["暂时性", "流行性", "持久性", "时尚的"]
       },
       {
         title: "5S运动是一项什么样的工作",
-        a: "暂时性",
-        b: "流行性",
-        c: "持久性",
-        d: "时尚的"
+        options: ["暂时性", "流行性", "持久性", "时尚的"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        options: ["暂时性", "流行性", ]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        options: ["暂时性", "流行性", "持久性", "时尚的"]
       },
      
     ],
@@ -104,6 +106,20 @@ Page({
     })
   },
   optionClick(e){
+    let _this = this
     console.log(e)
+    var this_checked = e.currentTarget.dataset.option
+    var parameterList = this.data.answerList//获取Json数组
+    for (var i = 0; i < parameterList.length; i++) {
+      if (parameterList[i].option == this_checked) {
+        parameterList[i].select = true;//当前点击的位置为true即选中
+      }
+      else {
+        parameterList[i].select = false;//其他的位置为false
+      }
+    }
+    _this.setData({
+      answerList0: parameterList
+    })
   }
 })
