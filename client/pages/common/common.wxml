@@ -124,3 +124,48 @@
     <view class="weui-cell__ft weui-cell__ft_in-access"></view> 
   </navigator>
 </template>
+
+<!--渲染考试列表（两行） -->
+<template name="examList-2">
+  <view class="weui-panel__bd">
+    <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{examList}}" wx:key="index">
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{item.title}}</view>
+        <view class="weui-media-box_bottom" wx:if='{{!showTime}}'>
+          {{exam_msg}}: 
+          <text wx:if="{{item.type==0}}">尚未开始</text>
+          <text class="base_color" wx:if="{{item.type==1}}">正在进行</text>
+          <text wx:if="{{item.type==2}}">已结束</text>
+        </view>
+        <view class="weui-media-box_bottom" wx:if='{{showTime}}'>
+          {{exam_msg}}: 
+          <text class="weui-media-box_time">{{item.endTime}}</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</template>
+
+<!--渲染考试列表（三行） -->
+<template name="examList-3">
+  <view class="weui-panel__bd">
+    <navigator url="" class="weui-media-box weui-media-box_appmsg weui-media-box_exam_end" hover-class="weui-cell_active" wx:for="{{examListEnd}}" wx:key="index">
+      <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+        <view class="weui-media-box__title">{{item.title}}</view>
+        <view class="weui-media-box_bottom exam_end_bottom">
+          <text class="weui-media-box_time">{{people_num}}: {{item.people}}人</text>
+        </view>
+        <view class="weui-flex weui-media-box_bottom exam_end_bottom">
+          <view class="weui-flex__item">
+            {{pass_rate}}: <text class="{{showScore?'weui-media-box_pass base_color':'weui-media-box_time'}}">{{item.pass}}</text>
+          </view>
+          <view class="weui-flex__item flex-right">
+            <view class="placeholder">
+              {{average}}: {{item.score}}{{showScore?'分':'分钟'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</template>

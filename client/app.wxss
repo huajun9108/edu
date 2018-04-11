@@ -142,5 +142,8 @@ image{
 .weui-cell__bd{
   overflow: hidden; 
 }
-
+.weui-media-box_bottom{
+  margin-top: 16rpx;
+  font-size: 24rpx;
+}
   

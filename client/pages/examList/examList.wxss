@@ -3,7 +3,36 @@
   position:relative;
   top:114rpx;
 }
-
-.weui-cell:nth-child(n+2){
-  border-bottom: solid 2rpx #eeeeee;
+.exam_all{
+  padding: 32rpx 40rpx;
+  line-height: 1;
+  font-size: 30rpx;
+}
+.exam_begin,.exam_end{
+  color: #909090;
+}
+.weui-media-box {
+  padding: 30rpx 40rpx;
+  line-height: 1
+}
+.weui-media-box_exam_end{
+  padding: 20rpx 40rpx;
+}
+.weui-media-box__title{
+  font-weight: normal;
+}
+.weui-media-box_bottom {
+  margin-top:12rpx;
+}
+.weui-media-box_time{
+  color: #909090;
+}
+.exam_end_bottom{
+  margin-top:6rpx;
+}
+.weui-media-box_pass{
+  font-weight: bold
+}
+.flex-right{
+  text-align: right;
 }

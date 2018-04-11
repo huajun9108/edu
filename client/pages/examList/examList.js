@@ -4,20 +4,66 @@ const app = getApp()
 const util = require('../../utils/util.js')
 Page({
   data: {
-    examList:[
+    showTime:true,
+    showScore:true,
+    examList: [
       {
-        title:"【练习】'5s'核心知识测验"
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00-2018/04/01 10:00:00"
       },
       {
-        title: "【练习】'5s'核心知识测验"
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00"
       },
       {
-        title: "【练习】'5s'核心知识测验"
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00"
       },
       {
-        title: "【练习】'5s'核心知识测验"
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00"
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00"
       }
-    ]
+    ],
+    exam_msg:"测验时间",
+    examListEnd:[
+      {
+        title: "[练习]“5S”核心知识测验",
+        people: "89",
+        pass: "89%",
+        score:"89"
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        people: "89",
+        pass: "89%",
+        score: "89"
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        people: "89",
+        pass: "89%",
+        score: "89"
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        people: "89",
+        pass: "89%",
+        score: "89"
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        people: "89",
+        pass: "89%",
+        score: "89"
+      }
+    ],
+    people_num:"参加人数",
+    pass_rate:"及格率",
+    average:"平均分"
   },
   onLoad: function (option) {
     this.setData({

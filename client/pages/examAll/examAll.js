@@ -5,20 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    examList:[
+    showTime:false,
+    examList: [
       {
-        title: "【练习】'5s'核心知识测验",id:"1"
+        title: "[练习]“5S”核心知识测验",
+        type: 1
       },
       {
-        title: "【练习】'5s'核心知识测验", id: "2"
+        title: "[练习]“5S”核心知识测验",
+        type: 1
       },
       {
-        title: "【练习】'5s'核心知识测验", id: "3"
+        title: "[练习]“5S”核心知识测验",
+        type: 1
       },
       {
-        title: "【练习】'5s'核心知识测验", id: "4"
-      }
-    ]
+        title: "[练习]“5S”核心知识测验",
+        type: 0
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        type: 0
+      },
+      {
+        title: "[练习]“5S”核心知识测验",
+        type: 2
+      },
+    ],
+    exam_msg:"状态"
   },
 
   /**

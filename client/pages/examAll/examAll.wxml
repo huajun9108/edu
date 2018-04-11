@@ -3,8 +3,9 @@
 <view class="page">
   <template is="search" />
    <view class='content-box'>
-    <examListCom 
-    examList="{{examList}}" /> 
+    <view class="weui-panel">
+        <template is="examList-2" data="{{showTime,exam_msg,examList}}"/>
+    </view>
   </view> 
   <modal modal-hidden="{{is_modal_Hidden}}" 
   search-list="{{searchList}}" 
