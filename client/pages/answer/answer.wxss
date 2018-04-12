@@ -12,9 +12,6 @@
   line-height: 35rpx;
   text-align: center;
 }
-.active_qu_option {
-  color: red;
-}
 .active{
   border-color: #dcc07f
 }

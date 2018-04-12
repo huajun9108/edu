@@ -15,7 +15,8 @@
     "pages/examList/examList",
     "pages/examAll/examAll",
     "pages/examInterFace/examInterFace",
-    "pages/answer/answer"
+    "pages/answer/answer",
+    "pages/myTest/myTest"
   ],
   "window":{
     "backgroundColor":"#fff",
