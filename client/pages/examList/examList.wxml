@@ -2,7 +2,7 @@
 <import src="../common/common.wxml" />
 <view class="page">
   <template is="search" />
-  <view class='content-box'>
+  <view class='content'>
     <navigator url="../examAll/examAll" class="weui-flex weui-panel__hd exam_all" hover-class="weui-cell_active" >
       <view class="weui-cell__bd">全部测验</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -14,26 +14,6 @@
 
     <view class="weui-panel">
       <view class="weui-panel__hd exam_all exam_end">已结束</view>
-      <!-- <view class="weui-panel__bd">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg weui-media-box_exam_end" hover-class="weui-cell_active" wx:for="{{examListEnd}}" wx:key="index">
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item.title}}</view>
-            <view class="weui-media-box_bottom exam_end_bottom">
-              <text class="weui-media-box_time">参加人数: {{item.people}}</text>
-            </view>
-            <view class="weui-flex weui-media-box_bottom exam_end_bottom">
-              <view class="weui-flex__item">
-                及格率: <text class="weui-media-box_pass base_color">{{item.pass}}</text>
-              </view>
-              <view class="weui-flex__item flex-right">
-                <view class="placeholder" bindtap='toMoreUrl'>
-                  平均分: {{item.score}}分
-                </view>
-              </view>
-            </view>
-          </view>
-        </navigator>
-      </view> -->
       <template is="examList-3" data="{{examListEnd,people_num,pass_rate,average,showScore}}"/>
     </view>
   </view>

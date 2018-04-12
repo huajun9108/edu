@@ -146,4 +146,14 @@ image{
   margin-top: 16rpx;
   font-size: 24rpx;
 }
+.content-box{
+  padding: 20rpx 40rpx;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
   

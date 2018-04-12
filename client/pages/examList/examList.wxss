@@ -1,5 +1,5 @@
 /* pages/examList/examList.wxss */
-.content-box {
+.content {
   position:relative;
   top:114rpx;
 }

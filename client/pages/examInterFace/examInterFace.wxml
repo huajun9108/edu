@@ -1,16 +1,72 @@
 <!--pages/examInterFace/examInterFace.wxml-->
 <view class="page">
-  <view class='content-box page__bd_spacing'>
-    <titleCom title="{{title}}" isCollected="{{isCollected}}" bindaddMyFavor="addMyFavor"/>
-    <view class="weui-form-preview__item">
-      <view class="weui-form-preview__label">标题标题：</view>
-      <view class="weui-form-preview__value">
-      <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
-        很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi
+  <view class='content-box'>
+    <view class="content-wrap">
+      <titleCom title="{{title}}" isCollected="{{isCollected}}" examFlag="{{examFlag}}" bindaddMyFavor="addMyFavor"/>
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">测验简介:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长
+        </view>
+        <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view> 
+        </view>
       </view>
-      <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view> 
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">发布时间:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        2018/3/29
+        </view>
+        <!-- <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view>  -->
+        </view>
+      </view>
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">开始时间:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        2018/3/30 00:00:00
+        </view>
+        <!-- <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view>  -->
+        </view>
+      </view>
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">截止时间:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        2018/4/30 00:00:00
+        </view>
+        <!-- <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view>  -->
+        </view>
+      </view>
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">答题时长:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        60分钟
+        </view>
+        <!-- <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view>  -->
+        </view>
+      </view>
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">题型设置:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        20道选择题,每题5分,满分100分，60分及格
+        </view>
+        <!-- <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view>  -->
+        </view>
+      </view>
+      <view class="weui-form-preview__item" wx:key="index">
+        <view class="weui-form-preview__label">测验要求:</view>
+        <view class="weui-form-preview__value">
+        <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}}">
+        考生需要在规定时间内完成作答,在规定时间内作答完成可以手动提交答拳,超过时间系统会自动提交
+        </view>
+        <!-- <view hidden="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">{{isEllipsis?'显示全部':'点击收起'}}</view>  -->
+        </view>
       </view>
     </view>
-    <view class="exam_btn" bindtap="startExam">开始答题</view>
+    <view class="exam_btn base_color" bindtap="startExam">开始答题</view>
   </view> 
 </view>

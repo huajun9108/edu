@@ -1,7 +1,10 @@
 /* pages/examInterFace/examInterFace.wxss */
+.page,.content-box{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box; 
 
-.weui-form-preview__label{
-  margin-right: 0;
 }
 .ellipsis{
   overflow: hidden;
@@ -9,4 +12,29 @@
   display:-webkit-box; 
   -webkit-box-orient:vertical;
   -webkit-line-clamp:2; 
+}
+.weui-form-preview__item{
+  margin-top: 28rpx;
+} 
+.weui-form-preview__label{
+  line-height: 1
+} 
+.weui-form-preview_content{
+  line-height:1.2;
+}
+.weui-form-preview_btn {
+  width: 120rpx;
+  border: solid 2rpx #dcc07f;
+  border-radius: 20rpx;
+  margin-top: 10rpx;
+  line-height: 50rpx;
+  text-align: center;
+}
+.exam_btn{
+  width: 100%;
+  line-height: 100rpx;
+  border: solid 2rpx #dcc07f;
+  border-radius: 2rpx;
+  text-align: center;
+  font-size: 38rpx;
 }

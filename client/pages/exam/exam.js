@@ -37,7 +37,7 @@ Page({
         title: "[练习]“5S”核心知识测验",
         people: "89",
         pass: "2018/3/30 10:00:00",
-        score:10
+        score:10,
       },
       {
         title: "[练习]“5S”核心知识测验",
@@ -122,6 +122,14 @@ Page({
   toMoreUrl(){
     wx.navigateTo({
       url: '../examList/examList',
+    })
+  },
+  examClick(e){
+    let examId = e.currentTarget.dataset.id;
+    let examTitle = e.currentTarget.dataset.title;
+    
+    wx.navigateTo({
+      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}`
     })
   }
 })

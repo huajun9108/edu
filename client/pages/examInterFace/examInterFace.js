@@ -6,6 +6,16 @@ Page({
    */
   data: {
     isEllipsis:false,
+    examFlag:true,
+    examFaceList:[
+      { title: "测验简介", content:"很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长"},
+      { title: "发布时间", content: "2018/3/29"},
+      { title: "开始时间", content: "2018/3/30 00:00:00" },
+      { title: "截止时间", content: "2018/4/30 00:00:00" },
+      { title: "答题时长", content: "60分钟" },
+      { title: "题型设置", content: "20道选择题,每题5分,满分100分，60分及格" },
+      { title: "测验要求", content: "考生需要在规定时间内完成作答,在规定时间内作答完成可以手动提交答拳,超过时间系统会自动提交" }
+    ]
     
   },
 
@@ -41,7 +51,7 @@ Page({
         height: rect.height
       })
       console.log(_this.data.height)
-      if (_this.data.height > 44) {
+      if (_this.data.height > 30) {
         _this.setData({
           isEllipsis: true,
           isEllipsisShow: false

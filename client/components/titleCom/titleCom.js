@@ -11,6 +11,10 @@ Component({
     isCollected:{
       type: Boolean,
       value: false
+    },
+    examFlag:{
+      type: Boolean,
+      value: false
     }
   },
 

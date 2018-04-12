@@ -2,7 +2,7 @@
 <import src="../common/common.wxml" />
 <view class="page">
   <template is="search" />
-   <view class='content-box'>
+   <view class='content'>
     <view class="weui-panel">
         <template is="examList-2" data="{{showTime,exam_msg,examList}}"/>
     </view>

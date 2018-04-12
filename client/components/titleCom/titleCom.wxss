@@ -4,6 +4,10 @@
   font-size: 30rpx;
   font-weight: bold;
 }
+.weui-flex__item .exam_title{
+  font-size: 32rpx;
+  font-weight: bold;
+}
 .share_box{
   text-align: right;
 } 
@@ -14,6 +18,9 @@
 } 
 .share_image{
   padding-left: 14rpx;
+} 
+.exam_share_image{
+  padding-left: 18rpx;
 } 
 .share{
   background: #fff;

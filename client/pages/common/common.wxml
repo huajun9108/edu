@@ -149,7 +149,7 @@
 <!--渲染考试列表（三行） -->
 <template name="examList-3">
   <view class="weui-panel__bd">
-    <navigator url="" class="weui-media-box weui-media-box_appmsg weui-media-box_exam_end" hover-class="weui-cell_active" wx:for="{{examListEnd}}" wx:key="index">
+    <view bindtap='examClick' class="weui-media-box weui-media-box_appmsg weui-media-box_exam_end" hover-class="weui-cell_active" wx:for="{{examListEnd}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}">
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
         <view class="weui-media-box__title">{{item.title}}</view>
         <view class="weui-media-box_bottom exam_end_bottom">
@@ -166,6 +166,6 @@
           </view>
         </view>
       </view>
-    </navigator>
+    </view>
   </view>
 </template>

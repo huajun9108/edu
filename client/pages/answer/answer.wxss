@@ -1,37 +1,161 @@
 /* pages/answer/answer.wxss */
-.page,.content,swiper,swiper-item{
+.page,.content-box{
   height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box; 
 }
-
+.content-box{
+  padding: 20rpx 0 0;
+}
+.content-wrap{
+  padding: 0 40rpx;
+  flex: 1;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.exam-title{
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 38rpx;
+}
+swiper{
+  flex: 1;
+}
+.qu_title{
+  font-size: 34rpx;
+  margin-bottom: 10rpx;
+  line-height: 1;
+}
+.qu_options{
+  padding-top: 42rpx;
+  padding-left: 28rpx;
+  font-size: 32rpx;
+}
 .qu_option{
   display: inline-block;
-  width: 35rpx;
-  height: 35rpx;
-  border: solid 2rpx #ddd;
+  width: 46rpx;
+  border: solid 2rpx #ccc;
   border-radius: 50%;
-  line-height: 35rpx;
+  line-height: 46rpx;
   text-align: center;
+  margin-right: 8rpx;
+  font-size: 28rpx;
 }
 .active_qu_option {
-  color: red;
+  border-color: #dcc07f;
 }
-.active{
-  border-color: #dcc07f
-}
+
 .bottom{
-  position: fixed;
   width: 100%;
-  bottom: 0;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  align-items: center; 
+  font-size: 30rpx;
+  z-index: 3;
+  background: #fff;
+  padding:16rpx 40rpx;
+  box-sizing:border-box;
+
+}
+.exam_num{
+  font-weight: bold
+}
+.exam_time{
+  font-weight: bold;
+}
+.exam_submit{
+  display: inline-block;
+  width: 158rpx;
+  line-height: 64rpx;
+  border: 2rpx solid #cfb16b;
+  text-align: center;
+  border-radius: 2rpx;
+  margin-left: 14rpx;
+  font-size: 32rpx;
+  font-weight: bold;
 }
 .qu_card{
   width: 100%;
+  z-index: 3;
+  background: #fff;
+  font-size: 32rpx;
+}
+.up{
+  height: 568rpx; 
+  animation: up .5s ease-in-out;
+}
+.qu_card_down{
+  height: 0;
+}
+.down{
+  height: 0;   
+  animation: down .5s ease-in-out;
+}
+.qu_card-title{
+  padding: 0 40rpx;
+  line-height: 80rpx;
+  background: #f6f6f6;
+  font-weight: bold;
+}
+.card_box{
+  padding: 26rpx 40rpx 6rpx;
 }
 .card_num{
   display: inline-block; 
-  width: 50rpx;
-  height: 50rpx;
-  border: solid 2rpx #ddd;
+  width: 91rpx;
+  line-height: 91rpx;
+  border: solid 1rpx #e2e2e2;
   border-radius: 50%;
-  line-height: 50rpx;
   text-align: center;
+  margin-left: 20rpx;
+  margin-bottom: 20rpx;
+  color: #b0b0b0;
+}
+.card_num:first-child{
+    margin-left: 0;
+}
+.card_num:nth-child(6n+1){
+    margin-left: 0;
+}
+.mask_layer{
+  width: 100%;  
+  height: 100%;  
+  position: fixed; 
+  top: 0; 
+  z-index: 2;  
+  background: #000;  
+  opacity: 0.3;  
+  overflow: hidden;
+}
+@keyframes up{
+  from{
+      height:   0;
+  }
+  to{
+      height:  568rpx;
+  }
+}
+@keyframes down{
+  from{
+      height:  568rpx;
+  }
+  to{
+      height:   0;
+  }
+}
+.card_bg{
+  background: #f6f6f6;
+}
+.card_bd{
+  border-color: #cfb16b
 }
