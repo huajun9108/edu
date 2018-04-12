@@ -1,0 +1,38 @@
+<view class="myTestCollection">
+  <view class="weui-panel__bd">
+    <view url="" class="weui-media-box weui-media-box_appmsg"  wx:for="{{examList}}" wx:key="index" bindtap="bindCheckbox" data-index="{{index}}">
+      <view  class="checkBox" hidden="{{hideStatus}}">
+        <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
+        <image wx:else src="{{uncheckSrc}}"  class="checkImage"></image>
+      </view>
+      <view catchTap="{{testTap}}" class="weui-media-box__bd weui-media-box__bd_in-appmsg {{showCheckCss}}" hover-class="{{hoverActive}}">
+        <view class="weui-media-box__title">{{item.title}}</view>
+        <view class="weui-media-box_bottom" wx:if='{{!showTime}}'>
+          {{exam_msg}}: 
+          <text wx:if="{{item.type==0}}">尚未开始</text>
+          <text class="base_color" wx:if="{{item.type==1}}">正在进行</text>
+          <text wx:if="{{item.type==2}}">已结束</text>
+        </view>
+        <view class="weui-media-box_bottom" wx:if='{{showTime}}'>
+          {{exam_msg}}: 
+          <text class="weui-media-box_time">{{item.endTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+ 
+ <view class="edit" bindtap="showDel" wx:if="{{examList.length}}">编辑</view>
+  <view class="weui-flex {{delCss}}" wx:if="{{examList.length}}">
+    <view class="weui-flex__item">
+      <view class="placeholder" bindtap="hideDel">取消</view>
+    </view>
+    <view class="weui-flex__item">
+      <view class="placeholder" bindtap="bindSelectAll">{{selectAll}}</view>
+    </view>
+    <view class="weui-flex__item">
+      <view class="placeholder base_color" bindtap="delItem">删除({{num}})</view>
+    </view>
+  </view> 
+<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" bindconfirm="confirm" />

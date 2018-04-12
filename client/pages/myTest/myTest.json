@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的测验",
+  "usingComponents": {
+    "modal": "../../components/editDelMyTestCom/editDelMyTestCom"
+  }
+}

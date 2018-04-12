@@ -10,7 +10,10 @@ Page({
         url: "../allOrders/allOrders", image: "../../images/my_study_icon.png", title: "学习中心", explain: "全部订单"
       },
       {
-        url: "../myFavor/myFavor", image: "../../images/my_collection_icon.png", title: "我的收藏"
+        url: "../myFavor/myFavor", image: "../../images/my_collection_icon.png", title: "我的课程"
+      },
+      {
+        url: "../myTest/myTest", image: "", title: "我的测验"
       }
     ],
     buyVipUrl: "../buyVip/buyVip",
