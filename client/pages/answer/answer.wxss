@@ -4,6 +4,7 @@
   width: 100%;
   box-sizing: border-box;
   -webkit-box-sizing:border-box; 
+  overflow: hidden
 }
 .content-box{
   padding: 20rpx 0 0;
@@ -22,7 +23,6 @@
 .exam-title{
   font-size: 32rpx;
   font-weight: bold;
-  line-height: 1;
   margin-bottom: 38rpx;
 }
 swiper{
@@ -95,10 +95,10 @@ swiper{
   animation: up .5s ease-in-out;
 }
 .qu_card_down{
-  height: 0;
+  display: none
 }
 .down{
-  height: 0;   
+  height: 0;
   animation: down .5s ease-in-out;
 }
 .qu_card-title{

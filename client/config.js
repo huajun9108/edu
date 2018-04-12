@@ -76,7 +76,10 @@ var config = {
         fuzzySelectUrl: `${host}/weapp/course/FuzzySelect`,
 
         //首页展示接口
-        homePageUrl: `${host}/weapp/course/selectHottestNewest`
+        homePageUrl: `${host}/weapp/course/selectHottestNewest`,
+
+        //测验展示接口
+        examPageUrl:`${host}/weapp/exam/selectNewestExam`
     }
 
     

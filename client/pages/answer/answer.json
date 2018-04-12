@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "答题进行中"
+  "navigationBarTitleText": "答题进行中",
+  "usingComponents": {
+    "modal": "../../components/modal/modal"
+  }
 }

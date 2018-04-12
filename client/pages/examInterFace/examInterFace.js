@@ -5,18 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isEllipsis:false,
     examFlag:true,
-    examFaceList:[
-      { title: "测验简介", content:"很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长"},
-      { title: "发布时间", content: "2018/3/29"},
-      { title: "开始时间", content: "2018/3/30 00:00:00" },
-      { title: "截止时间", content: "2018/4/30 00:00:00" },
-      { title: "答题时长", content: "60分钟" },
-      { title: "题型设置", content: "20道选择题,每题5分,满分100分，60分及格" },
-      { title: "测验要求", content: "考生需要在规定时间内完成作答,在规定时间内作答完成可以手动提交答拳,超过时间系统会自动提交" }
-    ]
-    
+    interfaceText:"测验简介",
+    interfaceContent:"很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长",
+    pubText:"发布时间",
+    pubTime:"2018/3/29" ,
+    startText:"开始时间",
+    startTime: "2018/3/30 00:00:00",
+    endText: "截止时间",
+    endTime: "2018/4/30 00:00:00",
+    answerText:"答题时长",
+    answerTime:"60分钟",
+    testSet:"题型设置",
+    testContent:"20道选择题,每题5分,满分100分，60分及格",
+    testRequire:"测验要求",
+    testRequireCon:"考生需要在测验规定的时长内完成作答,在规定时间内答题完成可以手动提交答卷,超过时间系统会自动提交答卷结束测验。"
   },
 
   /**
@@ -44,28 +47,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let _this = this
-    wx.createSelectorQuery().select('.weui-form-preview_content').boundingClientRect(function (rect) {
-      console.log(rect.height)
-      _this.setData({
-        height: rect.height
-      })
-      console.log(_this.data.height)
-      if (_this.data.height > 30) {
-        _this.setData({
-          isEllipsis: true,
-          isEllipsisShow: false
-        })
-      }else{
-        _this.setData({
-          isEllipsis: false,
-          isEllipsisShow: true
-        })
-      }
-      console.log(_this.data.isEllipsisShow)
-    }).exec()
-    
+   
   },
+  
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -106,16 +90,9 @@ Page({
       isCollected: !this.data.isCollected
     });
   },
-  showAll(){
-    console.log(this.data.isEllipsis)
-    this.setData({
-      isEllipsis: !this.data.isEllipsis
-    });
-    console.log(this.data.isEllipsis)
-  },
   startExam(){
     wx.navigateTo({
       url: '../answer/answer?title='+this.data.title,
     })
-  }
+  },
 })
