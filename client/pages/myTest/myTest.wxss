@@ -1,1 +1,29 @@
 /* pages/myTest/myTest.wxss */
+/* .weui-navbar__item {
+  text-align: left;
+  flex: 0;
+  padding: 20rpx 0 0;
+}
+.weui-navbar__item:first-child {
+  padding: 20rpx 50rpx 20rpx 40rpx;
+} */
+
+ /* .weui-navbar__slider {
+  width: 120rpx;
+}  */
+
+.weui-media-box__title {
+  font-weight: 400;
+}
+
+.weui-media-box_bottom {
+  font-size: 26rpx;
+}
+
+.weui-media-box_time {
+  color: #909090;
+}
+
+ .weui-tab__panel {
+  padding-top: 90rpx;
+}     

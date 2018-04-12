@@ -130,21 +130,19 @@ Component({
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].selected == false) {
           unselect.push(arr[i]);
-          this.setData({
-            unselect: unselect,
-          })
         } else {
-          select.push(arr[i].id?arr[i].id:arr[i].courseId).toString()
-          this.setData({
-            select: select
-          })
+          select.push(arr[i].id?arr[i].id:arr[i].courseId)
           if (select.length == arr.length) {
             this.setData({
-              unselect: []
+              unselect: [],
             })
           }
         }
       }
+      this.setData({
+        unselect: unselect,
+        select: select
+      });
       if (select.length == 0) return;
       this.setData({
         is_modal_Hidden: false,

@@ -16,8 +16,7 @@
       <template is="examList-2" data="{{showTime, examList, exam_msg}}" />
     </view>
     <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-       <!-- <modal editDelList="{{orderList}}" bindcourseBuyUrl="courseBuyUrl" delCss="{{delCss}}" showCheckCss="{{showCheckCss}}" binddelConfirm="delConfirm" />  -->
-       <modal showCheckCss="{{showCheckCss}}" delCss="{{delCss}}" hideStatus="{{hideStatus}}" />
+       <modal examList="{{examList}}" showCheckCss="{{showCheckCss}}" delCss="{{delCss}}" hideStatus="{{hideStatus}}" binddelConfirm="delConfirm" />
     </view>
   </view>
 </view>

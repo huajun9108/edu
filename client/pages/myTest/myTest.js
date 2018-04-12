@@ -1,5 +1,5 @@
 // pages/myTest/myTest.js
-var sliderWidth = 80; //需要设置slider的宽度，用于计算中间位置
+const sliderWidth = 80;
 
 Page({
 
@@ -10,36 +10,82 @@ Page({
     tabs: ["历史测验", "收藏测验"],
     activeIndex: "0",
     sliderOffset: 0,
-    sliderLeft: 0,
 
-    showTime: false,
-    examList: [
+    //收藏测验列表数据
+    collectionExamList: [
       {
+        id: 0,
+        selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 1
       },
       {
+        id: 0,
+        selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 1
       },
       {
+        id: 0,
+        selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 1
       },
       {
+        id: 0,
+        selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 0
       },
       {
+        id: 0,
+        selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 0
       },
       {
+        id: 0,
+        selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 2
       },
     ],
-    exam_msg: "状态",
+    //历史测验列表数据
+    historyExamList: [
+      {
+        id: 0,
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false
+      },
+      {
+        id: 1,
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false
+      },
+      {
+        id: 2,
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false
+      },
+      {
+        id: 3,
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false
+      },
+      {
+        id: 4,
+        title: "[练习]“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false
+      }
+    ],
+    showTime: true,
+    examList: [],
+    exam_msg: "",
 
     delCss: "weui-flex-common",
     showCheckCss: "",
@@ -51,10 +97,13 @@ Page({
    */
   onLoad: function (options) {
     console.log('myTest onLoad');
+    this.setData({
+      examList: this.data.historyExamList,
+      exam_msg: "参加时间"
+    });
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log((res.windowWidth / that.data.tabs.length - sliderWidth) / 2);
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
@@ -95,33 +144,51 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
   tabClick: function (e) {
+    console.log(e);
     this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
+      activeIndex: e.currentTarget.id,
+      sliderOffset: e.currentTarget.offsetLeft
     });
-    if(e.currentTarget.id === "1") {
+    if (e.currentTarget.id === "0") {
+      this.setData({
+        showTime: true,
+        examList: this.data.historyExamList,
+        exam_msg: "参加时间",
+        // sliderOffset: 0
+      });
+    } else if (e.currentTarget.id === "1") {
       this.setData({
         delCss: "weui-flex-common",
         showCheckCss: "",
-        hideStatus: true
+        hideStatus: true,
+        examList: this.data.collectionExamList,
+        // sliderOffset: e.currentTarget.offsetLeft - 20
       });
     }
+  },
+  delConfirm(e) {
+    console.log(e.detail);
+    this.setData({
+      selected: e.detail.selected,
+      unselected: e.detail.unselected,
+      examList: e.detail.unselected
+    });
   }
 })
