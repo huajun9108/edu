@@ -17,6 +17,10 @@ Component({
     hideStatus: {
       type: Boolean,
       value: true
+    },
+    examList: {
+      type: Array,
+      value: []
     }
   },
 
@@ -24,40 +28,8 @@ Component({
    * 组件的初始数据
    */
   data: {
-    showTime: true,
-    examList: [
-      {
-        id: 0,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false
-      },
-      {
-        id: 1,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false
-      },
-      {
-        id: 2,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false
-      },
-      {
-        id: 3,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false
-      },
-      {
-        id: 4,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false
-      }
-    ],
-    exam_msg: "开始时间",
+    showTime: false,
+    exam_msg: "状态",
 
     num: 0,
     delCss: "weui-flex-common",
@@ -88,7 +60,8 @@ Component({
         testTap: null,
         hoverActive: "",
         hideStatus: false
-      })
+      });
+      this.bindTotalNum();
     },
     hideDel() {
       let examList = this.data.examList;
@@ -183,11 +156,8 @@ Component({
       console.log('testTap');
     },
     confirm() {
-      const delConfirmDetail = { selected: this.data.selected, unseleced: this.data.unselected };
+      const delConfirmDetail = { selected: this.data.selected, unselected: this.data.unselected };
       this.triggerEvent("delConfirm", delConfirmDetail);
-      this.setData({
-        examList: this.data.unselected
-      });
       this.bindTotalNum();
     }
   }

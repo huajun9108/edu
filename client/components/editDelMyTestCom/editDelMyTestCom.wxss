@@ -1,27 +1,13 @@
 /* components/editDelMyTestCom.wxss */
  @import "../../app.wxss";
+ @import "../../pages/myTest/myTest";
+ @import "../editDelCom/editDelCom";
  .myTestCollection {
    padding-bottom: 100rpx;
    overflow: hidden;
  }
 
-.weui-cells:nth-child(1)::after{
-  border-top:0;
-}
- .weui-cells::after{
-  content:" ";
-  position:absolute;
-  left:40rpx;
-  top:0;
-  right:40rpx;
-  height:1px;
-  border-top:2rpx solid #EFEFF1;
-} 
-.weui-cell__bd{
-  padding-left:22rpx;
-}
-
-.edit, .weui-flex {
+/* .edit, .weui-flex {
   width: 100%;
   position: fixed;
   bottom: 0;
@@ -30,10 +16,6 @@
   text-align: center;
   font-size: 34rpx;
   background: #fff;
-}
-
-.weui-cell:before {
-  border-top: 0;
 }
 
 .weui-flex-common {
@@ -73,7 +55,6 @@
 .checkBox {
   position: absolute;
   left: 40rpx;
-  top: 30rpx;
 }
 .checkImage {
   width: 40rpx;
@@ -88,3 +69,4 @@
   transform: translateX(0);
   transition: all .2s ease-in;
 }
+ */

@@ -6,23 +6,18 @@
       <swiper duration="{{duration}}" bindchange="quChange" current="{{current}}">
         <block wx:for="{{quList}}" wx:for-index="quIdx" wx:key="quIdx" wx:for-item="quItem">
           <swiper-item>
-            <view class="qu_title">{{quIdx+1}}.<text class="base_color">(单选题)</text>{{quItem.title}}</view>
-            <view wx:for="{{quItem.select}}" 
-            wx:for-item="selectItem" 
-            wx:for-index="selectIdx" 
-            wx:key="selectIdx" 
-            bindtap="optionClick" 
-            data-serial="{{quIdx}}" 
-            data-option="{{selectItem.option}}" data-index='{{quIdx+1}}'
-            class="{{selectItem.select?'base_color qu_options':'qu_options'}}">
+            <view class="qu_title">{{quIdx+1}}.
+              <text class="base_color">(单选题)</text>{{quItem.title}}</view>
+            <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" bindtap="optionClick" data-serial="{{quIdx}}" data-option="{{selectItem.option}}" data-index='{{quIdx+1}}' class="{{selectItem.select?'base_color qu_options':'qu_options'}}">
               <text class="{{selectItem.select?'active_qu_option qu_option':'qu_option'}}">{{selectItem.option}}</text>{{selectItem.content}}
-            </view> 
+            </view>
           </swiper-item>
         </block>
-      </swiper> 
+      </swiper>
     </view>
     <view class='bottom'>
-      <view class='exam_tap'  bindtap='showCard'>点击<text class='exam_num base_color'>{{num}}</text>/{{quNum}}</view>
+      <view class='exam_tap' bindtap='showCard'>点击
+        <text class='exam_num base_color'>{{num}}</text>/{{quNum}}</view>
       <view class='exam_btn'>
         <view class='exam_count'>
           倒计时:<text class="exam_time base_color">{{countDownHour}}:{{countDownMinute}}:{{countDownSecond}}</text>
@@ -33,11 +28,16 @@
     <view class="{{cardCss}}">
       <view class="qu_card-title">{{title}}</view>
       <view class="card_box">
-        <text wx:for="{{quList}}" wx:key="index" class="{{quNumList[index]===index?'card_bd card_num':'card_num'}} {{(index+1)===num?'card_bg card_num':'card_num'}}" bindtap='cardClick' data-index='{{index}}'>{{index+1}}</text> 
+         <text wx:for="{{quList}}" wx:key="index" class="{{quNumList[index]===index?'card_bd card_num':'card_num'}} {{(index+1)===num?'card_bg card_num':'card_num'}}" bindtap='cardClick' data-index='{{index}}'>{{index+1}}</text>  
+        <!-- <block wx:for="{{quList}}" wx:key="index" wx:for-index="listIdx">
+          <block wx:for="{{quNumList}}" wx:for-item="Idx" wx:key="Idx" wx:if="{{Idx === listIdx}}">
+            <text wx:if="{{Idx === listIdx}}" class="card_bd card_num {{(listIdx+1)===num?'card_bg card_num':'card_num'}}">{{listIdx + 1}}</text>
+          </block>
+           <text class="{{(listIdx+1)===num?'card_bg card_num':'card_num'}}">{{listIdx + 1}}</text> 
+        </block> -->
       </view>
-    </view> 
+    </view>
   </view>
   <view  hidden='{{modalFlag}}' class='mask_layer'/>
   <modal  modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" bindconfirm="confirm"/>   
 </view>
-

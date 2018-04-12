@@ -1,11 +1,11 @@
 <view class="myTestCollection">
   <view class="weui-panel__bd">
-    <view url="" class="weui-media-box weui-media-box_appmsg"  wx:for="{{examList}}" wx:key="index" bindtap="bindCheckbox" data-index="{{index}}">
+    <view url="" class="weui-media-box weui-media-box_appmsg"  wx:for="{{examList}}" wx:key="index" bindtap="bindCheckbox" data-index="{{index}}" hover-class="{{hoverActive}}">
       <view  class="checkBox" hidden="{{hideStatus}}">
         <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
         <image wx:else src="{{uncheckSrc}}"  class="checkImage"></image>
       </view>
-      <view catchTap="{{testTap}}" class="weui-media-box__bd weui-media-box__bd_in-appmsg {{showCheckCss}}" hover-class="{{hoverActive}}">
+      <view catchtap="{{testTap}}" class="weui-media-box__bd weui-media-box__bd_in-appmsg {{showCheckCss}}">
         <view class="weui-media-box__title">{{item.title}}</view>
         <view class="weui-media-box_bottom" wx:if='{{!showTime}}'>
           {{exam_msg}}: 
