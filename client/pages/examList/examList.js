@@ -6,9 +6,7 @@ Page({
   data: {
     showTime:true,
     showScore:true,
-    examList: [],
     exam_msg:"测验时间",
-    examListEnd:[],
     people_num:"参加人数",
     pass_rate:"及格率",
     average:"平均分"
@@ -106,5 +104,22 @@ Page({
   },
   examMoreFail(res) {
     this.examMoreRequest();
-  }
+  },
+  _examClick(e){
+    let examId = e.currentTarget.dataset.id;
+    let examTitle = e.currentTarget.dataset.title;
+    let examType = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}&exam_flag=1`
+    })
+  },
+  examClick(e) {
+    let examId = e.currentTarget.dataset.id;
+    let examTitle = e.currentTarget.dataset.title;
+    let examType = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}&exam_flag=-1`
+    })
+  },
+  
 })
