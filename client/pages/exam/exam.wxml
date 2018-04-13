@@ -4,7 +4,7 @@
   <view class="weui-panel">
     <view class="weui-panel__hd">测一测</view>
     <view class="weui-panel__bd">
-      <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{newest}}" wx:key="index">
+      <view bindtap='examNewClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{newest}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
         <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
           <image class="weui-media-box__thumb" src="{{icon60}}" />
         </view>
@@ -14,7 +14,7 @@
           <view class="weui-media-box_bottom">截止时间: <text class="weui-media-box_time">{{item.endTime}}</text>
           </view>
         </view>
-      </navigator>
+      </view>
     </view>
   </view>
   <view class="weui-panel">

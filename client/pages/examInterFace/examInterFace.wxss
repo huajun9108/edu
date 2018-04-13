@@ -6,11 +6,10 @@
   -webkit-box-sizing:border-box; 
 
 }
-.exam_btn{
-  width: 100%;
-  line-height: 100rpx;
-  border: solid 2rpx #dcc07f;
-  border-radius: 2rpx;
-  text-align: center;
-  font-size: 38rpx;
+.unable_btn{
+  border-color:#c9c9c9;
+  color: #c6c6c6;
+}
+.top_btn{
+  margin-bottom: 18rpx;
 }

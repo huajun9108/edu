@@ -18,7 +18,12 @@
        <examFaceCom interface-text="{{testRequire}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}"
         interface-content="{{testRequireCon}}"/>
     </view>
-    <view class="exam_btn base_color" bindtap="startExam">开始答题</view>
+    <view wx:if="{{examFlag==-1}}" class="">
+      <view class="exam_btn unable_btn top_btn">答题已结束</view>
+      <view class="exam_btn base_color">查看试题与解析</view>
+    </view>
+    <view wx:if="{{examFlag==0}}" class="exam_btn base_color" bindtap="startExam">开始答题</view>
+    <view wx:if="{{examFlag==1}}" class="exam_btn unable_btn">暂未开始</view>
   </view> 
 </view>
 <modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" />

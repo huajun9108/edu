@@ -60,10 +60,19 @@ button::after{
   box-sizing:border-box;
   -webkit-box-sizing:border-box; 
 }
+.exam_btn{
+  width: 100%;
+  line-height: 100rpx;
+  border: solid 2rpx #dcc07f;
+  border-radius: 2rpx;
+  text-align: center;
+  font-size: 38rpx;
+  font-weight: bold;
+}
 button{
   font-size: 34rpx;
-  background: #dcc07f;
-  border-radius: 30rpx;
+  background: #edd292;
+  border-radius: 2rpx;
   color: #353535;
 }
 .course-search-box{
