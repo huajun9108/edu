@@ -28,13 +28,7 @@
     <view class="{{cardCss}}">
       <view class="qu_card-title">{{title}}</view>
       <scroll-view class="card_box" scroll-y="true">
-         <text wx:for="{{quList}}" wx:key="index" class="{{quNumList[index]===index?'card_bd card_num':'card_num'}} {{(index+1)===num?'card_bg card_num':'card_num'}}" bindtap='cardClick' data-index='{{index}}'>{{index+1}}</text>  
-        <!-- <block wx:for="{{quList}}" wx:key="index" wx:for-index="listIdx">
-          <block wx:for="{{quNumList}}" wx:for-item="Idx" wx:key="Idx" wx:if="{{Idx === listIdx}}">
-            <text wx:if="{{Idx === listIdx}}" class="card_bd card_num {{(listIdx+1)===num?'card_bg card_num':'card_num'}}">{{listIdx + 1}}</text>
-          </block>
-           <text class="{{(listIdx+1)===num?'card_bg card_num':'card_num'}}">{{listIdx + 1}}</text> 
-        </block> -->
+         <text wx:for="{{quList}}" wx:key="index" class="{{item.userAnswer.length?'card_bd card_num':'card_num'}} {{(index+1)===num?'card_bg card_num':'card_num'}}" bindtap='cardClick' data-index='{{index}}'>{{index+1}}</text>  
       </scroll-view>
     </view>
   </view>

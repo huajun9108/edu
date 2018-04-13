@@ -13,7 +13,7 @@ Page({
         url: "../myFavor/myFavor", image: "../../images/my_collection_icon.png", title: "我的课程"
       },
       {
-        url: "../myTest/myTest", image: "", title: "我的测验"
+        url: "../myTest/myTest", image: "../../images/test_icon.png", title: "我的测验"
       }
     ],
     buyVipUrl: "../buyVip/buyVip",

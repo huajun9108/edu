@@ -26,3 +26,4 @@
     <view wx:if="{{examFlag==1}}" class="exam_btn unable_btn">暂未开始</view>
   </view> 
 </view>
+<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" />

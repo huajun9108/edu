@@ -15,7 +15,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -25,7 +26,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -35,7 +37,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -45,7 +48,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -55,7 +59,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -65,7 +70,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -75,7 +81,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -85,7 +92,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -95,7 +103,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -105,7 +114,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -115,7 +125,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -125,7 +136,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -135,7 +147,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -145,7 +158,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -155,7 +169,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -165,7 +180,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -175,7 +191,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -185,7 +202,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -195,7 +213,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -205,7 +224,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -215,7 +235,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -225,7 +246,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -235,7 +257,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -245,7 +268,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -255,7 +279,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -265,7 +290,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -275,7 +301,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -285,7 +312,8 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       },
       {
         title: "5S运动是一项什么样的工作",
@@ -295,9 +323,9 @@ Page({
           { option: "C", select: false, content: "持久性" },
           { option: "D", select: false, content: "时尚性" }
         ],
-        answer: ["A"]
+        userAnswer: [],
+        correctAnswer: ["A"]
       }
-     
     ],
     duration: 800,
     num:1,
@@ -422,38 +450,29 @@ Page({
     console.log(e)
     var serial = e.currentTarget.dataset.serial;
     var this_checked = e.currentTarget.dataset.option
-    var parameterList = this.data.quList[serial].select;//获取Json数组
+    var quList = this.data.quList;
+    var parameterList = quList[serial].select;//获取Json数组
+    
     for (let i = 0; i < parameterList.length; i++) {
       if (parameterList[i].option === this_checked) {
         parameterList[i].select = true;//当前点击的位置为true即选中
+        if (!quList[serial].userAnswer.includes(this_checked)){
+          let len = quList[serial].userAnswer.length;
+          if(len === 1) {
+            quList[serial].userAnswer = [];
+          }
+          quList[serial].userAnswer.push(this_checked);
+        }
       }
       else {
         parameterList[i].select = false;//其他的位置为false
       }
     }
-    var quList = this.data.quList;
     quList[serial].select = parameterList;
     _this.setData({
       quList: quList,
       serial: serial
     });
-    var _quList = this.data.quList
-    let _qu = []
-    for (let j = 0; j < _quList.length; j++) {
-      let _quSelect = _quList[j].select
-      for (let k = 0; k < _quSelect.length; k++){
-        if (_quSelect[k].select){
-          _qu.push(j);
-        }else{
-          continue;
-        }
-      }
-    }
-    this.setData({
-      quNumList: _qu
-    })
-    console.log(this.data.quNumList)
-    
   },
   showCard(){
     let _this = this
