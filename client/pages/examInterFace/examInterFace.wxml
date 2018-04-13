@@ -21,3 +21,4 @@
     <view class="exam_btn base_color" bindtap="startExam">开始答题</view>
   </view> 
 </view>
+<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" />
