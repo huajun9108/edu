@@ -67,6 +67,10 @@ swiper-item {
   padding-bottom: 52rpx;
 }
 
+.parse-wrap:last-child {
+  padding-bottom: 0;
+}
+
 .answerTapImg {
   width: 50rpx;
   height: 50rpx;

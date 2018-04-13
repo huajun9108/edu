@@ -3,34 +3,28 @@
   <view class="content-box">
     <view class="content-wrap">
       <view class="exam-title">{{title}}</view>
-      <!-- <swiper duration="{{duration}}">
-        <block wx:for="{{quList}}" wx:for-index="quArrayIdx" wx:key="quArrayIdx" wx:for-item="quArray">
-          <swiper-item>
-            <view class="qu_container">
-              <view class="qu_wrap" wx:for="{{quArray}}" wx:for-item="quItem" wx:for-index="quIdx" wx:key="quIdx">
-                <view class="qu_title">{{quIdx+quArrayIdx*2+1}}.
-                  <text class="base_color">(单选题)</text>{{quItem.title}}</view>
-                 <block>
-                  <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" class="qu_options">
-                    <image wx:if="{{selectItem.correctAnswerTag}}" src="{{correctIcon}}" class="answerTapImg"></image>
-                    <block wx:else>
-                      <image wx:if="{{selectItem.userAnswerTag}}" src="{{errorIcon}}" class="answerTapImg"></image>
-                      <text class="qu_option" wx:else>{{selectItem.option}}</text>
-                    </block>
-                    {{selectItem.content}}
-                  </view>
-                </block> 
-                <view class="answer-wrap">答案：
-                  <text class="answer-content">{{quItem.correctAnswer}}</text>
-                </view>
-                <view class="parse-wrap">
-                  解析：{{quItem.parse}}
-                </view>
+      <block wx:for="{{quList}}" wx:for-index="quIdx" wx:key="quIdx" wx:for-item="quItem">
+        <view class="qu_container">
+            <view class="qu_title">{{quIdx+1}}.
+              <text class="base_color">(单选题)</text>{{quItem.title}}</view>
+            <block>
+              <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" class="qu_options">
+                <image wx:if="{{selectItem.correctAnswerTag}}" src="{{correctIcon}}" class="answerTapImg"></image>
+                <block wx:else>
+                  <image wx:if="{{selectItem.userAnswerTag}}" src="{{errorIcon}}" class="answerTapImg"></image>
+                  <text class="qu_option" wx:else>{{selectItem.option}}</text>
+                </block>
+                {{selectItem.content}}
               </view>
+            </block>
+            <view class="answer-wrap">答案：
+              <text class="answer-content">{{quItem.correctAnswer}}</text>
             </view>
-          </swiper-item>
-        </block>
-      </swiper> -->
+            <view class="parse-wrap">
+              解析：{{quItem.parse}}
+            </view>
+        </view>
+      </block>
     </view>
   </view>
 </view>

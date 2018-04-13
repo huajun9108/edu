@@ -7,7 +7,7 @@ Page({
   data: {
     title: '',
     quList: [
-      [{
+      {
         title: "5S运动是一项什么样的工作",
         select: [
           { option: "A", correctAnswerTag: false, content: "暂时性", userAnswerTag: false},
@@ -28,8 +28,8 @@ Page({
         ],
         correctAnswer: ["A"],
         parse: "无"
-      }],
-      [{
+      },
+      {
         title: "5S运动是一项什么样的工作",
         select: [
           { option: "A", correctAnswerTag: false, content: "暂时性", userAnswerTag: false},
@@ -50,8 +50,8 @@ Page({
         ],
         correctAnswer: ["C"],
         parse: "无"
-      }],
-      [{
+      },
+      {
         title: "5S运动是一项什么样的工作",
         select: [
           { option: "A", correctAnswerTag: true, content: "暂时性", userAnswerTag: false},
@@ -61,7 +61,7 @@ Page({
         ],
         correctAnswer: ["A"],
         parse: "无"
-      }]
+      }
     ],
     correctIcon: "../../images/correct_icon.png",
     errorIcon: "../../images/error_icon.png"
