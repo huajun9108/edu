@@ -28,9 +28,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    showTime: false,
     exam_msg: "状态",
-
     num: 0,
     delCss: "weui-flex-common",
     checkSrc: "../../images/select.png",

@@ -1,6 +1,5 @@
 <!--pages/myTest/myTest.wxml-->
 <import src="../common/common.wxml" />
-
 <view class="weui-tab">
   <view class="weui-navbar">
     <block wx:for="{{tabs}}" wx:key="*this">

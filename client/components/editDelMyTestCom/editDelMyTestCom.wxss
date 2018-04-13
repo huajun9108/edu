@@ -1,72 +1,19 @@
 /* components/editDelMyTestCom.wxss */
- @import "../../app.wxss";
  @import "../../pages/myTest/myTest";
  @import "../editDelCom/editDelCom";
  .myTestCollection {
    padding-bottom: 100rpx;
    overflow: hidden;
  }
-
-/* .edit, .weui-flex {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  border-top: 1px solid #dfdfdf;
-  line-height: 100rpx;
-  text-align: center;
-  font-size: 34rpx;
-  background: #fff;
+ .weui-media-box_bottom {
+  font-size: 26rpx;
+  margin-top:10rpx;
 }
-
-.weui-flex-common {
-  bottom: -118rpx;
-}
-
-.weui-flex-up {
-  animation: up .5s ease-in-out
-}
-
-.weui-flex-down {
-  bottom: -118rpx;
-  animation: down .5s ease-in-out;
-}
-
-.placeholder {
-  text-align: center;
-}
-
-@keyframes up {
-  from {
-    bottom: -118rpx;
-  }
-  to {
-    bottom: 0;
-  }
-}
-
-@keyframes down {
-  from {
-    bottom: 0;
-  }
-  to {
-    bottom: -118rpx;
-  }
-}
-.checkBox {
-  position: absolute;
-  left: 40rpx;
-}
-.checkImage {
-  width: 40rpx;
-  height: 40rpx;
-}
-
-.weui-cells-right{
-  transform: translateX(66rpx);
-  transition: all .2s ease-in;
+.weui-media-box{
+  padding:22rpx 40rpx;
 } 
-.weui-cells-left{
-  transform: translateX(0);
-  transition: all .2s ease-in;
+.checkBox{
+  position:absolute;
+  left:40rpx;
+  top:34rpx;
 }
- */

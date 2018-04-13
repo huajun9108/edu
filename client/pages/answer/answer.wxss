@@ -108,7 +108,10 @@ swiper{
   font-weight: bold;
 }
 .card_box{
-  padding: 26rpx 40rpx 6rpx;
+  padding: 26rpx 40rpx;
+  height: 488rpx;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 .card_num{
   display: inline-block; 

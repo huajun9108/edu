@@ -1,41 +1,3 @@
-// pages/answer/answer.js
-// function countdown(that) {
-//   var EndTime = that.data.end_time || [];
-//   var NowTime = new Date().getTime();
-//   var total_micro_second = 900000;
-//   console.log('剩余时间：' + total_micro_second);
-//   // 渲染倒计时时钟
-//   // that.setData({
-//   //   clock: dateformat(900000)
-//   // });
-//   if (total_micro_second <= 0) {
-//     that.setData({
-//       clock: "已经截止"
-//     });
-//     //return;
-//   }
-//   setTimeout(function () {
-//     // total_micro_second -= 1000;
-//     countdown(that);
-//   }
-//     , 1000)
-//   console.log('剩余时间：' + that.data.total_micro_second);
-// }
-
-// // 时间格式化输出，如11:03 25:19 每1s都会调用一次
-// function dateformat(micro_second) {
-//   // 总秒数
-//   var second = Math.floor(micro_second / 1000);
-//   // 天数
-//   var day = Math.floor(second / 3600 / 24);
-//   // 小时
-//   var hr = Math.floor(second / 3600 % 24);
-//   // 分钟
-//   var min = Math.floor(second / 60 % 60);
-//   // 秒
-//   var sec = Math.floor(second % 60);
-//   return day + "天" + hr + "小时" + min + "分钟" + sec + "秒";
-// }
 
 Page({
 
@@ -47,6 +9,96 @@ Page({
     quList:[
       {
         title:"5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        answer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
         select: [
           { option: "A", select: false, content: "暂时性" },
           { option: "B", select: false, content: "流行性" },

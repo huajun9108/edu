@@ -166,10 +166,10 @@ Page({
                 });
             }
             this.setData({
-                paidList: paidList,
-                unpaidList: unpaidList,
-                order: orderList,
-                isLoad: false
+              paidList: paidList,
+              unpaidList: unpaidList,
+              order: orderList,
+              isLoad: false
             })
             this.setCourse();
         }
