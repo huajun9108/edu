@@ -34,31 +34,36 @@ Page({
         title: "[练习]“5S”核心知识测验",
         people: "89",
         pass: "89%",
-        score:"89"
+        score:"89",
+        type:1
       },
       {
         title: "[练习]“5S”核心知识测验",
         people: "89",
         pass: "89%",
-        score: "89"
+        score: "89",
+        type: 1
       },
       {
         title: "[练习]“5S”核心知识测验",
         people: "89",
         pass: "89%",
-        score: "89"
+        score: "89",
+        type: 1
       },
       {
         title: "[练习]“5S”核心知识测验",
         people: "89",
         pass: "89%",
-        score: "89"
+        score: "89",
+        type: 2
       },
       {
         title: "[练习]“5S”核心知识测验",
         people: "89",
         pass: "89%",
-        score: "89"
+        score: "89",
+        type: 2
       }
     ],
     people_num:"参加人数",

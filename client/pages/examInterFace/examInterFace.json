@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "titleCom": "../../components/titleCom/titleCom"
+    "titleCom": "../../components/titleCom/titleCom",
+    "examFaceCom":"../../components/examFaceCom/examFaceCom"
   }
 }

@@ -1,0 +1,26 @@
+/* components/examFaceCom/examFaceCom.wxss */
+@import "../../app.wxss";
+.ellipsis{
+  overflow: hidden;
+  text-overflow:ellipsis; 
+  display:-webkit-box; 
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2; 
+}
+.weui-form-preview__item{
+  margin-top: 28rpx;
+} 
+.weui-form-preview__label{
+  line-height: 1
+} 
+.weui-form-preview_content{
+  line-height:30rpx;
+}
+.weui-form-preview_btn {
+  width: 120rpx;
+  border: solid 2rpx #dcc07f;
+  border-radius: 20rpx;
+  margin-top: 10rpx;
+  line-height: 50rpx;
+  text-align: center;
+}

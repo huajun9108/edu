@@ -1,5 +1,5 @@
 // pages/myTest/myTest.js
-const sliderWidth = 80;
+const sliderWidth = 64;
 
 Page({
 
@@ -104,9 +104,10 @@ Page({
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
+        console.log(res)
         that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+          sliderLeft: (res.windowWidth /2/ that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth/2/that.data.tabs.length * that.data.activeIndex
         });
       }
     });

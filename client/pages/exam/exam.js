@@ -1,64 +1,12 @@
 // pages/exam/exam.js
+const app = getApp();
+const config = require('../../config')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    examList:[
-      {
-        title:"快来，2018年上半年工业工程信心调研！",
-        people:"89",
-        endTime:"2018/3/30 10:00:00"
-      },
-      {
-        title: "快来，2018年上半年工业工程信心调研！",
-        people: "89",
-        endTime: "2018/3/30 10:00:00"
-      },
-      {
-        title: "快来，2018年上半年工业工程信心调研！",
-        people: "89",
-        endTime: "2018/3/30 10:00:00"
-      },
-      {
-        title: "快来，2018年上半年工业工程信心调研！",
-        people: "89",
-        endTime: "2018/3/30 10:00:00"
-      },
-      {
-        title: "快来，2018年上半年工业工程信心调研！",
-        people: "89",
-        endTime: "2018/3/30 10:00:00"
-      }
-    ],
-    examListEnd:[
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "2018/3/30 10:00:00",
-        score:10,
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "2018/3/30 10:00:00",
-        score: 10
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "2018/3/30 10:00:00",
-        score: 10
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "2018/3/30 10:00:00",
-        score: 10
-      },
-      
-    ],
     people_num: "已参加",
     pass_rate: "截止时间",
     average: "预计用时"
@@ -68,7 +16,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    const examPageUrl = config.service.examPageUrl;
+    app.request.requestGetApi(examPageUrl, {}, this, this.examPageSuccess, this.examPageFail)
   },
 
   /**
@@ -82,7 +31,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    
   },
 
   /**
@@ -118,6 +67,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  examPageSuccess(res){
+    console.log(res)
+    this.setData({
+      newest: res.data.newest,
+      examListEnd: res.data.ongoing
+    })
   },
   toMoreUrl(){
     wx.navigateTo({

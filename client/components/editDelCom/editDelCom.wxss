@@ -1,6 +1,6 @@
 /* components/editDelCom.wxss */
 @import "../../app.wxss"; 
-@import "../../pages/allOrders/allOrders.wxss" ;  
+@import "../../pages/allOrders/allOrders.wxss" ;   
  .myFavor{
   padding-bottom: 100rpx;
   overflow: hidden
@@ -92,3 +92,8 @@
   transform: translateX(0);
   transition: all .2s ease-in;
 } 
+.checkBox_order{
+  position: absolute;
+  left: 40rpx;
+  top: 52rpx;
+}

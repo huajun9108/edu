@@ -1,7 +1,7 @@
 <!--components/editDelCom.wxml-->
 <view class="myFavor">
-  <view class="weui-cells {{item.teacher?'':'weui-cells_after-title'}}" wx:for="{{editDelList}}" wx:key = "index" bindtap="bindCheckbox" data-index = "{{index}}">
-      <view  class="checkBox" >
+  <view class="weui-cells" wx:for="{{editDelList}}" wx:key = "index" bindtap="bindCheckbox" data-index = "{{index}}">
+      <view  class="{{item.teacher?'checkBox':'checkBox_order'}}" >
         <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
         <image wx:else src="{{uncheckSrc}}"  class="checkImage"></image>
       </view>
@@ -14,8 +14,7 @@
         <view class="order-bottom" wx:if="{{item.teacher}}">
           <text>{{item.teacher.name}}\n{{item.teacher.job}}</text>
         </view>
-        <view class="order-bottom-price base_color" wx:else>
-          {{'￥'+item.price}}
+        <view class="order-bottom-price base_color" wx:else>{{'￥'+item.price}}
         </view>
       </view>
       <view class="weui-cell__ft weui-cell__ft_in-access" wx:if="{{item.teacher}}"></view>
