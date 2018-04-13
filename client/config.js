@@ -79,7 +79,10 @@ var config = {
         homePageUrl: `${host}/weapp/course/selectHottestNewest`,
 
         //测验展示接口
-        examPageUrl:`${host}/weapp/exam/selectNewestExam`
+        examPageUrl:`${host}/weapp/exam/selectNewestExam`,
+
+        //测验more接口
+        examMoreUrl: `${host}/weapp/exam/selectMoreExam`,
     }
 
     
