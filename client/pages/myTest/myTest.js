@@ -186,8 +186,8 @@ Page({
     console.log(e.detail);
     this.setData({
       selected: e.detail.selected,
-      unselected: e.detail.unselected,
-      examList: e.detail.unselected
+      examList: e.detail.unselected,
+      collectionExamList: e.detail.unselected
     });
   }
 })
