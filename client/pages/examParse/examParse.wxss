@@ -1,0 +1,79 @@
+/* pages/examParse/examParse.wxss */
+.page, .content-box{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box; 
+}
+.content-box{
+  padding: 20rpx 0 0;
+}
+.content-wrap{
+  padding: 0 40rpx;
+  flex: 1;
+  display:-webkit-box;
+  display:-webkit-flex;
+  display:flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+}
+.exam-title{
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 1;
+  margin-bottom: 38rpx;
+}
+swiper{
+  flex: 1;
+}
+swiper-item {
+  overflow-y: auto;
+}
+.qu_title{
+  font-size: 34rpx;
+  margin-bottom: 10rpx;
+  line-height: 1;
+}
+.qu_options{
+  padding-top: 42rpx;
+  padding-left: 28rpx;
+  font-size: 32rpx;
+}
+.qu_option{
+  display: inline-block;
+  width: 46rpx;
+  border: solid 2rpx #ccc;
+  border-radius: 50%;
+  line-height: 46rpx;
+  text-align: center;
+  margin-right: 8rpx;
+  font-size: 28rpx;
+}
+
+.answer-wrap {
+  padding: 52rpx 0 22rpx;
+  line-height: 42rpx;
+}
+
+.answer-wrap .answer-content {
+  font-size: 42rpx;
+  font-weight: 600rpx;
+  color: #49CA68;
+}
+
+.parse-wrap {
+  padding-bottom: 52rpx;
+}
+
+.parse-wrap:last-child {
+  padding-bottom: 0;
+}
+
+.answerTapImg {
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}

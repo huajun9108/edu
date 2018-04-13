@@ -16,7 +16,8 @@
     "pages/examAll/examAll",
     "pages/examInterFace/examInterFace",
     "pages/answer/answer",
-    "pages/myTest/myTest"
+    "pages/myTest/myTest",
+    "pages/examParse/examParse"
   ],
   "window":{
     "backgroundColor":"#fff",
@@ -53,8 +54,13 @@
         "text": "我的",
         "iconPath": "images/my_default.png",
         "selectedIconPath": "images/my_focus.png"
+      },
+      {
+        "pagePath": "pages/examParse/examParse",
+        "text": "试题与解析",
+        "iconPath": "images/my_default.png",
+        "selectedIconPath": "images/my_focus.png"
       }
-     
     ]
   },
   "networkTimeout": {

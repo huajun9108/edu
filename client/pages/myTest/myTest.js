@@ -172,7 +172,6 @@ Page({
         showTime: true,
         examList: this.data.historyExamList,
         exam_msg: "参加时间",
-        // sliderOffset: 0
       });
     } else if (e.currentTarget.id === "1") {
       this.setData({
@@ -180,7 +179,6 @@ Page({
         showCheckCss: "",
         hideStatus: true,
         examList: this.data.collectionExamList,
-        // sliderOffset: e.currentTarget.offsetLeft - 20
       });
     }
   },
