@@ -27,11 +27,21 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let exam_type=""
+    if (options.exam_type==1){
+      exam_type ="[练习]"
+    } else if (options.exam_type == 2){
+      exam_type = "[考试]"
+    } else if (options.exam_type == 3) {
+      exam_type = "[调研]"
+    }else{}
+    let title = exam_type+options.title
     this.setData({
-      title: options.title
+      title: title,
+      examFlag: options.exam_flag
     });
     wx.setNavigationBarTitle({
-      title: options.title,
+      title: title,
     })
     
   },

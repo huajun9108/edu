@@ -80,12 +80,22 @@ Page({
       url: '../examList/examList',
     })
   },
+  examNewClick(e){
+    let examId = e.currentTarget.dataset.id;
+    let examTitle = e.currentTarget.dataset.title;
+    let examType = e.currentTarget.dataset.type;
+    let examFlag = e.currentTarget.dataset.flag;
+    wx.navigateTo({
+      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}&exam_flag=${examFlag}`
+    })
+    console.log(e)
+  },
   examClick(e){
     let examId = e.currentTarget.dataset.id;
     let examTitle = e.currentTarget.dataset.title;
-    
+    let examType = e.currentTarget.dataset.type;
     wx.navigateTo({
-      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}`
+      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}`
     })
   }
 })
