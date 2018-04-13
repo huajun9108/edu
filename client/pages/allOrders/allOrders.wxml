@@ -1,9 +1,9 @@
 <!--pages/allOrders/allOrders.wxml-->
 <import src="../common/common.wxml"/>
 <view class='page'>
-  <template is="page-login" wx:if="{{isLogin}}">
+  <template is="page-error" wx:if="{{!isLoad}}">
   </template>
-  <template is="page-error" wx:elif="{{isLoad}}">
+  <template is="page-login" wx:elif="{{!isLogin}}">
   </template>
   <view class="weui-tab" wx:else>
     <view class="weui-navbar">

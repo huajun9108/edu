@@ -6,74 +6,15 @@ Page({
   data: {
     showTime:true,
     showScore:true,
-    examList: [
-      {
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00-2018/04/01 10:00:00"
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00"
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00"
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00"
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00"
-      }
-    ],
+    examList: [],
     exam_msg:"测验时间",
-    examListEnd:[
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "89%",
-        score:"89",
-        type:1
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "89%",
-        score: "89",
-        type: 1
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "89%",
-        score: "89",
-        type: 1
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "89%",
-        score: "89",
-        type: 2
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        people: "89",
-        pass: "89%",
-        score: "89",
-        type: 2
-      }
-    ],
+    examListEnd:[],
     people_num:"参加人数",
     pass_rate:"及格率",
     average:"平均分"
   },
   onLoad: function (option) {
-    this.setData({
-    })
-    
+    this.examMoreRequest();
   },
   onShow() {
     this.setData({
@@ -85,7 +26,6 @@ Page({
       is_modal_Hidden: true
     });
   },
- 
   tapCourseCategory: function () {
     this.setData({
       flag: false,
@@ -150,5 +90,21 @@ Page({
   },
   confirm(e) {
     util.confirm(e)
+  },
+  examMoreRequest() {
+    const examMoreUrl = config.service.examMoreUrl;
+    app.request.requestGetApi(examMoreUrl, {}, this, this.examMoreSuccess, this.examMoreFail, 1);
+  },
+  examMoreSuccess(res) {
+    console.log(res);
+    if(res.status === "0") {
+      this.setData({
+        examList: res.data.start,
+        examListEnd: res.data.end
+      });
+    }
+  },
+  examMoreFail(res) {
+    this.examMoreRequest();
   }
 })
