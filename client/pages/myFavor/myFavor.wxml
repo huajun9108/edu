@@ -1,12 +1,12 @@
 <!--pages/myFavor/myFavor.wxml-->
 <import src="../common/common.wxml" />
 <view class="page">
-  <template is="page-error" wx:if="{{isLoad}}">
+  <template is="page-error" wx:if="{{!isLoad}}">
   </template> 
-  <template is="page-login" wx:elif="{{isLogin}}">
+  <template is="page-login" wx:elif="{{!isLogin}}">
   </template>
   <template is="page-empty" wx:elif="{{pageIsEmpty}}" data="{{tipMsg}}">
   </template>  
   <editDelCom edit-del-list="{{favorList}}"
-   binddelConfirm="delConfirm" bindcourseUrl="courseUrl" wx:elif="{{!isLogin&!pageIsEmpty&!isLoad}}"/>
+   binddelConfirm="delConfirm" bindcourseUrl="courseUrl" wx:elif="{{isLogin&!pageIsEmpty&isLoad}}"/>
 </view>

@@ -145,7 +145,7 @@
           <text wx:if="{{item.type==2}}">已结束</text>
         </view>
         <view class="weui-media-box_bottom" wx:if='{{showTime}}'>{{exam_msg}}: 
-          <text class="weui-media-box_time">{{item.endTime}}</text>
+          <text class="weui-media-box_time">{{item.startTime}}-{{item.endTime}}</text>
         </view>
       </view>
     </navigator>

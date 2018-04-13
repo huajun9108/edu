@@ -8,8 +8,8 @@ Page({
     favorList: [],
     pageIsEmpty: false,
     tipMsg: "你还没有收藏记录哦",
-    isLogin:false,
-    isLoad:false
+    isLogin: true,
+    isLoad: true
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -18,14 +18,14 @@ Page({
   },
   success(){
     this.setData({
-      isLogin: false
+      isLogin: true
     })
     this.getMyFavor();
   },
   fail(){
     this.setData({
-      isLoad: false,
-      isLogin: true
+      isLoad: true,
+      isLogin: false
     })
   },
   login(){
@@ -33,7 +33,7 @@ Page({
   },
   successFirst(){
     this.setData({
-      isLogin: false
+      isLogin: true
     })
     this.getMyFavor()
   },
@@ -58,9 +58,12 @@ Page({
         var networkType = res.networkType
         if (networkType === "none") {
           that.setData({
-            isLoad: true
+            isLoad: false
           });
         } else {
+          that.setData({
+            isLoad: true
+          });
           app.testSession(that.success, that.fail)
         }
       }
@@ -94,12 +97,12 @@ Page({
     }
     this.setData({
       favorList: list,
-      isLoad: false
+      isLoad: true
     })
   },
   myFavorListFailFun() {
     this.setData({
-      isLoad: true
+      isLoad: false
     })
   },
   load(){

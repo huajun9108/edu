@@ -19,12 +19,12 @@ Page({
         paidIsEmpty: false,
         unpaidIsEmpty: false,
         tipMsg: '您还没有相关的订单',
-        isLogin: false,
+        isLogin: true,
         select: [],
         unselect: [],
         delCss:"weui-flex-common",
         showCheckCss:"",
-        isLoad: false,
+        isLoad: true,
     },
 
     /**
@@ -62,34 +62,29 @@ Page({
           var networkType = res.networkType
           if (networkType === "none") {
             that.setData({
-              isLoad: true
+              isLoad: false
             });
           } else {
-            app.testSession(that.success, that.fail)
+            isLoad: true
+            app.testSession(that.loginSuccess, that.loginFail)
           }
         }
       });
     },
-    success() {
+    loginSuccess() {
         this.setData({
-            isLogin: false
+            isLogin: true
         })
         this.queryAllOrders()
     },
-    fail() {
+    loginFail() {
         this.setData({
-            isLoad: false,
-            isLogin: true
+            isLoad: true,
+            isLogin: false
         })
     },
     login() {
-        app.login(this.successFirst)
-    },
-    successFirst() {
-        this.setData({
-            isLogin: false
-        })
-        this.queryAllOrders()
+      app.login(this.loginSuccess)
     },
     /**
      * 生命周期函数--监听页面隐藏
@@ -169,14 +164,14 @@ Page({
               paidList: paidList,
               unpaidList: unpaidList,
               order: orderList,
-              isLoad: false
+              isLoad: true
             })
             this.setCourse();
         }
     },
     queryAllOrdersFailFun(){
       this.setData({
-        isLoad:true
+        isLoad: false
       })
     },
     load(){

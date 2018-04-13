@@ -1,5 +1,7 @@
 // pages/myTest/myTest.js
 const sliderWidth = 64;
+const app = getApp();
+const config = require('../../config');
 
 Page({
 
@@ -86,7 +88,12 @@ Page({
     showTime: true,
     examList: [],
     exam_msg: "",
+    isLoad: true,
+    isLogin: true,
+    pageIsEmpty: true,
+    tipMsg: '',
 
+    //编辑收藏测试时样式控制变量
     delCss: "weui-flex-common",
     showCheckCss: "",
     hideStatus: true,
@@ -101,6 +108,7 @@ Page({
       examList: this.data.historyExamList,
       exam_msg: "参加时间"
     });
+    this.judgePageIsEmpty("暂无历史测验相关信息");
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -125,6 +133,7 @@ Page({
    */
   onShow: function () {
     console.log('myTest onShow');
+    this.checkNetworkAndLoginStatus();
   },
 
   /**
@@ -161,6 +170,45 @@ Page({
   onShareAppMessage: function () {
 
   },
+  checkNetworkAndLoginStatus() {
+    let that = this;
+    wx.getNetworkType({
+      success: function(res) {
+        let networkType = res.networkType;
+        if(networkType === "none") {
+          that.setData({
+            isLoad: false
+          })
+        } else {
+          that.setData({
+            isLoad: true
+          });
+          app.testSession(that.loginSuccess, that.loginFail)
+        }
+      }
+    })
+  },
+
+  loginSuccess() {
+    this.setData({
+      isLogin: true
+    });
+  },
+  loginFail() {
+    this.setData({
+      isLoad: true,
+      isLogin: false
+    });
+  },
+  load() {
+    console.log("load");
+    this.checkNetworkAndLoginStatus();
+  },
+  login() {
+    app.login(this.loginSuccess);
+  },
+
+
   tabClick: function (e) {
     console.log(e);
     this.setData({
@@ -173,6 +221,7 @@ Page({
         examList: this.data.historyExamList,
         exam_msg: "参加时间",
       });
+      this.judgePageIsEmpty("暂无历史测验相关信息");
     } else if (e.currentTarget.id === "1") {
       this.setData({
         delCss: "weui-flex-common",
@@ -180,6 +229,7 @@ Page({
         hideStatus: true,
         examList: this.data.collectionExamList,
       });
+      this.judgePageIsEmpty("暂无收藏测验相关信息");
     }
   },
   delConfirm(e) {
@@ -189,5 +239,19 @@ Page({
       examList: e.detail.unselected,
       collectionExamList: e.detail.unselected
     });
+  },
+  judgePageIsEmpty(tipMsg) {
+    if (this.data.examList.length === 0) {
+      console.log('empty');
+      this.setData({
+        pageIsEmpty: true,
+        tipMsg: tipMsg
+      });
+    } else {
+      this.setData({
+        pageIsEmpty: false,
+        tipMsg: ''
+      })
+    }
   }
 })
