@@ -1,12 +1,12 @@
 <!--components/titleCom/titleCom.wxml-->
 <view class="weui-flex">
   <view class="weui-flex__item ">
-    <text class="{{examFlag?'exam_title':'main_title'}}">{{title}}</text>
+    <text class="{{examShow?'exam_title':'main_title'}}">{{title}}</text>
   </view>
   <view class="share_box">
     <image class="collect_image" mode="scaleToFill" src="{{isCollected?collected_image:uncollected_image}}" bindtap="addMyFavor"></image> 
     <button class="share" open-type="share">
-      <image class="{{examFlag?'exam_share_image':'share_image'}}" src="{{share_image}}"></image>                       
+      <image class="{{examShow?'exam_share_image':'share_image'}}" src="{{share_image}}"></image>                       
     </button>
   </view>
 </view>

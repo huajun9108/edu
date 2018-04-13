@@ -192,7 +192,6 @@ Page({
                 orderList: this.data.paidList
             })
         } else if (this.data.activeIndex === "2") {
-            console.log("unpaidList", this.data.unpaidList);
             this.setData({
                 orderList: this.data.unpaidList,
                 delCss:"weui-flex-common",

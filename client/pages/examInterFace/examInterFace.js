@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    examFlag: true,
+    examShow: true,
     interfaceText: "测验简介",
     interfaceContent: "很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长",
     pubText: "发布时间",
@@ -21,7 +21,7 @@ Page({
     testRequire: "测验要求",
     testRequireCon: "考生需要在测验规定的时长内完成作答,在规定时间内答题完成可以手动提交答卷,超过时间系统会自动提交答卷结束测验。",
     is_modal_Hidden: true,
-    is_modal_msg: "是否确认开始答写",
+    is_modal_msg: "是否确认开始答写\n如若中途退出\n系统将自动提交答卷",
     cancelText: "稍后再来",
     sureText: "现在答写"
   },
@@ -41,8 +41,10 @@ Page({
     }else{}
     let title = exam_type+options.title
     this.setData({
+      examId: options.id,
       title: title,
-      examFlag: options.exam_flag
+      examFlag: options.exam_flag,
+      examType: options.exam_type
     });
     wx.setNavigationBarTitle({
       title: title,
@@ -105,13 +107,24 @@ Page({
     });
   },
   startExam() {
-    this.setData({
-      is_modal_Hidden: false
-    });
+    let _this = this
+    if (this.data.examType==2){
+      _this.setData({
+        is_modal_Hidden: false
+      });
+    }else{
+      this.confirm()
+    }
+    
   },
   confirm() {
-    // wx.navigateTo({
-    //   url: '../answer/answer?title=' + this.data.title,
-    // })
+    wx.navigateTo({
+      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}`,
+    })
+  },
+  examParseClick(){
+    wx.navigateTo({
+      url: '../examParse/examParse?title=' + this.data.title,
+    })
   }
 })

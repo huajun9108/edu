@@ -13,7 +13,7 @@
       </swiper-item>
     </block>
   </swiper> 
-  <modal courseImgUrls="{{recommendImgUrls}}" homeComMsg="{{recommendComMsg}}" bindrefresh="recommendRefresh"/> 
-  <modal courseImgUrls="{{hottestImgUrls}}" homeComMsg="{{hottestComMsg}}" bindrefresh="hottestRefresh"/>  
+  <modal course-img-urls="{{recommendImgUrls}}" home-com-msg="{{recommendComMsg}}" bindrefresh="recommendRefresh"/> 
+  <modal course-img-urls="{{hottestImgUrls}}" home-com-msg="{{hottestComMsg}}" bindrefresh="hottestRefresh"/>  
 </view>
 

@@ -330,7 +330,7 @@ Page({
     duration: 800,
     num:1,
     is_modal_Hidden: true,
-    is_modal_Msg: "是否确认提交答卷",
+    is_modal_Msg: "是否确认提交答卷?",
     cancelText: "我再写写",
     sureText: "现在交卷",
   },
@@ -339,7 +339,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.title)
+    console.log(options)
     this.setData({
       quNum: this.data.quList.length,
       title: options.title,
@@ -403,7 +403,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
   },
 
   /**

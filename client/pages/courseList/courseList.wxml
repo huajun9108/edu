@@ -22,6 +22,6 @@
         <template is="page-courseList" data="{{courseArr}}" />
       </view>
     </view>
-    <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" inputShowed="{{inputShowed}}" bindsearchClick="searchClick" bindconfirm="confirm" />
+    <modal modal-hidden="{{is_modal_Hidden}}" search-list="{{searchList}}" input-showed="{{inputShowed}}" bindsearchClick="searchClick" bindconfirm="confirm" />
   </view>
 </block>

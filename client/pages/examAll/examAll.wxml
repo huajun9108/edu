@@ -9,7 +9,7 @@
   </view> 
   <modal modal-hidden="{{is_modal_Hidden}}" 
   search-list="{{searchList}}" 
-  inputShowed="{{inputShowed}}"
+  input-showed="{{inputShowed}}"
   bindsearchClick="searchClick" 
   bindconfirm="confirm"/>  
 </view>

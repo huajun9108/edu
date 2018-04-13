@@ -33,9 +33,9 @@
       <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
         <template is="page-empty" wx:if="{{unpaidIsEmpty}}" data="{{tipMsg}}">
         </template>
-        <modal editDelList="{{orderList}}"
-         bindcourseBuyUrl="courseBuyUrl" delCss="{{delCss}}" 
-         showCheckCss="{{showCheckCss}}"               
+        <modal edit-del-list="{{orderList}}"
+         bindcourseBuyUrl="courseBuyUrl" del-css="{{delCss}}" 
+         show-check-css="{{showCheckCss}}"               
          binddelConfirm="delConfirm"  wx:else/> 
       </view> 
     </view>

@@ -12,7 +12,7 @@
   </view>
   <view class="bottomBlock" wx:if="{{!isLoad}}">
     <view class='course page__bd_spacing'>
-      <titleCom title="{{title}}" isCollected="{{isCollected}}" bindaddMyFavor="addMyFavor"/>
+      <titleCom title="{{title}}" is-collected="{{isCollected}}" bindaddMyFavor="addMyFavor"/>
       <view class="consult">
           <button class="consult_btn base_color" open-type="contact">咨询</button>
       </view>

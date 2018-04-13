@@ -12,7 +12,7 @@ Component({
       type: Boolean,
       value: false
     },
-    examFlag:{
+    examShow:{
       type: Boolean,
       value: false
     }

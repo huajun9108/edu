@@ -24,7 +24,13 @@
   height: 294rpx
 }  
 .content {  
-  overflow-y: scroll; /*超出父盒子高度可滚动*/  
+  text-align: center;  
+  height: 192rpx; 
+  border-bottom: 2rpx solid #efeff1;
+  font-size: 34rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }  
   
 .btn {  
@@ -47,12 +53,4 @@
   width: 100%;  
   color: #cfb16b;
   text-align: center;  
-}  
-  
-.modalMsg {  
-  text-align: center;  
-  display: block; 
-  line-height: 192rpx; 
-  border-bottom: 2rpx solid #efeff1;
-  font-size: 34rpx;
 }  

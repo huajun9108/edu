@@ -96,7 +96,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('myTest onLoad');
     this.setData({
       examList: this.data.historyExamList,
       exam_msg: "参加时间"
@@ -104,7 +103,6 @@ Page({
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        console.log(res)
         that.setData({
           sliderLeft: (res.windowWidth /2/ that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth/2/that.data.tabs.length * that.data.activeIndex

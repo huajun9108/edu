@@ -18,7 +18,7 @@
     <view class='bottom'>
       <view class='exam_tap' bindtap='showCard'>点击
         <text class='exam_num base_color'>{{num}}</text>/{{quNum}}</view>
-      <view class='exam_btn'>
+      <view class='exam_time-count'>
         <view class='exam_count'>
           倒计时:<text class="exam_time base_color">{{countDownHour}}:{{countDownMinute}}:{{countDownSecond}}</text>
           <view class="exam_submit base_color" bindtap='submitClick'>提交答卷</view>
