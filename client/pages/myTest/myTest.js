@@ -18,38 +18,37 @@ Page({
       {
         id: 0,
         selected: false,
-        title: "[练习]“5S”核心知识测验",
-        type: 1
+        title: "“5S”核心知识测验",
+        type: 0,
       },
       {
-        id: 0,
+        id: 1,
+        selected: false,
+        title: "[练习]“5S”核心知识测验",
+        type: 1,
+      },
+      {
+        id: 2,
+        selected: false,
+        title: "[练习]“5S”核心知识测验",
+        type: 2,
+      },
+      {
+        id: 3,
+        selected: false,
+        title: "[练习]“5S”核心知识测验",
+      },
+      {
+        id: 4,
+        selected: false,
+        title: "[练习]“5S”核心知识测验",
+        type: 2,
+      },
+      {
+        id: 5,
         selected: false,
         title: "[练习]“5S”核心知识测验",
         type: 1
-      },
-      {
-        id: 0,
-        selected: false,
-        title: "[练习]“5S”核心知识测验",
-        type: 1
-      },
-      {
-        id: 0,
-        selected: false,
-        title: "[练习]“5S”核心知识测验",
-        type: 0
-      },
-      {
-        id: 0,
-        selected: false,
-        title: "[练习]“5S”核心知识测验",
-        type: 0
-      },
-      {
-        id: 0,
-        selected: false,
-        title: "[练习]“5S”核心知识测验",
-        type: 2
       },
     ],
     //历史测验列表数据
@@ -58,31 +57,36 @@ Page({
         id: 0,
         title: "[练习]“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
-        selected: false
+        selected: false,
+        type: 1
       },
       {
         id: 1,
         title: "[练习]“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
-        selected: false
+        selected: false,
+        type: 2
       },
       {
         id: 2,
         title: "[练习]“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
-        selected: false
+        selected: false,
+        type: 3
       },
       {
         id: 3,
         title: "[练习]“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
-        selected: false
+        selected: false,
+        type: 2,
       },
       {
         id: 4,
         title: "[练习]“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
-        selected: false
+        selected: false,
+        type: 1
       }
     ],
     showTime: true,
@@ -107,7 +111,7 @@ Page({
       examList: this.data.historyExamList,
       exam_msg: "参加时间"
     });
-    this.judgePageIsEmpty("暂无历史测验相关信息");
+    this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -219,7 +223,7 @@ Page({
         examList: this.data.historyExamList,
         exam_msg: "参加时间",
       });
-      this.judgePageIsEmpty("暂无历史测验相关信息");
+      this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
     } else if (e.currentTarget.id === "1") {
       this.setData({
         delCss: "weui-flex-common",
@@ -227,7 +231,7 @@ Page({
         hideStatus: true,
         examList: this.data.collectionExamList,
       });
-      this.judgePageIsEmpty("暂无收藏测验相关信息");
+      this.judgePageIsEmpty(this.data.collectionExamList, "暂无收藏测验相关信息");
     }
   },
   delConfirm(e) {
@@ -237,9 +241,10 @@ Page({
       examList: e.detail.unselected,
       collectionExamList: e.detail.unselected
     });
+    this.judgePageIsEmpty(e.detail.unselected, "暂无收藏测验相关信息");
   },
-  judgePageIsEmpty(tipMsg) {
-    if (this.data.examList.length === 0) {
+  judgePageIsEmpty(list, tipMsg) {
+    if (list.length === 0) {
       console.log('empty');
       this.setData({
         pageIsEmpty: true,
@@ -251,5 +256,11 @@ Page({
         tipMsg: ''
       })
     }
+  },
+  _examClick(e) {
+    console.log(e);
+    wx.navigateTo({
+      url: '../examInterFace/examInterFace?id=1&exam_flag=0&exam_type=1&title=“5S”核心知识测验',
+    });
   }
 })

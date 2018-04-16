@@ -16,7 +16,7 @@
     <view class="weui-tab__panel">
       <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
         <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}" />
-        <template is="examList-2" data="{{showTime, examList, exam_msg}}" wx:else/>
+        <template is="examList-2" data="{{showTime, examList, exam_msg}}" wx:else />
       </view>
       <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
         <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}" />
