@@ -9,15 +9,15 @@ Page({
   data: {
     people_num: "已参加",
     pass_rate: "截止时间",
-    average: "预计用时"
+    average: "预计用时",
+    isLoad: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const examPageUrl = config.service.examPageUrl;
-    app.request.requestGetApi(examPageUrl, {}, this, this.examPageSuccess, this.examPageFail)
+    this.checkNetworkAndLoginStatus();
   },
 
   /**
@@ -67,6 +67,31 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  checkNetworkAndLoginStatus() {
+    let that = this;
+    wx.getNetworkType({
+      success: function(res) {
+        let networkType = res.networkType;
+        if(networkType === "none") {
+          that.setData({
+            isLoad: false
+          });
+        } else {
+          that.setData({
+            isLoad: true
+          });
+          that.getExamPage();
+        }
+      },
+    })
+  },
+  getExamPage() {
+    const examPageUrl = config.service.examPageUrl;
+    app.request.requestGetApi(examPageUrl, {}, this, this.examPageSuccess, this.examPageFail);
+  },
+  load() {
+    this.checkNetworkAndLoginStatus();
   },
   examPageSuccess(res){
     console.log(res)
