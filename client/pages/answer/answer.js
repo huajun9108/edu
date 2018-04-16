@@ -387,14 +387,14 @@ Page({
       totalSecond--;
       if (totalSecond < 0) {
         clearInterval(interval);
-        wx.showToast({
-          title: '活动已结束',
-        });
         this.setData({
           countDownDay: '00',
           countDownHour: '00',
           countDownMinute: '00',
           countDownSecond: '00',
+        });
+        wx.redirectTo({
+          url: `../examEnd/examEnd?exam_type=${this.data.examType}`
         });
       }
     }.bind(this), 1000);  
