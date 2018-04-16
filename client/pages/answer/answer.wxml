@@ -16,7 +16,8 @@
       </swiper>
     </view>
     <view class='bottom'>
-      <view class='exam_tap' bindtap='showCard'>点击
+      <view class='exam_tap' bindtap='showCard'>
+        <image class='qu_card_image' src="../../images/QusetionCard_icon.png"></image>
         <text class='exam_num base_color'>{{num}}</text>/{{quNum}}</view>
       <view class='exam_time-count'>
         <view class='exam_count'>

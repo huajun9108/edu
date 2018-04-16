@@ -67,6 +67,12 @@ swiper{
   box-sizing:border-box;
 
 }
+.qu_card_image{
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align: middle;
+  margin-right: 14rpx;
+}
 .exam_num{
   font-weight: bold
 }
