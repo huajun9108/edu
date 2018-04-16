@@ -8,27 +8,33 @@ Page({
     showTime:false,
     examList: [
       {
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
+        type: 1,
+        flag:1
+      },
+      {
+        title: "“5S”核心知识测验",
+        type: 1,
+        flag: 1
+      },
+      {
+        title: "“5S”核心知识测验",
+        type: 1,
+        flag: 1
+      },
+      {
+        flag: 1,
+        title: "“5S”核心知识测验",
         type: 1
       },
       {
-        title: "[练习]“5S”核心知识测验",
-        type: 1
+        flag: 0,
+        title: "“5S”核心知识测验",
+        type: 3
       },
       {
-        title: "[练习]“5S”核心知识测验",
-        type: 1
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        type: 0
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
-        type: 0
-      },
-      {
-        title: "[练习]“5S”核心知识测验",
+        flag: -1,
+        title: "“5S”核心知识测验",
         type: 2
       },
     ],
