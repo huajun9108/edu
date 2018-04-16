@@ -134,7 +134,6 @@ Page({
       examList: this.data.historyExamList,
       exam_msg: "参加时间"
     });
-    this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -159,6 +158,7 @@ Page({
   onShow: function () {
     console.log('myTest onShow');
     this.checkNetworkAndLoginStatus();
+    this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
   },
 
   /**
@@ -200,7 +200,7 @@ Page({
     wx.getNetworkType({
       success: function(res) {
         let networkType = res.networkType;
-        if(networkType === "none") {
+        if (networkType === "none" || networkType === "unknown") {
           that.setData({
             isLoad: false
           })
