@@ -90,9 +90,11 @@ button{
   line-height: 86rpx;
   border-radius: 20rpx;
   color: #5c5b5b;
+  font-size: 32rpx;
 }
  .course-search-bar image{
   padding:0 6rpx 0 20rpx;
+  vertical-align: middle
 }
 .base_color{
   color: #cfb16b
@@ -155,7 +157,7 @@ image{
   margin-top: 16rpx;
   font-size: 24rpx;
 }
-.content-box{
+.content-box,.content-exam-box{
   padding: 20rpx 40rpx;
   display:-webkit-box;
   display:-webkit-flex;

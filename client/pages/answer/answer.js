@@ -343,7 +343,8 @@ Page({
     this.setData({
       quNum: this.data.quList.length,
       title: options.title,
-      cardCss:"qu_card_down"
+      cardCss:"qu_card_down",
+      examType: options.exam_type
     })
   },
 
@@ -513,6 +514,8 @@ Page({
     });
   },
   confirm(){
-    console.log("提交了答卷")
+    wx.redirectTo({
+      url: `../examEnd/examEnd?exam_type=${this.data.examType}`
+    })
   },
 })

@@ -136,7 +136,7 @@
 <!--渲染考试列表（两行） -->
 <template name="examList-2">
   <view class="weui-panel__bd">
-    <view bindtap='_examClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{examList}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}">
+    <view bindtap='_examClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{examList}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
         <view class="weui-media-box__title" wx:if="{{item.type===1}}">[练习]{{item.title}}</view>
         <view class="weui-media-box__title" wx:if="{{item.type===2}}">[考试]{{item.title}}</view>

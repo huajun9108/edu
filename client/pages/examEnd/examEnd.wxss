@@ -1,0 +1,49 @@
+/* pages/examEnd/examEnd.wxss */
+
+.page,.content-box,.content-exam-box{
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box; 
+
+}
+.content-box,.content-exam-box{
+  padding-top: 12rpx;
+}
+.header{
+  color:#b0b0b0;
+  font-size: 26rpx;
+}
+.content-title,.content-score{
+  text-align: center;
+}
+.content-title{
+  color: #6e6e6e;
+  font-size: 28rpx;
+}
+.content-score{
+  font-size: 80rpx;
+  font-weight: bold
+}
+.top_btn{
+  margin-bottom: 18rpx;
+}
+.exam_tip{
+  flex: 1;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  display: flex;
+  display:-webkit-box;
+  display:-webkit-flex;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  justify-content: center;
+  -webkit-justify-content: center;
+  text-align: center;
+  font-size: 34rpx;
+  line-height: 48rpx;
+}
+.exam_tip_image{
+  width: 134rpx;
+  height: 134rpx;
+}

@@ -1,0 +1,25 @@
+<!--pages/examEnd/examEnd.wxml-->
+<view class="page">
+  <view class='content-box' wx:if="{{examType==1}}">
+    <view class='header'>用时12:24</view>
+    <view class='content-wrap'>
+      <view class='content-title'>本次得分</view>
+      <view class='content-score base_color'>100分</view>
+    </view>
+    <view class='content-bottom'>
+      <view class="exam_btn base_color top_btn" bindtap='retestClick'>重新测验</view>
+      <view class="exam_btn base_color" bindtap='examParseClick'>查看答案</view>
+    </view>
+  </view>
+  <view class='content-exam-box' wx:if="{{examType==2}}">
+    <view class='header'>用时12:24</view>
+    <view class="exam_tip">
+      <view class="">
+        <image class="exam_tip_image" src="../../images/prompt_icon.png"></image>
+        <text class=''>
+          {{examTip}}
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

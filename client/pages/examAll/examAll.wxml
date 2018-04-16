@@ -5,6 +5,7 @@
    <view class='content'>
     <view class="weui-panel">
         <template is="examList-2" data="{{showTime,exam_msg,examList}}"/>
+        <template is="page-error" wx:if="{{!isLoad}}" />
     </view>
   </view> 
   <modal modal-hidden="{{is_modal_Hidden}}" 

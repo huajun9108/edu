@@ -67,7 +67,7 @@ var config = {
         getVipStatusUrl: `${host}/weapp/vip/selectVipByUserID`,
 
         //课程购买
-        coursePay: `${host}/weapp/course/coursePay `,
+        coursePay: `${host}/weapp/course/coursePay`,
 
         //查询所有课程类别接口
         selectAllType: `${host}/weapp/course/selectAllType`,
@@ -83,6 +83,10 @@ var config = {
 
         //测验more接口
         examMoreUrl: `${host}/weapp/exam/selectMoreExam`,
+
+        //查询所有测验接口
+        selectAllExamUrl: `${host}/weapp/exam/selectAllExam`,
+
     }
 
     

@@ -1,4 +1,7 @@
 // pages/examAll/examAll.js
+const config = require('../../config')
+const app = getApp()
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -6,46 +9,23 @@ Page({
    */
   data: {
     showTime:false,
-    examList: [
-      {
-        title: "“5S”核心知识测验",
-        type: 1,
-        flag:1
-      },
-      {
-        title: "“5S”核心知识测验",
-        type: 1,
-        flag: 1
-      },
-      {
-        title: "“5S”核心知识测验",
-        type: 1,
-        flag: 1
-      },
-      {
-        flag: 1,
-        title: "“5S”核心知识测验",
-        type: 1
-      },
-      {
-        flag: 0,
-        title: "“5S”核心知识测验",
-        type: 3
-      },
-      {
-        flag: -1,
-        title: "“5S”核心知识测验",
-        type: 2
-      },
-    ],
-    exam_msg:"状态"
+    exam_msg:"状态",
+    isLoad:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    this.getExamAll()
+  },
+   /**
+   * 获取全部测试数据
+   */
+  getExamAll(){
+    const selectAllExamUrl = config.service.selectAllExamUrl;
+    console.log(selectAllExamUrl)
+    app.request.requestGetApi(selectAllExamUrl, {}, this, this.examAllSuccess, this.examAllFail)
   },
 
   /**
@@ -62,14 +42,14 @@ Page({
     this.setData({
       is_modal_Hidden: true
     });
+    
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.setData({
-    })
+    
   },
 
   /**
@@ -106,5 +86,34 @@ Page({
 
     })
   },
+   /**
+   * 数据加载成功
+   */
+  examAllSuccess(res){
+    this.setData({
+      examList: res.data,
+      isLoad: true
+    });
+  },
+  /**
+   * 数据加载失败
+   */
+  examAllFail(){
+    this.setData({
+      isLoad: false
+    });
+  },
+  load(){
+    this.getExamAll()    
+  },
+  _examClick(e){
+    let examId = e.currentTarget.dataset.id;
+    let examTitle = e.currentTarget.dataset.title;
+    let examType = e.currentTarget.dataset.type;
+    let examFlag = e.currentTarget.dataset.flag;
+    wx.navigateTo({
+      url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}&exam_flag=${examFlag}`,
+    })
+  }
 
 })
