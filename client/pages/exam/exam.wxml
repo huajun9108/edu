@@ -1,32 +1,38 @@
 <!--pages/exam/exam.wxml-->
 <import src="../common/common.wxml" />
 <view class='page'>
-  <view class="weui-panel">
-    <view class="weui-panel__hd">测一测</view>
-    <view class="weui-panel__bd">
-      <view bindtap='examClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{newest}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
-        <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-          <image class="weui-media-box__thumb" src="{{icon60}}" />
-        </view>
-        <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-          <view class="weui-media-box__title">{{item.title}}</view>
-          <view class="weui-media-box__desc">已参加: {{item.people}}人</view>
-          <view class="weui-media-box_bottom">截止时间: <text class="weui-media-box_time">{{item.endTime}}</text>
+  <template is="page-error" wx:if="{{!isLoad}}" />
+  <block wx:else>
+    <view class="weui-panel">
+      <view class="weui-panel__hd">测一测</view>
+      <view class="weui-panel__bd">
+        <view bindtap='examClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{newest}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" src="{{icon60}}" />
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">{{item.title}}</view>
+            <view class="weui-media-box__desc">已参加: {{item.people}}人</view>
+            <view class="weui-media-box_bottom">截止时间:
+              <text class="weui-media-box_time">{{item.endTime}}</text>
+            </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
-  <view class="weui-panel">
-    <view class="weui-flex weui-panel__hd">
-      <view class="weui-flex__item"><view class="placeholder  home_text">大家都在测</view></view>
-      <view class="flex-right" bindtap='toMoreUrl'>
-        <view class="placeholder" >
-          more
+    <view class="weui-panel">
+      <view class="weui-flex weui-panel__hd">
+        <view class="weui-flex__item">
+          <view class="placeholder  home_text">大家都在测</view>
         </view>
+        <view class="flex-right" bindtap='toMoreUrl'>
+          <view class="placeholder">
+            more
+          </view>
+        </view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>
-      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      <template is="examList-3" data="{{examListEnd,people_num,pass_rate,average}}" />
     </view>
-    <template is="examList-3" data="{{examListEnd,people_num,pass_rate,average}}"/>
-  </view>
+  </block>
 </view>

@@ -31,6 +31,7 @@ Component({
     let _this = this;
     var query = wx.createSelectorQuery().in(this)
     query.select('.weui-form-preview_content').boundingClientRect(function (res) {
+      if(!res) return;
       _this.setData({
         height: res.height
       })

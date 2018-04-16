@@ -53,23 +53,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function() {
-      this.checkNetworkandLoginStatus();
-    },
-    checkNetworkandLoginStatus() {
-      var that = this;
-      wx.getNetworkType({
-        success: function (res) {
-          var networkType = res.networkType
-          if (networkType === "none") {
-            that.setData({
-              isLoad: false
-            });
-          } else {
-            isLoad: true
-            app.testSession(that.loginSuccess, that.loginFail)
-          }
-        }
-      });
+      app.testSession(this.loginSuccess, this.loginFail)
     },
     loginSuccess() {
         this.setData({
@@ -77,7 +61,8 @@ Page({
         })
         this.queryAllOrders()
     },
-    loginFail() {
+    loginFail(res) {
+        console.log(res);
         this.setData({
             isLoad: true,
             isLogin: false
@@ -175,7 +160,7 @@ Page({
       })
     },
     load(){
-      this.checkNetworkandLoginStatus();
+      this.queryAllOrders();
     },
     setCourse() {
         if (this.data.activeIndex === "0") {

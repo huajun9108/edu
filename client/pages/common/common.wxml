@@ -24,10 +24,10 @@
       <view class="weui-cell">
         <view class="weui-cell__bd sp_title">{{showFlag?"会员套餐":"课程信息"}}</view>
       </view>
-      <view wx:if="{{showFlag}}" 
-        class="weui-cell" 
-        wx:for="{{model}}" 
-        bindtap="selectClick" 
+      <view wx:if="{{showFlag}}"
+        class="weui-cell"
+        wx:for="{{model}}"
+        bindtap="selectClick"
         wx:key="index" id="{{index}}" data-price="{{item.price}}" data-title="{{item.title}}">
         <view class="weui-cell__bd">{{item.title}}</view>
         <view class="weui-cell__ft">￥{{item.price}}/{{item.unit}}
@@ -129,25 +129,26 @@
       <view class="courseContent-bottom">{{item.teacher.name}}</view>
       <view class="courseContent-bottom">{{item.teacher.job}}</view>
     </view>
-    <view class="weui-cell__ft weui-cell__ft_in-access"></view> 
+    <view class="weui-cell__ft weui-cell__ft_in-access"></view>
   </navigator>
 </template>
 
 <!--渲染考试列表（两行） -->
 <template name="examList-2">
   <view class="weui-panel__bd">
-    <view bindtap='_examClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{examList}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
+    <view bindtap='_examClick' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{examList}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}" data-status="{{item.status}}">
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
         <view class="weui-media-box__title" wx:if="{{item.type===1}}">[练习]{{item.title}}</view>
         <view class="weui-media-box__title" wx:if="{{item.type===2}}">[考试]{{item.title}}</view>
         <view class="weui-media-box__title" wx:if="{{item.type===3}}">[调研]{{item.title}}</view>
-        <view class="weui-media-box_bottom" wx:if='{{!showTime}}'>{{exam_msg}}: 
+        <view class="weui-media-box_bottom" wx:if='{{!showTime}}'>{{exam_msg}}:
           <text wx:if="{{item.flag==1}}">尚未开始</text>
           <text class="base_color" wx:if="{{item.flag==0}}">正在进行</text>
           <text wx:if="{{item.flag==-1}}">已结束</text>
         </view>
-        <view class="weui-media-box_bottom" wx:if='{{showTime}}'>{{exam_msg}}: 
-          <text class="weui-media-box_time">{{item.startTime}}-{{item.endTime}}</text>
+        <view class="weui-media-box_bottom" wx:if='{{showTime}}'>{{exam_msg}}:
+          <text class="weui-media-box_time" wx:if="{{item.startTime}}">{{item.startTime}}-{{item.endTime}}</text>
+          <text class="weui-media-box_time" wx:else>{{item.endTime}}</text>
         </view>
       </view>
     </view>

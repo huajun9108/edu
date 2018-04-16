@@ -1,6 +1,7 @@
 // pages/exam/exam.js
 const app = getApp();
 const config = require('../../config')
+const util = require('../../utils/util')
 Page({
 
   /**
@@ -9,15 +10,15 @@ Page({
   data: {
     people_num: "已参加",
     pass_rate: "截止时间",
-    average: "预计用时"
+    average: "预计用时",
+    isLoad: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const examPageUrl = config.service.examPageUrl;
-    app.request.requestGetApi(examPageUrl, {}, this, this.examPageSuccess, this.examPageFail)
+    this.getExamPage();
   },
 
   /**
@@ -68,11 +69,24 @@ Page({
   onShareAppMessage: function () {
   
   },
+  getExamPage() {
+    const examPageUrl = config.service.examPageUrl;
+    app.request.requestGetApi(examPageUrl, {}, this, this.examPageSuccess, this.examPageFail);
+  },
+  load() {
+    this.getExamPage();
+  },
   examPageSuccess(res){
     console.log(res)
     this.setData({
       newest: res.data.newest,
-      examListEnd: res.data.ongoing
+      examListEnd: res.data.ongoing,
+      isLoad: true
+    });
+  },
+  examPageFail(res) {
+    this.setData({
+      isLoad: false
     })
   },
   toMoreUrl(){

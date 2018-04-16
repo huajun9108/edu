@@ -78,7 +78,6 @@ Component({
       this.bindTotalNum();
     },
     bindCheckbox(e) {
-      console.log(e);
       let index = e.currentTarget.dataset.index;
       let selected = this.data.examList[index].selected;
       let examList = this.data.examList;
@@ -139,8 +138,6 @@ Component({
           unselected.push(examList[i]);
         }
       }
-      console.log(selected);
-      console.log(unselected);
       this.setData({
         selected: selected.toString(),
         unselected: unselected
@@ -150,8 +147,16 @@ Component({
         is_modal_Hidden: false
       });
     },
-    testTap() {
-      console.log('testTap');
+    testTap(e) {
+      const dataset = e.currentTarget.dataset;
+      const id = dataset.id;
+      const title = dataset.title;
+      const exam_type = dataset.type;
+      const flag = dataset.flag;
+      const status = dataset.status;
+      wx.navigateTo({
+        url: `../../pages/examInterFace/examInterFace?id=${id}&title=${title}&exam_type=${exam_type}&exam_flag=${flag}&exam_status=${status}`,
+      });
     },
     confirm() {
       const delConfirmDetail = { selected: this.data.selected, unselected: this.data.unselected };

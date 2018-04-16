@@ -43,31 +43,13 @@ Page({
   },
   onShow: function () {
     // 页面显示
-    this.checkNetworkandLoginStatus();
+    app.testSession(this.success, this.fail)
   },
   onHide: function () {
     // 页面隐藏
   },
   onUnload: function () {
     // 页面关闭
-  },
-  checkNetworkandLoginStatus() {
-    var that = this;
-    wx.getNetworkType({
-      success: function (res) {
-        var networkType = res.networkType
-        if (networkType === "none") {
-          that.setData({
-            isLoad: false
-          });
-        } else {
-          that.setData({
-            isLoad: true
-          });
-          app.testSession(that.success, that.fail)
-        }
-      }
-    })
   },
   courseUrl(e){
     const courseId = e.detail.courseId;
@@ -106,7 +88,7 @@ Page({
     })
   },
   load(){
-    this.checkNetworkandLoginStatus();
+    this.getMyFavor();
   },
   batchDelMyFavorSuccessFun(res) {
     if(res.status === "0") {
