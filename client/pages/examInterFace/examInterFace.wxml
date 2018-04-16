@@ -1,6 +1,8 @@
 <!--pages/examInterFace/examInterFace.wxml-->
+<import src="../common/common" />
 <view class="page">
-  <view class='content-box'>
+  <template is="page-login" wx:if="{{!isLogin}}" />
+  <view class='content-box' wx:else>
     <view class="content-wrap">
       <titleCom title="{{title}}" is-collected="{{isCollected}}" exam-show="{{examShow}}" bindaddMyFavor="addMyFavor"/>
       <examFaceCom interface-text="{{interfaceText}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}"

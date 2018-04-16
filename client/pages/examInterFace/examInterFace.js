@@ -1,4 +1,5 @@
 // pages/examInterFace/examInterFace.js
+const app = getApp();
 Page({
 
   /**
@@ -23,7 +24,9 @@ Page({
     is_modal_Hidden: true,
     is_modal_msg: "是否确认开始答写\n如若中途退出\n系统将自动提交答卷",
     cancelText: "稍后再来",
-    sureText: "现在答写"
+    sureText: "现在答写",
+    isLogin: true,
+    options: {}, //保存页面跳转时传过来的参数
   },
 
   /**
@@ -31,25 +34,25 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
-    let exam_type=""
-    if (options.exam_type==1){
-      exam_type ="[练习]"
-    } else if (options.exam_type == 2){
+
+    let exam_type = ""
+    if (options.exam_type == 1) {
+      exam_type = "[练习]"
+    } else if (options.exam_type == 2) {
       exam_type = "[考试]"
     } else if (options.exam_type == 3) {
       exam_type = "[调研]"
-    }else{}
-    let title = exam_type+options.title
+    } else { }
+    let title = exam_type + options.title;
+    options.title = title;
     this.setData({
-      examId: options.id,
-      title: title,
-      examFlag: options.exam_flag,
-      examType: options.exam_type
+      options: options
     });
+    app.testSession(this.loginSuccess, this.loginFail);
     wx.setNavigationBarTitle({
       title: title,
-    })
-
+    });
+    
   },
 
   /**
@@ -101,6 +104,25 @@ Page({
   onShareAppMessage: function () {
 
   },
+  loginSuccess() {
+    let options = this.data.options;
+    this.setData({
+      examId: options.id,
+      title: options.title,
+      examFlag: options.exam_flag,
+      examType: options.exam_type,
+      isLogin: true
+    });
+  },
+  loginFail() {
+    this.setData({
+      isLogin: false
+    })
+  },
+  login() {
+    app.login(this.loginSuccess);
+  },
+
   addMyFavor() {
     this.setData({
       isCollected: !this.data.isCollected
