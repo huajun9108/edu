@@ -19,74 +19,97 @@ Page({
         id: 0,
         selected: false,
         title: "“5S”核心知识测验",
-        type: 0,
+        type: 2, //试题类型 1: 练习, 2: 考试, 3: 调研
+        flag: -1, //测试状态 -1: 已结束, 0: 正在进行, 1: 尚未开始
+        status: 0 //是否参加过考试 0: 未参加, 1: 参加过
       },
       {
         id: 1,
         selected: false,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
         type: 1,
+        flag: 0,
+        status: 1
       },
       {
         id: 2,
         selected: false,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
         type: 2,
+        flag: 1,
+        status: 1
       },
       {
         id: 3,
         selected: false,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
+        type: 1,
+        flag: 0,
+        status: 0
       },
       {
         id: 4,
         selected: false,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
         type: 2,
+        flag: -1,
+        status: 1
       },
       {
         id: 5,
         selected: false,
-        title: "[练习]“5S”核心知识测验",
-        type: 1
+        title: "“5S”核心知识测验",
+        type: 1,
+        flag: 1,
+        status: 0
       },
     ],
     //历史测验列表数据
     historyExamList: [
       {
         id: 0,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
         selected: false,
-        type: 1
+        type: 1,
+        flag: -1,
+        status: 1
       },
       {
         id: 1,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 2
-      },
-      {
-        id: 2,
-        title: "[练习]“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 3
-      },
-      {
-        id: 3,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
         selected: false,
         type: 2,
+        flag: -1,
+        status: 1
+      },
+      {
+        id: 2,
+        title: "“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false,
+        type: 3,
+        flag: -1,
+        status: 1
+      },
+      {
+        id: 3,
+        title: "“5S”核心知识测验",
+        endTime: "2018/3/30 10:00:00",
+        selected: false,
+        type: 2,
+        flag: -1,
+        status: 1
       },
       {
         id: 4,
-        title: "[练习]“5S”核心知识测验",
+        title: "“5S”核心知识测验",
         endTime: "2018/3/30 10:00:00",
         selected: false,
-        type: 1
+        type: 1,
+        flag: -1,
+        status: 1
       }
     ],
     showTime: true,
@@ -203,7 +226,6 @@ Page({
     });
   },
   load() {
-    console.log("load");
     this.checkNetworkAndLoginStatus();
   },
   login() {
@@ -212,7 +234,6 @@ Page({
 
 
   tabClick: function (e) {
-    console.log(e);
     this.setData({
       activeIndex: e.currentTarget.id,
       sliderOffset: e.currentTarget.offsetLeft
@@ -235,7 +256,6 @@ Page({
     }
   },
   delConfirm(e) {
-    console.log(e.detail);
     this.setData({
       selected: e.detail.selected,
       examList: e.detail.unselected,
@@ -245,7 +265,6 @@ Page({
   },
   judgePageIsEmpty(list, tipMsg) {
     if (list.length === 0) {
-      console.log('empty');
       this.setData({
         pageIsEmpty: true,
         tipMsg: tipMsg
@@ -258,9 +277,13 @@ Page({
     }
   },
   _examClick(e) {
-    console.log(e);
+    const id = e.currentTarget.dataset.id;
+    const status = e.currentTarget.dataset.status;
+    const exam_type = e.currentTarget.dataset.type;
+    const flag = e.currentTarget.dataset.flag;
+    const title = e.currentTarget.dataset.title;
     wx.navigateTo({
-      url: '../examInterFace/examInterFace?id=1&exam_flag=0&exam_type=1&title=“5S”核心知识测验',
+      url: `../examInterFace/examInterFace?id=${id}&exam_flag=${flag}&exam_type=${exam_type}&title=${title}&exam_status=${status}`,
     });
   }
 })
