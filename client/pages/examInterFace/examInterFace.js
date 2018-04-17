@@ -140,12 +140,12 @@ Page({
     
   },
   confirm() {
-    wx.navigateTo({
+    wx.redirectTo({
       url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}`,
     })
   },
   examParseClick(){
-    wx.navigateTo({
+    wx.redirectTo({
       url: '../examParse/examParse?title=' + this.data.title,
     })
   }

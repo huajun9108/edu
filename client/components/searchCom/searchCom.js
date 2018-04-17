@@ -12,6 +12,10 @@ Component({
     inputShowed: {
       type: Boolean,
       value: false
+    },
+    placeholderText: {
+      type: String,
+      value: ''
     }
   },
   data: {
