@@ -514,6 +514,11 @@ Page({
     });
   },
   confirm(){
+    console.log(this.data.countDownHour)
+    console.log(this.data.countDownMinute)
+    console.log(this.data.countDownSecond)
+    var time = `${this.data.countDownHour}:${this.data.countDownMinute}:${this.data.countDownSecond}`
+    console.log(this.data.countDownHour * 3600 + this.data.countDownMinute * 60 + Number(this.data.countDownSecond))
     wx.redirectTo({
       url: `../examEnd/examEnd?exam_type=${this.data.examType}`
     })

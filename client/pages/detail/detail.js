@@ -398,11 +398,11 @@ Page({
       const title = this.data.title;
       let price;
       if (this.data.vipFlag) {
-        // price = this.data.vipPrice;
-        price = 0.01;
+        price = this.data.vipPrice;
+        // price = 0.01;
       } else {
-        // price = this.data.originalPrice;
-        price = 0.02;
+        price = this.data.originalPrice;
+        // price = 0.02;
       }
 
       const courseId = this.data.courseId;

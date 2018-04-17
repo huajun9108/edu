@@ -13,7 +13,7 @@ Page({
     model: [
       {
         title: '月度',
-        price: '0.01',
+        price: '9.90',
         unit:"月",
         type: 1,
         selectImage: true,
@@ -22,7 +22,7 @@ Page({
       },
       {
         title: '年度',
-        price: '0.02',
+        price: '99.00',
         unit: "年",
         type: 2,
         selectImage: false,
@@ -42,7 +42,7 @@ Page({
         payImageUrl: "../../images/discount_icon.png",
       }
     ],
-    number:"0.01",
+    number:"9.90",
     title: "月度",
     vipType: 1,
   },
