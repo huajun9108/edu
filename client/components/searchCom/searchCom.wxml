@@ -5,7 +5,7 @@
       <view class="weui-search-bar__box">
           <image class="weui-icon-search_in-box" type="search" src="../../images/search_icon.png"></image> 
           <input type="text" class="weui-search-bar__input" placeholder-style="font-size:32rpx;color:#5c5c5b;"
-           placeholder="输入课程名、老师查找" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="confirm"/>
+           placeholder="{{placeholderText}}" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="confirm"/>
           <image class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput" type="clear" src="../../images/clear.png"></image> 
       </view>
     </view>

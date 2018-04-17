@@ -13,6 +13,7 @@ Page({
         tipMsg: "该课程暂无分类, 请后续关注",
         isLoad: false,
         iconUrl: app.data.iconUrl,
+        placeholderText: '输入课程名、老师查找'
     },
     onLoad: function(option) {
         wx.setNavigationBarTitle({

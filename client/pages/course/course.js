@@ -8,7 +8,8 @@ Page({
     is_modal_Hidden: true,
     pageIsEmpty: false,
     tipMsg: "该课程暂无分类,请后续关注",
-    isLoad:false
+    isLoad:false,
+    placeholderText: '输入课程名、老师查找'
   },
 
   /**
