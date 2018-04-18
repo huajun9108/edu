@@ -11,6 +11,7 @@
   <modal modal-hidden="{{is_modal_Hidden}}" 
   search-list="{{searchList}}" 
   input-showed="{{inputShowed}}"
+  placeholder-text="{{placeholderText}}"
   bindsearchClick="searchClick" 
   bindconfirm="confirm"/>  
 </view>

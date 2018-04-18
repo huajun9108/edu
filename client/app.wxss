@@ -94,7 +94,6 @@ button{
 }
  .course-search-bar image{
   padding:0 6rpx 0 20rpx;
-  vertical-align: middle
 }
 .base_color{
   color: #cfb16b

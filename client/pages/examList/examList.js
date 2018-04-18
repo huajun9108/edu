@@ -9,10 +9,22 @@ Page({
     exam_msg:"测验时间",
     people_num:"参加人数",
     pass_rate:"及格率",
-    average:"平均分"
+    average:"平均分",
+    placeholderText:"输入测验类型、名称查找"
   },
   onLoad: function (option) {
     this.examMoreRequest();
+    let _this = this
+    wx.getStorage({
+      key: 'examType',
+      success: function (res) {
+        console.log(res)
+        _this.setData({
+          searchList:res.data
+        })
+      }
+    })
+
   },
   onShow() {
     this.setData({
@@ -24,25 +36,6 @@ Page({
       is_modal_Hidden: true
     });
   },
-  tapCourseCategory: function () {
-    this.setData({
-      flag: false,
-      modalFlag: false,
-      isScroll: "noscroll"
-    })
-  },
-  tapModal: function () {
-    var _this = this;
-    setTimeout(() => {
-      _this.setData({
-        modalFlag: true,
-      })
-    }, 400);
-    _this.setData({
-      flag: true,
-      isScroll: ""
-    });
-  },
   showSearch() {
     this.setData({
       is_modal_Hidden: false,
@@ -50,40 +43,14 @@ Page({
 
     })
   },
-  courseListClick(e) {
-    // let title = e.currentTarget.dataset.title
-    // let type = e.currentTarget.dataset.type
-    // let id = e.currentTarget.dataset.id
-    // let url = `../courseList/courseList?title=${title}&type=${type}&id=${id}`
-    // wx.redirectTo({
-    //   url: url
-    // })
-  },
-  courseListUrlSuccessFun(res, selfObj) {
-    if (res.data <= 0) {
-      this.setData({
-        pageIsEmpty: true,
-        isLoad: false
-      })
-    } else {
-      let courseList = res.data;
-      for (let i = 0; i < courseList.length; i++) {
-        courseList[i].icon = this.data.iconUrl + courseList[i].icon;
-      }
-      this.setData({
-        courseArr: courseList,
-        pageIsEmpty: false,
-        isLoad: false
-      })
-    }
-  },
-  courseListUrlFailFun() {
+  examTypeSuccess(res){
+    console.log(res)
     this.setData({
-      isLoad: true
+      searchList: res.data,
     })
   },
-
   searchClick(e) {
+    console.log(e)
     util.searchClick(e)
   },
   confirm(e) {

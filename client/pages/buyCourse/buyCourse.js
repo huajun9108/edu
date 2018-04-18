@@ -34,7 +34,7 @@ Page({
      */
     onLoad: function(options) {
         let model = this.data.model;
-        model[0].detail = options.name;
+        model[0].detail = decodeURI(options.name);
         model[1].detail += `${options.price}`;
         this.setData({
             model: model,
@@ -86,12 +86,6 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    },
     buyTap() {
       const payUrl = config.service.vipPay
       const body = this.data.courseName

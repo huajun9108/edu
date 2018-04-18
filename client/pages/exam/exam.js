@@ -19,6 +19,9 @@ Page({
    */
   onLoad: function (options) {
     this.getExamPage();
+    const selectAllExamTypeUrl = config.service.selectAllExamTypeUrl;
+    let _this = this;
+    app.request.requestGetApi(selectAllExamTypeUrl, {}, _this, _this.examTypeSuccess, _this.examMoreFail);
   },
 
   /**
@@ -77,7 +80,6 @@ Page({
     this.getExamPage();
   },
   examPageSuccess(res){
-    console.log(res)
     this.setData({
       newest: res.data.newest,
       examListEnd: res.data.ongoing,
@@ -102,5 +104,12 @@ Page({
     wx.navigateTo({
       url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}&exam_flag=${examFlag}`
     })
-  }
+  },
+  examTypeSuccess(res) {
+    console.log(res)
+    wx.setStorage({
+      key: "examType",
+      data: res.data
+    })
+  },
 })

@@ -10,14 +10,41 @@ Page({
   data: {
     showTime:false,
     exam_msg:"状态",
-    isLoad:true
+    isLoad:true,
+    placeholderText: '输入课程名、老师查找'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    if(options.title){
+      wx.setNavigationBarTitle({
+        title: options.title,
+      })
+      this.setData({
+        examType: options.id
+      })
+    }else{
+      wx.setNavigationBarTitle({
+        title: "全部测验",
+      })
+      this.setData({
+        examType: ""
+      })
+    }
     this.getExamAll()
+    let _this = this
+    wx.getStorage({
+      key: 'examType',
+      success: function (res) {
+        console.log(res)
+        _this.setData({
+          searchList: res.data
+        })
+      }
+    })
   },
    /**
    * 获取全部测试数据
@@ -25,7 +52,7 @@ Page({
   getExamAll(){
     const selectAllExamUrl = config.service.selectAllExamUrl;
     console.log(selectAllExamUrl)
-    app.request.requestGetApi(selectAllExamUrl, {}, this, this.examAllSuccess, this.examAllFail)
+    app.request.requestPostApi(selectAllExamUrl, {type:this.data.examType}, this, this.examAllSuccess, this.examAllFail)
   },
 
   /**
@@ -72,13 +99,6 @@ Page({
   onReachBottom: function () {
   
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   showSearch() {
     this.setData({
       is_modal_Hidden: false,
@@ -90,6 +110,7 @@ Page({
    * 数据加载成功
    */
   examAllSuccess(res){
+    console.log(res)
     this.setData({
       examList: res.data,
       isLoad: true
@@ -114,6 +135,10 @@ Page({
     wx.navigateTo({
       url: `../examInterFace/examInterFace?id=${examId}&title=${examTitle}&exam_type=${examType}&exam_flag=${examFlag}`,
     })
-  }
+  },
+  searchClick(e) {
+    console.log(e)
+    util.searchClick(e)
+  },
 
 })

@@ -53,11 +53,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     this.setData({
-      title: options.name,
+      title: decodeURI(options.name) ,
       courseId: options.id,
     });
     wx.setNavigationBarTitle({
-      title: that.data.title //页面标题为路由参数
+      title: decodeURI(that.data.title)  //页面标题为路由参数
     });
 
     wx.getSystemInfo({
@@ -143,7 +143,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: this.data.title,
+    }
   },
   login() {
     app.login(this.sessionLoginFn)
@@ -398,11 +400,11 @@ Page({
       const title = this.data.title;
       let price;
       if (this.data.vipFlag) {
-        // price = this.data.vipPrice;
-        price = 0.01;
+        price = this.data.vipPrice;
+        // price = 0.01;
       } else {
-        // price = this.data.originalPrice;
-        price = 0.02;
+        price = this.data.originalPrice;
+        // price = 0.02;
       }
 
       const courseId = this.data.courseId;

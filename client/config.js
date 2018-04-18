@@ -85,7 +85,10 @@ var config = {
         examMoreUrl: `${host}/weapp/exam/selectMoreExam`,
 
         //查询所有测验接口
-        selectAllExamUrl: `${host}/weapp/exam/selectAllExam`,
+        selectAllExamUrl:`${host}/weapp/exam/selectAllExam`,
+
+        //selectAllExamType
+        selectAllExamTypeUrl: `${host}/weapp/exam/selectAllExamType`,
 
     }
 

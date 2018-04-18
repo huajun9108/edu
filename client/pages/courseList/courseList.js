@@ -17,7 +17,7 @@ Page({
     },
     onLoad: function(option) {
         wx.setNavigationBarTitle({
-            title: option.title,
+          title: decodeURI(option.title),
         });
         this.setData({
             type: option.type,
