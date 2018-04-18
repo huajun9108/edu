@@ -10,7 +10,7 @@ Page({
     people_num:"参加人数",
     pass_rate:"及格率",
     average:"平均分",
-    placeholderText:"输入测验类型、名称查找"
+    placeholderText:"输入测验名称查找"
   },
   onLoad: function (option) {
     this.examMoreRequest();

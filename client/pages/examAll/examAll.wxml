@@ -2,10 +2,11 @@
 <import src="../common/common.wxml" />
 <view class="page">
   <template is="search" />
-   <view class='content'>
+  <template is="page-error" wx:if="{{!isLoad}}" />
+  <view class='content' wx:else>
     <view class="weui-panel">
-        <template is="examList-2" data="{{showTime,exam_msg,examList}}"/>
-        <template is="page-error" wx:if="{{!isLoad}}" />
+        <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}" />
+        <template is="examList-2" data="{{showTime,exam_msg,examList}}" wx:else/>
     </view>
   </view> 
   <modal modal-hidden="{{is_modal_Hidden}}" 

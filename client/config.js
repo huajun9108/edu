@@ -87,8 +87,12 @@ var config = {
         //查询所有测验接口
         selectAllExamUrl:`${host}/weapp/exam/selectAllExam`,
 
-        //selectAllExamType
+        //查询所有测验类型接口
         selectAllExamTypeUrl: `${host}/weapp/exam/selectAllExamType`,
+
+        //测验模糊搜索
+        examFuzzyUrl: `${host}/weapp/exam/FuzzySelect`
+
 
     }
 

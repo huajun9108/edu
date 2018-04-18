@@ -21,6 +21,38 @@ Page({
         ],
         userAnswer: [],
         correctAnswer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        userAnswer: [],
+        correctAnswer: ["B"]
+      }, {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        userAnswer: [],
+        correctAnswer: ["A"]
+      },
+      {
+        title: "5S运动是一项什么样的工作",
+        select: [
+          { option: "A", select: false, content: "暂时性" },
+          { option: "B", select: false, content: "流行性" },
+          { option: "C", select: false, content: "持久性" },
+          { option: "D", select: false, content: "时尚性" }
+        ],
+        userAnswer: [],
+        correctAnswer: ["B"]
       }
     ],
     duration: 800,
@@ -40,82 +72,37 @@ Page({
       quNum: this.data.quList.length,
       title: decodeURI(options.title),
       cardCss:"qu_card_down",
-      examType: options.exam_type
+      examType: options.exam_type,
     })
+    this.startTimer()
+    
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    // var totalSecond = 900;
 
-    // var interval = setInterval(function () {
-    //   // 秒数  
-    //   var second = totalSecond;
-
-    //   // 天数位  
-    //   var day = Math.floor(second / 3600 / 24);
-    //   var dayStr = day.toString();
-    //   if (dayStr.length == 1) dayStr = '0' + dayStr;
-
-    //   // 小时位  
-    //   var hr = Math.floor((second - day * 3600 * 24) / 3600);
-    //   var hrStr = hr.toString();
-    //   if (hrStr.length == 1) hrStr = '0' + hrStr;
-
-    //   // 分钟位  
-    //   var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-    //   var minStr = min.toString();
-    //   if (minStr.length == 1) minStr = '0' + minStr;
-
-    //   // 秒位  
-    //   var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-    //   var secStr = sec.toString();
-    //   if (secStr.length == 1) secStr = '0' + secStr;
-
-    //   this.setData({
-    //     countDownDay: dayStr,
-    //     countDownHour: hrStr,
-    //     countDownMinute: minStr,
-    //     countDownSecond: secStr,
-    //   });
-    //   totalSecond--;
-    //   console.log(totalSecond)
-    //   if (totalSecond < 0) {
-    //     clearInterval(interval);
-    //     this.setData({
-    //       countDownDay: '00',
-    //       countDownHour: '00',
-    //       countDownMinute: '00',
-    //       countDownSecond: '00',
-    //     });
-    //     wx.redirectTo({
-    //       url: `../examEnd/examEnd?exam_type=${this.data.examType}`
-    //     });
-    //   }
-    // }.bind(this), 1000);  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.startTimer()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    this.pauseTimer()
   },
 
   /**
@@ -201,41 +188,61 @@ Page({
   submitClick(){
     this.setData({
       is_modal_Hidden: false,
-     
+      error:0
     });
+    var quList = this.data.quList
+    for (let i = 0; i < quList.length; i++) {
+      var userAnswer = JSON.stringify(quList[i].userAnswer)
+      var correctAnswer = JSON.stringify(quList[i].correctAnswer)
+      console.log(userAnswer)
+      console.log(correctAnswer)
+      this.setData({
+        average: 100 / quList.length
+      })
+      if (userAnswer != correctAnswer) {
+        this.data.error++;
+      }
+      else {
+      
+      }
+      console.log(this.data.error)
+    }
+    this.setData({
+      score: 100 - this.data.error*this.data.average
+    })
+    
   },
   confirm(){
-    console.log(this.data.countDownHour)
-    console.log(this.data.countDownMinute)
-    console.log(this.data.countDownSecond)
-    var time = `${this.data.countDownHour}:${this.data.countDownMinute}:${this.data.countDownSecond}`
-    console.log(this.data.countDownHour * 3600 + this.data.countDownMinute * 60 + Number(this.data.countDownSecond))
+    var time1 = 10 - this.data.totalSecond
+    var usedTime = util.formatSeconds(time1)
     wx.redirectTo({
-      url: `../examEnd/examEnd?exam_type=${this.data.examType}`
+      url: `../examEnd/examEnd?exam_type=${this.data.examType}&exam_time=
+      ${usedTime}&exam_title=${this.data.title}&exam_score=${this.data.score}`
     })
   },
 
   // 开始计时  
   startTimer: function () {
-    console.log("开始按钮");
-    this.countdown("900");
+    this.countdown("10");
   },
 
   // 暂停计时
   pauseTimer: function () {
-    console.log("暂停按钮");
     clearTimeout(timer);
   },
   countdown(totalSecond) {
     let _this = this;
-    totalSecond--;
     _this.setData({
+      totalSecond: totalSecond,
       time: util.formatSeconds(totalSecond)
     })
     timer = setTimeout(function () {
-      if (totalSecond)
-      _this.countdown(totalSecond);
+      if (totalSecond){
+        totalSecond--;
+        _this.countdown(totalSecond)
+      } else{
+        _this.confirm()
+      }   
     }, 1000);
-    
   }
 })

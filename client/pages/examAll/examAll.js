@@ -11,7 +11,7 @@ Page({
     showTime:false,
     exam_msg:"状态",
     isLoad:true,
-    placeholderText: '输入课程名、老师查找'
+    placeholderText: "输入测验名称查找"
   },
 
   /**
@@ -26,15 +26,26 @@ Page({
       this.setData({
         examType: options.id
       })
+      this.getExamAll()
+    } else if (options.searchKeyword){
+      wx.setNavigationBarTitle({
+        title: options.searchKeyword,
+      })
+      this.setData({
+        searchKeyword: options.searchKeyword,
+        tipMsg: `对不起,暂无${options.searchKeyword}相关的课程`,
+      })
+      this.getExamFuzzy(options.searchKeyword)
     }else{
+      console.log(1)
       wx.setNavigationBarTitle({
         title: "全部测验",
       })
       this.setData({
         examType: ""
       })
+      this.getExamAll()
     }
-    this.getExamAll()
     let _this = this
     wx.getStorage({
       key: 'examType',
@@ -51,10 +62,15 @@ Page({
    */
   getExamAll(){
     const selectAllExamUrl = config.service.selectAllExamUrl;
-    console.log(selectAllExamUrl)
     app.request.requestPostApi(selectAllExamUrl, {type:this.data.examType}, this, this.examAllSuccess, this.examAllFail)
   },
-
+   /**
+   * 获取全部测试数据
+   */
+  getExamFuzzy(searchKeyword){
+    const fuzzySelectExamUrl = config.service.examFuzzyUrl;
+    app.request.requestPostApi(fuzzySelectExamUrl, { body: searchKeyword }, this, this.examFuzzySuccess, this.examFuzzyFail)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -115,6 +131,28 @@ Page({
       examList: res.data,
       isLoad: true
     });
+    
+  },
+
+  examFuzzySuccess(res){
+    console.log(res)
+    if (res.status === "0") {
+      let examList = res.data;
+      if (examList.length <= 0) {
+        this.setData({
+          pageIsEmpty: true,
+          isLoad: true,
+          is_modal_Hidden: true
+        })
+        return;
+      }
+      this.setData({
+        examList: examList,
+        pageIsEmpty: false,
+        isLoad: true,
+        is_modal_Hidden: true
+      });
+    }
   },
   /**
    * 数据加载失败
@@ -124,8 +162,18 @@ Page({
       isLoad: false
     });
   },
+  examFuzzyFail(){
+    this.setData({
+      isLoad: false,
+      is_modal_Hidden: true,
+    });
+  },
   load(){
-    this.getExamAll()    
+    if (this.data.searchKeyword){
+      this.getExamFuzzy(this.data.searchKeyword)
+    }else{
+      this.getExamAll()    
+    }
   },
   _examClick(e){
     let examId = e.currentTarget.dataset.id;
@@ -139,6 +187,19 @@ Page({
   searchClick(e) {
     console.log(e)
     util.searchClick(e)
+  },
+  confirm(e) {
+    if (e.detail === '') return;
+    const searchKeyword = e.detail;
+    console.log(e)
+    this.getExamFuzzy(searchKeyword);
+    wx.setNavigationBarTitle({
+      title: searchKeyword,
+    });
+    this.setData({
+      tipMsg: `对不起,暂无${searchKeyword}相关的测验`,
+      searchKeyword: searchKeyword
+    })
   },
 
 })
