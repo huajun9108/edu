@@ -30,7 +30,7 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function(options) {
+    onLoad: function() {
         var that = this;
         wx.getSystemInfo({
             success: function(res) {
@@ -99,12 +99,6 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function() {
-
-    },
     tabClick: function(e) {
         this.setData({
             sliderOffset: e.currentTarget.offsetLeft,

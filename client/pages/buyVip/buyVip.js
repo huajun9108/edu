@@ -1,6 +1,5 @@
 // pages/buyVip/buyVip.js
 const config = require('../../config')
-const util = require('../../utils/util.js')
 const Session = require('../../vendor/wafer2-client-sdk/lib/session');
 const app = getApp()
 Page({
@@ -93,13 +92,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
   
   },
   selectClick(e){

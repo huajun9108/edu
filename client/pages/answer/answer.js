@@ -1,4 +1,8 @@
 
+var timer; // 计时器
+
+const util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -9,314 +13,6 @@ Page({
     quList:[
       {
         title:"5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
         select: [
           { option: "A", select: false, content: "暂时性" },
           { option: "B", select: false, content: "流行性" },
@@ -342,7 +38,7 @@ Page({
     console.log(options)
     this.setData({
       quNum: this.data.quList.length,
-      title: options.title,
+      title: decodeURI(options.title),
       cardCss:"qu_card_down",
       examType: options.exam_type
     })
@@ -352,58 +48,60 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    var totalSecond = 900;
+    // var totalSecond = 900;
 
-    var interval = setInterval(function () {
-      // 秒数  
-      var second = totalSecond;
+    // var interval = setInterval(function () {
+    //   // 秒数  
+    //   var second = totalSecond;
 
-      // 天数位  
-      var day = Math.floor(second / 3600 / 24);
-      var dayStr = day.toString();
-      if (dayStr.length == 1) dayStr = '0' + dayStr;
+    //   // 天数位  
+    //   var day = Math.floor(second / 3600 / 24);
+    //   var dayStr = day.toString();
+    //   if (dayStr.length == 1) dayStr = '0' + dayStr;
 
-      // 小时位  
-      var hr = Math.floor((second - day * 3600 * 24) / 3600);
-      var hrStr = hr.toString();
-      if (hrStr.length == 1) hrStr = '0' + hrStr;
+    //   // 小时位  
+    //   var hr = Math.floor((second - day * 3600 * 24) / 3600);
+    //   var hrStr = hr.toString();
+    //   if (hrStr.length == 1) hrStr = '0' + hrStr;
 
-      // 分钟位  
-      var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
-      var minStr = min.toString();
-      if (minStr.length == 1) minStr = '0' + minStr;
+    //   // 分钟位  
+    //   var min = Math.floor((second - day * 3600 * 24 - hr * 3600) / 60);
+    //   var minStr = min.toString();
+    //   if (minStr.length == 1) minStr = '0' + minStr;
 
-      // 秒位  
-      var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
-      var secStr = sec.toString();
-      if (secStr.length == 1) secStr = '0' + secStr;
+    //   // 秒位  
+    //   var sec = second - day * 3600 * 24 - hr * 3600 - min * 60;
+    //   var secStr = sec.toString();
+    //   if (secStr.length == 1) secStr = '0' + secStr;
 
-      this.setData({
-        countDownDay: dayStr,
-        countDownHour: hrStr,
-        countDownMinute: minStr,
-        countDownSecond: secStr,
-      });
-      totalSecond--;
-      if (totalSecond < 0) {
-        clearInterval(interval);
-        this.setData({
-          countDownDay: '00',
-          countDownHour: '00',
-          countDownMinute: '00',
-          countDownSecond: '00',
-        });
-        wx.redirectTo({
-          url: `../examEnd/examEnd?exam_type=${this.data.examType}`
-        });
-      }
-    }.bind(this), 1000);  
+    //   this.setData({
+    //     countDownDay: dayStr,
+    //     countDownHour: hrStr,
+    //     countDownMinute: minStr,
+    //     countDownSecond: secStr,
+    //   });
+    //   totalSecond--;
+    //   console.log(totalSecond)
+    //   if (totalSecond < 0) {
+    //     clearInterval(interval);
+    //     this.setData({
+    //       countDownDay: '00',
+    //       countDownHour: '00',
+    //       countDownMinute: '00',
+    //       countDownSecond: '00',
+    //     });
+    //     wx.redirectTo({
+    //       url: `../examEnd/examEnd?exam_type=${this.data.examType}`
+    //     });
+    //   }
+    // }.bind(this), 1000);  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.startTimer()
   },
 
   /**
@@ -431,13 +129,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
   
   },
   quChange(e){
@@ -523,4 +214,28 @@ Page({
       url: `../examEnd/examEnd?exam_type=${this.data.examType}`
     })
   },
+
+  // 开始计时  
+  startTimer: function () {
+    console.log("开始按钮");
+    this.countdown("900");
+  },
+
+  // 暂停计时
+  pauseTimer: function () {
+    console.log("暂停按钮");
+    clearTimeout(timer);
+  },
+  countdown(totalSecond) {
+    let _this = this;
+    totalSecond--;
+    _this.setData({
+      time: util.formatSeconds(totalSecond)
+    })
+    timer = setTimeout(function () {
+      if (totalSecond)
+      _this.countdown(totalSecond);
+    }, 1000);
+    
+  }
 })

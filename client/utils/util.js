@@ -53,17 +53,31 @@ var showModel = (title, content) => {
 var searchClick=(e)=> {
   let title = e.detail.title
   let id = e.detail.id
-  let url = `../courseList/courseList?title=${title}&type=A&id=${id}`
+  let courseUrl = `../courseList/courseList?title=${title}&type=A&id=${id}`
+  let examUrl = `../examAll/examAll?title=${title}&id=${id}`
   let route = getCurrentPages()[0].route
   let length = getCurrentPages().length
-  if (route === "pages/course/course" && length===1){
-    wx.navigateTo({
-      url: url
-    })
-  }else{
-    wx.redirectTo({
-      url: url
-    })
+  console.log(getCurrentPages())
+  if (route === "pages/course/course"){
+    if (length === 1){
+      wx.navigateTo({
+        url: courseUrl
+      })
+    }else{
+      wx.redirectTo({
+        url: courseUrl
+      })
+    }
+  } else if (route === "pages/exam/exam"){
+    if (length === 1){
+      wx.navigateTo({
+        url: examUrl
+      })
+    }else{
+      wx.redirectTo({
+        url: examUrl
+      })
+    }
   }
 }
 
@@ -90,6 +104,17 @@ const getRandomArrayElements=(arr, count)=> {
   return shuffled.slice(min);
 }
 
+const formatSeconds= seconds=>{
+  return [
+    parseInt(seconds / 60 / 60), // 时
+    parseInt(seconds / 60 % 60), // 分
+    parseInt(seconds % 60)       // 秒
+  ]
+    .join(":")
+    .replace(/\b(\d)\b/g, "0$1");
+}
+
+
 module.exports = { 
   formatTime, 
   showBusy, 
@@ -98,5 +123,6 @@ module.exports = {
   showModel, 
   searchClick,
   confirm, 
-  getRandomArrayElements
+  getRandomArrayElements,
+  formatSeconds
 }
