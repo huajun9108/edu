@@ -14,7 +14,10 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      examType: options.exam_type
+      examType: options.exam_type,
+      examTime: options.exam_time,
+      examScore: options.exam_score,
+      examTitle: options.exam_title,
     })
   },
 
@@ -71,7 +74,7 @@ Page({
   },
   examParseClick(){
     wx.redirectTo({
-      url: "../examParse/examParse",
+      url: `../examParse/examParse?title=${this.data.examTitle}`,
     })
   }
 })

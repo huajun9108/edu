@@ -21,7 +21,7 @@
         <text class='exam_num base_color'>{{num}}</text>/{{quNum}}</view>
       <view class='exam_time-count'>
         <view class='exam_count'>
-          倒计时:<text class="exam_time base_color">{{countDownHour}}:{{countDownMinute}}:{{countDownSecond}}</text>
+          倒计时:<text class="exam_time base_color">{{time}}</text>
           <view class="exam_submit base_color" bindtap='submitClick'>提交答卷</view>
         </view>
       </view>

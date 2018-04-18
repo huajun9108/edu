@@ -85,10 +85,20 @@ var searchClick=(e)=> {
 var confirm=(e)=>{
   if (e.detail === '') return;
   const searchKeyword = e.detail;
-  const url = `../searchCourse/searchCourse?searchKeyword=${searchKeyword}`
-  wx.navigateTo({
-    url: url
-  });
+  console.log(getCurrentPages())
+  let route = getCurrentPages()[0].route  
+  let courseUrl = `../searchCourse/searchCourse?searchKeyword=${searchKeyword}` 
+  let examUrl = `../examAll/examAll?searchKeyword=${searchKeyword}` 
+  if (route === "pages/course/course") {
+    wx.navigateTo({
+      url: courseUrl
+    });
+  } else if (route === "pages/exam/exam") {
+    wx.navigateTo({
+      url: examUrl
+    })
+  
+  }
 }
 
 const getRandomArrayElements=(arr, count)=> {
