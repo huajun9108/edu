@@ -188,33 +188,34 @@ Page({
   submitClick(){
     this.setData({
       is_modal_Hidden: false,
-      error:0
     });
+  },
+  getScore(){
     var quList = this.data.quList
+    this.setData({
+      average: 100 / quList.length,
+      error: 0
+    })
     for (let i = 0; i < quList.length; i++) {
       var userAnswer = JSON.stringify(quList[i].userAnswer)
       var correctAnswer = JSON.stringify(quList[i].correctAnswer)
       console.log(userAnswer)
       console.log(correctAnswer)
-      this.setData({
-        average: 100 / quList.length
-      })
       if (userAnswer != correctAnswer) {
         this.data.error++;
       }
       else {
-      
       }
       console.log(this.data.error)
     }
     this.setData({
-      score: 100 - this.data.error*this.data.average
+      score: 100 - this.data.error * this.data.average
     })
-    
   },
   confirm(){
     var time1 = 10 - this.data.totalSecond
     var usedTime = util.formatSeconds(time1)
+    this.getScore()
     wx.redirectTo({
       url: `../examEnd/examEnd?exam_type=${this.data.examType}&exam_time=
       ${usedTime}&exam_title=${this.data.title}&exam_score=${this.data.score}`
