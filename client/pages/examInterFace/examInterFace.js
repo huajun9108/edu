@@ -124,7 +124,11 @@ Page({
       testRequireCon: res.data.testRequireCon,
       answerTime: res.data.answerTime+"分钟"
     });
-    console.log(this)
+    if (res.data.attendFlag){
+      wx.setNavigationBarTitle({
+        title: '我的成绩',
+      })
+    }
   },
   loginFail() {
     this.setData({
