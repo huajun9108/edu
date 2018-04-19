@@ -19,6 +19,10 @@ Component({
     interfaceContent:{
       type: String,
       value: ""
+    },
+    isBaseColor: {
+      type: Boolean,
+      value: false
     }
   },
   /**
