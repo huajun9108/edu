@@ -91,7 +91,10 @@ var config = {
         selectAllExamTypeUrl: `${host}/weapp/exam/selectAllExamType`,
 
         //测验模糊搜索
-        examFuzzyUrl: `${host}/weapp/exam/FuzzySelect`
+        examFuzzyUrl: `${host}/weapp/exam/FuzzySelect`,
+
+        //根据用户ID和测验ID查询测验
+        selectExamByUserIdAndExamIdUrl: `${host}/weapp/exam/selectExamByUserIdAndExamId`
 
 
     }

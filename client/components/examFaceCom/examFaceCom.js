@@ -28,25 +28,27 @@ Component({
     
   },
   ready() {
-    let _this = this;
-    var query = wx.createSelectorQuery().in(this)
-    query.select('.weui-form-preview_content').boundingClientRect(function (res) {
-      if(!res) return;
-      _this.setData({
-        height: res.height
-      })
-      if (_this.data.height > 32) {
-        _this.setData({
-          isEllipsis: true,
-          isEllipsisShow: true
-        })
-      } else {
-        _this.setData({
-          isEllipsis: false,
-          isEllipsisShow: false
-        })
-      }
-    }).exec()
+    // let _this = this;
+    // var query = wx.createSelectorQuery().in(this)
+    // query.select('.weui-form-preview_content').boundingClientRect(function (res) {
+    //   if(!res) return;
+    //   _this.setData({
+    //     height: res.height
+    //   })
+    //   console.log(res)
+    //   if (_this.data.height > 32) {
+
+    //     _this.setData({
+    //       isEllipsis: true,
+    //       isEllipsisShow: true
+    //     })
+    //   } else {
+    //     _this.setData({
+    //       isEllipsis: false,
+    //       isEllipsisShow: false
+    //     })
+    //   }
+    // }).exec()
   },
 
   /**
@@ -57,6 +59,29 @@ Component({
       this.setData({
         isEllipsis: !this.data.isEllipsis
       });
+    },
+    _ready(){
+      let _this = this;
+      var query = wx.createSelectorQuery().in(this)
+      query.select('.weui-form-preview_content').boundingClientRect(function (res) {
+        if (!res) return;
+        _this.setData({
+          height: res.height
+        })
+        console.log(res)
+        if (_this.data.height > 32) {
+
+          _this.setData({
+            isEllipsis: true,
+            isEllipsisShow: true
+          })
+        } else {
+          _this.setData({
+            isEllipsis: false,
+            isEllipsisShow: false
+          })
+        }
+      }).exec()
     }
   }
 })

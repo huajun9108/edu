@@ -1,5 +1,7 @@
 // pages/examInterFace/examInterFace.js
 const app = getApp();
+const config = require('../../config')
+
 Page({
 
   /**
@@ -8,19 +10,12 @@ Page({
   data: {
     examShow: true,
     interfaceText: "测验简介",
-    interfaceContent: "很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长很长很长的名字很长很长的名字很长很长的名字很长很长很长的名字很长很长的名zi很长很长的名字很长",
     pubText: "发布时间",
-    pubTime: "2018/3/29",
     startText: "开始时间",
-    startTime: "2018/3/30 00:00:00",
     endText: "截止时间",
-    endTime: "2018/4/30 00:00:00",
     answerText: "答题时长",
-    answerTime: "60分钟",
     testSet: "题型设置",
-    testContent: "20道选择题,每题5分,满分100分，60分及格",
     testRequire: "测验要求",
-    testRequireCon: "考生需要在测验规定的时长内完成作答,在规定时间内答题完成可以手动提交答卷,超过时间系统会自动提交答卷结束测验。",
     is_modal_Hidden: true,
     is_modal_msg: "是否确认开始答写\n如若中途退出\n系统将自动提交答卷",
     cancelText: "稍后再来",
@@ -104,7 +99,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-  loginSuccess() {
+  loginSuccess(res) {
     let options = this.data.options;
     this.setData({
       examId: options.id,
@@ -113,6 +108,23 @@ Page({
       examType: options.exam_type,
       isLogin: true
     });
+    const selectExamByUserIdAndExamIdUrl = config.service.selectExamByUserIdAndExamIdUrl;
+    app.request.requestPostApi(selectExamByUserIdAndExamIdUrl, { userId: app.data.userId, examId: this.data.examId },
+      this, this.selectExamSuccessFun, this.selectExamFailFun);
+
+  },
+  selectExamSuccessFun(res){
+    console.log(res)
+    this.setData({
+      interfaceContent: res.data.interfaceContent,
+      pubTime: res.data.pubTime,
+      startTime: res.data.startTime,
+      endTime: res.data.endTime,
+      testContent: res.data.testContent,
+      testRequireCon: res.data.testRequireCon,
+      answerTime: res.data.answerTime+"分钟"
+    });
+    console.log(this)
   },
   loginFail() {
     this.setData({
