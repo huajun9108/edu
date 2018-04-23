@@ -94,9 +94,10 @@ var config = {
         examFuzzyUrl: `${host}/weapp/exam/FuzzySelect`,
 
         //根据用户ID和测验ID查询测验
-        selectExamByUserIdAndExamIdUrl: `${host}/weapp/exam/selectExamByUserIdAndExamId`
+        selectExamByUserIdAndExamIdUrl: `${host}/weapp/exam/selectExamByUserIdAndExamId`,
 
-
+        //根据用户ID和测验ID查询单张试卷题目(出题)
+        selectPaperByUserIdAndExamIdUrl: `${host}/weapp/exam/selectPaperByUserIdAndExamId `
     }
 
     

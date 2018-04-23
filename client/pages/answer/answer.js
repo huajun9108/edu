@@ -2,6 +2,8 @@
 var timer; // 计时器
 
 const util = require('../../utils/util.js')
+const config = require('../../config.js')
+const app = getApp()
 
 Page({
 
@@ -10,57 +12,15 @@ Page({
    */
   data: {
     modalFlag:true,
-    quList:[
-      {
-        title:"5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["B"]
-      }, {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["A"]
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", select: false, content: "暂时性" },
-          { option: "B", select: false, content: "流行性" },
-          { option: "C", select: false, content: "持久性" },
-          { option: "D", select: false, content: "时尚性" }
-        ],
-        userAnswer: [],
-        correctAnswer: ["B"]
-      }
-    ],
+    quList:[],
     duration: 800,
     num:1,
     is_modal_Hidden: true,
     is_modal_Msg: "是否确认提交答卷?",
     cancelText: "我再写写",
     sureText: "现在交卷",
+    examId: null,
+    isLoad: true
   },
 
   /**
@@ -69,13 +29,13 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      quNum: this.data.quList.length,
       title: decodeURI(options.title),
       cardCss:"qu_card_down",
       examType: options.exam_type,
-    })
-    this.startTimer()
-    
+      examId: options.id
+    });
+    // this.startTimer()
+    this.selectPaper();
   },
 
   /**
@@ -144,6 +104,35 @@ Page({
       }
       else {
         parameterList[i].select = false;//其他的位置为false
+      }
+    }
+    quList[serial].select = parameterList;
+    _this.setData({
+      quList: quList,
+      serial: serial
+    });
+  },
+  multiOptionClick(e) {
+    let _this = this
+    console.log(e)
+    var serial = e.currentTarget.dataset.serial;
+    var this_checked = e.currentTarget.dataset.option
+    var quList = this.data.quList;
+    var parameterList = quList[serial].select;//获取Json数组
+
+    for (let i = 0; i < parameterList.length; i++) {
+      if (parameterList[i].option === this_checked) {
+        if (!quList[serial].userAnswer.includes(this_checked)) {
+          parameterList[i].select = true;//当前点击的位置为true即选中
+          let len = quList[serial].userAnswer.length;
+          quList[serial].userAnswer.push(this_checked);
+          quList[serial].userAnswer.sort();
+        } else {
+          let deselectIndex = quList[serial].userAnswer.indexOf(this_checked); 
+          console.log(quList[serial].userAnswer.indexOf(this_checked));
+          parameterList[i].select = false;
+          quList[serial].userAnswer.splice(deselectIndex, 1);
+        }
       }
     }
     quList[serial].select = parameterList;
@@ -245,5 +234,27 @@ Page({
         _this.confirm()
       }   
     }, 1000);
+  },
+  selectPaper() {
+    const selectPaperByUserIdAndExamIdUrl = config.service.selectPaperByUserIdAndExamIdUrl;
+    app.request.requestPostApi(selectPaperByUserIdAndExamIdUrl, { userId: app.data.userId, examId: this.data.examId }, this, this.selectPaperSuccess, this.selectPaperFail);
+  },
+  selectPaperSuccess(res) {
+    console.log(res);
+    if(res.status === "0") {
+      this.setData({
+        isLoad: true,
+        quList: res.data,
+        quNum: res.data.length
+      });
+    }
+  },
+  selectPaperFail(res) {
+    this.setData({
+      isLoad: false
+    });
+  },
+  load() {
+    this.selectPaper();
   }
 })

@@ -1,14 +1,17 @@
 <!--pages/answer/answer.wxml-->
+<import src="../common/common" />
 <view class="page">
-  <view class="content-box">
+  <template is="page-error" wx:if="{{!isLoad}}" />
+  <view class="content-box" wx:else>
     <view class="content-wrap">
       <view class="exam-title">{{title}}</view>
       <swiper duration="{{duration}}" bindchange="quChange" current="{{current}}">
         <block wx:for="{{quList}}" wx:for-index="quIdx" wx:key="quIdx" wx:for-item="quItem">
           <swiper-item>
             <view class="qu_title">{{quIdx+1}}.
-              <text class="base_color">(单选题)</text>{{quItem.title}}</view>
-            <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" bindtap="optionClick" data-serial="{{quIdx}}" data-option="{{selectItem.option}}" data-index='{{quIdx+1}}' class="{{selectItem.select?'base_color qu_options':'qu_options'}}">
+              <text class="base_color" wx:if="{{quItem.type===2}}">(多选题)</text>
+              <text class="base_color" wx:else>{{quItem.type===1?'(单选题)':'(判断题)'}}</text>{{quItem.title}}</view>
+            <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" bindtap="{{quItem.type===2?'multiOptionClick':'optionClick'}}" data-serial="{{quIdx}}" data-option="{{selectItem.option}}" data-index='{{quIdx+1}}' class="{{selectItem.select?'base_color qu_options':'qu_options'}}">
               <text class="{{selectItem.select?'active_qu_option qu_option':'qu_option'}}">{{selectItem.option}}</text>{{selectItem.content}}
             </view>
           </swiper-item>
@@ -21,7 +24,8 @@
         <text class='exam_num base_color'>{{num}}</text>/{{quNum}}</view>
       <view class='exam_time-count'>
         <view class='exam_count'>
-          倒计时:<text class="exam_time base_color">{{time}}</text>
+          倒计时:
+          <text class="exam_time base_color">{{time}}</text>
           <view class="exam_submit base_color" bindtap='submitClick'>提交答卷</view>
         </view>
       </view>
@@ -29,10 +33,10 @@
     <view class="{{cardCss}}">
       <view class="qu_card-title">{{title}}</view>
       <scroll-view class="card_box" scroll-y="true">
-         <text wx:for="{{quList}}" wx:key="index" class="{{item.userAnswer.length?'card_bd card_num':'card_num'}} {{(index+1)===num?'card_bg card_num':'card_num'}}" bindtap='cardClick' data-index='{{index}}'>{{index+1}}</text>  
+        <text wx:for="{{quList}}" wx:key="index" class="{{item.userAnswer.length?'card_bd card_num':'card_num'}} {{(index+1)===num?'card_bg card_num':'card_num'}}" bindtap='cardClick' data-index='{{index}}'>{{index+1}}</text>
       </scroll-view>
     </view>
   </view>
-  <view  hidden='{{modalFlag}}' class='mask_layer'/>
-  <modal  modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" bindconfirm="confirm"/>   
+  <view hidden='{{modalFlag}}' class='mask_layer' />
+  <modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" bindconfirm="confirm" />
 </view>
