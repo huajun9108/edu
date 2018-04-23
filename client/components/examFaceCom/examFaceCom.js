@@ -42,14 +42,21 @@ Component({
         isEllipsis: !this.data.isEllipsis
       });
     },
-    _ready(newVal){
-      console.log(newVal);
+    _ready(){
       let _this = this;
-      if (newVal){
-        var query = wx.createSelectorQuery().in(_this)
-        setTimeout(function () {
-          query.select('.weui-form-preview_content').boundingClientRect(function (res) {
-            if (!res) return;
+      var query = wx.createSelectorQuery().in(this)
+      setTimeout(function() {
+        query.select('.weui-form-preview_content').boundingClientRect(function (res) {
+          if (!res) return;
+          _this.setData({
+            height: res.height
+          })
+          if (_this.data.height > 32) {
+            _this.setData({
+              isEllipsis: true,
+              isEllipsisShow: true
+            })
+          } else {
             _this.setData({
               height: res.height
             })
@@ -64,10 +71,9 @@ Component({
                 isEllipsisShow: false
               })
             }
-          }).exec()
-        }, 100);
-      }
-      
+          }
+        }).exec()
+      },100)
     }
   }
 })

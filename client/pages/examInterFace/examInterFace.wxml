@@ -14,11 +14,13 @@
       <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{testRequire}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{testRequireCon}}" />
       <examFaceCom wx:if="{{attendFlag}}" interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}" />
       <examFaceCom wx:if="{{attendFlag}}" interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}" />
-      <examFaceCom wx:if="{{attendFlag && options.exam_type == 3}}" interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myRanking}}" is-base-color="{{true}}" />
+      <examFaceCom wx:if="{{attendFlag && options.exam_type == 2}}" interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myRanking}}" is-base-color="{{true}}" />
     </view>
     <view wx:if="{{attendFlag}}">
       <view class="exam_btn base_color top_btn" wx:if="{{options.exam_type == 1}}" bindtap="confirm">重新测验</view>
-      <view class="exam_btn base_color" bindtap='examParseClick' wx:if="{{(options.exam_type == 1 || options.exam_type == 3)}}">查看答案</view>
+      <view class="exam_btn base_color" bindtap='examParseClick' wx:if="{{options.exam_type == 1}}">查看答案</view>
+       <view class="exam_btn base_color" bindtap='examParseClick' wx:if="{{(options.exam_type == 2 && examFlag == -1)}}">查看答案</view> 
+       <view class="exam_btn unable_btn" bindtap='examParseClick' wx:if="{{(options.exam_type == 2 && examFlag == 0)}}">已参加过考试</view> 
     </view>
     <block wx:else>
       <view wx:if="{{examFlag==-1}}" class="">
