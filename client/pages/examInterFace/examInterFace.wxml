@@ -5,25 +5,57 @@
   <view class='content-box' wx:else>
     <view class="content-wrap">
       <titleCom title="{{title}}" is-collected="{{isCollected}}" exam-show="{{examShow}}" bindaddMyFavor="addMyFavor" />
-      <examFaceCom interface-text="{{interfaceText}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{interfaceContent}}" />
-      <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{pubText}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{pubTime}}" />
-      <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{startText}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{startTime}}" />
-      <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{endText}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{endTime}}" />
-      <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{answerText}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{answerTime}}" />
-      <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{testSet}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{testContent}}" />
-      <examFaceCom wx:if="{{!attendFlag}}" interface-text="{{testRequire}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{testRequireCon}}" />
-      <examFaceCom wx:if="{{attendFlag}}" interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}" />
-      <examFaceCom wx:if="{{attendFlag}}" interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}" />
-      <examFaceCom wx:if="{{attendFlag && options.exam_type == 2}}" interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myRanking}}" is-base-color="{{true}}" />
+      <examFaceCom interface-text="{{interfaceText}}" is-ellipsis="{{isEllipsis}}" 
+      is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{interfaceContent}}" />
+      <view wx:if = "{{!attendFlag}}">
+        <examFaceCom interface-text="{{pubText}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{pubTime}}" />
+        <examFaceCom interface-text="{{startText}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{startTime}}" />
+        <examFaceCom interface-text="{{endText}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{endTime}}" />
+        <examFaceCom interface-text="{{answerText}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{answerTime}}" />
+        <examFaceCom interface-text="{{testSet}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{testContent}}" />
+        <examFaceCom interface-text="{{testRequire}}" is-ellipsis="{{isEllipsis}}"
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{testRequireCon}}" />
+      </view>
+      <view wx:if = "{{attendFlag && examType == 1}}">
+        <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}" />
+        <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}"/>
+      </view>
+      <view wx:if = "{{attendFlag && examType == 2 && examFlag ==0}}">
+        <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}" />
+        <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="暂未公布" is-base-color="{{true}}"/>
+        <examFaceCom interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="暂未公布" is-base-color="{{true}}"/>
+      </view>
+      <view wx:if = "{{attendFlag && examType == 2 && examFlag == -1}}">
+        <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}"/>
+        <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}"/>
+        <examFaceCom interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" 
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myRanking}}" is-base-color="{{true}}"/>
+      </view>
     </view>
     <view wx:if="{{attendFlag}}">
-      <view class="exam_btn base_color top_btn" wx:if="{{options.exam_type == 1}}" bindtap="confirm">重新测验</view>
-      <view class="exam_btn base_color" bindtap='examParseClick' wx:if="{{options.exam_type == 1}}">查看答案</view>
-       <view class="exam_btn base_color" bindtap='examParseClick' wx:if="{{(options.exam_type == 2 && examFlag == -1)}}">查看答案</view> 
-       <view class="exam_btn unable_btn" bindtap='examParseClick' wx:if="{{(options.exam_type == 2 && examFlag == 0)}}">已参加过考试</view> 
+      <view wx:if="{{examType == 2}}">
+        <view class="exam_btn unable_btn  {{examFlag==0?'':'top_btn'}}">{{examFlag==0?"已参加过考试":"答题已结束"}}</view> 
+        <view class="exam_btn base_color" wx:if="{{examFlag == -1}}" bindtap='examParseClick'>查看试题与解析</view>
+      </view> 
+      <view wx:if="{{examType == 1}}">
+        <view class="exam_btn top_btn {{examFlag==0?'base_color':'unable_btn'}}" bindtap="{{examFlag==0?'confirm':''}}">{{examFlag==0?"重新测验":"答题已结束"}}</view> 
+        <view class="exam_btn base_color" bindtap='examParseClick'>查看试题与解析</view>
+      </view> 
     </view>
     <block wx:else>
-      <view wx:if="{{examFlag==-1}}" class="">
+      <view wx:if="{{examFlag==-1}}">
         <view class="exam_btn unable_btn top_btn">答题已结束</view>
         <view class="exam_btn base_color" bindtap='examParseClick'>查看试题与解析</view>
       </view>

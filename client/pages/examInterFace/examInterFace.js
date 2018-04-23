@@ -122,6 +122,9 @@ Page({
   },
   selectExamSuccessFun(res){
     console.log(res)
+    // this.setData({
+    //   attendFlag:1
+    // })res.data.attendFlag
     if (res.data.attendFlag) {
       wx.setNavigationBarTitle({
         title: '我的成绩',
