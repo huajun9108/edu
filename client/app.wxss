@@ -139,6 +139,10 @@ button{
   border-radius: 26rpx; 
   text-align: center;
 }
+.login-btn:active, .error-btn:active {
+  border-color: #7c7c7c;
+  color: #7c7c7c;
+}
 image{
   border-radius: 2rpx;
 }

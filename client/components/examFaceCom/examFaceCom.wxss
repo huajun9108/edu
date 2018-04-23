@@ -15,8 +15,6 @@
 } 
 .weui-form-preview_content{
   line-height:30rpx;
-  /* height: 60rpx;
-  overflow: hidden; */
 }
 .weui-form-preview_btn {
   width: 120rpx;

@@ -16,12 +16,18 @@ Page({
     answerText: "答题时长",
     testSet: "题型设置",
     testRequire: "测验要求",
+    myUsingTimeTitle: "我的用时",
+    myScoreTitle: "我的得分",
+    myRankingTitle: "我的排名",
     is_modal_Hidden: true,
     is_modal_msg: "是否确认开始答写\n如若中途退出\n系统将自动提交答卷",
     cancelText: "稍后再来",
     sureText: "现在答写",
     isLogin: true,
     options: {}, //保存页面跳转时传过来的参数
+    attendFlag: false,
+    isEllipsis: false,
+    isEllipsisShow: false
   },
 
   /**
@@ -116,19 +122,27 @@ Page({
   },
   selectExamSuccessFun(res){
     console.log(res)
-    this.setData({
-      interfaceContent: "本次工业工程基础知识竞赛面向所有热爱IE的人士开放，只要你有一颗热爱IE的心，欢迎你准时来参,,,",
-      pubTime: res.data.pubTime,
-      startTime: res.data.startTime,
-      endTime: res.data.endTime,
-      testContent: res.data.testContent,
-      testRequireCon: res.data.testRequireCon,
-      answerTime: res.data.answerTime+"分钟"
-    });
-    if (res.data.attendFlag){
+    if (res.data.attendFlag) {
       wx.setNavigationBarTitle({
         title: '我的成绩',
-      })
+      });
+      this.setData({
+        interfaceContent: res.data.interfaceContent,
+        attendFlag: res.data.attendFlag,
+        myUsingTime: res.data.useTime + '分钟',
+        myScore: res.data.score + '分',
+        myRanking: '第'+ res.data.ranking + '名'
+      });
+    } else {
+      this.setData({
+        interfaceContent: res.data.interfaceContent,
+        pubTime: res.data.pubTime,
+        startTime: res.data.startTime,
+        endTime: res.data.endTime,
+        testContent: res.data.testContent,
+        testRequireCon: res.data.testRequireCon,
+        answerTime: res.data.answerTime + "分钟"
+      });
     }
   },
   loginFail() {
