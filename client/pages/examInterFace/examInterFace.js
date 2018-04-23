@@ -25,7 +25,9 @@ Page({
     sureText: "现在答写",
     isLogin: true,
     options: {}, //保存页面跳转时传过来的参数
-    attendFlag: false
+    attendFlag: false,
+    isEllipsis: false,
+    isEllipsisShow: false
   },
 
   /**

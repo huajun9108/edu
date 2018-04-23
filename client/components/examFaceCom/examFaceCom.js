@@ -18,7 +18,8 @@ Component({
     },
     interfaceContent:{
       type: String,
-      value: ""
+      value: "",
+      observer: '_ready'
     },
     isBaseColor: {
       type: Boolean,
@@ -31,29 +32,6 @@ Component({
   data: {
     
   },
-  ready() {
-    // let _this = this;
-    // var query = wx.createSelectorQuery().in(this)
-    // query.select('.weui-form-preview_content').boundingClientRect(function (res) {
-    //   if(!res) return;
-    //   _this.setData({
-    //     height: res.height
-    //   })
-    //   console.log(res)
-    //   if (_this.data.height > 32) {
-
-    //     _this.setData({
-    //       isEllipsis: true,
-    //       isEllipsisShow: true
-    //     })
-    //   } else {
-    //     _this.setData({
-    //       isEllipsis: false,
-    //       isEllipsisShow: false
-    //     })
-    //   }
-    // }).exec()
-  },
 
   /**
    * 组件的方法列表
@@ -65,27 +43,30 @@ Component({
       });
     },
     _ready(){
+      console.log('_ready');
       let _this = this;
       var query = wx.createSelectorQuery().in(this)
-      query.select('.weui-form-preview_content').boundingClientRect(function (res) {
-        if (!res) return;
-        _this.setData({
-          height: res.height
-        })
-        console.log(res)
-        if (_this.data.height > 32) {
+      setTimeout(function() {
+        query.select('.weui-form-preview_content').boundingClientRect(function (res) {
+          console.log(res)
+          if (!res) return;
+          _this.setData({
+            height: res.height
+          })
+          if (_this.data.height > 32) {
 
-          _this.setData({
-            isEllipsis: true,
-            isEllipsisShow: true
-          })
-        } else {
-          _this.setData({
-            isEllipsis: false,
-            isEllipsisShow: false
-          })
-        }
-      }).exec()
+            _this.setData({
+              isEllipsis: true,
+              isEllipsisShow: true
+            })
+          } else {
+            _this.setData({
+              isEllipsis: false,
+              isEllipsisShow: false
+            })
+          }
+        }).exec()
+      }, 100);
     }
   }
 })
