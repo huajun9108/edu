@@ -42,30 +42,32 @@ Component({
         isEllipsis: !this.data.isEllipsis
       });
     },
-    _ready(){
-      console.log('_ready');
+    _ready(newVal){
+      console.log(newVal);
       let _this = this;
-      var query = wx.createSelectorQuery().in(this)
-      setTimeout(function() {
-        query.select('.weui-form-preview_content').boundingClientRect(function (res) {
-          console.log(res)
-          if (!res) return;
-          _this.setData({
-            height: res.height
-          })
-          if (_this.data.height > 32) {
+      if (newVal){
+        var query = wx.createSelectorQuery().in(_this)
+        setTimeout(function () {
+          query.select('.weui-form-preview_content').boundingClientRect(function (res) {
+            if (!res) return;
             _this.setData({
-              isEllipsis: true,
-              isEllipsisShow: true
+              height: res.height
             })
-          } else {
-            _this.setData({
-              isEllipsis: false,
-              isEllipsisShow: false
-            })
-          }
-        }).exec()
-      }, 100);
+            if (_this.data.height > 32) {
+              _this.setData({
+                isEllipsis: true,
+                isEllipsisShow: true
+              })
+            } else {
+              _this.setData({
+                isEllipsis: false,
+                isEllipsisShow: false
+              })
+            }
+          }).exec()
+        }, 100);
+      }
+      
     }
   }
 })
