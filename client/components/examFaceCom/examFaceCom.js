@@ -43,12 +43,10 @@ Component({
       });
     },
     _ready(){
-      console.log('_ready');
       let _this = this;
       var query = wx.createSelectorQuery().in(this)
       setTimeout(function() {
         query.select('.weui-form-preview_content').boundingClientRect(function (res) {
-          console.log(res)
           if (!res) return;
           _this.setData({
             height: res.height
