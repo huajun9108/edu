@@ -62,6 +62,7 @@ Page({
    */
   onShow: function () {
 
+
   },
 
 
@@ -116,7 +117,7 @@ Page({
   selectExamSuccessFun(res){
     console.log(res)
     this.setData({
-      interfaceContent: res.data.interfaceContent,
+      interfaceContent: "本次工业工程基础知识竞赛面向所有热爱IE的人士开放，只要你有一颗热爱IE的心，欢迎你准时来参,,,",
       pubTime: res.data.pubTime,
       startTime: res.data.startTime,
       endTime: res.data.endTime,
