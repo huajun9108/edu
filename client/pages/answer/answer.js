@@ -187,6 +187,8 @@ Page({
     for (let i = 0; i < quList.length; i++) {
       var userAnswer = quList[i].userAnswer.join('');
       var correctAnswer = quList[i].correctAnswer;
+      console.log(userAnswer);
+      console.log(correctAnswer);
       if (userAnswer != correctAnswer) {
         this.data.error++;
       }
