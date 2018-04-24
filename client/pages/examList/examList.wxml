@@ -1,8 +1,10 @@
 <!--pages/examList/examList.wxml-->
 <import src="../common/common.wxml" />
+
 <view class="page">
   <template is="search" />
-  <view class='content'>
+  <template is="page-error" wx:if="{{!isLoad}}" />
+  <view class='content' wx:else>
     <navigator url="../examAll/examAll" class="weui-flex weui-panel__hd exam_all" hover-class="weui-cell_active" >
       <view class="weui-cell__bd">全部测验</view>
       <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -11,7 +13,6 @@
       <view class="weui-panel__hd exam_all exam_begin">即将开始</view>
       <template is="examList-2" data="{{showTime,exam_msg,examList}}"/>
     </view>
-
     <view class="weui-panel">
       <view class="weui-panel__hd exam_all exam_end">已结束</view>
       <template is="examList-3" data="{{examListEnd,people_num,pass_rate,average,showScore}}"/>

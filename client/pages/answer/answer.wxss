@@ -31,7 +31,7 @@ swiper{
 .qu_title{
   font-size: 34rpx;
   margin-bottom: 10rpx;
-  line-height: 1;
+  line-height: 1.5;
 }
 .qu_options{
   padding-top: 42rpx;

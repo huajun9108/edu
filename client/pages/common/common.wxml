@@ -168,7 +168,7 @@
           </view>
           <view class="flex-right">
             <view class="placeholder">
-              {{average}}: {{showScore?item.score:item.totalTime}}{{showScore?'分':'分钟'}}
+              {{average}}: {{showScore?item.score:item.totalTime/60000}}{{showScore?'分':'分钟'}}
             </view>
           </view>
         </view>

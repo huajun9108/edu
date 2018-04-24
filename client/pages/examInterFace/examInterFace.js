@@ -1,6 +1,7 @@
 // pages/examInterFace/examInterFace.js
 const app = getApp();
 const config = require('../../config')
+const util = require('../../utils/util.js')
 
 Page({
 
@@ -132,9 +133,10 @@ Page({
       this.setData({
         interfaceContent: res.data.interfaceContent,
         attendFlag: res.data.attendFlag,
-        myUsingTime: res.data.useTime + '分钟',
+        myUsingTime: util.formatSeconds(res.data.useTime/1000),
         myScore: res.data.score + '分',
-        myRanking: '第'+ res.data.ranking + '名'
+        myRanking: '第'+ res.data.ranking + '名',
+        totalTime: res.data.answerTime/1000
       });
     } else {
       this.setData({
@@ -144,7 +146,8 @@ Page({
         endTime: res.data.endTime,
         testContent: res.data.testContent,
         testRequireCon: res.data.testRequireCon,
-        answerTime: res.data.answerTime + "分钟"
+        answerTime: res.data.answerTime/60000 + "分钟",
+        totalTime: res.data.answerTime/1000
       });
     }
   },
@@ -176,8 +179,9 @@ Page({
   confirm() {
     console.log(this.data.answerTime);
     
+    console.log(this.data.totalTime);
     wx.redirectTo({
-      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}&exam_total_time=${this.data.answerTime}`,
+      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}&exam_time=${this.data.totalTime}`,
     })
   },
   examParseClick(){

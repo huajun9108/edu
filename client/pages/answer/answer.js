@@ -23,22 +23,24 @@ Page({
     isLoad: true,
     answer: '',
     attendTime: {},
-    useTime: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let attend = new Date();
+    console.log(attend);
     console.log(options)
     this.setData({
       title: decodeURI(options.title),
       cardCss:"qu_card_down",
       examType: options.exam_type,
       examId: options.id,
-      attendTime: new Date().getTime()
+      attendTime: attend.getTime(),
+      examTime: options.exam_time
     });
-    // this.startTimer()
+    this.startTimer()
     this.selectPaper();
   },
 
@@ -58,8 +60,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    
+  onHide: function () {  
   },
 
   /**
@@ -67,6 +68,12 @@ Page({
    */
   onUnload: function () {
     this.pauseTimer()
+    var time1 = this.data.examTime - this.data.totalSecond
+    this.setData({
+      useTime: time1 * 1000
+    });
+    this.getScore()
+    this.addOneExamAttend();
   },
 
   /**
@@ -205,22 +212,18 @@ Page({
     })
   },
   confirm(){
-    var time1 = 10 - this.data.totalSecond
+    var time1 = this.data.examTime - this.data.totalSecond
     this.setData({
-      useTime: time1
+      useTime: time1*1000
     });
     var usedTime = util.formatSeconds(time1)
-    this.getScore()
-    this.addOneExamAttend();
     wx.redirectTo({
-      url: `../examEnd/examEnd?exam_type=${this.data.examType}&exam_time=
-      ${usedTime}&exam_title=${this.data.title}&exam_score=${this.data.score}`
-    })
+      url: `../examEnd/examEnd?exam_type=${this.data.examType}&exam_time=${usedTime}&exam_title=${this.data.title}&exam_score=${this.data.score}&exam_total_time=${this.data.examTime}&exam_id=${this.data.examId}`})
   },
 
   // 开始计时  
   startTimer: function () {
-    this.countdown("10");
+    this.countdown(this.data.examTime);
   },
 
   // 暂停计时
@@ -267,6 +270,6 @@ Page({
   addOneExamAttend() {
     const addOneExamAttendUrl = config.service.addOneExamAttendUrl;
     app.request.requestPostApi(addOneExamAttendUrl, {userId: app.data.userId, 
-    examId: this.data.examId, answer: this.data.answer, useTime: 10, attendTime: this.data.attendTime, score: this.data.score});
+    examId: this.data.examId, answer: this.data.answer, useTime: this.data.useTime, attendTime: this.data.attendTime, score: this.data.score});
   }
 })

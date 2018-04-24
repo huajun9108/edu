@@ -18,6 +18,8 @@ Page({
       examTime: options.exam_time,
       examScore: options.exam_score,
       examTitle: options.exam_title,
+      examTotalTime: options.exam_total_time,
+      examId: options.exam_id
     })
   },
 
@@ -70,6 +72,9 @@ Page({
   
   },
   retestClick(){
+    wx.redirectTo({
+      url: `../answer/answer?title=${this.data.examTitle}&id=${this.data.examId}&exam_type=${this.data.examType}&exam_time=${this.data.examTotalTime}`,
+    })
 
   },
   examParseClick(){
