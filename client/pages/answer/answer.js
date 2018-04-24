@@ -32,9 +32,10 @@ Page({
       title: decodeURI(options.title),
       cardCss:"qu_card_down",
       examType: options.exam_type,
-      examId: options.id
+      examId: options.id,
+      examTime: options.exam_time*60
     });
-    // this.startTimer()
+    this.startTimer()
     this.selectPaper();
   },
 
@@ -198,7 +199,7 @@ Page({
     })
   },
   confirm(){
-    var time1 = 10 - this.data.totalSecond
+    var time1 = this.data.examTime - this.data.totalSecond
     var usedTime = util.formatSeconds(time1)
     this.getScore()
     wx.redirectTo({
@@ -209,7 +210,7 @@ Page({
 
   // 开始计时  
   startTimer: function () {
-    this.countdown("10");
+    this.countdown(this.data.examTime);
   },
 
   // 暂停计时

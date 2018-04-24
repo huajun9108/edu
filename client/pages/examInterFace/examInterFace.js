@@ -144,7 +144,8 @@ Page({
         endTime: res.data.endTime,
         testContent: res.data.testContent,
         testRequireCon: res.data.testRequireCon,
-        answerTime: res.data.answerTime + "分钟"
+        answerTime: res.data.answerTime + "分钟",
+        totalTime: res.data.answerTime
       });
     }
   },
@@ -175,7 +176,8 @@ Page({
   },
   confirm() {
     wx.redirectTo({
-      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}`,
+      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}
+      &exam_type=${this.data.examType}&exam_time=${this.data.totalTime}`,
     })
   },
   examParseClick(){
