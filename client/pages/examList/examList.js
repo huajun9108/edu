@@ -65,11 +65,17 @@ Page({
     if(res.status === "0") {
       this.setData({
         examList: res.data.start,
-        examListEnd: res.data.end
+        examListEnd: res.data.end,
+        isLoad: true
       });
     }
   },
   examMoreFail(res) {
+    this.setData({
+      isLoad:false
+    });
+  },
+  load(){
     this.examMoreRequest();
   },
   _examClick(e){
