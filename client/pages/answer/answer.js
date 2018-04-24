@@ -129,7 +129,6 @@ Page({
           quList[serial].userAnswer.sort();
         } else {
           let deselectIndex = quList[serial].userAnswer.indexOf(this_checked); 
-          console.log(quList[serial].userAnswer.indexOf(this_checked));
           parameterList[i].select = false;
           quList[serial].userAnswer.splice(deselectIndex, 1);
         }
@@ -186,16 +185,11 @@ Page({
       error: 0
     })
     for (let i = 0; i < quList.length; i++) {
-      var userAnswer = JSON.stringify(quList[i].userAnswer)
-      var correctAnswer = JSON.stringify(quList[i].correctAnswer)
-      console.log(userAnswer)
-      console.log(correctAnswer)
+      var userAnswer = quList[i].userAnswer.join('');
+      var correctAnswer = quList[i].correctAnswer;
       if (userAnswer != correctAnswer) {
         this.data.error++;
       }
-      else {
-      }
-      console.log(this.data.error)
     }
     this.setData({
       score: 100 - this.data.error * this.data.average
