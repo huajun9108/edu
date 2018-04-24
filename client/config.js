@@ -97,7 +97,10 @@ var config = {
         selectExamByUserIdAndExamIdUrl: `${host}/weapp/exam/selectExamByUserIdAndExamId`,
 
         //根据用户ID和测验ID查询单张试卷题目(出题)
-        selectPaperByUserIdAndExamIdUrl: `${host}/weapp/exam/selectPaperByUserIdAndExamId `
+        selectPaperByUserIdAndExamIdUrl: `${host}/weapp/exam/selectPaperByUserIdAndExamId`,
+
+        //添加一场已参加的测验
+        addOneExamAttendUrl: `${host}/weapp/exam/addOneExamAttend`
     }
 
     

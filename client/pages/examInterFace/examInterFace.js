@@ -174,8 +174,10 @@ Page({
     
   },
   confirm() {
+    console.log(this.data.answerTime);
+    
     wx.redirectTo({
-      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}`,
+      url: `../answer/answer?title=${this.data.title}&id=${this.data.examId}&exam_type=${this.data.examType}&exam_total_time=${this.data.answerTime}`,
     })
   },
   examParseClick(){

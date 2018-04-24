@@ -20,7 +20,10 @@ Page({
     cancelText: "我再写写",
     sureText: "现在交卷",
     examId: null,
-    isLoad: true
+    isLoad: true,
+    answer: '',
+    attendTime: {},
+    useTime: null
   },
 
   /**
@@ -32,7 +35,8 @@ Page({
       title: decodeURI(options.title),
       cardCss:"qu_card_down",
       examType: options.exam_type,
-      examId: options.id
+      examId: options.id,
+      attendTime: new Date().getTime()
     });
     // this.startTimer()
     this.selectPaper();
@@ -184,9 +188,11 @@ Page({
       average: 100 / quList.length,
       error: 0
     })
+    let userAnswerArr = [];
     for (let i = 0; i < quList.length; i++) {
       var userAnswer = quList[i].userAnswer.join('');
       var correctAnswer = quList[i].correctAnswer;
+      userAnswerArr.push(userAnswer);
       console.log(userAnswer);
       console.log(correctAnswer);
       if (userAnswer != correctAnswer) {
@@ -194,13 +200,18 @@ Page({
       }
     }
     this.setData({
-      score: 100 - this.data.error * this.data.average
+      score: 100 - this.data.error * this.data.average,
+      answer: userAnswerArr.join(',')
     })
   },
   confirm(){
     var time1 = 10 - this.data.totalSecond
+    this.setData({
+      useTime: time1
+    });
     var usedTime = util.formatSeconds(time1)
     this.getScore()
+    this.addOneExamAttend();
     wx.redirectTo({
       url: `../examEnd/examEnd?exam_type=${this.data.examType}&exam_time=
       ${usedTime}&exam_title=${this.data.title}&exam_score=${this.data.score}`
@@ -252,5 +263,10 @@ Page({
   },
   load() {
     this.selectPaper();
+  },
+  addOneExamAttend() {
+    const addOneExamAttendUrl = config.service.addOneExamAttendUrl;
+    app.request.requestPostApi(addOneExamAttendUrl, {userId: app.data.userId, 
+    examId: this.data.examId, answer: this.data.answer, useTime: 10, attendTime: this.data.attendTime, score: this.data.score});
   }
 })
