@@ -100,7 +100,10 @@ var config = {
         selectPaperByUserIdAndExamIdUrl: `${host}/weapp/exam/selectPaperByUserIdAndExamId`,
 
         //添加一场已参加的测验
-        addOneExamAttendUrl: `${host}/weapp/exam/addOneExamAttend`
+        addOneExamAttendUrl: `${host}/weapp/exam/addOneExamAttend`,
+
+        //根据userId和examId查询单张试卷答案题目
+        selectAnswerByUserIdAndExamIdUrl: `${host}/weapp/exam/selectAnswerByUserIdAndExamId`
     }
 
     

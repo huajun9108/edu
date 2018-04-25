@@ -79,7 +79,7 @@ Page({
   },
   examParseClick(){
     wx.redirectTo({
-      url: `../examParse/examParse?title=${this.data.examTitle}`,
+      url: `../examParse/examParse?title=${this.data.examTitle}&id=${this.data.examId}`,
     })
   }
 })
