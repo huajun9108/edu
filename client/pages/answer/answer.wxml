@@ -37,6 +37,6 @@
       </scroll-view>
     </view>
   </view>
-  <view hidden='{{modalFlag}}' class='mask_layer' />
+  <view hidden='{{modalFlag}}' class='mask_layer' bindtap="showCard"/>
   <modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{is_modal_Msg}}" cancel-text="{{cancelText}}" sure-text="{{sureText}}" bindconfirm="confirm" />
 </view>
