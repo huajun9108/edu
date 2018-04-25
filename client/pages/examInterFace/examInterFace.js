@@ -185,8 +185,9 @@ Page({
     })
   },
   examParseClick(){
+    console.log(this.data.examId);
     wx.redirectTo({
-      url: '../examParse/examParse?title=' + this.data.title,
+      url: `../examParse/examParse?title=${this.data.title}&id=${this.data.examId}`,
     })
   }
 })

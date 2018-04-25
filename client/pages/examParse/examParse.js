@@ -1,4 +1,7 @@
 // pages/examParse/examParse.js
+const config = require('../../config.js')
+const app = getApp()
+
 Page({
 
   /**
@@ -6,65 +9,10 @@ Page({
    */
   data: {
     title: '',
-    quList: [
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", correctAnswerTag: false, content: "暂时性", userAnswerTag: false},
-          { option: "B", correctAnswerTag: false, content: "流行性", userAnswerTag: false},
-          { option: "C", correctAnswerTag: true, content: "持久性", userAnswerTag: true},
-          { option: "D", correctAnswerTag: false, content: "时尚性", userAnswerTag: false}
-        ],
-        correctAnswer: ["C"],
-        parse: "无"
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", correctAnswerTag: true, content: "暂时性", userAnswerTag: false},
-          { option: "B", correctAnswerTag: false, content: "流行性", userAnswerTag: false},
-          { option: "C", correctAnswerTag: false, content: "持久性", userAnswerTag: false},
-          { option: "D", correctAnswerTag: false, content: "时尚性", userAnswerTag: true}
-        ],
-        correctAnswer: ["A"],
-        parse: "无"
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", correctAnswerTag: false, content: "暂时性", userAnswerTag: false},
-          { option: "B", correctAnswerTag: true, content: "流行性", userAnswerTag: false},
-          { option: "C", correctAnswerTag: false, content: "持久性", userAnswerTag: true},
-          { option: "D", correctAnswerTag: false, content: "时尚性", userAnswerTag: false}
-        ],
-        correctAnswer: ["B"],
-        parse: "无"
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", correctAnswerTag: false, content: "暂时性", userAnswerTag: false},
-          { option: "B", correctAnswerTag: false, content: "流行性", userAnswerTag: false},
-          { option: "C", correctAnswerTag: true, content: "持久性", userAnswerTag: true},
-          { option: "D", correctAnswerTag: false, content: "时尚性", userAnswerTag: false}
-        ],
-        correctAnswer: ["C"],
-        parse: "无"
-      },
-      {
-        title: "5S运动是一项什么样的工作",
-        select: [
-          { option: "A", correctAnswerTag: true, content: "暂时性", userAnswerTag: false},
-          { option: "B", correctAnswerTag: false, content: "流行性", userAnswerTag: false},
-          { option: "C", correctAnswerTag: false, content: "持久性", userAnswerTag: true},
-          { option: "D", correctAnswerTag: false, content: "时尚性", userAnswerTag: false}
-        ],
-        correctAnswer: ["A"],
-        parse: "无"
-      }
-    ],
+    quList: [],
     correctIcon: "../../images/correct_icon.png",
-    errorIcon: "../../images/error_icon.png"
+    errorIcon: "../../images/error_icon.png",
+    isLoad: true
   },
 
   /**
@@ -74,7 +22,9 @@ Page({
     console.log(options)
     this.setData({
       title: options.title,
+      examId: options.id
     });
+    this.selectAnswer();
   },
 
   /**
@@ -124,5 +74,25 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  selectAnswer() {
+    const selectAnswerByUserIdAndExamIdUrl = config.service.selectAnswerByUserIdAndExamIdUrl;
+    app.request.requestPostApi(selectAnswerByUserIdAndExamIdUrl, {userId: app.data.userId, examId: this.data.examId}, this, this.selectAnswerSuccess, this.selectAnswerFail);
+  },
+  selectAnswerSuccess(res) {
+    if(res.status === "0") {
+      this.setData({
+        quList: res.data,
+        isLoad: true
+      })
+    }
+  },
+  selectAnswerFail() {
+    this.setData({
+      isLoad: false
+    })
+  },
+  load() {
+    this.selectAnswer()
   }
 })
