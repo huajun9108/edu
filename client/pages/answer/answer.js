@@ -12,17 +12,13 @@ Page({
    */
   data: {
     modalFlag:true,
-    quList:[],
-    duration: 800,
+    duration: 500,
     num:1,
     is_modal_Hidden: true,
     is_modal_Msg: "是否确认提交答卷?",
     cancelText: "我再写写",
     sureText: "现在交卷",
-    examId: null,
     isLoad: true,
-    answer: '',
-    attendTime: {},
   },
 
   /**
@@ -217,6 +213,7 @@ Page({
       useTime: time1*1000
     });
     var usedTime = util.formatSeconds(time1)
+    this.getScore()
     wx.redirectTo({
       url: `../examEnd/examEnd?exam_type=${this.data.examType}&exam_time=${usedTime}&exam_title=${this.data.title}&exam_score=${this.data.score}&exam_total_time=${this.data.examTime}&exam_id=${this.data.examId}`})
   },

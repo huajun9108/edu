@@ -112,6 +112,9 @@ swiper{
   line-height: 80rpx;
   background: #f6f6f6;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 .card_box{
   padding: 26rpx 40rpx;

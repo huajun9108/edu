@@ -12,7 +12,7 @@ Page({
     pass_rate: "截止时间",
     average: "预计用时",
     isLoad: false,
-    iconUrl: app.data.iconUrl
+    imgUrl: app.data.imgUrl
   },
 
   /**
@@ -84,7 +84,7 @@ Page({
     this.setData({
       newest: res.data.newest,
       examListEnd: res.data.ongoing,
-      isLoad: true
+      isLoad: true,
     });
   },
   examPageFail(res) {

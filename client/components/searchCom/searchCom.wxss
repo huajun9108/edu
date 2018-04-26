@@ -43,6 +43,7 @@
   line-height:86rpx;
   font-size:32rpx;
   color:#5c5c5b;
+  width: 90%;
 }
 .weui-icon-clear{
   position:absolute;

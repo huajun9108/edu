@@ -25,12 +25,14 @@ Component({
     hideSearch: function () {
       this.setData({
         inputVal: "",
-        modalHidden: true
+        modalHidden: true,
+        inputShowed: false
       });
     },
     clearInput: function () {
       this.setData({
-        inputVal: ""
+        inputVal: "",
+        inputShowed:false
       });
     },
     inputTyping: function (e) {
