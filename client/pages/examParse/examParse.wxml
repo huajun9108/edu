@@ -12,16 +12,27 @@
               <text class="base_color" wx:else>{{quItem.type===1?'(单选题)':'(判断题)'}}</text>{{quItem.title}}</view>
             <block>
               <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" class="qu_options">
-                <image wx:if="{{selectItem.correctAnswerTag}}" src="{{correctIcon}}" class="answerTapImg"></image>
-                <block wx:else>
-                  <image wx:if="{{selectItem.userAnswerTag}}" src="{{errorIcon}}" class="answerTapImg"></image>
-                  <text class="qu_option" wx:else>{{selectItem.option}}</text>
+                <block wx:if="{{selectItem.correctAnswerTag}}">
+                <image src="{{correctIcon}}" class="answerTapImg"></image><text class="correct-color">{{selectItem.content}}</text>
                 </block>
-                {{selectItem.content}}
+                <block wx:else>
+                  <block wx:if="{{selectItem.userAnswerTag}}">
+                  <image src="{{errorIcon}}" class="answerTapImg"></image>
+                  <text class="error-color">{{selectItem.content}}</text>
+                  </block>
+                  <block wx:else>
+                    <text class="qu_option">{{selectItem.option}}</text>
+                    {{selectItem.content}}
+                  </block>
+                </block>
+                
               </view>
             </block>
-            <view class="answer-wrap">答案：
-              <text class="answer-content">{{quItem.correctAnswer}}</text>
+            <view class="answer-wrap user-answer-wrap">您的答案：
+              <text class="answer-content">{{quItem.userAnswer}}</text>
+            </view>
+            <view class="answer-wrap">正确答案：
+              <text class="answer-content correct-color">{{quItem.correctAnswer}}</text>
             </view>
             <view class="parse-wrap">
               解析：{{quItem.parse}}

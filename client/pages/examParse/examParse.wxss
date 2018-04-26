@@ -34,7 +34,7 @@ swiper-item {
 .qu_title{
   font-size: 34rpx;
   margin-bottom: 10rpx;
-  line-height: 1;
+  line-height: 1.5;
 }
 .qu_options{
   padding-top: 42rpx;
@@ -53,14 +53,17 @@ swiper-item {
 }
 
 .answer-wrap {
-  padding: 52rpx 0 22rpx;
+  padding: 0 0 22rpx;
   line-height: 42rpx;
+}
+
+.user-answer-wrap {
+  padding-top: 52rpx;
 }
 
 .answer-wrap .answer-content {
   font-size: 42rpx;
   font-weight: 600rpx;
-  color: #49CA68;
 }
 
 .parse-wrap {
@@ -72,4 +75,12 @@ swiper-item {
   height: 50rpx;
   vertical-align: middle;
   margin-right: 8rpx;
+}
+
+.correct-color {
+  color: #49ca68;
+}
+
+.error-color {
+  color: #ee524e;
 }
