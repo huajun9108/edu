@@ -12,13 +12,12 @@ Page({
    */
   data: {
     modalFlag:true,
-    duration: 800,
+    duration: 500,
     num:1,
     is_modal_Hidden: true,
     is_modal_Msg: "是否确认提交答卷?",
     cancelText: "我再写写",
     sureText: "现在交卷",
-    examId: null,
     isLoad: true,
   },
 

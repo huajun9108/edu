@@ -27,22 +27,22 @@
         <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}"/>
       </view>
-      <view wx:if = "{{attendFlag && examType == 2 && examFlag ==0}}">
+      <view wx:if = "{{attendFlag && examType == 2}}">
         <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}" />
         <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
-        is-ellipsis-show="{{isEllipsisShow}}" interface-content="暂未公布" is-base-color="{{true}}"/>
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{examFlag==0?'暂未公布':myScore}}" is-base-color="{{true}}"/>
         <examFaceCom interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" 
-        is-ellipsis-show="{{isEllipsisShow}}" interface-content="暂未公布" is-base-color="{{true}}"/>
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{examFlag==0?'暂未公布':myRanking}}" is-base-color="{{true}}"/>
       </view>
-      <view wx:if = "{{attendFlag && examType == 2 && examFlag == -1}}">
+      <!-- <view wx:if = "{{attendFlag && examType == 2 && examFlag == -1}}">
         <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}"/>
         <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}"/>
         <examFaceCom interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myRanking}}" is-base-color="{{true}}"/>
-      </view>
+      </view> -->
     </view>
     <view wx:if="{{attendFlag}}">
       <view wx:if="{{examType == 2}}">

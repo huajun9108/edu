@@ -11,7 +11,8 @@ Page({
     people_num: "已参加",
     pass_rate: "截止时间",
     average: "预计用时",
-    isLoad: false
+    isLoad: false,
+    imgUrl: app.data.imgUrl
   },
 
   /**
@@ -83,7 +84,7 @@ Page({
     this.setData({
       newest: res.data.newest,
       examListEnd: res.data.ongoing,
-      isLoad: true
+      isLoad: true,
     });
   },
   examPageFail(res) {
