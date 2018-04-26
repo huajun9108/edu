@@ -103,7 +103,10 @@ var config = {
         addOneExamAttendUrl: `${host}/weapp/exam/addOneExamAttend`,
 
         //根据userId和examId查询单张试卷答案题目
-        selectAnswerByUserIdAndExamIdUrl: `${host}/weapp/exam/selectAnswerByUserIdAndExamId`
+        selectAnswerByUserIdAndExamIdUrl: `${host}/weapp/exam/selectAnswerByUserIdAndExamId`,
+
+        //根据userId查询已参加的测验
+        selectExamAttendByUserIdUrl: `${host}/weapp/exam/selectExamAttendByUserId`
     }
 
     

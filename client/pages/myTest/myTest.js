@@ -65,59 +65,14 @@ Page({
       },
     ],
     //历史测验列表数据
-    historyExamList: [
-      {
-        id: 0,
-        title: "“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 1,
-        flag: -1,
-        status: 1
-      },
-      {
-        id: 1,
-        title: "“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 2,
-        flag: -1,
-        status: 1
-      },
-      {
-        id: 2,
-        title: "“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 3,
-        flag: -1,
-        status: 1
-      },
-      {
-        id: 3,
-        title: "“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 2,
-        flag: -1,
-        status: 1
-      },
-      {
-        id: 4,
-        title: "“5S”核心知识测验",
-        endTime: "2018/3/30 10:00:00",
-        selected: false,
-        type: 1,
-        flag: -1,
-        status: 1
-      }
-    ],
+    historyExamList: [],
+
     showTime: true,
     examList: [],
     exam_msg: "",
     isLoad: true,
     isLogin: true,
-    pageIsEmpty: true,
+    pageIsEmpty: false,
     tipMsg: '',
 
     //编辑收藏测试时样式控制变量
@@ -130,10 +85,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      examList: this.data.historyExamList,
-      exam_msg: "参加时间"
-    });
+    app.testSession(this.loginSuccess, this.loginFail);
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -157,8 +109,6 @@ Page({
    */
   onShow: function () {
     console.log('myTest onShow');
-    this.checkNetworkAndLoginStatus();
-    this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
   },
 
   /**
@@ -188,29 +138,12 @@ Page({
   onReachBottom: function () {
 
   },
-  checkNetworkAndLoginStatus() {
-    let that = this;
-    wx.getNetworkType({
-      success: function(res) {
-        let networkType = res.networkType;
-        if (networkType === "none" || networkType === "unknown") {
-          that.setData({
-            isLoad: false
-          })
-        } else {
-          that.setData({
-            isLoad: true
-          });
-          app.testSession(that.loginSuccess, that.loginFail)
-        }
-      }
-    })
-  },
 
   loginSuccess() {
     this.setData({
       isLogin: true
     });
+    this.selectHistory();
   },
   loginFail() {
     this.setData({
@@ -219,10 +152,31 @@ Page({
     });
   },
   load() {
-    this.checkNetworkAndLoginStatus();
+    this.selectHistory();
   },
   login() {
     app.login(this.loginSuccess);
+  },
+  selectHistory() {
+    const selectExamAttendByUserIdUrl = config.service.selectExamAttendByUserIdUrl;
+    app.request.requestPostApi(selectExamAttendByUserIdUrl, {userId: app.data.userId}, this, this.selectHistorySuccess, this.selectHistoryFail);
+  },
+  selectHistorySuccess(res) {
+    console.log(res);
+    if(res.status === "0") {
+      this.setData({
+        historyExamList: res.data,
+        examList: res.data,
+        exam_msg: "参加时间",
+        isLoad: true
+      });
+      this.judgePageIsEmpty(res.data, "暂无历史测验相关信息");
+    }
+  },
+  selectHistoryFail(res) {
+    this.setData({
+      isLoad: false
+    })
   },
 
 
