@@ -2,6 +2,7 @@
 <import src="../common/common" />
 <view class="page">
   <template is="page-login" wx:if="{{!isLogin}}" />
+  <template is="page-error" wx:elif="{{!isLoad}}" />
   <view class='content-box' wx:else>
     <view class="content-wrap">
       <titleCom title="{{title}}" is-collected="{{isCollected}}" exam-show="{{examShow}}" bindaddMyFavor="addMyFavor" />

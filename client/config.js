@@ -106,7 +106,13 @@ var config = {
         selectAnswerByUserIdAndExamIdUrl: `${host}/weapp/exam/selectAnswerByUserIdAndExamId`,
 
         //根据userId查询已参加的测验
-        selectExamAttendByUserIdUrl: `${host}/weapp/exam/selectExamAttendByUserId`
+        selectExamAttendByUserIdUrl: `${host}/weapp/exam/selectExamAttendByUserId`,
+
+        //收藏一场测验
+        addOneExamCollectionUrl: `${host}/weapp/exam/addOneExamCollection`,
+
+        //根据userId查询已收藏测验
+        selectExamCollectionByUserIdUrl: `${host}/weapp/exam/selectExamCollectionByUserId`
     }
 
     

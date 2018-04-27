@@ -25,6 +25,7 @@ Page({
     cancelText: "稍后再来",
     sureText: "现在答写",
     isLogin: true,
+    isLoad: true,
     options: {}, //保存页面跳转时传过来的参数
     attendFlag: false,
     isEllipsis: false,
@@ -116,40 +117,52 @@ Page({
       examType: options.exam_type,
       isLogin: true
     });
+    this.selectExamInfo();
+  },
+  selectExamInfo() {
     const selectExamByUserIdAndExamIdUrl = config.service.selectExamByUserIdAndExamIdUrl;
     app.request.requestPostApi(selectExamByUserIdAndExamIdUrl, { userId: app.data.userId, examId: this.data.examId },
       this, this.selectExamSuccessFun, this.selectExamFailFun);
-
   },
   selectExamSuccessFun(res){
     console.log(res)
     // this.setData({
     //   attendFlag:1
-    // })res.data.attendFlag
+    // })
+    this.setData({
+      interfaceContent: res.data.interfaceContent,
+      totalTime: res.data.answerTime / 1000,
+      isCollected: res.data.isCollected,
+      isLoad: true
+    });
     if (res.data.attendFlag) {
       wx.setNavigationBarTitle({
         title: '我的成绩',
       });
       this.setData({
-        interfaceContent: res.data.interfaceContent,
         attendFlag: res.data.attendFlag,
         myUsingTime: util.formatSeconds(res.data.useTime/1000),
         myScore: res.data.score + '分',
         myRanking: '第'+ res.data.ranking + '名',
-        totalTime: res.data.answerTime/1000
       });
     } else {
       this.setData({
-        interfaceContent: res.data.interfaceContent,
         pubTime: res.data.pubTime,
         startTime: res.data.startTime,
         endTime: res.data.endTime,
         testContent: res.data.testContent,
         testRequireCon: res.data.testRequireCon,
         answerTime: res.data.answerTime/60000 + "分钟",
-        totalTime: res.data.answerTime/1000
       });
     }
+  },
+  selectExamFailFun() {
+    this.setData({
+      isLoad: false
+    });
+  },
+  load() {
+    this.selectExamInfo();
   },
   loginFail() {
     this.setData({
@@ -161,9 +174,21 @@ Page({
   },
 
   addMyFavor() {
-    this.setData({
-      isCollected: !this.data.isCollected
-    });
+    const url = config.service.addOneExamCollectionUrl;
+    app.request.requestPostApi(url, {userId: app.data.userId, examId: this.data.examId}, this, this.addMyFavorSuccess, this.addMyFavorFail);
+    // this.setData({
+    //   isCollected: !this.data.isCollected
+    // });
+  },
+  addMyFavorSuccess(res) {
+    if(res.status === "0") {
+      this.setData({
+        isCollected: true
+      });
+    }
+  },
+  addMyFavorFail(res) {
+    util.showModel('提示', '收藏失败，请稍后再试');
   },
   startExam() {
     let _this = this

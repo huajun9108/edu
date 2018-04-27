@@ -13,57 +13,11 @@ Page({
     activeIndex: "0",
     sliderOffset: 0,
 
+    //type 试题类型 1: 练习, 2: 考试, 3: 调研
+    //flag 测试状态 -1: 已结束, 0: 正在进行, 1: 尚未开始
+    //status 是否参加过考试 0: 未参加, 1: 参加过
     //收藏测验列表数据
-    collectionExamList: [
-      {
-        id: 0,
-        selected: false,
-        title: "“5S”核心知识测验",
-        type: 2, //试题类型 1: 练习, 2: 考试, 3: 调研
-        flag: -1, //测试状态 -1: 已结束, 0: 正在进行, 1: 尚未开始
-        status: 0 //是否参加过考试 0: 未参加, 1: 参加过
-      },
-      {
-        id: 1,
-        selected: false,
-        title: "“5S”核心知识测验",
-        type: 1,
-        flag: 0,
-        status: 1
-      },
-      {
-        id: 2,
-        selected: false,
-        title: "“5S”核心知识测验",
-        type: 2,
-        flag: 1,
-        status: 1
-      },
-      {
-        id: 3,
-        selected: false,
-        title: "“5S”核心知识测验",
-        type: 1,
-        flag: 0,
-        status: 0
-      },
-      {
-        id: 4,
-        selected: false,
-        title: "“5S”核心知识测验",
-        type: 2,
-        flag: -1,
-        status: 1
-      },
-      {
-        id: 5,
-        selected: false,
-        title: "“5S”核心知识测验",
-        type: 1,
-        flag: 1,
-        status: 0
-      },
-    ],
+    collectionExamList: [],
     //历史测验列表数据
     historyExamList: [],
 
@@ -109,6 +63,9 @@ Page({
    */
   onShow: function () {
     console.log('myTest onShow');
+    if(this.data.activeIndex === "1") {
+      this.selectCollection();
+    }
   },
 
   /**
@@ -152,7 +109,11 @@ Page({
     });
   },
   load() {
-    this.selectHistory();
+    if(this.data.activeIndex === "0") {
+      this.selectHistory();
+    } else if(this.data.activeIndex === "1") {
+      this.selectCollection();
+    }
   },
   login() {
     app.login(this.loginSuccess);
@@ -178,6 +139,28 @@ Page({
       isLoad: false
     })
   },
+  selectCollection() {
+    const url = config.service.selectExamCollectionByUserIdUrl;
+    app.request.requestPostApi(url, {userId: app.data.userId}, this, this.selectCollectionSuccess, this.selectCollectionFail);
+  },
+  selectCollectionSuccess(res) {
+    if(res.status === "0") {
+      this.setData({
+        collectionExamList: res.data,
+        examList: res.data,
+        delCss: "weui-flex-common",
+        showCheckCss: "",
+        hideStatus: true,
+        isLoad: true
+      });
+      this.judgePageIsEmpty(this.data.collectionExamList, "暂无收藏测验相关信息");
+    }
+  },
+  selectCollectionFail(res) {
+    this.setData({
+      isLoad: false
+    });
+  },
 
 
   tabClick: function (e) {
@@ -193,13 +176,7 @@ Page({
       });
       this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
     } else if (e.currentTarget.id === "1") {
-      this.setData({
-        delCss: "weui-flex-common",
-        showCheckCss: "",
-        hideStatus: true,
-        examList: this.data.collectionExamList,
-      });
-      this.judgePageIsEmpty(this.data.collectionExamList, "暂无收藏测验相关信息");
+      this.selectCollection();
     }
   },
   delConfirm(e) {
