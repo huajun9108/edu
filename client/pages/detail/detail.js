@@ -235,7 +235,7 @@ Page({
             autoPlay(that, e);
           } else {
             autoPlay(that);
-          }
+          } 
         } else {
           if (e) {
             if (e.currentTarget.id == that.data.courseIndex && that.data.autoplay) {
