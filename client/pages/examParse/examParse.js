@@ -9,10 +9,11 @@ Page({
    */
   data: {
     title: '',
-    quList: [],
     correctIcon: "../../images/correct_icon.png",
     errorIcon: "../../images/error_icon.png",
-    isLoad: true
+    isLoad: true,
+    isParse:true,
+    parseText: "解　　析",
   },
 
   /**
@@ -83,7 +84,7 @@ Page({
     if(res.status === "0") {
       this.setData({
         quList: res.data,
-        isLoad: true
+        isLoad: true,
       })
     }
   },

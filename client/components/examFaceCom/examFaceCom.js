@@ -24,6 +24,10 @@ Component({
     isBaseColor: {
       type: Boolean,
       value: false
+    },
+    isParse:{
+      type: Boolean,
+      value: false
     }
   },
   /**

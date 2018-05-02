@@ -9,7 +9,7 @@
         <view class="qu_container">
             <view class="qu_title">{{quIdx+1}}.
               <text class="base_color" wx:if="{{quItem.type===2}}">(多选题)</text>
-              <text class="base_color" wx:else>{{quItem.type===1?'(单选题)':'(判断题)'}}</text>{{quItem.title}}</view>
+              <text class="base_color" wx:else>{{quItem.type===1?'(单选题)':'(判断题)'}}</text>{{quItem.name}}</view>
             <block>
               <view wx:for="{{quItem.select}}" wx:for-item="selectItem" wx:for-index="selectIdx" wx:key="selectIdx" class="qu_options">
                 <block wx:if="{{selectItem.correctAnswerTag}}">
@@ -28,15 +28,15 @@
                 
               </view>
             </block>
-            <view class="answer-wrap user-answer-wrap">您的答案：
-              <text class="answer-content">{{quItem.userAnswer}}</text>
+            <view class="answer-wrap user-answer-wrap">您的答案: <text class="answer-content">{{quItem.userAnswer}}</text>
             </view>
-            <view class="answer-wrap">正确答案：
-              <text class="answer-content correct-color">{{quItem.correctAnswer}}</text>
+            <view class="answer-wrap">正确答案: <text class="answer-content correct-color">{{quItem.correctAnswer}}</text>
             </view>
-            <view class="parse-wrap">
+            <!-- <view class="parse-wrap">
               解析：{{quItem.parse}}
-            </view>
+            </view> -->
+             <examFaceCom interface-text="{{parseText}}" is-ellipsis="{{isEllipsis}}"
+        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{quItem.parse}}" is-parse="{{isParse}}"/>
         </view>
       </block>
     </view>
