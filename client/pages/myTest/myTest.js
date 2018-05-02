@@ -24,8 +24,6 @@ Page({
     isLogin: true,
 
     //编辑收藏测试时样式控制变量
-    delCss: "weui-flex-common",
-    showCheckCss: "",
     hideStatus: true,
   },
 
@@ -139,8 +137,6 @@ Page({
     if(res.status === "0") {
       this.setData({
         selectExamList: res.data,
-        delCss: "weui-flex-common",
-        showCheckCss: "",
         hideStatus: true,
         isLoad: true
       });
@@ -168,8 +164,6 @@ Page({
 
       this.selectCollection();
       this.setData({
-        delCss: "weui-flex-common",
-        showCheckCss: "",
         hideStatus: true,
       });
     }
