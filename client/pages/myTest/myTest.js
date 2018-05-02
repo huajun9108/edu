@@ -17,17 +17,11 @@ Page({
     //flag 测试状态 -1: 已结束, 0: 正在进行, 1: 尚未开始
     //status 是否参加过考试 0: 未参加, 1: 参加过
     //收藏测验列表数据
-    collectionExamList: [],
     //历史测验列表数据
-    historyExamList: [],
-
     showTime: true,
-    examList: [],
-    exam_msg: "",
+    exam_msg: "参加时间",
     isLoad: true,
     isLogin: true,
-    pageIsEmpty: false,
-    tipMsg: '',
 
     //编辑收藏测试时样式控制变量
     delCss: "weui-flex-common",
@@ -126,9 +120,7 @@ Page({
     console.log(res);
     if(res.status === "0") {
       this.setData({
-        historyExamList: res.data,
-        examList: res.data,
-        exam_msg: "参加时间",
+        examList: res.data,  
         isLoad: true
       });
       this.judgePageIsEmpty(res.data, "暂无历史测验相关信息");
@@ -146,14 +138,13 @@ Page({
   selectCollectionSuccess(res) {
     if(res.status === "0") {
       this.setData({
-        collectionExamList: res.data,
-        examList: res.data,
+        selectExamList: res.data,
         delCss: "weui-flex-common",
         showCheckCss: "",
         hideStatus: true,
         isLoad: true
       });
-      this.judgePageIsEmpty(this.data.collectionExamList, "暂无收藏测验相关信息");
+      this.judgePageIsEmpty(this.data.selectExamList, "暂无收藏测验相关信息");
     }
   },
   selectCollectionFail(res) {
@@ -171,21 +162,35 @@ Page({
     if (e.currentTarget.id === "0") {
       this.setData({
         showTime: true,
-        examList: this.data.historyExamList,
-        exam_msg: "参加时间",
       });
-      this.judgePageIsEmpty(this.data.historyExamList, "暂无历史测验相关信息");
+      this.judgePageIsEmpty(this.data.examList, "暂无历史测验相关信息");
     } else if (e.currentTarget.id === "1") {
+
       this.selectCollection();
+      this.setData({
+        delCss: "weui-flex-common",
+        showCheckCss: "",
+        hideStatus: true,
+      });
     }
   },
   delConfirm(e) {
-    this.setData({
-      selected: e.detail.selected,
-      examList: e.detail.unselected,
-      collectionExamList: e.detail.unselected
+    console.log(e)
+    const selectedId = e.detail.selected
+     this.setData({
+      unselected: e.detail.unselected,
     });
-    this.judgePageIsEmpty(e.detail.unselected, "暂无收藏测验相关信息");
+    const deleteExamCollectionUrl = config.service.deleteExamCollectionUrl;
+    app.request.requestPostApi(deleteExamCollectionUrl, { userId: app.data.userId, examIds: selectedId }, this, this.deleteExamSuccessFun, this.deleteExamFailFun);
+  },
+  deleteExamSuccessFun(res){
+    this.setData({
+      selectExamList: this.data.unselected,
+    });
+    this.judgePageIsEmpty(this.data.selectExamList, "暂无收藏测验相关信息");
+  },
+  deleteExamFailFun(){
+
   },
   judgePageIsEmpty(list, tipMsg) {
     if (list.length === 0) {
@@ -196,7 +201,6 @@ Page({
     } else {
       this.setData({
         pageIsEmpty: false,
-        tipMsg: ''
       })
     }
   },

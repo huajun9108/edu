@@ -5,7 +5,7 @@
   <template is="page-error" wx:elif="{{!isLoad}}" />
   <view class='content-box' wx:else>
     <view class="content-wrap">
-      <titleCom title="{{title}}" is-collected="{{isCollected}}" exam-show="{{examShow}}" bindaddMyFavor="addMyFavor" />
+      <titleCom title="{{title}}" is-collected="{{isCollected}}" exam-show="{{examShow}}" bindaddMyFavor="isAddMyFavor" />
       <examFaceCom interface-text="{{interfaceText}}" is-ellipsis="{{isEllipsis}}" 
       is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{interfaceContent}}" />
       <view wx:if = "{{!attendFlag}}">
@@ -36,14 +36,6 @@
         <examFaceCom interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{examFlag==0?'暂未公布':myRanking}}" is-base-color="{{true}}"/>
       </view>
-      <!-- <view wx:if = "{{attendFlag && examType == 2 && examFlag == -1}}">
-        <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
-        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}"/>
-        <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
-        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}"/>
-        <examFaceCom interface-text="{{myRankingTitle}}" is-ellipsis="{{isEllipsis}}" 
-        is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myRanking}}" is-base-color="{{true}}"/>
-      </view> -->
     </view>
     <view wx:if="{{attendFlag}}">
       <view wx:if="{{examType == 2}}">

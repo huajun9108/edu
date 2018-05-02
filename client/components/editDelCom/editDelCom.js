@@ -14,7 +14,8 @@ Component({
     },
     delCss:{
       type: String,
-      value: "weui-flex-common"
+      value: "weui-flex-common",
+      observer:"delCssOb"
     },
     showCheckCss:{
       type: String,
@@ -151,6 +152,19 @@ Component({
     confirm() {
       const delConfirmDetail = { select: this.data.select, unselect: this.data.unselect}
       this.triggerEvent("delConfirm", delConfirmDetail);
+    },
+    delCssOb(newVal){
+      console.log(newVal)
+      if (newVal =="weui-flex-common"){
+        this.setData({
+          courseTap:"courseUrl",
+          hoverActive: "weui-cell_active"
+        })
+      }else{
+        this.setData({
+          courseTap: null,
+        })
+      }
     }
   }
 })

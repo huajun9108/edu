@@ -155,11 +155,11 @@
 <!--渲染考试列表（三行） -->
 <template name="examList-3">
   <view class="weui-panel__bd">
-    <view bindtap='examClick' class="weui-media-box weui-media-box_appmsg weui-media-box_exam_end" hover-class="weui-cell_active" wx:for="{{examListEnd}}" wx:key="index" data-title="{{item.title}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
+    <view bindtap='examClick' class="weui-media-box weui-media-box_appmsg weui-media-box_exam_end" hover-class="weui-cell_active" wx:for="{{examListEnd}}" wx:key="index" data-title="{{item.name}}" data-id="{{item.id}}" data-type="{{item.type}}" data-flag="{{item.flag}}">
       <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-        <view class="weui-media-box__title" wx:if="{{item.type===1}}">[练习]{{item.title}}</view>
-        <view class="weui-media-box__title" wx:if="{{item.type===2}}">[考试]{{item.title}}</view>
-        <view class="weui-media-box__title" wx:if="{{item.type===3}}">[调研]{{item.title}}</view>
+        <view class="weui-media-box__title" wx:if="{{item.type===1}}">[练习]{{item.name}}</view>
+        <view class="weui-media-box__title" wx:if="{{item.type===2}}">[考试]{{item.name}}</view>
+        <view class="weui-media-box__title" wx:if="{{item.type===3}}">[调研]{{item.name}}</view>
         <view class="weui-media-box_bottom exam_end_bottom">
           <text class="weui-media-box_time">{{people_num}}: {{item.people}}人</text>
         </view>

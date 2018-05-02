@@ -20,7 +20,7 @@
       </view>
       <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
         <template is="page-empty" wx:if="{{pageIsEmpty}}" data="{{tipMsg}}" />
-        <modal examList="{{examList}}" showCheckCss="{{showCheckCss}}" delCss="{{delCss}}" hideStatus="{{hideStatus}}" binddelConfirm="delConfirm" wx:else />
+        <modal exam-list="{{selectExamList}}" show-check-css="{{showCheckCss}}" del-css="{{delCss}}" hide-status="{{hideStatus}}" binddel-confirm="delConfirm" wx:else />
       </view>
     </view>
   </view>

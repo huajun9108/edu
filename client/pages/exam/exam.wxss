@@ -1,5 +1,7 @@
 /* pages/exam/exam.wxss */
-
+.weui-media-box__thumb{
+  vertical-align: middle;
+}
 .weui-media-box_time{
   color: #909090;
 }

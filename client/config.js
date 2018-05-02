@@ -112,7 +112,10 @@ var config = {
         addOneExamCollectionUrl: `${host}/weapp/exam/addOneExamCollection`,
 
         //根据userId查询已收藏测验
-        selectExamCollectionByUserIdUrl: `${host}/weapp/exam/selectExamCollectionByUserId`
+        selectExamCollectionByUserIdUrl: `${host}/weapp/exam/selectExamCollectionByUserId`,
+
+        //批量删除已收藏测验
+        deleteExamCollectionUrl: `${host}/weapp/exam/deleteExamCollection`
     }
 
     

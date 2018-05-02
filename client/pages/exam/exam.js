@@ -12,7 +12,7 @@ Page({
     pass_rate: "截止时间",
     average: "预计用时",
     isLoad: false,
-    imgUrl: app.data.imgUrl
+    imgUrl: app.data.iconUrl
   },
 
   /**
@@ -98,6 +98,7 @@ Page({
     })
   },
   examClick(e){
+    console.log(e)
     let examId = e.currentTarget.dataset.id;
     let examTitle = e.currentTarget.dataset.title;
     let examType = e.currentTarget.dataset.type;

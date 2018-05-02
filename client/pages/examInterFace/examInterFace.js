@@ -173,22 +173,55 @@ Page({
     app.login(this.loginSuccess);
   },
 
-  addMyFavor() {
+  isAddMyFavor() {
+    if (this.data.isCollected) {
+      this.delMyFavor()
+    } else {
+      this.addMyFavor()
+    }
+  },
+  addMyFavor(){
     const url = config.service.addOneExamCollectionUrl;
-    app.request.requestPostApi(url, {userId: app.data.userId, examId: this.data.examId}, this, this.addMyFavorSuccess, this.addMyFavorFail);
-    // this.setData({
-    //   isCollected: !this.data.isCollected
-    // });
+    app.request.requestPostApi(
+      url, { userId: app.data.userId, examId: this.data.examId }, 
+      this, this.addMyFavorSuccess, this.addMyFavorFail);
+  },
+  //用户删除收藏
+  delMyFavor() {
+    const delMyFavorUrl = config.service.deleteExamCollectionUrl;
+    app.request.requestPostApi(
+      delMyFavorUrl, { userId: app.data.userId, examIds: this.data.examId },
+      this,
+      this.delMyFavorSuccessFun,
+      this.delMyFavorFailFun);
+  },
+  /**
+  * 用户删除收藏成功
+  */
+  delMyFavorSuccessFun(res) {
+    if (res.status === "0") {
+      util.showSuccess('已取消收藏');
+      this.setData({
+        isCollected: false
+      });
+    }
+  },
+  /**
+  * 用户删除收藏失败
+  */
+  delMyFavorFailFun() {
+    util.showFail('网络错误,请稍后再试');
   },
   addMyFavorSuccess(res) {
     if(res.status === "0") {
+      util.showSuccess('收藏成功');
       this.setData({
         isCollected: true
       });
     }
   },
   addMyFavorFail(res) {
-    util.showModel('提示', '收藏失败，请稍后再试');
+    util.showFail('网络错误,请稍后再试');
   },
   startExam() {
     let _this = this
