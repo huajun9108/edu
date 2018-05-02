@@ -17,10 +17,6 @@ Component({
       value: "weui-flex-common",
       observer:"delCssOb"
     },
-    showCheckCss:{
-      type: String,
-      value: ""
-    }
   },
 
   /**
@@ -158,11 +154,8 @@ Component({
       if (newVal =="weui-flex-common"){
         this.setData({
           courseTap:"courseUrl",
-          hoverActive: "weui-cell_active"
-        })
-      }else{
-        this.setData({
-          courseTap: null,
+          hoverActive: "weui-cell_active",
+          showCheckCss: ''
         })
       }
     }

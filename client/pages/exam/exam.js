@@ -11,7 +11,7 @@ Page({
     people_num: "已参加",
     pass_rate: "截止时间",
     average: "预计用时",
-    isLoad: false,
+    isLoad: true,
     imgUrl: app.data.iconUrl
   },
 

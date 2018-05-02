@@ -34,8 +34,7 @@
         <template is="page-empty" wx:if="{{unpaidIsEmpty}}" data="{{tipMsg}}">
         </template>
         <modal edit-del-list="{{orderList}}"
-         bindcourseBuyUrl="courseBuyUrl" del-css="{{delCss}}" 
-         show-check-css="{{showCheckCss}}"               
+         bindcourseBuyUrl="courseBuyUrl" del-css="{{delCss}}"              
          binddelConfirm="delConfirm"  wx:else/> 
       </view> 
     </view>

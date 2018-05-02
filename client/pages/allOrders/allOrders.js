@@ -23,7 +23,6 @@ Page({
         select: [],
         unselect: [],
         delCss:"weui-flex-common",
-        showCheckCss:"",
         isLoad: true,
     },
 
@@ -169,7 +168,6 @@ Page({
             this.setData({
                 orderList: this.data.unpaidList,
                 delCss:"weui-flex-common",
-                showCheckCss:""
             })
         }
     },

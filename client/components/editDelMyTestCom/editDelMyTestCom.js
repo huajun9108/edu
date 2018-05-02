@@ -3,20 +3,11 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    //收藏测验中底部编辑栏的样式
-    delCss: {
-      type: String,
-      value: "weui-flex-common"
-    },
-    //收藏测试中列表编辑与取消编辑时样式切换
-    showCheckCss: {
-      type: String,
-      value: ""
-    },
     //收藏测试中列表编辑时勾选图标的显示与隐藏状态
     hideStatus: {
       type: Boolean,
-      value: true
+      value: true,
+      observer: 'hideStatusOb'
     },
     examList: {
       type: Array,
@@ -30,7 +21,7 @@ Component({
   data: {
     exam_msg: "状态",
     num: 0,
-    delCss: "weui-flex-common",
+    delCss: "weui-flex-common", //收藏测验中底部编辑栏的样式
     checkSrc: "../../images/select.png",
     uncheckSrc: "../../images/unselect.png",
     selectedAllStatus: false,
@@ -162,6 +153,16 @@ Component({
       const delConfirmDetail = { selected: this.data.selected, unselected: this.data.unselected };
       this.triggerEvent("delConfirm", delConfirmDetail);
       this.bindTotalNum();
+    }
+  },
+  hideStatusOb(newVal) {
+    if(newVal) {
+      this.setData({
+        testTap: 'testTap',
+        delCss: 'weui-flex-common',
+        showCss: '',
+        hoverActive: "weui-cell_active",
+      });
     }
   }
 })

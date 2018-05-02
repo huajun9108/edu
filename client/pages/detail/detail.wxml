@@ -48,8 +48,9 @@
                         <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" 
                         data-src="{{item.video_url}}" data-free="{{item.free}}">
                           <text>{{item.detail}}</text>
-                          <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
-                          <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
+                          <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png"></image>
+                          <image wx:elif="{{!item.free || (item.free && courseIsBuy)}}" src="../../images/bofang_icon.png"></image>
+                          <image wx:elif="{{item.free && !courseIsBuy}}" src="../../images/lock_icon.png" mode='aspectFit'></image>
                         </view>
                     </view>
                 </view>
