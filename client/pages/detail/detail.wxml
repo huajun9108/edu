@@ -49,7 +49,8 @@
                         data-src="{{item.video_url}}" data-free="{{item.free}}">
                           <text>{{item.detail}}</text>
                           <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
-                          <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
+                          <image wx:elif="{{!item.free || (item.free && courseIsBuy)}}" src="../../images/bofang_icon.png" class="seletedImage"></image>
+                          <image wx:elif="{{item.free && !courseIsBuy}}" src="../../images/lock_icon.png"></image>
                         </view>
                     </view>
                 </view>
