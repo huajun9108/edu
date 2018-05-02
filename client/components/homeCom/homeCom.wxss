@@ -36,6 +36,9 @@
   font-size: 26rpx;
   line-height: 26rpx;
   margin-top: 12rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis; 
 }
 .course-image_item:nth-child(3n){
   padding-right: 0;
