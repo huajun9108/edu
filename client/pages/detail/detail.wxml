@@ -50,7 +50,7 @@
                           <text>{{item.detail}}</text>
                           <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png"></image>
                           <image wx:elif="{{!item.free || (item.free && courseIsBuy)}}" src="../../images/bofang_icon.png"></image>
-                          <image wx:elif="{{item.free && !courseIsBuy}}" src="../../images/lock_icon.png" mode='aspectFit'></image>
+                          <image wx:elif="{{item.free && !courseIsBuy}}" src="../../images/lock_icon.png"></image>
                         </view>
                     </view>
                 </view>

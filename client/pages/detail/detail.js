@@ -238,7 +238,7 @@ Page({
           }
         } else {
           if (e) {
-            if (e.currentTarget.id == that.data.courseIndex) {
+            if (e.currentTarget.id == that.data.courseIndex && that.data.autoplay) {
               return;
             }
             that.setData({

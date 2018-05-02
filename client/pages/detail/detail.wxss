@@ -113,6 +113,10 @@ video{
   width: 46rpx;
   height: 46rpx;
 }
+.course_heading .lockImage{
+  width: 32rpx;
+  height: 40rpx;
+}
 .teacher{
   display:-webkit-box;
   display:-webkit-flex;
