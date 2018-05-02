@@ -36,7 +36,7 @@ Page({
     cancelText: "取消",
     sureText: "去购买",
     isLogin: true,
-    tipText: "该课程需要登录后\n进行购买方可观看",
+    tipText: "请先登录后\n再进行观看",
     btnText: "立即登录",
 
     loadText: "网络请求出错\n请您稍后再试",
@@ -80,7 +80,7 @@ Page({
   },
   sessionLoginFn() {
     this.setData({
-      // isLogin: true
+      isLogin: true
     })
     if (Session.getIsVip()) {
       this.setData({
@@ -106,7 +106,7 @@ Page({
   },
   failLoginFn() {
     this.setData({
-      // isLogin: false
+      isLogin: false
     })
     this.getCourseDetail();
   },
@@ -153,6 +153,12 @@ Page({
    * 视频播放控制
    */
   play() {
+    if (!this.data.free) {
+      console.log("免费视频")
+      this.setData({
+        // courseIndex: e.currentTarget.id,
+      });
+    }else{}
     this.playControl(this.setAutoPlay);    
   },
   /**
@@ -192,20 +198,27 @@ Page({
    * 用户观看课程判断是否已登录
    */
   chooseCourse(e) {
-    if (!e.currentTarget.dataset.free) {
-      console.log("免费视频")
-      this.setData({
-        courseIndex: e.currentTarget.id,
-      });
-    }else{
-      app.testSession(this.chooseCourseFn, this.sessionFail, e)
+    // if (!e.currentTarget.dataset.free) {
+    //   console.log("免费视频")
+    //   this.setData({
+    //     courseIndex: e.currentTarget.id,
+    //   });
+    // }else{
+    app.testSession(this.chooseCourseFn, this.chooseCourseFail, e)
       
-    }
+    // }
   },
   /**
    * 用户观看课程已登录
    */
   chooseCourseFn(e) {
+    if (!e.currentTarget.dataset.free) {
+      console.log("免费视频")
+      this.setData({
+        courseIndex: e.currentTarget.id,
+        // src:
+      });
+    }else{}
     this.playControl(this.setAutoPlay, e);
   },
   chooseCourseFail() {
@@ -371,6 +384,7 @@ Page({
       isCollected: res.data.collect_status,
       courseIsBuy: res.data.buy_status,
       teacherImage: app.data.iconUrl + res.data.teacher.icon_url,
+      free: res.data.free,
       isLoad: false,
     })
     wx.getNetworkType({
