@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "试题与解析"
+  "navigationBarTitleText": "试题与解析",
+  "usingComponents": {
+    "examFaceCom": "../../components/examFaceCom/examFaceCom"
+  }
 }

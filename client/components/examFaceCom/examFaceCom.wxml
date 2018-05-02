@@ -1,8 +1,13 @@
 <!--components/examFaceCom/examFaceCom.wxml-->
 <view class="weui-form-preview__item" wx:key="index">
-  <view class="weui-form-preview__label">{{interfaceText}}:</view>
+  <view class="{{isParse?'weui-form-preview__label weui-form-preview__label_parse':'weui-form-preview__label'}}">{{interfaceText}}:</view>
   <view class="weui-form-preview__value">
-    <view class="{{isEllipsis?'ellipsis weui-form-preview_content':'weui-form-preview_content'}} {{isBaseColor? 'base_color' : ''}}" >
+    <view wx:if="{{isParse}}"  
+    class="{{isEllipsis?'ellipsis weui-form-preview_content parse':'weui-form-preview_content parse'}}" >
+      {{interfaceContent}}
+    </view>
+    <view wx:else
+     class="{{isEllipsis?'ellipsis weui-form-preview_content noParse':'weui-form-preview_content noParse'}} {{isBaseColor? 'base_color' : ''}}" >
       {{interfaceContent}}
     </view>
   <view wx:if="{{isEllipsisShow}}" class='weui-form-preview_btn base_color' bindtap="showAll">

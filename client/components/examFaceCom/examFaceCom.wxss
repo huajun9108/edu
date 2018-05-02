@@ -1,5 +1,10 @@
 /* components/examFaceCom/examFaceCom.wxss */
 @import "../../app.wxss";
+.weui-form-preview__label_parse{
+  font-size: 32rpx;
+  min-width: auto;
+}
+
 .ellipsis{
   overflow: hidden;
   text-overflow:ellipsis; 
@@ -23,4 +28,12 @@
   margin-top: 10rpx;
   line-height: 50rpx;
   text-align: center;
+}
+.parse{
+   font-size: 32rpx;
+   line-height:42rpx;
+   color: #131313;
+}
+.weui-form-preview__label_parse{
+  line-height: 42rpx
 }

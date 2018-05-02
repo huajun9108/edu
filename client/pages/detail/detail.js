@@ -15,7 +15,6 @@ Page({
     originalPrice: '待定',
     vipPrice: '待定',
     peopleBuy: 0,
-    src: '',
     teacherName: '',
     teacherTitle: '',
     teacherDetail: '',
@@ -81,7 +80,7 @@ Page({
   },
   sessionLoginFn() {
     this.setData({
-      isLogin: true
+      // isLogin: true
     })
     if (Session.getIsVip()) {
       this.setData({
@@ -107,7 +106,7 @@ Page({
   },
   failLoginFn() {
     this.setData({
-      isLogin: false
+      // isLogin: false
     })
     this.getCourseDetail();
   },
@@ -193,7 +192,15 @@ Page({
    * 用户观看课程判断是否已登录
    */
   chooseCourse(e) {
-    app.testSession(this.chooseCourseFn, this.sessionFail, e)
+    if (!e.currentTarget.dataset.free) {
+      console.log("免费视频")
+      this.setData({
+        courseIndex: e.currentTarget.id,
+      });
+    }else{
+      app.testSession(this.chooseCourseFn, this.sessionFail, e)
+      
+    }
   },
   /**
    * 用户观看课程已登录
@@ -244,12 +251,19 @@ Page({
   //用户点击play按钮,修改自动播放状态
   setAutoPlay(that, e) {
     if (e) {
+     
+      if (e.currentTarget.dataset.src) {
+        console.log("有视频")
+      } else {
+        utils.showFail('课程正在开发中，敬请期待！');
+      }
       that.setData({
         courseIndex: e.currentTarget.id,
-        src: e.currentTarget.dataset.src,
+        // src: e.currentTarget.dataset.src,
         autoplay: true,
         flag: false
       });
+     
     } else {
       that.setData({
         flag: false,

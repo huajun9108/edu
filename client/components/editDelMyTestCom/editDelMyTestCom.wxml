@@ -5,10 +5,10 @@
         <image wx:if="{{item.selected}}" src="{{checkSrc}}"  class="checkImage"></image>
         <image wx:else src="{{uncheckSrc}}"  class="checkImage"></image>
       </view>
-       <view catchtap="{{testTap}}" class="weui-media-box__bd weui-media-box__bd_in-appmsg {{showCheckCss}}" data-id="{{item.id}}" data-title="{{item.title}}" data-type="{{item.type}}" data-flag="{{item.flag}}" data-status="{{item.status}}">
-        <view class="weui-media-box__title" wx:if="{{item.type===1}}">[练习]{{item.title}}</view>
-        <view class="weui-media-box__title" wx:if="{{item.type===2}}">[考试]{{item.title}}</view>
-        <view class="weui-media-box__title" wx:if="{{item.type===3}}">[调研]{{item.title}}</view>
+       <view catchtap="{{testTap}}" class="weui-media-box__bd weui-media-box__bd_in-appmsg {{showCheckCss}}" data-id="{{item.id}}" data-title="{{item.name}}" data-type="{{item.type}}" data-flag="{{item.flag}}" data-status="{{item.status}}">
+        <view class="weui-media-box__title" wx:if="{{item.type===1}}">[练习]{{item.name}}</view>
+        <view class="weui-media-box__title" wx:if="{{item.type===2}}">[考试]{{item.name}}</view>
+        <view class="weui-media-box__title" wx:if="{{item.type===3}}">[调研]{{item.name}}</view>
         <view class="weui-media-box_bottom">{{exam_msg}}: 
           <text wx:if="{{item.flag==1}}">尚未开始</text>
           <text class="base_color" wx:if="{{item.flag==0}}">正在进行</text>

@@ -7,7 +7,7 @@
     <video wx:if="{{!flag}}" id="myVideo" src="{{src}}" controls="{{controls}}"
     binderror = "videoError"
       autoplay="{{autoplay}}"></video>
-    <videoModal  is-hidden="{{isLogin}}" tip-text="{{tipText}}" btn-text="{{btnText}}" bindlogin="login"/>  
+    <!-- <videoModal  is-hidden="{{isLogin}}" tip-text="{{tipText}}" btn-text="{{btnText}}" bindlogin="login"/>   -->
     <videoModal  is-hidden="{{!isLoad}}" tip-text="{{loadText}}" btn-text="{{btnload}}" bindlogin="load"/>
   </view>
   <view class="bottomBlock" wx:if="{{!isLoad}}">
@@ -45,10 +45,11 @@
                 <view class="course_chapter" wx:for="{{courseList}}" wx:key="index">
                     <view class="course_part base_color">{{item.title}}</view>
                     <view class="course_list">
-                        <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" data-src="{{item.video_url}}">
-                            <text>{{item.detail}}</text>
-                            <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
-                            <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
+                        <view class="course_heading" wx:for="{{item.list}}" wx:key="index" bindtap="chooseCourse" id="{{item.id}}" 
+                        data-src="{{item.video_url}}" data-free="{{item.free}}">
+                          <text>{{item.detail}}</text>
+                          <image wx:if="{{item.id==courseIndex}}" src="../../images/bofang_focus_icon.png" class="seletedImage"></image>
+                          <image wx:else src="../../images/bofang_icon.png" class="seletedImage"></image>
                         </view>
                     </view>
                 </view>
