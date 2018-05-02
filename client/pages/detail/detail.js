@@ -217,59 +217,168 @@ Page({
       this.setData({
         courseIndex: e.currentTarget.id,
         // src:
+
+
+
       });
-    }else{}
+    }else{} 
     this.playControl(this.setAutoPlay, e);
   },
   chooseCourseFail() {
   },
   playControl(autoPlay, e) {
     let that = this;
-    if (this.data.courseIsBuy) {
-      wx.getNetworkType({
-        success: function (res) {
-          if (res.networkType === 'wifi') {
-            if (e) {
-              autoPlay(that, e);
-            } else {
-              autoPlay(that);
-            }
+    if(e){
+      if (e.currentTarget.dataset.free) {
+        if (this.data.courseIsBuy) {
+          if (e.currentTarget.dataset.src) {
+            console.log("有视频")
+            wx.getNetworkType({
+              success: function (res) {
+                if (res.networkType === 'wifi') {
+                  if (e) {
+                    autoPlay(that, e);
+                  } else {
+                    autoPlay(that);
+                  }
+                } else {
+                  if (e) {
+                    if (e.currentTarget.id == that.data.courseIndex) {
+                      return;
+                    }
+                    that.setData({
+                      courseEvent: e
+                    });
+                  }
+                  that.setData({
+                    is_modal_Hidden: false,
+                    is_modal_Msg: "当前为非wifi环境，是否继续？",
+                    cancelText: "取消",
+                    sureText: "继续",
+                  });
+                }
+              },
+            })
           } else {
-            if(e) {
-              if (e.currentTarget.id == that.data.courseIndex) {
-                return;
+            console.log("没有视频")
+            utils.showFail('课程正在开发中，敬请期待！');
+          }
+
+        } else {
+          this.setData({
+            is_modal_Hidden: false,
+            is_modal_Msg: "你还未购买该课程",
+            cancelText: "取消",
+            sureText: "去购买",
+          })
+        }
+      }else{
+        wx.getNetworkType({
+          success: function (res) {
+            if (res.networkType === 'wifi') {
+              if (e) {
+                autoPlay(that, e);
+              } else {
+                autoPlay(that);
+              }
+            } else {
+              if (e) {
+                if (e.currentTarget.id == that.data.courseIndex) {
+                  return;
+                }
+                that.setData({
+                  courseEvent: e
+                });
               }
               that.setData({
-                courseEvent: e
+                is_modal_Hidden: false,
+                is_modal_Msg: "当前为非wifi环境，是否继续？",
+                cancelText: "取消",
+                sureText: "继续",
               });
             }
-            that.setData({
-              is_modal_Hidden: false,
-              is_modal_Msg: "当前为非wifi环境，是否继续？",
-              cancelText: "取消",
-              sureText: "继续",
-            });
+          },
+        })
+      }
+    }else{
+      if(this.data.free){
+        wx.getNetworkType({
+          success: function (res) {
+            if (res.networkType === 'wifi') {
+              if (e) {
+                autoPlay(that, e);
+              } else {
+                autoPlay(that);
+              }
+            } else {
+              if (e) {
+                if (e.currentTarget.id == that.data.courseIndex) {
+                  return;
+                }
+                that.setData({
+                  courseEvent: e
+                });
+              }
+              that.setData({
+                is_modal_Hidden: false,
+                is_modal_Msg: "当前为非wifi环境，是否继续？",
+                cancelText: "取消",
+                sureText: "继续",
+              });
+            }
+          },
+        })
+      }else{
+        if (this.data.courseIsBuy) {
+          if (this.data.src) {
+            console.log("有视频")
+            wx.getNetworkType({
+              success: function (res) {
+                if (res.networkType === 'wifi') {
+                  if (e) {
+                    autoPlay(that, e);
+                  } else {
+                    autoPlay(that);
+                  }
+                } else {
+                  if (e) {
+                    if (e.currentTarget.id == that.data.courseIndex) {
+                      return;
+                    }
+                    that.setData({
+                      courseEvent: e
+                    });
+                  }
+                  that.setData({
+                    is_modal_Hidden: false,
+                    is_modal_Msg: "当前为非wifi环境，是否继续？",
+                    cancelText: "取消",
+                    sureText: "继续",
+                  });
+                }
+              },
+            })
+          } else {
+            console.log("没有视频")
+            utils.showFail('课程正在开发中，敬请期待！');
           }
-        },
-      })
-    } else {
-      this.setData({
-        is_modal_Hidden: false,
-        is_modal_Msg: "你还未购买该课程",
-        cancelText: "取消",
-        sureText: "去购买",
-      })
+
+        } else {
+          this.setData({
+            is_modal_Hidden: false,
+            is_modal_Msg: "你还未购买该课程",
+            cancelText: "取消",
+            sureText: "去购买",
+          })
+        }
+      }
     }
+    
+   
   },
   //用户点击play按钮,修改自动播放状态
   setAutoPlay(that, e) {
     if (e) {
-     
-      if (e.currentTarget.dataset.src) {
-        console.log("有视频")
-      } else {
-        utils.showFail('课程正在开发中，敬请期待！');
-      }
       that.setData({
         courseIndex: e.currentTarget.id,
         // src: e.currentTarget.dataset.src,

@@ -71,7 +71,7 @@ video{
   padding-top: 10rpx;
 }
 .weui-tab__content {
-  font-size: 26rpx;
+  font-size:28rpx;
 }                                                  
 .weui-tab__content .course_title{
   font-weight: bold;
@@ -97,8 +97,8 @@ video{
 }
 .course_heading{
   font-size: 28rpx;
-  line-height: 80rpx;
-  padding: 0 18rpx 0 18rpx;
+  line-height: 46rpx;
+  padding: 17rpx 18rpx;
   background: #f5f7f9;
   margin-top: 12rpx;
   display:-webkit-box;
@@ -113,9 +113,6 @@ video{
   width: 46rpx;
   height: 46rpx;
 }
-.course_teacher{
-  font-size: 24rpx;
-}
 .teacher{
   display:-webkit-box;
   display:-webkit-flex;
@@ -125,7 +122,6 @@ video{
   align-items:center;
 }
 .teacher_name{
-  font-size: 26rpx;
   font-weight: bold;
 }
 .teacher_box{
