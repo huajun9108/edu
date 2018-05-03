@@ -8,21 +8,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showFlag: true,
+    showFlag: false,
     model: [
-      {
-        title: '月度',
-        price: '9.90',
-        unit:"月",
-        type: 1,
-        selectImage: true,
-        selectedImageUrl:"../../images/xuanzhong_icon.png",
-        unselectedImageUrl:"../../images/weixuanzhong_icon.png"
-      },
+      // {
+      //   title: '月度',
+      //   price: '9.90',
+      //   unit:"月",
+      //   type: 1,
+      //   selectImage: true,
+      //   selectedImageUrl:"../../images/xuanzhong_icon.png",
+      //   unselectedImageUrl:"../../images/weixuanzhong_icon.png"
+      // },
       {
         title: '年度',
-        price: '99.00',
-        unit: "年",
+        // price: '99.00',
+        detail: "￥169.00元/年",
         type: 2,
         selectImage: false,
         selectedImageUrl: "../../images/xuanzhong_icon.png",
@@ -41,9 +41,9 @@ Page({
         payImageUrl: "../../images/discount_icon.png",
       }
     ],
-    number:"9.90",
-    title: "月度",
-    vipType: 1,
+    number:"169.00",
+    title: "年度",
+    vipType: 2,
   },
 
   /**

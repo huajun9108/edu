@@ -10,7 +10,7 @@ Page({
         courseArr: [],
         courseDir: [],
         pageIsEmpty: false,
-        tipMsg: "该课程暂无分类, 请后续关注",
+        tipMsg: "该分类暂无课程, 请后续关注",
         isLoad: false,
         iconUrl: app.data.iconUrl,
         placeholderText: '输入课程名、老师查找'

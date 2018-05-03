@@ -33,7 +33,7 @@ Page({
       })
       this.setData({
         searchKeyword: options.searchKeyword,
-        tipMsg: `对不起,暂无${options.searchKeyword}相关的课程`,
+        tipMsg: `对不起,暂无${options.searchKeyword}相关的测验`,
       })
       this.getExamFuzzy(options.searchKeyword)
     }else{

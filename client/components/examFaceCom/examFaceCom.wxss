@@ -37,3 +37,7 @@
 .weui-form-preview__label_parse{
   line-height: 42rpx
 }
+.parse_item{
+  margin-top: 0;
+  padding-bottom: 52rpx;
+}

@@ -26,7 +26,10 @@
         <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myUsingTime}}" />
         <examFaceCom interface-text="{{myScoreTitle}}" is-ellipsis="{{isEllipsis}}" 
+        
         is-ellipsis-show="{{isEllipsisShow}}" interface-content="{{myScore}}" is-base-color="{{true}}"/>
+        <view>答题情况概览</view>
+
       </view>
       <view wx:if = "{{attendFlag && examType == 2}}">
         <examFaceCom interface-text="{{myUsingTimeTitle}}" is-ellipsis="{{isEllipsis}}" 
